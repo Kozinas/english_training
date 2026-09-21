@@ -1,7 +1,7 @@
-import {modules, levels, vocabulary, defaults} from '../data/course.mjs';
+import {modules, subtopics, levels, vocabulary, defaults} from '../data/course.mjs';
 import {questions, assessmentVersion} from '../data/assessment.mjs';
 
-export const schemaVersion = 1;
+export const schemaVersion = 2;
 export const normalise = value => String(value).normalize('NFKC').toLowerCase().replace(/[‘’]/g,"'").replace(/[.!?,;:]/g,'').replace(/\s+/g,' ').trim();
 export const checkAnswer = (input, key) => key.split('|').some(a => normalise(a) === normalise(input));
 export function textSimilarity(expected, actual) {
@@ -51,7 +51,8 @@ export function buildPlan(state) {
   for(const review of Object.values(state.profile.reviewedSkills)) if(levels.includes(review.level)) known.push(levels.indexOf(review.level));
   if(!known.length) return null;
   const floor=Math.min(...known);
-  const checked=id=>!!state.moduleProgress[id]?.selfChecked;
+  // A legacy checkbox cannot certify newly expanded content.
+  const checked=id=>!modules.find(m=>m.id===id)?.subtopics.length&&!!state.moduleProgress[id]?.selfChecked;
   const general=modules.filter(m=>m.track==='general' && !checked(m.id) && (levels.indexOf(m.level)>=floor || result.gaps.includes(m.id)));
   const tech=modules.filter(m=>m.track==='technical' && !checked(m.id) && levels.indexOf(m.level)>=Math.max(2,floor-1));
   const queue=[];
@@ -73,11 +74,9 @@ export function buildPlan(state) {
   const items=ordered.map(m=>{
     const checks=m.prerequisites.filter(id=>!scheduled.has(id)&&!checked(id));
     scheduled.add(m.id);
-    return {id:m.id,title:m.title,level:m.level,checks,reason:result.gaps.includes(m.id)?'Тема ошибки во входном тесте':m.track==='technical'?'Цель: разработка ПО':'Последовательное развитие навыков',sessions:m.sessions};
+    return {id:m.id,title:m.title,level:m.level,checks,reason:result.gaps.includes(m.id)?'Тема ошибки во входном тесте':m.track==='technical'?'Цель: разработка ПО':'Последовательное развитие навыков',subtopics:m.subtopics.map(u=>u.id),contentStatus:m.contentStatus};
   });
-  const sessions=items.flatMap(m=>Array.from({length:m.sessions},(_,i)=>({module:m.id,stage:i+1})));
-  const weeks=Array.from({length:4},(_,i)=>({week:i+1,sessions:sessions.slice(i*state.profile.days,(i+1)*state.profile.days)}));
-  return {start:levels[floor],provisional:true,items,weeks,minutes:state.profile.minutes,days:state.profile.days,
+  return {start:levels[floor],provisional:true,items,minutes:state.profile.minutes,days:state.profile.days,
     pending:['writing','speaking','pronunciation'].filter(s=>!state.profile.reviewedSkills[s])};
 }
 
@@ -89,7 +88,45 @@ export function reviewCard(previous, rating, now=Date.now()) {
   return {step,due:new Date(now+intervals[step]*86400000).toISOString(),reviewedAt:new Date(now).toISOString(),reviews:(previous?.reviews??0)+1};
 }
 export function freshState() {
-  return {schemaVersion,profile:{...defaults,reviewedSkills:{}},placement:null,placementDraft:{},attempts:[],cards:{},moduleProgress:{},drafts:{},production:{writing:'',speaking:'',pronunciation:''}};
+  return {schemaVersion,profile:{...defaults,reviewedSkills:{}},placement:null,placementDraft:{},attempts:[],cards:{},moduleProgress:{},drafts:{},production:{writing:'',speaking:'',pronunciation:''},learning:{},bookmark:null};
+}
+
+export const unitById = id=>subtopics.find(u=>u.id===id);
+export const isOpen = task=>['text','speech'].includes(task.kind);
+export function unitState(state,id) {
+  if(!unitById(id))throw new Error('Неизвестная подтема');
+  return state.learning[id]??(state.learning[id]={answers:{},checks:{},examDraft:{variant:'a',answers:{}},attempts:[]});
+}
+export function scoreUnitTest(unit,attempt) {
+  const test=unit.tests.find(t=>t.id===attempt.variant);
+  if(!test)throw new Error('Неизвестный вариант');
+  const rows=test.tasks.map(task=>{
+    const response=attempt.answers[task.id]??'';
+    const review=attempt.reviews?.[task.id];
+    const status=!response.trim()?'missing':isOpen(task)?(!review?'pending':review.score>=3?'passed':'retry'):checkAnswer(response,task.answer)?'passed':'retry';
+    return {id:task.id,goal:task.goal,status,response,open:isOpen(task)};
+  });
+  const closed=rows.filter(r=>!r.open), pending=rows.filter(r=>r.status==='pending').length;
+  const correct=closed.filter(r=>r.status==='passed').length;
+  return {rows,correct,total:closed.length,pending,
+    // Passing this check still does not certify delayed retention or general CEFR.
+    status:rows.some(r=>r.status==='missing')?'incomplete':pending?'awaiting-review':correct/Math.max(1,closed.length)>=.8&&rows.filter(r=>r.open).every(r=>r.status==='passed')?'awaiting-delayed-check':'practicing',
+    goals:unit.goals.map(g=>({...g,passed:rows.filter(r=>r.goal===g.id&&r.status==='passed').length,total:rows.filter(r=>r.goal===g.id).length,pending:rows.filter(r=>r.goal===g.id&&r.status==='pending').length,retry:rows.filter(r=>r.goal===g.id&&['retry','missing'].includes(r.status)).length}))};
+}
+export function submitUnitTest(state,id,now=new Date().toISOString()) {
+  const unit=unitById(id), progress=unitState(state,id), draft=progress.examDraft;
+  if(!draft)throw new Error('Сначала начните новую попытку');
+  const test=unit.tests.find(t=>t.id===draft.variant);
+  if(test.tasks.some(t=>!draft.answers[t.id]?.trim()))throw new Error('Ответьте на все задания. Если не знаете, напишите «Не знаю»; черновик сохранён.');
+  const attempt={id:`${id}-${progress.attempts.length+1}`,version:1,variant:draft.variant,date:now,answers:structuredClone(draft.answers),reviews:{}};
+  progress.attempts.push(attempt);progress.examDraft=null;
+  return scoreUnitTest(unit,attempt);
+}
+export function startUnitTest(state,id) {
+  const progress=unitState(state,id),unit=unitById(id);
+  if(progress.examDraft)return progress.examDraft;
+  const variant=unit.tests[progress.attempts.length%unit.tests.length].id;
+  return progress.examDraft={variant,answers:{}};
 }
 
 const plain=v=>v!==null&&typeof v==='object'&&!Array.isArray(v)&&Object.getPrototypeOf(v)===Object.prototype;
@@ -110,11 +147,13 @@ function validateAttempt(value) {
 }
 // Validate before replacing state. Imported results are recomputed from answers.
 export function validateState(value) {
-  assert(plain(value)&&value.schemaVersion===schemaVersion,'Несовместимая версия экспорта');
+  assert(plain(value)&&[1,schemaVersion].includes(value.schemaVersion),'Несовместимая версия экспорта');
   const visit=v=>{if(v&&typeof v==='object')for(const [k,x] of Object.entries(v)){assert(!['__proto__','prototype','constructor'].includes(k),'Недопустимый ключ');visit(x);}};
   visit(value);
+  value=structuredClone(value);
+  if(value.schemaVersion===1){value.schemaVersion=2;value.learning={};value.bookmark=null;}
   const p=value.profile;
-  assert(plain(p)&&Number.isInteger(p.minutes)&&p.minutes>=15&&p.minutes<=120&&Number.isInteger(p.days)&&p.days>=1&&p.days<=7,'Некорректная нагрузка');
+  assert(plain(p)&&Number.isInteger(p.minutes)&&p.minutes>=1&&p.minutes<=1440&&Number.isInteger(p.days)&&p.days>=1&&p.days<=7,'Некорректное личное расписание');
   assert(boundedText(p.goal,500)&&['en-GB','en-US'].includes(p.accent)&&plain(p.reviewedSkills),'Некорректный профиль');
   for(const [skill,review] of Object.entries(p.reviewedSkills)) {
     assert(['writing','speaking','pronunciation'].includes(skill)&&plain(review)&&levels.includes(review.level)&&boundedText(review.evidence,3000)&&review.evidence.trim().length>=10,'Оценке навыка нужны уровень и основание');
@@ -129,5 +168,35 @@ export function validateState(value) {
   for(const [id,progress] of Object.entries(value.moduleProgress)) assert(mids.has(id)&&plain(progress)&&typeof progress.selfChecked==='boolean'&&validDate(progress.date),'Некорректный прогресс модуля');
   for(const [id,draft] of Object.entries(value.drafts)) assert(mids.has(id)&&boundedText(draft),'Некорректный черновик');
   for(const [id,draft] of Object.entries(value.production)) assert(['writing','speaking','pronunciation'].includes(id)&&boundedText(draft),'Некорректный ответ продуктивного навыка');
+  assert(plain(value.learning),'Некорректный прогресс подтем');
+  const validateResponses=(answers,tasks)=>{
+    assert(plain(answers),'Некорректные ответы подтемы');
+    for(const [id,answer] of Object.entries(answers))assert(tasks.some(t=>t.id===id)&&boundedText(answer),'Неизвестное задание или слишком длинный ответ');
+  };
+  for(const [id,progress] of Object.entries(value.learning)){
+    const unit=unitById(id);assert(unit&&plain(progress),'Неизвестная подтема');
+    const practice=unit.banks.flatMap(b=>b.tasks);
+    validateResponses(progress.answers,practice);assert(plain(progress.checks),'Некорректная самопроверка');
+    for(const [tid,check] of Object.entries(progress.checks))assert(practice.some(t=>t.id===tid)&&plain(check)&&boundedText(check.answer)&&validDate(check.date),'Некорректная проверка задания');
+    if(progress.examDraft!==null){assert(plain(progress.examDraft),'Некорректный черновик теста');const test=unit.tests.find(t=>t.id===progress.examDraft.variant);assert(test,'Неизвестный вариант теста');validateResponses(progress.examDraft.answers,test.tasks);}
+    assert(Array.isArray(progress.attempts),'Некорректная история тестов');
+    const attemptIds=new Set();
+    for(const attempt of progress.attempts){
+      assert(plain(attempt)&&boundedText(attempt.id,100)&&!attemptIds.has(attempt.id)&&attempt.version===1&&validDate(attempt.date),'Несовместимая попытка теста');attemptIds.add(attempt.id);
+      const test=unit.tests.find(t=>t.id===attempt.variant);assert(test,'Неизвестный вариант попытки');validateResponses(attempt.answers,test.tasks);
+      assert(test.tasks.every(t=>attempt.answers[t.id]?.trim()),'Неполная отправленная попытка');assert(plain(attempt.reviews),'Некорректные отзывы');
+      for(const [tid,review] of Object.entries(attempt.reviews)){
+        const task=test.tasks.find(t=>t.id===tid);
+        assert(task&&isOpen(task)&&plain(review)&&Number.isInteger(review.score)&&review.score>=0&&review.score<=4&&boundedText(review.evidence,5000)&&review.evidence.trim().length>=10&&boundedText(review.reviewer,200)&&review.reviewer.trim()&&validDate(review.date),'Открытому ответу нужны оценка 0–4, проверяющий, дата и основание');
+        if(task.kind==='speech')assert(review.heardAudio===true,'Устной оценке нужно прослушанное аудио');
+      }
+    }
+  }
+  if(value.bookmark!==null){
+    const b=value.bookmark;assert(plain(b)&&boundedText(b.route,200)&&Number.isFinite(b.scroll)&&b.scroll>=0&&b.scroll<=10000000&&boundedText(b.focus,200),'Некорректное место продолжения');
+    const [route,id,section]=b.route.split('/');
+    const unit=unitById(id);
+    assert((route==='unit'&&unit&&['explain','examples','test',...unit.banks.map(x=>x.id)].includes(section))||(route==='module'&&mids.has(id)),'Неизвестное место продолжения');
+  }
   return structuredClone(value);
 }

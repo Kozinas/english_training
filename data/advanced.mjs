@@ -115,7 +115,7 @@ export default [
  listening:['Your analysis is persuasive within its assumptions. In the defence, I would like you to explain which new finding would make you change your recommendation.','What should the defence explain?','Which new finding would change the recommendation.'],
  drills:[['conditional ___ the assumptions','on','Conditional on.'],['warrant = обосновывать или гарантировать всегда?','обосновывать','Здесь warrant не обещает гарантированный результат.'],['extend a conclusion ___ another setting','to','Extend to.']],
  words:'warrant~обосновывать~warrant a trial; viable~жизнеспособный~a viable alternative; limitation~ограничение~state a limitation; defence~защита позиции~an oral defence; revise~пересматривать~revise a conclusion; transfer~перенос навыка~transfer to a new context',
- write:'Итог: 1000–1500 слов по вопросу с 3 открытыми источниками, альтернативой, оговорками и выводом. Разбей на несколько 30-минутных занятий.',
+ write:'Итог: 1000–1500 слов по вопросу с 3 открытыми источниками, альтернативой, оговорками и выводом. Работай в своём темпе; незавершённый текст сохрани и продолжи позже без сокращения объёма.',
  speak:'Доклад 8–10 минут и вопросы 10 минут. Затем за 2 минуты объясни итог неспециалисту. Через неделю повтори на новом материале.',
  sound:'Слушатель должен без текста понимать структуру, числа и ограничения. Оцени по аудио понятность, ритм и самокоррекцию, а не сходство с носителем.'
 }

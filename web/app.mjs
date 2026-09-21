@@ -1,11 +1,14 @@
-import {modules,levels,vocabulary,weeklyPattern} from '/data/course.mjs';
+import {createLearningUI} from '/learning.mjs';
+import {modules,levels,vocabulary} from '/data/course.mjs';
 import {questions,passages,productionTasks,assessmentVersion} from '/data/assessment.mjs';
-import {freshState,validateState,scorePlacement,buildPlan,checkAnswer,reviewCard,textSimilarity} from '/engine.mjs';
+import {freshState,validateState,scorePlacement,checkAnswer,reviewCard,textSimilarity,unitById} from '/engine.mjs';
 
 const $=s=>document.querySelector(s), main=$('#main'), key='english-training-v1';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=freshState(), recovery=false, view='home', recognition=null, speaking=false, speechText='', recognitionError=false;
-let courseLevel='all', search='', cardLevel='Pre-A1', cardQueue=[], cardRevealed=false;
+let cardLevel='Pre-A1', cardQueue=[], cardRevealed=false, cardBatch=10;
+let renderedRoute='', bookmarkTimer;
+const learning=createLearningUI({main,esc,heading,getState:()=>state,save,notify,speak,download});
 const byId=id=>modules.find(m=>m.id===id);
 function notify(message){$('#status').textContent=message;clearTimeout(notify.timer);notify.timer=setTimeout(()=>$('#status').textContent='',9000);}
 try{const raw=localStorage.getItem(key);if(raw)state=validateState(JSON.parse(raw));}catch{recovery=true;}
@@ -30,30 +33,10 @@ function speak(text){
   utterance.onerror=()=>notify('Озвучивание не удалось. Проверьте английский голос и настройки звука.');
   speechSynthesis.speak(utterance);
 }
-function home(){
-  const plan=buildPlan(state), reviewed=Object.values(state.moduleProgress).filter(p=>p.selfChecked).length;
-  const due=Object.values(state.cards).filter(c=>Date.parse(c.due)<=Date.now()).length;
-  main.innerHTML=heading('АНГЛИЙСКИЙ ДЛЯ ЖИЗНИ И РАБОТЫ','Небольшой шаг сегодня.','Регулярная практика, понятная обратная связь и маршрут, который растёт вместе с вами.')+
-  `<div class="hero"><p class="eyebrow">${state.profile.minutes} МИНУТ · ${state.profile.days} ДНЕЙ В НЕДЕЛЮ</p><h2>${plan?'Ваш следующий шаг':'Начнём с того, что вы уже умеете'}</h2><p>${plan?'В маршруте есть объяснения, практика и повторение. Для неизвестных навыков сначала нужна отдельная проверка.':'Курс открыт целиком. Диагностика поможет выбрать стартовые темы; письмо и устную речь затем оценит агент или преподаватель.'}</p><a class="button secondary" href="${plan?'#plan':'#assessment'}">${plan?'Открыть маршрут':'Пройти диагностику'}</a></div>
-  <div class="grid"><div class="card"><div class="stat">${modules.length}</div>модулей от первых фраз до C2</div><div class="card"><div class="stat">${reviewed}</div>модулей отмечено после самопроверки</div><div class="card"><div class="stat">${due}</div>карточек готовы к повторению</div></div>
-  <h2>Одна неделя — пять коротких встреч</h2><ol>${weeklyPattern.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
-  <p>Дополнительные 10–20 минут по желанию: чтение, разговор или сложный пример. После пропуска просто продолжайте; обязательного долга нет.</p>
-  <div class="actions"><a class="button" href="#course">Посмотреть курс</a><a class="button secondary" href="#cards">Повторить слова</a></div>
-  ${recovery?'<p class="warning">Обнаружены непрочитанные сохранённые данные. Откройте профиль для резервной копии и восстановления.</p>':''}`;
-}
-function course(){
-  main.innerHTML=heading('ОБЩИЙ КАРКАС','Весь курс — перед вами.','Каждый модуль объединяет несколько занятий. Переходите дальше после самостоятельного применения, а не только чтения.')+
-  `<div class="actions"><label>Уровень <select id="level"><option value="all">Все уровни</option>${languageOptions(courseLevel)}<option value="technical" ${courseLevel==='technical'?'selected':''}>Техническая ветка</option></select></label><label>Поиск темы <input id="search" value="${esc(search)}" placeholder="Например: perfect, письмо, API"></label></div><div id="module-list" class="module-list"></div>`;
-  const list=()=>{
-    const visible=modules.filter(m=>(courseLevel==='all'||m.level===courseLevel||(courseLevel==='technical'&&m.track==='technical'))&&`${m.id} ${m.title} ${m.focus}`.toLowerCase().includes(search.toLowerCase()));
-    $('#module-list').innerHTML=visible.map(m=>`<div class="module-row"><div><span class="pill">${m.level}</span><a href="#module/${m.id}">${m.id} · ${esc(m.title)}</a><small>${esc(m.focus)}</small></div><span>${state.moduleProgress[m.id]?.selfChecked?'✓':'→'}</span></div>`).join('')||'<p>Ничего не найдено. Попробуйте более короткий запрос.</p>';
-  };
-  bind('level','change',e=>{courseLevel=e.target.value;list();});bind('search','input',e=>{search=e.target.value;list();});list();
-}
 function lesson(id){
   const m=byId(id);if(!m){main.innerHTML='<h1>Модуль не найден</h1><a href="#course">Вернуться к курсу</a>';return;}
   main.innerHTML=`<a href="#course">← Полный курс</a>`+heading(`${m.id} · ${m.level}`,m.title)+
-  `<p class="muted">Предпосылки: ${m.prerequisites.map(p=>`<a href="#module/${p}">${p}</a>`).join(', ')||'нет'}. Базовый цикл — 5 занятий; при необходимости продлите.</p><div class="card"><h2>Разбираемся</h2><p>${esc(m.rule)}</p></div>
+  `<p class="muted">Предпосылки: ${m.prerequisites.map(p=>`<a href="#module/${p}">${p}</a>`).join(', ')||'нет'}. Это краткий материал первой версии, ещё не расширенный топик. Фиксированного числа занятий нет.</p><div class="card"><h2>Разбираемся</h2><p>${esc(m.rule)}</p></div>
   <h2>Примеры</h2>${m.examples.map((x,i)=>`<div class="example">${i===2?'<span class="pill">Сложнее</span>':''}${esc(x)}</div>`).join('')}
   <h2>Чтение</h2><p class="reading">${esc(m.reading[0])}</p><p>${esc(m.reading[1])}</p><details><summary>Ответ после попытки</summary>${esc(m.reading[2])}</details>
   <h2>Аудирование</h2><p>Сначала общий смысл, затем детали. Синтетическое аудио — учебная поддержка; для продвинутых уровней добавьте живые записи.</p><button id="listen">Прослушать</button><p>${esc(m.listening[1])}</p><details><summary>Транскрипт и ответ после попытки</summary><p>${esc(m.listening[0])}</p><p>${esc(m.listening[2])}</p></details>
@@ -73,7 +56,7 @@ function resultsHtml(){
   return `<div class="card"><h2>Предварительный профиль</h2><p>Авторский короткий тест не валидирован как CEFR-экзамен. Метки уровней и порог 75% помогают выбирать учебные темы. При малом числе вопросов результат чувствителен к отдельной ошибке.</p><div class="table-wrap"><table><tr><th>Навык</th><th>Верно / отвечено</th><th>Поддержанная тестом ступень</th><th>Начать работу с</th></tr>${Object.entries(result.skills).map(([s,x])=>`<tr><td>${{grammar:'Грамматика',reading:'Чтение',listening:'Аудирование'}[s]}</td><td>${x.correct} / ${x.answered} из ${x.total}</td><td>${x.complete?esc(x.supported):'Не определено — раздел неполный'}</td><td>${x.complete?esc(x.study):'Нужна проверка'}</td></tr>`).join('')}</table></div><p>Письмо, речь и произношение: отдельная оценка по вашим ответам и аудио. Пройденный тест не подтверждает общий CEFR.</p><a class="button" href="#plan">Предварительный маршрут</a><details><summary>Разбор сохранённой попытки</summary>${questions.filter(q=>Number.isInteger(state.placement.answers[q.id])).map(q=>`<p><strong>${q.id}</strong> ${state.placement.answers[q.id]===q.answer?'✓':'↻'} ${esc(q.prompt)}<br>Ваш ответ: ${esc(q.options[state.placement.answers[q.id]]??'Не знаю ответа')}. Ключ: ${esc(q.options[q.answer])}. ${esc(q.explanation)}</p>`).join('')}</details></div>`;
 }
 function assessment(){
-  main.innerHTML=heading('ПЕРВАЯ ТОЧКА ОТСЧЁТА','Что уже получается?','48 заданий: 24 по грамматике, 12 по чтению, 12 по аудированию. Можно разделить на несколько 30-минутных занятий.')+
+  main.innerHTML=heading('ПЕРВАЯ ТОЧКА ОТСЧЁТА','Что уже получается?','48 заданий: 24 по грамматике, 12 по чтению, 12 по аудированию. Можно остановиться и продолжить позже, без таймера.')+
   `<p>Работайте без словаря и переводчика. Если ответа нет, выберите «Не знаю ответа» — угадывать не нужно. Ответы автоматически сохраняются. Для расчёта маршрута завершите грамматику и чтение. Аудирование можно оставить неизвестным, если нет английского голоса или возможности слушать. Здесь нет таймера.</p><p class="warning">Для аудирования сначала прослушайте текст, затем отвечайте. Максимум два прослушивания рекомендуется для сопоставимости. Чтение транскрипта вместо прослушивания не проверяет слух.</p>${resultsHtml()}<div id="test-sections"></div>
   <div class="actions"><button id="grade">Сохранить и проверить попытку</button><button class="secondary" id="new-attempt">Очистить черновик для новой попытки</button></div><h2>Письмо и устная часть</h2><p>Эти ответы не оцениваются автоматически. Экспортируйте их для агента; правила оценки — assessment/RUBRICS.md. Не вставляйте конфиденциальные рабочие данные.</p>${productionTasks.map(t=>`<div class="card"><h3>${esc(t.title)}</h3><p>${esc(t.prompt)}</p><label for="prod-${t.id}">${t.id==='writing'?'Ответ':'Транскрипт, заметки или ссылка на локальное аудио для агента'}</label><textarea id="prod-${t.id}" maxlength="20000">${esc(state.production[t.id])}</textarea></div>`).join('')}`;
   const labels={grammar:'Грамматика и употребление',reading:'Чтение',listening:'Аудирование'};
@@ -135,27 +118,19 @@ function speech(){
 function refillCards(){
   const pool=vocabulary.filter(v=>byId(v.module).level===cardLevel);
   const due=pool.filter(v=>state.cards[v.id]&&Date.parse(state.cards[v.id].due)<=Date.now()).sort((a,b)=>Date.parse(state.cards[a.id].due)-Date.parse(state.cards[b.id].due));
-  cardQueue=[...due,...pool.filter(v=>!state.cards[v.id]).slice(0,3)];cardRevealed=false;
+  cardQueue=[...due,...pool.filter(v=>!state.cards[v.id]).slice(0,cardBatch)];cardRevealed=false;
 }
 function cards(){
-  main.innerHTML=heading('ВСПОМНИТЬ, А НЕ ПЕРЕЧИТАТЬ','Слова возвращаются вовремя.','Один подход: карточки к повторению и до трёх новых. Произнесите слово и составьте фразу до открытия ответа.')+
-  `<label>Уровень <select id="card-level">${languageOptions(cardLevel)}</select></label><p>Интервалы: 1, 3, 7, 14, 30, 60 дней. Ошибка возвращает на один день; «трудно» сохраняет текущий интервал. Это простой учебный алгоритм, не модель памяти.</p><div id="flashcard"></div>`;
-  bind('card-level','change',e=>{cardLevel=e.target.value;refillCards();showCard();});showCard();
+  main.innerHTML=heading('СЛОВА · КОНСТРУКЦИИ · ВЫРАЖЕНИЯ','Вспомнить. Перевернуть. Применить.','На лицевой стороне — слово или выражение. Нажмите на карточку или используйте Enter / пробел. На обороте — перевод, IPA и контекст.')+
+  `<div class="actions"><label>Уровень <select id="card-level">${languageOptions(cardLevel)}</select></label><label>Новых карточек в подходе <input type="number" id="card-batch" min="1" max="100" value="${cardBatch}"></label></div><p>Интервалы: 1, 3, 7, 14, 30, 60 дней. Ошибка возвращает на один день; «трудно» сохраняет текущий интервал. Это простой учебный алгоритм, не модель памяти.</p><div id="flashcard"></div>`;
+  bind('card-level','change',e=>{cardLevel=e.target.value;refillCards();showCard();});bind('card-batch','change',e=>{cardBatch=Math.max(1,Math.min(100,Number(e.target.value)||10));refillCards();showCard();});showCard();
 }
 function showCard(){
-  const card=cardQueue[0];if(!card){$('#flashcard').innerHTML='<div class="card"><h2>Этот подход завершён.</h2><p>Можно вернуться завтра или взять ещё три новых слова по желанию.</p><button id="more-cards" class="secondary">Ещё один подход</button></div>';bind('more-cards','click',()=>{refillCards();showCard();});return;}
-  $('#flashcard').innerHTML=`<p class="muted">Осталось в подходе: ${cardQueue.length} · ${card.module}</p><div class="flashcard"><span class="pill">EN → RU + ваша фраза</span><div class="word">${esc(card.word)}</div>${cardRevealed?`<p>${esc(card.translation)}</p><p><em>${esc(card.context)}</em></p>`:'<button id="reveal">Открыть ответ</button>'}</div><div class="actions"><button id="word-audio" class="secondary">Произнести</button>${cardRevealed?'<button data-rating="again" class="secondary">Не вспомнил</button><button data-rating="hard" class="secondary">Трудно</button><button data-rating="good">Вспомнил и составил фразу</button>':''}</div>`;
-  bind('reveal','click',()=>{cardRevealed=true;showCard();});bind('word-audio','click',()=>speak(card.context));
+  const card=cardQueue[0];if(!card){$('#flashcard').innerHTML='<div class="card"><h2>Этот подход завершён.</h2><p>Можно сделать перерыв или взять следующую порцию. Объём словаря не зависит от размера подхода.</p><button id="more-cards" class="secondary">Ещё один подход</button></div>';bind('more-cards','click',()=>{refillCards();showCard();});return;}
+  $('#flashcard').innerHTML=`<p class="muted">В очереди: ${cardQueue.length} · ${card.module} · ${esc(card.kind)}</p><button type="button" id="flip-card" class="flip-card ${cardRevealed?'is-flipped':''}" aria-pressed="${cardRevealed}" aria-label="${cardRevealed?esc(card.word+' — '+card.translation+'; '+card.ipa+' UK; '+card.context+'; '+card.note+'. Нажмите, чтобы показать слово.'):'Перевернуть карточку: '+esc(card.word)}"><span class="flip-inner"><span class="card-face card-front" ${cardRevealed?'aria-hidden="true"':'aria-hidden="false"'}><span class="card-caption">ВСПОМНИТЕ ЗНАЧЕНИЕ И СВОЮ ФРАЗУ</span><span class="word" lang="en">${esc(card.word)}</span><span class="card-hint">Нажмите, чтобы перевернуть ↻</span></span><span class="card-face card-back" ${cardRevealed?'aria-hidden="false"':'aria-hidden="true"'}><span class="card-caption">${esc(card.word)}</span><span class="card-translation">${esc(card.translation)}</span><span class="ipa" lang="en">${esc(card.ipa)} <small>UK</small></span><span lang="en">${esc(card.context)}</span><span class="card-note">${esc(card.note)}</span></span></span></button><div class="actions card-controls"><button id="word-audio" class="secondary">Озвучить слово / выражение</button><button id="context-audio" class="secondary">Озвучить пример</button></div><div class="actions" id="card-ratings">${cardRevealed?'<button data-rating="again" class="secondary">Не вспомнил</button><button data-rating="hard" class="secondary">Трудно</button><button data-rating="good">Вспомнил и составил фразу</button>':'<p class="muted">Оцените вспоминание после переворота. Озвучивание не засчитывает знание.</p>'}</div>`;
+  bind('flip-card','click',()=>{cardRevealed=!cardRevealed;showCard();$('#flip-card').focus({preventScroll:true});});
+  bind('word-audio','click',()=>speak(card.word));bind('context-audio','click',()=>speak(card.context));
   main.querySelectorAll('[data-rating]').forEach(b=>b.addEventListener('click',()=>{state.cards[card.id]=reviewCard(state.cards[card.id],b.dataset.rating);save();cardQueue.shift();cardRevealed=false;showCard();}));
-}
-function planMarkdown(plan){
-  return `# Предварительный индивидуальный план\n\nСоздан: ${new Date().toISOString()}\nЦель: ${state.profile.goal}\nНагрузка: ${plan.minutes} минут, ${plan.days} дней в неделю. Дополнительная практика добровольна.\nУчебный старт: ${plan.start}; это не подтверждённый общий CEFR.\nНужна оценка: ${plan.pending.join(', ')||'ручные оценки внесены; проверить их основания'}.\n\n## Ближайшие четыре недели\n\n${plan.weeks.map(w=>`### Неделя ${w.week}\n\n${w.sessions.map((s,i)=>`${i+1}. ${s.module}, этап ${s.stage} из 5, ${plan.minutes} минут.`).join('\n')||'Пересмотр плана и новый контрольный проект.'}`).join('\n\n')}\n\n## Очередь модулей\n\n${plan.items.map(m=>`- ${m.id}: ${m.title}. Основание: ${m.reason}. Проверить предпосылки: ${m.checks.join(', ')||'нет'}.`).join('\n')}\n\nЭтапы: правило/чтение; аудирование; речь; письмо; новое применение и проверка. Переход зависит от результата, не от календаря. Пересмотр раз в две недели. Отложенная проверка через 7 дней. Нет обязательного долга за пропуски.\n`;
-}
-function planView(){
-  const plan=buildPlan(state);main.innerHTML=heading('ПЕРСОНАЛЬНАЯ ПОСЛЕДОВАТЕЛЬНОСТЬ','Ваш маршрут.','Полный курс остаётся доступным. Здесь — предварительная очередь с учётом ответов и отмеченных модулей.');
-  if(!plan){main.innerHTML+='<div class="card"><p>Уровень пока неизвестен. Сначала завершите входную диагностику; агент затем проверит письмо и речь.</p><a class="button" href="#assessment">К диагностике</a></div>';return;}
-  main.innerHTML+=`<p class="warning">Учебный старт: ${plan.start}. План предварительный. ${plan.pending.length?'Ещё нужна отдельная оценка: '+plan.pending.join(', ')+'.':'Ручные оценки внесены; их основания остаются важной частью профиля.'} Проверьте prerequisites короткими заданиями; пропущенные ранние модули не считаются автоматически освоенными.</p><div class="actions"><button id="export-plan">Скачать план.md</button><a class="button secondary" href="#settings">Уточнить профиль</a></div><h2>Ближайшие четыре недели</h2>${plan.weeks.map(w=>`<div class="week"><h3>Неделя ${w.week}</h3><ol>${w.sessions.map(s=>`<li><a href="#module/${s.module}">${s.module}</a> · этап ${s.stage}/5 · ${plan.minutes} мин</li>`).join('')||'<li>Пересмотр плана и контрольный проект.</li>'}</ol></div>`).join('')}<p>Этапы: 1 — правило и чтение; 2 — аудирование; 3 — речь; 4 — письмо; 5 — новая задача и проверка. Если этап не завершён, продолжайте его следующим занятием. Каждые две недели пересматривайте маршрут с агентом.</p><h2>Очередь и причины выбора</h2>${plan.items.map(m=>`<div class="module-row"><div><a href="#module/${m.id}">${m.id} · ${esc(m.title)}</a><small>${esc(m.reason)}${m.checks.length?'. Сначала проверить: '+m.checks.join(', '):''}</small></div><span class="pill">${m.level}</span></div>`).join('')||'<p>Все выбранные модули отмечены. Проведите контрольный проект и отложенную проверку с агентом.</p>'}`;
-  bind('export-plan','click',()=>download('plan.md',planMarkdown(plan),'text/markdown;charset=utf-8'));
 }
 function library(){
   main.innerHTML=heading('ОБЪЯСНЕНИЯ И ПРАКТИКА','Библиотека курса.','Открытые учебники находятся в library/open/. Коммерческие книги добавляются как личные копии в library/private/.')+
@@ -164,8 +139,8 @@ function library(){
 }
 function settings(){
   main.innerHTML=heading('ПРОФИЛЬ И РЕЗЕРВНЫЕ КОПИИ','Настроить под свою жизнь.','Агент не видит localStorage автоматически. Экспортируйте JSON и сохраните в learner/private/progress.json для совместной работы.')+
-  `<form id="profile"><label for="goal">Цель</label><input id="goal" maxlength="500" value="${esc(state.profile.goal)}"><div class="grid"><label>Минут за занятие<input id="minutes" type="number" min="15" max="120" value="${state.profile.minutes}" required></label><label>Дней в неделю<input id="days" type="number" min="1" max="7" value="${state.profile.days}" required></label></div><label for="accent">Предпочтение для голоса и распознавания</label><select id="accent"><option value="en-GB" ${state.profile.accent==='en-GB'?'selected':''}>British English</option><option value="en-US" ${state.profile.accent==='en-US'?'selected':''}>American English</option></select><p>Оба варианта языка допустимы. Нагрузка по умолчанию — 30 минут, 5 дней; сверх этого по желанию.</p><h2>Оценки после обсуждения с агентом</h2><p>Вносите уровень только после проверки по рубрике. Для речи и произношения нужно слышимое аудио; если его нет, оставьте «Не определено». Это запись внешней оценки, не автоматическая проверка приложением.</p>${['writing','speaking','pronunciation'].map(s=>`<label for="review-${s}">${{writing:'Письмо',speaking:'Устная речь',pronunciation:'Произношение'}[s]}</label><select id="review-${s}"><option value="unknown">Не определено</option>${languageOptions(state.profile.reviewedSkills[s]?.level)}</select><label for="evidence-${s}">Кто оценил, дата, задание, наблюдения и ограничения</label><textarea id="evidence-${s}" maxlength="3000">${esc(state.profile.reviewedSkills[s]?.evidence??'')}</textarea>`).join('')}<button type="submit">Сохранить профиль</button></form>
-  <h2>Данные принадлежат вам</h2><p>Экспорт содержит ваши ответы и черновики. Не публикуйте его в открытом GitHub. Очистка данных браузера удалит локальную копию; JSON позволяет восстановить её.</p><div class="actions"><button id="export">Экспорт JSON</button><button id="raw-export" class="secondary">Скачать исходное хранилище</button></div><label for="import">Импорт JSON (до 2 МБ; заменяет текущий прогресс после проверки и подтверждения)</label><input type="file" id="import" accept="application/json,.json">
+  `<form id="profile"><label for="goal">Цель</label><input id="goal" maxlength="500" value="${esc(state.profile.goal)}"><div class="grid"><label>Личный ориентир, минут<input id="minutes" type="number" min="1" max="1440" value="${state.profile.minutes}" required></label><label>Дней в неделю<input id="days" type="number" min="1" max="7" value="${state.profile.days}" required></label></div><label for="accent">Предпочтение для голоса и распознавания</label><select id="accent"><option value="en-GB" ${state.profile.accent==='en-GB'?'selected':''}>British English</option><option value="en-US" ${state.profile.accent==='en-US'?'selected':''}>American English</option></select><p>Оба варианта языка допустимы. По умолчанию — 30 минут, 5 дней. Это личный ориентир, не длительность модуля: меняйте свободно, объём работы сохраняется.</p><h2>Оценки после обсуждения с агентом</h2><p>Вносите уровень только после проверки по рубрике. Для речи и произношения нужно слышимое аудио; если его нет, оставьте «Не определено». Это запись внешней оценки, не автоматическая проверка приложением.</p>${['writing','speaking','pronunciation'].map(s=>`<label for="review-${s}">${{writing:'Письмо',speaking:'Устная речь',pronunciation:'Произношение'}[s]}</label><select id="review-${s}"><option value="unknown">Не определено</option>${languageOptions(state.profile.reviewedSkills[s]?.level)}</select><label for="evidence-${s}">Кто оценил, дата, задание, наблюдения и ограничения</label><textarea id="evidence-${s}" maxlength="3000">${esc(state.profile.reviewedSkills[s]?.evidence??'')}</textarea>`).join('')}<button type="submit">Сохранить профиль</button></form>
+  <h2>Данные принадлежат вам</h2><p>Экспорт содержит ваши ответы и черновики. Не публикуйте его в открытом GitHub. Очистка данных браузера удалит локальную копию; JSON позволяет восстановить её.</p><div class="actions"><button id="export">Экспорт JSON</button><button id="raw-export" class="secondary">Скачать исходное хранилище</button></div><label for="import">Импорт JSON (до 12 МБ; заменяет текущий прогресс после проверки и подтверждения)</label><input type="file" id="import" accept="application/json,.json">
   <h2>Восстановление / сброс</h2><button id="reset" class="danger">Сбросить данные этого приложения</button><p class="muted">Сброс не удаляет файлы на диске. Перед ним сохраните экспорт.</p>`;
   bind('profile','submit',e=>{e.preventDefault();const next=structuredClone(state);next.profile={goal:$('#goal').value,minutes:Number($('#minutes').value),days:Number($('#days').value),accent:$('#accent').value,reviewedSkills:{}};
     for(const s of ['writing','speaking','pronunciation'])if($('#review-'+s).value!=='unknown')next.profile.reviewedSkills[s]={level:$('#review-'+s).value,evidence:$('#evidence-'+s).value};
@@ -173,19 +148,42 @@ function settings(){
   });
   bind('export','click',()=>download('progress.json',JSON.stringify(state,null,2)));
   bind('raw-export','click',()=>{try{download('progress-raw.json',localStorage.getItem(key)??'null');}catch{notify('Хранилище недоступно. Используйте обычный экспорт состояния в памяти.');}});
-  bind('import','change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2*1024*1024)throw new Error('Файл больше 2 МБ');const candidate=validateState(JSON.parse(await file.text()));if(!confirm('Заменить текущий прогресс проверенным импортом? Экспортируйте текущий, если хотите сохранить обе версии.'))return;state=candidate;recovery=false;save();settings();notify('Импорт завершён. Результаты пересчитаны из ответов.');}catch(error){notify('Импорт отклонён: '+error.message);}finally{e.target.value='';}});
+  bind('import','change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>12*1024*1024)throw new Error('Файл больше 12 МБ');const candidate=validateState(JSON.parse(await file.text()));if(!confirm('Заменить текущий прогресс проверенным импортом? Экспортируйте текущий, если хотите сохранить обе версии.'))return;state=candidate;recovery=false;save();settings();notify('Импорт завершён. Результаты пересчитаны из ответов.');}catch(error){notify('Импорт отклонён: '+error.message);}finally{e.target.value='';}});
   bind('reset','click',()=>{if(confirm('Удалить только прогресс English Training из этого браузера? Сохраните экспорт заранее.')){state=freshState();recovery=false;save();settings();notify('Прогресс приложения сброшен. Файлы на диске не изменены.');}});
 }
+function rememberPosition(){
+  if(!/^(unit|module)\//.test(renderedRoute))return;
+  const [route,id,section]=renderedRoute.split('/'),unit=unitById(id);
+  if(route==='module'&&!byId(id))return;
+  if(route==='unit'&&(!unit||!['explain','examples','test',...unit.banks.map(b=>b.id)].includes(section)))return;
+  state.bookmark={route:renderedRoute,scroll:window.scrollY,focus:document.activeElement?.id??''};save();
+}
 function render(){
+  clearTimeout(bookmarkTimer);
   if(recognition){recognition.onstart=null;recognition.onresult=null;recognition.onerror=null;recognition.onend=null;recognition.abort();}
   recognition=null;speaking=false;window.speechSynthesis?.cancel();
   const route=location.hash.slice(1)||'home';view=route.split('/')[0];
-  document.querySelectorAll('nav a').forEach(a=>{if(a.hash==='#'+(view==='module'?'course':view))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-  if(view==='module')lesson(route.split('/')[1]);else if(view==='cards'){refillCards();cards();}else({home,course,assessment,speech,plan:planView,library,settings}[view]??home)();
-  window.scrollTo(0,0);
+  const resume=state.bookmark?.route===route?structuredClone(state.bookmark):null;
+  renderedRoute=route;
+  document.querySelectorAll('aside nav a').forEach(a=>{if(a.hash==='#'+(['module','unit'].includes(view)?'course':view))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  if(view==='module'){if(!learning.topic(route.split('/')[1]))lesson(route.split('/')[1]);}
+  else if(view==='unit')learning.unit(route.split('/')[1],route.split('/')[2]);
+  else if(view==='references')learning.references(route.split('/')[1]);
+  else if(view==='cards'){refillCards();cards();}
+  else({home:learning.home,course:learning.course,assessment,speech,plan:learning.plan,library,settings}[view]??learning.home)();
+  main.dataset.route=route;
+  if(recovery)main.insertAdjacentHTML('afterbegin','<p class="warning">Сохранённые данные не удалось прочитать. Новые изменения пока только в памяти. <a href="#settings">Скачайте исходное хранилище перед восстановлением.</a></p>');
+  requestAnimationFrame(()=>{
+    if(renderedRoute!==route)return;
+    if(resume?.focus)document.getElementById(resume.focus)?.focus({preventScroll:true});
+    window.scrollTo(0,resume?.scroll??0);
+    if(/^(unit|module)\//.test(route)&&(!route.startsWith('unit/')||route.split('/')[2]))rememberPosition();
+  });
 }
 window.addEventListener('hashchange',render);
-window.addEventListener('pagehide',()=>{recognition?.abort();window.speechSynthesis?.cancel();});
-document.addEventListener('visibilitychange',()=>{if(document.hidden)recognition?.abort();});
+window.addEventListener('scroll',()=>{clearTimeout(bookmarkTimer);bookmarkTimer=setTimeout(rememberPosition,120);},{passive:true});
+main.addEventListener('focusin',()=>{if(/^(unit|module)\//.test(renderedRoute))rememberPosition();});
+window.addEventListener('pagehide',()=>{rememberPosition();recognition?.abort();window.speechSynthesis?.cancel();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){rememberPosition();recognition?.abort();}});
 window.speechSynthesis?.getVoices();
 render();

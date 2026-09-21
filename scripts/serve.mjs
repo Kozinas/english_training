@@ -6,8 +6,8 @@ import path from 'node:path';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8'};
 const routes=new Map([
- ['/','web/index.html'],['/styles.css','web/styles.css'],['/app.mjs','web/app.mjs'],['/engine.mjs','web/engine.mjs'],
- ...['course','foundation','intermediate','advanced','technical','assessment'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs'])
+ ['/','web/index.html'],['/styles.css','web/styles.css'],['/app.mjs','web/app.mjs'],['/engine.mjs','web/engine.mjs'],['/learning.mjs','web/learning.mjs'],
+ ...['course','foundation','intermediate','advanced','technical','assessment','reference','irregular','lexicon','p01','unit-tools'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs'])
 ]);
 export function createServer() {
   return http.createServer(async(req,res)=>{

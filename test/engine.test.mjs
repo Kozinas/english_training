@@ -53,8 +53,11 @@ test('self-checked modules leave queue; missing prerequisites are explicit check
   const state=placed(answers());state.moduleProgress.C201={selfChecked:true,date:new Date().toISOString()};
   const plan=buildPlan(state);assert(!plan.items.some(m=>m.id==='C201'));assert(plan.items.some(m=>m.checks.length));
 });
-test('30 minutes five days creates bounded four-week schedule',()=>{
-  const plan=buildPlan(placed(answers(q=>(q.answer+1)%4)));assert.equal(plan.minutes,30);assert.equal(plan.weeks.length,4);assert(plan.weeks.every(w=>w.sessions.length===5));
+test('personal time changes neither content nor topic queue',()=>{
+  const state=placed(answers(q=>(q.answer+1)%4));const a=buildPlan(state);
+  state.profile.minutes=90;state.profile.days=2;const b=buildPlan(state);
+  assert.deepEqual(a.items,b.items);assert.equal(a.minutes,30);assert.equal(b.minutes,90);
+  assert(!('weeks' in a));assert(modules.every(m=>!('sessions' in m)));
 });
 test('SRS intervals and lapse are deterministic',()=>{
   const now=Date.UTC(2026,8,21);let card;
