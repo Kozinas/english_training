@@ -87,7 +87,7 @@ short~spelling~Добавь -ing к fix.~fixing~Конечная x не удва
 short~spelling~Добавь -ing к travel; UK или US допустимы.~travelling|traveling~Нормативные региональные варианты различаются числом l.
 short~spelling~Добавь -ing к cancel; UK или US допустимы.~cancelling|canceling~Оба варианта нормативны, если не задан конкретный стандарт.
 short~spelling~Добавь -ing к panic.~panicking~После c появляется k перед ing.
-text~spelling~Объясни ошибки в runing, openning и studing. Исправь и сравни механизмы.~Running: удвоение после короткой ударной гласной; opening: без удвоения в безударном конце; studying: сохраняется y.~Три разных механизма, не механическое правило «везде двойная согласная».`),
+text~spelling~Объясни ошибки в runing, openning и studing. Исправь и сравни механизмы.~Running: удвоение после короткой ударной гласной; opening: без удвоения в безударном конце; studying: сохраняется y.~Три разных механизма, не механическое правило «везде двойная согласная».`,'','Написание'),
  bank('A102-building','reading','Книжная ярмарка: кто что делает','reading',`short~scene~Где происходит сцена: a book fair или a railway station?~a book fair|book fair~Организуется книжная ярмарка в community hall.
 short~scene~Кто пишет таблички?~Mina~Mina is writing signs у входа.
 short~scene~Сколько посетителей ждут снаружи? Число.~2|two~В тексте two visitors are waiting outside.

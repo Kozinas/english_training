@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+ <title id="title">Shared kitchen: teaching floor plan</title>
+ <desc id="desc">North is at the top. North row: cupboard on the left, sink in the middle, cooker on the right. Middle row: door on the left, table in the middle, window on the right. South row: shelf on the left, bench in the middle, bin on the right. Positions on the plan do not show height.</desc>
+ <rect width="720" height="560" rx="20" fill="#f4f6f1"/>
+ <g font-family="Arial, sans-serif" fill="#173a3b" text-anchor="middle">
+  <text x="360" y="36" font-size="22" font-weight="bold">SHARED KITCHEN · VIEW FROM ABOVE</text>
+  <text x="360" y="72" font-size="20">NORTH ↑</text>
+  <rect x="90" y="98" width="540" height="372" rx="10" fill="#fff" stroke="#173a3b" stroke-width="4"/>
+  <g stroke="#c7d2cc" stroke-dasharray="5 7"><path d="M270 100V470M450 100V470M90 222H630M90 346H630"/></g>
+  <g fill="#e6eee9" stroke="#527873" stroke-width="2">
+   <rect x="110" y="125" width="140" height="64" rx="7"/><rect x="290" y="125" width="140" height="64" rx="7"/><rect x="470" y="125" width="140" height="64" rx="7"/>
+   <rect x="110" y="250" width="140" height="64" rx="7"/><rect x="290" y="240" width="140" height="84" rx="18" fill="#fbefda"/><rect x="470" y="250" width="140" height="64" rx="7"/>
+   <rect x="110" y="375" width="140" height="64" rx="7"/><rect x="290" y="375" width="140" height="64" rx="7"/><rect x="470" y="375" width="140" height="64" rx="7"/>
+  </g>
+  <g font-size="23" font-weight="bold"><text x="180" y="165">cupboard</text><text x="360" y="165">sink</text><text x="540" y="165">cooker</text><text x="180" y="290">door</text><text x="360" y="290">table</text><text x="540" y="290">window</text><text x="180" y="415">shelf</text><text x="360" y="415">bench</text><text x="540" y="415">bin</text></g>
+  <text x="42" y="287" font-size="15" transform="rotate(-90 42 287)">WEST · LEFT</text><text x="678" y="287" font-size="15" transform="rotate(90 678 287)">EAST · RIGHT</text>
+  <text x="360" y="505" font-size="20">SOUTH ↓</text><text x="360" y="538" font-size="16">Not to scale · Grid positions, not shelf heights</text>
+ </g>
+</svg>

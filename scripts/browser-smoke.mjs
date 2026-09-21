@@ -225,6 +225,52 @@ try{
   assert(await evaluate(`!!document.querySelector('a[href*="stative-verbs"]')`),'A102 source links');
   await evaluate(`document.querySelector('#reference-search').value='travelling';document.querySelector('#reference-search').dispatchEvent(new Event('input'));`);
   assert(await evaluate('document.querySelector("#reference-rows").textContent.includes("traveling")'),'A102 variant in reference search');
+  await route('module/A103','.unit-list');assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),4);await screenshot('a103-topic-desktop.png');
+  for(const [unit,bank,label] of [['A103-portions','portions','Порции'],['A103-place','movement','Направление'],['A102-building','spelling','Написание']]){
+   await route(`unit/${unit}/${bank}`,'#check-bank');const labels=await evaluate('Array.from(document.querySelectorAll(".section-tabs a"),a=>a.textContent)');
+   assert.equal(new Set(labels).size,labels.length,'Distinct section labels: '+unit);assert(labels.includes(label));
+  }
+  for(const [unit,id,wrong,right] of [
+   ['existence','practice-4','is','are'],['existence','practice-14',"Yes, there's.",'Yes, there is.'],['existence','reading-6','false','not stated'],
+   ['portions','portions-1','loafs','loaves'],['portions','listening-3','15','1.5'],
+   ['quantity','practice-12','a few','few'],['quantity','practice-19','yes','no'],
+   ['place','movement-1','in','into'],['place','movement-2','into','in'],['place','movement-11','yes','no']
+  ]){
+   const bank=id.slice(0,id.lastIndexOf('-')),taskId=`A103-${unit}-${id}`;await route(`unit/A103-${unit}/${bank}`,'#check-bank');
+   for(const [answer,label] of [[wrong,'Нужно разобрать'],[right,'Верно']]){
+    await evaluate(`{const f=document.querySelector('#answer-${taskId}');f.value=${JSON.stringify(answer)};f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+    assert(await evaluate(`document.querySelector('#feedback-${taskId}').textContent.startsWith(${JSON.stringify(label)})`),taskId+' '+answer);
+   }
+  }
+  await route('unit/A103-portions/listening','#check-bank');
+  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#answer-A103-portions-listening-3")?.value==="1.5"'),'A103 decimal answer persists exactly');
+  await route('unit/A103-place/movement','#check-bank');
+  await evaluate(`{const f=document.querySelector('#answer-A103-place-movement-12');f.value='Both put it on and put it onto the shelf can be natural.';f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+  assert(await evaluate('document.querySelector("#feedback-A103-place-movement-12").textContent.includes("провер")'),'A103 contextual alternatives stay open');
+  await route('unit/A103-place/reading','.lesson-diagram');
+  await poll(()=>evaluate('document.querySelector(".lesson-diagram img")?.naturalWidth===720'),'A103 SVG loaded');
+  assert(await evaluate('document.querySelector(".lesson-diagram img").alt.includes("cupboard, sink, cooker")'),'diagram text alternative');
+  assert(await evaluate('document.querySelector(".reading").textContent.includes("All the positions can also be read")'),'plan is usable without image');
+  await evaluate('document.querySelector(".lesson-diagram").scrollIntoView({block:"start"})');await screenshot('a103-diagram-desktop.png');
+  await route('unit/A103-portions/listening','#listen-bank');
+  assert.equal(await evaluate('document.querySelector("#bank-transcript").textContent'),'','A103 partial listening attempt keeps transcript hidden');
+  await evaluate(`(async()=>{const {unitById}=await import('/engine.mjs');const b=unitById('A103-portions').banks.find(b=>b.id==='listening');for(const t of b.tasks){const f=document.querySelector('#answer-'+t.id);f.value=t.answer.split('|')[0];f.dispatchEvent(new Event('input'));}document.querySelector('#check-bank').click();})()`);
+  assert(await evaluate('document.querySelector("#bank-transcript details").textContent.includes("half-litre")'),'A103 listening transcript after complete attempt');
+  await route('unit/A103-place/test','#unit-test');assert.equal(await evaluate('document.querySelectorAll("#unit-test details").length'),0);
+  await evaluate(String.raw`{const f=document.querySelector('#answer-A103-place-test-a-16');f.value='There is a box under the table.\nUnfinished synthetic paragraph.';f.dispatchEvent(new Event('input'));}`);
+  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#answer-A103-place-test-a-16")?.value.includes("Unfinished synthetic")'),'A103 multiline draft persists');
+  assert.equal(await evaluate('document.querySelectorAll("#unit-test details").length'),0,'A103 resumed draft hides keys');
+  for(const index of [0,1]){
+   await evaluate(`(async()=>{const {unitById}=await import('/engine.mjs');const u=unitById('A103-place');for(const t of u.tests[${index}].tasks){const f=document.querySelector('#answer-'+t.id);f.value=t.answer.split('|')[0];f.dispatchEvent(new Event('input'));}document.querySelector('#unit-test').requestSubmit();})()`);
+   assert(await evaluate('document.querySelector("#test-history").textContent.includes("Ожидает проверки")'),'A103 open answers require review');
+   if(index===0){await screenshot('a103-review-desktop.png');await evaluate(`window.__a103First=JSON.stringify(JSON.parse(localStorage.getItem('english-training-v1')).learning['A103-place'].attempts[0]);document.querySelector('#new-unit-test').click();`);assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["A103-place"].examDraft.variant'),'b');}
+  }
+  assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["A103-place"].attempts.length'),2);
+  assert(await evaluate('JSON.stringify(JSON.parse(localStorage.getItem("english-training-v1")).learning["A103-place"].attempts[0])===window.__a103First'),'A103 earlier attempt unchanged');
+  await route('references/quantity','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),39);await screenshot('a103-quantity-desktop.png');
+  await evaluate(`document.querySelector('#reference-search').value='loaf';document.querySelector('#reference-search').dispatchEvent(new Event('input'));`);
+  assert(await evaluate('document.querySelector("#reference-rows").textContent.includes("loaves")'),'A103 reference plural');
+  await route('references/place','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),30);
   await route('references/sounds','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),44);
   await route('references/irregular','#reference-rows');assert(await evaluate('document.querySelectorAll("#reference-rows tr").length>=180'));
   await evaluate(`document.querySelector('#reference-search').value='overwrite';document.querySelector('#reference-search').dispatchEvent(new Event('input'));`);
@@ -290,6 +336,18 @@ try{
   await route('references/present-continuous','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 reference mobile overflow');await screenshot('a102-reference-mobile.png');
   await route('unit/A102-states/test','#test-history');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 history mobile overflow');
   await route('unit/A102-contrast/test','#unit-test');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 test mobile overflow');await screenshot('a102-test-mobile.png');
+  await route('module/A103','.unit-list');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 topic mobile overflow');await screenshot('a103-topic-mobile.png');
+  await route('unit/A103-place/reading','.lesson-diagram');await poll(()=>evaluate('document.querySelector(".lesson-diagram img")?.naturalWidth===720'),'A103 mobile diagram loaded');
+  assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 diagram must not widen page');
+  assert(await evaluate('document.querySelector(".diagram-frame").scrollWidth>document.querySelector(".diagram-frame").clientWidth'),'A103 map scrolls inside its region');
+  await evaluate('document.querySelector(".diagram-frame").focus();document.querySelector(".lesson-diagram").scrollIntoView({block:"start"})');
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});await command('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});
+  await poll(()=>evaluate('document.querySelector(".diagram-frame").scrollLeft>0'),'A103 keyboard map pan');await screenshot('a103-diagram-mobile.png');
+  await route('unit/A103-portions/reading','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 reading mobile overflow');await screenshot('a103-reading-mobile.png');
+  await route('references/quantity','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 quantity mobile overflow');await screenshot('a103-reference-mobile.png');
+  await route('references/place','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 place reference mobile overflow');
+  await route('unit/A103-place/test','#test-history');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 history mobile overflow');
+  await route('unit/A103-quantity/test','#unit-test');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 fresh test mobile overflow');await screenshot('a103-test-mobile.png');
   await route('settings','#profile');
   assert(await evaluate(`(async()=>{const {validateState}=await import('/engine.mjs');validateState(JSON.parse(localStorage.getItem('english-training-v1')));return true;})()`),'browser-created state must be importable');
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');

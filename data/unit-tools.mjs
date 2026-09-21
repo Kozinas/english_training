@@ -14,6 +14,6 @@ export const examples = source=>source.trim().split('\n').map(line=>{
  if(fields.length!==3||fields.some(field=>!field.trim()))throw new Error('Expected 3 nonempty fields in example');
  const [en,ru,why]=fields;return {en,ru,why};
 });
-export const bank = (unit,id,title,kind,source,passage='')=>({id,title,kind,passage,tasks:tasks(`${unit}-${id}`,source)});
+export const bank = (unit,id,title,kind,source,passage='',navLabel)=>({id,title,kind,passage,...(navLabel?{navLabel}:{}),tasks:tasks(`${unit}-${id}`,source)});
 export const exam = (unit,id,source)=>({id,title:`Вариант ${id.toUpperCase()}`,tasks:tasks(`${unit}-test-${id}`,source)});
 export const goal = (id,label,bank)=>({id,label,bank});

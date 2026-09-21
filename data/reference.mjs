@@ -5,6 +5,7 @@ import {nounReference,possessionReference} from './nouns.mjs';
 import {beQuestionReference} from './be-questions.mjs';
 import {presentSimpleReference} from './present-simple.mjs';
 import {continuousReference} from './present-continuous.mjs';
+import {quantityReference,placeReference} from './quantity-place.mjs';
 const rows = text => text.trim().split('\n').map(line => line.split('~'));
 export const alphabet = rows(`A~eɪ~apple /æ/; name /eɪ/
 B~biː~book /b/
@@ -102,7 +103,7 @@ export const referenceSources = [
  ['Cambridge: формы глагола','https://dictionary.cambridge.org/grammar/british-grammar/verb-forms']
 ];
 
-export const referencePages = [irregularPage,numberReference,nounReference,possessionReference,beQuestionReference,presentSimpleReference,continuousReference,
+export const referencePages = [irregularPage,numberReference,nounReference,possessionReference,beQuestionReference,presentSimpleReference,continuousReference,quantityReference,placeReference,
  {id:'alphabet',title:'Алфавит: все 26 букв',intro:[
   'Имя буквы нужно, чтобы продиктовать написание. Звук нужен, чтобы произнести слово. В слове name буква a передаёт /eɪ/, в cat — /æ/, в about — /ə/. Нельзя читать слово как цепочку имён букв.',
   'В таблице даны названия букв в традиционной UK-нотации. В US название O обычно /oʊ/, R /ɑːr/, Z /ziː/. Zed и zee — нормативные варианты, а не правильный и неправильный ответы. Заглавная I — местоимение «я», строчная l — другая буква.',

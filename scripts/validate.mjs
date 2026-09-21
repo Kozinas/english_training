@@ -10,9 +10,22 @@ import {pluralNouns,countabilityExamples,possessiveForms,demonstratives} from '.
 import {beForms,questionWords} from '../data/be-questions.mjs';
 import {presentPersons,thirdPersonVerbs,frequencyExpressions} from '../data/present-simple.mjs';
 import {continuousPersons,ingForms,stateActionPairs} from '../data/present-continuous.mjs';
+import {existenceForms,quantifierPatterns,portionPhrases,placeExpressions} from '../data/quantity-place.mjs';
 import {questions,passages} from '../data/assessment.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
+assert.equal(existenceForms.length,3);assert.equal(quantifierPatterns.length,16);assert.equal(portionPhrases.length,20);assert.equal(placeExpressions.length,22);
+for(const rows of [existenceForms,quantifierPatterns,portionPhrases,placeExpressions]){
+ assert.equal(new Set(rows.map(r=>r[0])).size,rows.length);assert(rows.every(r=>r.length===4&&r.every(Boolean)));
+}
+for(const u of subtopics)for(const b of u.banks)if(b.diagram){
+ assert.equal(b.kind,'reading','Diagrams currently belong to reading practice, never a hidden listening script');
+ assert(/^web\/assets\/[a-z0-9-]+\.svg$/.test(b.diagram.file));assert.equal(b.diagram.src,b.diagram.file.slice(3));
+ assert(b.diagram.alt.length>40&&b.diagram.caption.length>40&&b.passage.length>100);
+ const svg=await readFile(path.join(root,b.diagram.file),'utf8');
+ assert(svg.includes('<svg')&&svg.includes('<title')&&svg.includes('<desc'));
+ assert(!/<script|<foreignObject|\bon\w+\s*=|(?:href|src)\s*=/i.test(svg),'Only static self-contained lesson SVGs');
+}
 const ids=new Set(modules.map(m=>m.id));
 assert.equal(ids.size,modules.length,'Duplicate module IDs');
 assert.equal(modules.length,40);
@@ -46,6 +59,7 @@ for(const u of subtopics){
   assert(u.references.every(id=>referencePages.some(r=>r.id===id)),'Missing reference');
   assert(u.tests.length>=2,'Need a fresh second test variant');
   assert.equal(new Set(u.banks.map(b=>b.id)).size,u.banks.length,'Duplicate practice section');
+  for(const b of u.banks)if(b.navLabel!==undefined)assert(typeof b.navLabel==='string'&&b.navLabel.trim().length>0&&b.navLabel.length<=40,'Invalid short navigation label');
   assert.equal(new Set(u.tests.map(t=>t.id)).size,u.tests.length,'Duplicate test variant');
   const goals=new Set(u.goals.map(g=>g.id));assert.equal(goals.size,u.goals.length);
   for(const g of u.goals)assert(u.banks.some(b=>b.id===g.bank),'No targeted remediation');

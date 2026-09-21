@@ -17,7 +17,7 @@
 | P04 | am/is/are negatives and contractions; questions; short answers; word order; who/what/where/when/why/how; what/which/whose; how old/how long/how much/how many |
 | A101 | present simple affirmative/negative/questions; do/does; subject questions; word order; always/usually/often/never; how often; every day |
 | A102 | present continuous affirmative/negative/questions; -ing spelling; I am doing vs I do; now and temporary situations; state/action meanings: think, have, see, feel |
-| A103 | there is/are; some/any; much/many; articles; prepositions |
+| A103 | there is/are vs it/they; countable/uncountable meanings; containers and portions; some/any/no and offers; much/many/a lot of; (a) few/(a) little; enough/too much/too many; some of; at/in/on, into/onto, place and movement |
 | A104 | was/were; past simple; regular/irregular verbs |
 | A105 | going to; will; can/could; object pronouns; possessives |
 | A201 | present perfect; for/since; already/yet; present perfect vs past |

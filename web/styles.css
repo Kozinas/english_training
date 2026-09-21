@@ -9,3 +9,4 @@ button,.button{font:600 14px system-ui;display:inline-block;border:1px solid var
 @media(prefers-reduced-motion:no-preference){button,a{transition:background-color .16s ease,border-color .16s ease}.flip-inner{transition:transform .4s}}
 /* Keep the note and menu in one sticky flow; short desktop windows scroll the sidebar. */
 @media(min-width:901px){aside{align-self:start;position:sticky;top:0;max-height:100vh;overflow-y:auto}aside nav{position:static}}
+.lesson-diagram{margin:24px 0;max-width:100%}.diagram-frame{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:12px;background:#fff}.diagram-frame img{display:block;width:100%;min-width:600px;max-width:720px;height:auto;margin:auto}.lesson-diagram figcaption{font-size:14px;color:var(--muted);margin:12px 0 20px}.diagram-frame:focus-visible{outline:3px solid var(--accent);outline-offset:3px}

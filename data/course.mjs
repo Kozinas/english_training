@@ -8,17 +8,19 @@ import p03 from './p03.mjs';
 import p04 from './p04.mjs';
 import a101 from './a101.mjs';
 import a102 from './a102.mjs';
+import a103 from './a103.mjs';
 import {legacyIPA,extraVocabulary} from './lexicon.mjs';
 import {p02Vocabulary} from './lexicon-p02.mjs';
 import {p03Vocabulary} from './lexicon-p03.mjs';
 import {p04Vocabulary} from './lexicon-p04.mjs';
 import {a101Vocabulary} from './lexicon-a101.mjs';
 import {a102Vocabulary} from './lexicon-a102.mjs';
+import {a103Vocabulary} from './lexicon-a103.mjs';
 
 export const levels = ['Pre-A1','A1','A2','B1','B2','C1','C2'];
 const core = [...foundation, ...intermediate, ...advanced];
-const units = [...p01,...p02,...p03,...p04,...a101,...a102];
-const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary];
+const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103];
+const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary];
 export const modules = [...core, ...technical].map((m, i) => ({
   ...m,
   track: m.id.startsWith('T') ? 'technical' : 'general',
