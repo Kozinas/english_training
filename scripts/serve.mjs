@@ -7,7 +7,7 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8'};
 const routes=new Map([
  ['/','web/index.html'],['/styles.css','web/styles.css'],['/app.mjs','web/app.mjs'],['/engine.mjs','web/engine.mjs'],['/learning.mjs','web/learning.mjs'],
- ...['course','foundation','intermediate','advanced','technical','assessment','reference','irregular','numbers','nouns','lexicon','lexicon-p02','lexicon-p03','p01','p02','p02-numbers','p02-time','p02-instructions','p03','p03-nouns','p03-articles','p03-reference','p03-possession','unit-tools'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs'])
+ ...['course','foundation','intermediate','advanced','technical','assessment','reference','irregular','numbers','nouns','be-questions','lexicon','lexicon-p02','lexicon-p03','lexicon-p04','p01','p02','p02-numbers','p02-time','p02-instructions','p03','p03-nouns','p03-articles','p03-reference','p03-possession','p04','p04-statements','p04-yesno','p04-wh','unit-tools'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs'])
 ]);
 export function createServer() {
   return http.createServer(async(req,res)=>{

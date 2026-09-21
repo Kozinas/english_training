@@ -14,7 +14,7 @@
 |---|---|
 | P01–P02 | am/is/are; pronouns; imperatives; classroom language |
 | P03 | a/an; the; singular/plural; countable/uncountable; this/that/these/those; my/mine/your/yours; possessive ’s |
-| P04 | am/is/are questions; negatives; short answers; question words |
+| P04 | am/is/are negatives and contractions; questions; short answers; word order; who/what/where/when/why/how; what/which/whose; how old/how long/how much/how many |
 | A101–A102 | present simple; present continuous; do/does; I am doing vs I do |
 | A103 | there is/are; some/any; much/many; articles; prepositions |
 | A104 | was/were; past simple; regular/irregular verbs |

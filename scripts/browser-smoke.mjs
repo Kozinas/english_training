@@ -99,6 +99,33 @@ try{
   assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["P03-possession"].attempts.length'),1);
   await route('references/nouns-articles','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),56);
   await route('references/determiners-possession','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),21);await screenshot('p03-reference-desktop.png');
+  await route('module/P04','.unit-list');assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),3);await screenshot('p04-topic-desktop.png');
+  await route('unit/P04-yesno/practice','#check-bank');
+  await evaluate(`{const f=document.querySelector('#answer-P04-yesno-practice-10');f.value='Yes, you are.';f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+  assert(await evaluate('document.querySelector("#feedback-P04-yesno-practice-10").textContent.startsWith("Нужно разобрать")'),'answer must follow speaker role');
+  await evaluate(`{const f=document.querySelector('#answer-P04-yesno-practice-10');f.value='Yes, I am.';f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+  assert(await evaluate('document.querySelector("#feedback-P04-yesno-practice-10").textContent.startsWith("Верно")'));
+  for(const answer of ['No, it is not.',"No, it isn’t.","No, it’s not."]){
+   await evaluate(`{const f=document.querySelector('#answer-P04-yesno-practice-13');f.value=${JSON.stringify(answer)};f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+   assert(await evaluate('document.querySelector("#feedback-P04-yesno-practice-13").textContent.startsWith("Верно")'),'all negative contractions accepted');
+  }
+  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#answer-P04-yesno-practice-13")?.value==="No, it’s not."'),'P04 contracted sentence draft');
+  await route('unit/P04-statements/reading','#check-bank');
+  await evaluate(`{const f=document.querySelector('#answer-P04-statements-reading-6');f.value='false';f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+  assert(await evaluate('document.querySelector("#feedback-P04-statements-reading-6").textContent.startsWith("Нужно разобрать")'),'unknown does not mean false');
+  await evaluate(`{const f=document.querySelector('#answer-P04-statements-reading-6');f.value='not stated';f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+  assert(await evaluate('document.querySelector("#feedback-P04-statements-reading-6").textContent.startsWith("Верно")'));
+  await route('unit/P04-wh/test','#unit-test');
+  assert.equal(await evaluate('document.querySelectorAll("#unit-test details").length'),0,'P04 keys hidden');
+  await evaluate(String.raw`{const f=document.querySelector('#answer-P04-wh-test-a-18');f.value='Our museum meeting is on Saturday.\nI will finish this paragraph later.';f.dispatchEvent(new Event('input'));}`);
+  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#answer-P04-wh-test-a-18")?.value.includes("finish this paragraph")'),'P04 long answer draft');
+  await evaluate(`(async()=>{const {unitById}=await import('/engine.mjs');const u=unitById('P04-wh');for(const t of u.tests[0].tasks){const f=document.querySelector('#answer-'+t.id);f.value=t.answer.split('|')[0];f.dispatchEvent(new Event('input'));}document.querySelector('#unit-test').requestSubmit();})()`);
+  assert(await evaluate('document.querySelector("#test-history").textContent.includes("Ожидает проверки")'));await screenshot('p04-review-desktop.png');
+  await evaluate(`document.querySelector('#new-unit-test').click()`);
+  assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["P04-wh"].examDraft.variant'),'b');
+  assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["P04-wh"].attempts.length'),1);
+  await route('references/be-questions','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),40);await screenshot('p04-reference-desktop.png');
+  assert(await evaluate(`!!document.querySelector('a[href*="present-simple-be"]')`),'P04 primary sources');
   await route('references/alphabet','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),26);
   await route('references/sounds','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),44);
   await route('references/irregular','#reference-rows');assert(await evaluate('document.querySelectorAll("#reference-rows tr").length>=180'));
@@ -150,6 +177,9 @@ try{
   await route('references/numbers-time','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'P02 reference mobile overflow');await screenshot('p02-reference-mobile.png');
   await route('unit/P03-reference/reading','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'P03 reading mobile overflow');await screenshot('p03-reading-mobile.png');
   await route('references/determiners-possession','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'P03 table mobile overflow');await screenshot('p03-reference-mobile.png');
+  await route('unit/P04-wh/reading','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'P04 reading mobile overflow');await screenshot('p04-reading-mobile.png');
+  await route('references/be-questions','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'P04 reference mobile overflow');await screenshot('p04-reference-mobile.png');
+  await route('unit/P04-wh/test','#unit-test');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'P04 test mobile overflow');
   await route('settings','#profile');
   assert(await evaluate(`(async()=>{const {validateState}=await import('/engine.mjs');validateState(JSON.parse(localStorage.getItem('english-training-v1')));return true;})()`),'browser-created state must be importable');
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');
