@@ -6,6 +6,7 @@ import path from 'node:path';
 import {modules,subtopics,levels,vocabulary,courseStats} from '../data/course.mjs';
 import {referencePages,alphabet,phonemes,tenses} from '../data/reference.mjs';
 import {irregularVerbs,irregularFamilies} from '../data/irregular.mjs';
+import {pluralNouns,countabilityExamples,possessiveForms,demonstratives} from '../data/nouns.mjs';
 import {questions,passages} from '../data/assessment.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -58,6 +59,8 @@ for(const u of subtopics){
 assert.equal(alphabet.length,26);assert.equal(new Set(alphabet.map(r=>r[0])).size,26);
 assert.equal(phonemes.length,44);assert.equal(phonemes.filter(r=>r[0]==='Гласный').length,12);assert.equal(phonemes.filter(r=>r[0]==='Дифтонг').length,8);assert.equal(phonemes.filter(r=>r[0]==='Согласный').length,24);
 assert.equal(tenses.length,12);assert(irregularVerbs.length>=180);assert(irregularFamilies.length>=30);
+assert(pluralNouns.length>=36);assert(countabilityExamples.length>=12);assert.equal(possessiveForms.length,7);assert.equal(demonstratives.length,4);
+for(const rows of [pluralNouns,countabilityExamples,possessiveForms,demonstratives])assert.equal(new Set(rows.map(r=>r[0])).size,rows.length,'Duplicate noun/determiner reference');
 for(const r of referencePages){assert(r.practice.length>=10);assert(r.rows.every(row=>row.length===r.headers.length&&row.every(Boolean)));const md=await readFile(path.join(root,'course/appendices',r.id+'.md'),'utf8');assert(md.includes(r.title));}
 assert.equal(questions.length,48);assert.equal(new Set(questions.map(q=>q.id)).size,48);
 for(const q of questions){

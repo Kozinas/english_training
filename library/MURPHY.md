@@ -12,7 +12,9 @@
 
 | Модули | Ищите в оглавлении |
 |---|---|
-| P01–P04 | am/is/are; questions; a/an; singular/plural; pronouns; imperatives |
+| P01–P02 | am/is/are; pronouns; imperatives; classroom language |
+| P03 | a/an; the; singular/plural; countable/uncountable; this/that/these/those; my/mine/your/yours; possessive ’s |
+| P04 | am/is/are questions; negatives; short answers; question words |
 | A101–A102 | present simple; present continuous; do/does; I am doing vs I do |
 | A103 | there is/are; some/any; much/many; articles; prepositions |
 | A104 | was/were; past simple; regular/irregular verbs |

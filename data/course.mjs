@@ -4,13 +4,15 @@ import advanced from './advanced.mjs';
 import technical from './technical.mjs';
 import p01 from './p01.mjs';
 import p02 from './p02.mjs';
+import p03 from './p03.mjs';
 import {legacyIPA,extraVocabulary} from './lexicon.mjs';
 import {p02Vocabulary} from './lexicon-p02.mjs';
+import {p03Vocabulary} from './lexicon-p03.mjs';
 
 export const levels = ['Pre-A1','A1','A2','B1','B2','C1','C2'];
 const core = [...foundation, ...intermediate, ...advanced];
-const units = [...p01,...p02];
-const addedVocabulary = [...extraVocabulary,...p02Vocabulary];
+const units = [...p01,...p02,...p03];
+const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary];
 export const modules = [...core, ...technical].map((m, i) => ({
   ...m,
   track: m.id.startsWith('T') ? 'technical' : 'general',
