@@ -175,6 +175,56 @@ try{
   await screenshot('a101-sidebar-short-desktop.png');
   await command('Emulation.setDeviceMetricsOverride',{width:1365,height:1000,deviceScaleFactor:1,mobile:false});
   await route('references/alphabet','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),26);
+  await route('module/A102','.unit-list');assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),3);await screenshot('a102-topic-desktop.png');
+  for(const [unit,id,wrong,right] of [
+   ['building','spelling-6','writting','writing'],['building','spelling-10','dying','dyeing'],
+   ['building','practice-20',"Yes, I'm.",'Yes, I am.'],
+   ['contrast','practice-7','yes','no'],['contrast','practice-16','no','yes'],
+   ['states','practice-7','am thinking','think'],['states','practice-8','think','am thinking'],
+   ['states','practice-9','is having','has'],['states','practice-10','has','is having']
+  ]){
+   const bank=id.slice(0,id.lastIndexOf('-')),taskId=`A102-${unit}-${id}`;
+   await route(`unit/A102-${unit}/${bank}`,'#check-bank');
+   for(const [answer,label] of [[wrong,'Нужно разобрать'],[right,'Верно']]){
+    await evaluate(`{const f=document.querySelector('#answer-${taskId}');f.value=${JSON.stringify(answer)};f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+    assert(await evaluate(`document.querySelector('#feedback-${taskId}').textContent.startsWith(${JSON.stringify(label)})`),taskId+' '+answer);
+   }
+  }
+  await route('unit/A102-building/spelling','#check-bank');
+  for(const answer of ['travelling','traveling']){
+   await evaluate(`{const f=document.querySelector('#answer-A102-building-spelling-21');f.value=${JSON.stringify(answer)};f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+   assert(await evaluate('document.querySelector("#feedback-A102-building-spelling-21").textContent.startsWith("Верно")'),'A102 both regional spellings accepted');
+  }
+  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#answer-A102-building-spelling-21")?.value==="traveling"'),'A102 US spelling draft');
+  await route('unit/A102-states/practice','#check-bank');
+  await evaluate(`{const f=document.querySelector('#answer-A102-states-practice-22');f.value='Both I feel cold and I am feeling cold can be natural.';f.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();}`);
+  assert(await evaluate('document.querySelector("#feedback-A102-states-practice-22").textContent.includes("провер")'),'A102 feel alternatives require meaning review');
+  await route('unit/A102-building/listening','#listen-bank');
+  assert.equal(await evaluate('document.querySelector("#bank-transcript").textContent'),'','A102 audio transcript hidden before attempt');
+  await evaluate(`document.querySelector('#check-bank').click();`);
+  assert.equal(await evaluate('document.querySelector("#bank-transcript").textContent'),'','empty audio check does not disclose transcript');
+  await evaluate(`(async()=>{const {unitById}=await import('/engine.mjs');const b=unitById('A102-building').banks.find(b=>b.id==='listening');for(const t of b.tasks){const f=document.querySelector('#answer-'+t.id);f.value=t.answer.split('|')[0];f.dispatchEvent(new Event('input'));}document.querySelector('#check-bank').click();})()`);
+  assert(await evaluate('document.querySelector("#bank-transcript details").textContent.includes("fixing a lamp")'),'A102 transcript available after complete attempt');
+  await route('unit/A102-states/test','#unit-test');
+  assert.equal(await evaluate('document.querySelectorAll("#unit-test details").length'),0,'A102 keys hidden');
+  await evaluate(String.raw`{const f=document.querySelector('#answer-A102-states-test-a-16');f.value='Ava thinks the guide is useful.\nThis is an unfinished synthetic paragraph.';f.dispatchEvent(new Event('input'));}`);
+  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#answer-A102-states-test-a-16")?.value.includes("unfinished synthetic")'),'A102 multiline answer resumes');
+  assert.equal(await evaluate('document.querySelectorAll("#unit-test details").length'),0,'A102 resumed draft keeps keys hidden');
+  for(const index of [0,1]){
+   await evaluate(`(async()=>{const {unitById}=await import('/engine.mjs');const u=unitById('A102-states');for(const t of u.tests[${index}].tasks){const f=document.querySelector('#answer-'+t.id);f.value=t.answer.split('|')[0];f.dispatchEvent(new Event('input'));}document.querySelector('#unit-test').requestSubmit();})()`);
+   assert(await evaluate('document.querySelector("#test-history").textContent.includes("Ожидает проверки")'),'A102 open models never automatically pass');
+   if(index===0){
+    await screenshot('a102-review-desktop.png');
+    await evaluate(`window.__a102FirstAttempt=JSON.stringify(JSON.parse(localStorage.getItem('english-training-v1')).learning['A102-states'].attempts[0]);document.querySelector('#new-unit-test').click();`);
+    assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["A102-states"].examDraft.variant'),'b');
+   }
+  }
+  assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["A102-states"].attempts.length'),2);
+  assert(await evaluate('JSON.stringify(JSON.parse(localStorage.getItem("english-training-v1")).learning["A102-states"].attempts[0])===window.__a102FirstAttempt'),'A102 earlier attempt unchanged');
+  await route('references/present-continuous','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),69);await screenshot('a102-reference-desktop.png');
+  assert(await evaluate(`!!document.querySelector('a[href*="stative-verbs"]')`),'A102 source links');
+  await evaluate(`document.querySelector('#reference-search').value='travelling';document.querySelector('#reference-search').dispatchEvent(new Event('input'));`);
+  assert(await evaluate('document.querySelector("#reference-rows").textContent.includes("traveling")'),'A102 variant in reference search');
   await route('references/sounds','#reference-rows');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),44);
   await route('references/irregular','#reference-rows');assert(await evaluate('document.querySelectorAll("#reference-rows tr").length>=180'));
   await evaluate(`document.querySelector('#reference-search').value='overwrite';document.querySelector('#reference-search').dispatchEvent(new Event('input'));`);
@@ -234,6 +284,12 @@ try{
   await route('references/present-simple','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A101 reference mobile overflow');await screenshot('a101-reference-mobile.png');
   await route('unit/A101-frequency/test','#test-history');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A101 history mobile overflow');
   await route('unit/A101-questions/test','#unit-test');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A101 test mobile overflow');await screenshot('a101-test-mobile.png');
+  await route('module/A102','.unit-list');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 topic mobile overflow');await screenshot('a102-topic-mobile.png');
+  await route('unit/A102-states/reading','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 reading mobile overflow');await screenshot('a102-reading-mobile.png');
+  await route('unit/A102-building/sounds','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 sounds mobile overflow');
+  await route('references/present-continuous','#reference-rows');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 reference mobile overflow');await screenshot('a102-reference-mobile.png');
+  await route('unit/A102-states/test','#test-history');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 history mobile overflow');
+  await route('unit/A102-contrast/test','#unit-test');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A102 test mobile overflow');await screenshot('a102-test-mobile.png');
   await route('settings','#profile');
   assert(await evaluate(`(async()=>{const {validateState}=await import('/engine.mjs');validateState(JSON.parse(localStorage.getItem('english-training-v1')));return true;})()`),'browser-created state must be importable');
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');

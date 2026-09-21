@@ -9,6 +9,7 @@ import {irregularVerbs,irregularFamilies} from '../data/irregular.mjs';
 import {pluralNouns,countabilityExamples,possessiveForms,demonstratives} from '../data/nouns.mjs';
 import {beForms,questionWords} from '../data/be-questions.mjs';
 import {presentPersons,thirdPersonVerbs,frequencyExpressions} from '../data/present-simple.mjs';
+import {continuousPersons,ingForms,stateActionPairs} from '../data/present-continuous.mjs';
 import {questions,passages} from '../data/assessment.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -70,6 +71,11 @@ assert(presentPersons.every(r=>r.length===5&&r.every(Boolean)));
 assert.equal(thirdPersonVerbs.length,36);assert.equal(new Set(thirdPersonVerbs.map(r=>r[0])).size,36);
 assert(thirdPersonVerbs.every(r=>r.length===5&&r.every(Boolean)&&['s','z','ɪz'].includes(r[3])));
 assert.equal(frequencyExpressions.length,12);
+assert.deepEqual(continuousPersons.map(r=>r[0]),['I','you','he','she','it','we','they']);
+assert(continuousPersons.every(r=>r.length===5&&r.every(Boolean)));
+assert.equal(ingForms.length,40);assert.equal(new Set(ingForms.map(r=>r[0])).size,40);
+assert(ingForms.every(r=>r.length===4&&r.every(Boolean)));
+assert.equal(stateActionPairs.length,12);assert(stateActionPairs.every(r=>r.length===4&&r.every(Boolean)));
 for(const r of referencePages){assert(r.practice.length>=10);assert(r.rows.every(row=>row.length===r.headers.length&&row.every(Boolean)));const md=await readFile(path.join(root,'course/appendices',r.id+'.md'),'utf8');assert(md.includes(r.title));}
 assert.equal(questions.length,48);assert.equal(new Set(questions.map(q=>q.id)).size,48);
 for(const q of questions){
