@@ -2,7 +2,10 @@ import {modules, subtopics, levels, vocabulary, defaults} from '../data/course.m
 import {questions, assessmentVersion} from '../data/assessment.mjs';
 
 export const schemaVersion = 2;
-export const normalise = value => String(value).normalize('NFKC').toLowerCase().replace(/[‘’]/g,"'").replace(/[.!?,;:]/g,'').replace(/\s+/g,' ').trim();
+export const normalise = value => String(value).normalize('NFKC').toLowerCase().replace(/[‘’]/g,"'")
+  // Decimal/time/group separators carry meaning. Never turn 1.5 into 15 or 9:15 into 915.
+  .replace(/[.!?,;:]/g,(mark,index,text)=>/[.,:]/.test(mark)&&/\d/.test(text[index+1]??'')?mark:'')
+  .replace(/\s+/g,' ').trim();
 export const checkAnswer = (input, key) => key.split('|').some(a => normalise(a) === normalise(input));
 export function textSimilarity(expected, actual) {
   const a = normalise(expected).split(' ').filter(Boolean), b = normalise(actual).split(' ').filter(Boolean);

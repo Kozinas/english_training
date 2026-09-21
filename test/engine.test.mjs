@@ -68,6 +68,13 @@ test('SRS intervals and lapse are deterministic',()=>{
 test('answer comparison tolerates case, apostrophe, whitespace and punctuation',()=>{
   assert(checkAnswer('  DON’T!  ',"don't|do not"));assert(!checkAnswer('works','work'));assert(checkAnswer('Where are you?', 'Where are you?'));
 });
+test('answer comparison preserves meaningful numeric punctuation',()=>{
+  assert(!checkAnswer('15','1.5'));assert(!checkAnswer('1.5','15'));
+  assert(!checkAnswer('.5','5'));assert(!checkAnswer('915','9:15'));
+  assert(!checkAnswer('1,5','15'));assert(!checkAnswer('1,000','1.000'));
+  assert(checkAnswer('9:15.','9:15'));assert(checkAnswer('1500','1500|1,500'));
+  assert(checkAnswer('The limit is 1.5.','The limit is 1.5'));
+});
 test('text similarity handles empty text and word-order substitutions',()=>{
   assert.equal(textSimilarity('hello',''),0);assert.equal(textSimilarity('',''),0);assert.equal(textSimilarity('Hello, world!','hello world'),100);assert(textSimilarity('she can work','she cannot work')<100);
 });
