@@ -1,0 +1,15 @@
+{
+  "name": "english-training",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal English course, placement and speech practice",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build-content.mjs",
+    "test": "node --test",
+    "check": "node scripts/validate.mjs",
+    "books": "python scripts/download_books.py"
+  }
+}

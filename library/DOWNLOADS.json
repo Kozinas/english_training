@@ -1,0 +1,22 @@
+{
+  "writing-for-success": {
+    "file": "library/open/writing-for-success.pdf",
+    "bytes": 10964418,
+    "sha256": "456fbdceb61d21e2c597552c613cc50b950c6c912fa5c6c6fe6817bc4485817b",
+    "source": "https://opentextbc.ca/writingforsuccess/open/download?type=pdf",
+    "resolvedUrl": "https://opentextbc.ca/writingforsuccess/open/download?type=pdf",
+    "retrievedAt": "2026-09-21T11:58:28.530463+00:00",
+    "license": "CC BY-NC-SA 4.0, except where otherwise noted",
+    "modified": false
+  },
+  "technical-writing": {
+    "file": "library/open/technical-writing-essentials.pdf",
+    "bytes": 11892585,
+    "sha256": "8472218ae3acd4ef0c61787b1aafa8c5bdb92b611beac4c29cdc4fa10a1e9d08",
+    "source": "https://opentextbc.ca/technicalwritingh5p/open/download?type=pdf",
+    "resolvedUrl": "https://opentextbc.ca/technicalwritingh5p/open/download?type=pdf",
+    "retrievedAt": "2026-09-21T11:58:29.999617+00:00",
+    "license": "CC BY 4.0, except where otherwise noted",
+    "modified": false
+  }
+}

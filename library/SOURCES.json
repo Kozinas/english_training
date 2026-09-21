@@ -1,0 +1,30 @@
+[
+  {
+    "id": "writing-for-success",
+    "title": "Writing for Success – 1st Canadian Edition",
+    "author": "Tara Horkoff and an author removed at the request of the original publisher",
+    "year": 2015,
+    "publisher": "BCcampus",
+    "page": "https://opentextbc.ca/writingforsuccess/",
+    "download": "https://opentextbc.ca/writingforsuccess/open/download?type=pdf",
+    "file": "writing-for-success.pdf",
+    "license": "CC BY-NC-SA 4.0, except where otherwise noted",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "usage": "Грамматика письменной речи, абзацы, композиция; A2–C2 с выбором главы преподавателем. Это не начальный ESL-курс.",
+    "notes": "Unmodified publisher PDF. Non-commercial redistribution with attribution; preserve notices and separately credited material. Cover has its own attribution. Download for free from the B.C. Open Textbook Collection."
+  },
+  {
+    "id": "technical-writing",
+    "title": "Technical Writing Essentials – H5P Edition",
+    "author": "Suzan Last",
+    "year": 2022,
+    "publisher": "BCcampus",
+    "page": "https://opentextbc.ca/technicalwritingh5p/",
+    "download": "https://opentextbc.ca/technicalwritingh5p/open/download?type=pdf",
+    "file": "technical-writing-essentials.pdf",
+    "license": "CC BY 4.0, except where otherwise noted",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "usage": "Аудитория, ясность, инструкции, отчёты и предложения; B1–C2 и техническая ветка.",
+    "notes": "Unmodified publisher PDF. Preserve embedded credits and exceptions: some included third-party material permits noncommercial educational use only. H5P interactivity is available in the online book, not the PDF. Download for free from the B.C. Open Collection."
+  }
+]

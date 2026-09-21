@@ -1,0 +1,13 @@
+node_modules/
+learner/private/*
+!learner/private/.gitkeep
+library/private/*
+!library/private/.gitkeep
+*.log
+.env
+.env.*
+__pycache__/
+.DS_Store
+Thumbs.db
+*.part
+.artifacts/

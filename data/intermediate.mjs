@@ -1,0 +1,122 @@
+export default [
+{
+ id:'B101', level:'B1', title:'Длительность, результат и предыстория', focus:'present perfect continuous; past perfect; narrative tenses; used to',
+ rule:'Have/has been + -ing подчёркивает длительность или недавнюю деятельность: I’ve been reading for an hour. Perfect Simple выделяет результат: I’ve read three chapters. Со state verbs обычно Simple: I’ve known her for years. Past Perfect (had + V3) показывает событие раньше другого прошлого: When I arrived, she had left. Used to + базовая форма — прошлые привычки/состояния, которые изменились; be used to + -ing — быть привыкшим.',
+ examples:['I have been studying since nine. — Я занимаюсь с девяти.','The meeting had started before I arrived. — Встреча началась до моего прихода.','I used to work alone, but I have been collaborating with a team since the project began. — Раньше я работал один, но с начала проекта работаю с командой.'],
+ reading:['When Ravi joined the project, the team had already chosen a database. He had used a different system before, so the first week was difficult. He has been learning the new one for a month. He has written three small tools and now feels more confident.','What had happened before Ravi joined?','The team had chosen a database.'],
+ listening:['I have been fixing my bike all morning. I have replaced the front tyre, but I have not checked the brakes yet.','Which repair is complete?','Replacing the front tyre.'],
+ drills:[['I have been ___ for an hour. (wait)','waiting','Perfect Continuous: been + -ing.'],['She ___ left before we arrived.','had','Past Perfect.'],['I am used to ___ early. (get up)','getting up','To здесь предлог.']],
+ words:'duration~длительность~the duration of a task; recently~недавно~recently changed; previously~ранее~previously used; confident~уверенный~feel confident; replace~заменять~replace a part; collaborate~сотрудничать~collaborate with a team',
+ write:'Опиши освоение нового навыка (130 слов): исходный опыт, более раннее событие, процесс и измеримый результат.',
+ speak:'Проведи короткий stand-up: завершённое, текущая работа, препятствие. Партнёр спрашивает How long…? и What had…?',
+ sound:'Слабые have/had могут звучать сокращённо. Восстанавливай время по контексту и V3, а не по громкости служебного слова.'
+},
+{
+ id:'B102', level:'B1', title:'Гипотезы и последствия', focus:'zero/first/second conditional; wish; unless; modals of possibility',
+ rule:'Zero conditional описывает закономерность: If water freezes, it expands. Second conditional: if + Past Simple, would + глагол — воображаемая/маловероятная ситуация сейчас или в будущем. If I were you — устойчивый совет. Wish + Past Simple выражает сожаление о настоящем: I wish I knew. Unless = if not, но проверь смысл отрицания. Might/could выражают возможность, не гарантированный результат.',
+ examples:['If I had more time, I would read more. — Будь у меня больше времени, я бы больше читал.','I wish I knew the answer. — Жаль, что я не знаю ответа.','Unless we reduce the scope, we might miss the deadline even if everyone works efficiently. — Если не сократим объём, можем не успеть, даже если все будут работать эффективно.'],
+ reading:['A town wants to make its centre quieter. If buses were cheaper, more people might leave their cars at home. Some residents support the idea, but others worry about longer journeys. The council will run a trial if enough volunteers join. The proposal is not yet a final decision.','Is the trial certain?','No; it depends on enough volunteers joining.'],
+ listening:['If I worked closer to home, I would cycle every day. At the moment the journey is too long, so I take the train.','Does the speaker cycle to work now?','No.'],
+ drills:[['If I ___ you, I would ask.','were','Стандартная форма гипотетического совета.'],['I wish I ___ more time. (have)','had','Wish + прошедшая форма о настоящем.'],['Unless you hurry = If you ___ hurry.','do not|don’t|don\'t','Unless вводит отрицательное условие.']],
+ words:'unless~если не~unless it rains; scope~объём работ~reduce the scope; deadline~срок~meet a deadline; likely~вероятный~likely to change; trial~пробный запуск~run a trial; consequence~последствие~an unexpected consequence',
+ write:'Предложи улучшение работы команды: реальное условие, гипотетический сценарий, риск, ограничение. 140 слов.',
+ speak:'Обсудите три сценария «если бы». Партнёр меняет одно условие, ты объясняешь новые последствия.',
+ sound:'Would часто /wəd/, но при противопоставлении ударное: I WOULD help, if I could. Не путай would и won’t.'
+},
+{
+ id:'B103', level:'B1', title:'Пассив и описание процессов', focus:'passive voice; by-agent; process descriptions; causative have',
+ rule:'Passive: be в нужном времени + V3. The team checks logs → Logs are checked. Пассив полезен, когда важнее действие/объект, чем исполнитель; он не делает текст автоматически профессиональнее. Present Continuous passive: is being checked; Perfect passive: has been checked; modal passive: must be checked. By называет исполнителя. Have something done означает заказать/организовать услугу: I had my laptop repaired.',
+ examples:['The report is sent every Friday. — Отчёт отправляют каждую пятницу.','The file has been deleted. — Файл удалён.','The device must be disconnected before any damaged parts are replaced. — Устройство нужно отключить до замены повреждённых деталей.'],
+ reading:['Every returned device is inspected before it is sold again. Personal data is removed, damaged parts are replaced, and the battery is tested. A short report is then attached to the package. Devices that cannot be repaired are sent to a recycling centre.','What happens to devices that cannot be repaired?','They are sent to a recycling centre.'],
+ listening:['The road is being repaired this week. The work should be completed by Friday, but buses are using a different route until then.','Why are buses using another route?','The road is being repaired.'],
+ drills:[['The message was ___. (send)','sent','V3 send → sent.'],['The test ___ be repeated. (должен)','must','Must be + V3.'],['Сделай пассив: They clean the room.','The room is cleaned.','Present Simple passive.']],
+ words:'inspect~проверять~inspect a device; attach~прикреплять~attach a report; remove~удалять~remove data; repair~ремонтировать~repair a device; recycle~перерабатывать~recycle materials; process~процесс~a clear process',
+ write:'Опиши процесс обработки заявки в 7 шагах. Используй пассив там, где исполнитель неизвестен или неважен.',
+ speak:'Объясни процесс человеку вне команды. Он задаёт Who does that? Ответь активным залогом и обсуди ответственность.',
+ sound:'В сочетаниях is checked/was sent окончания несут смысл. Тренируй стыки согласных без лишних гласных.'
+},
+{
+ id:'B104', level:'B1', title:'Пересказ, вопросы и вежливость', focus:'reported speech; indirect questions; say/tell; question tags',
+ rule:'Reported speech передаёт смысл: “I am busy” → She said she was busy. Сдвиг времени зависит от точки отсчёта; актуальный факт может остаться в настоящем. Say something; tell someone something. В косвенном вопросе порядок утверждения: Could you tell me where it is?, не where is it. Reported questions: He asked if I was ready. Question tags проверяют/приглашают согласие: You work here, don’t you? Интонация определяет ожидание ответа.',
+ examples:['She told me she was tired. — Она сказала мне, что устала.','Do you know when the shop opens? — Ты знаешь, когда открывается магазин?','He asked whether we had finished, but I explained that we still needed another day. — Он спросил, закончили ли мы, но я объяснил, что нужен ещё день.'],
+ reading:['The manager said the meeting would start at ten. Later, Kim told us it had been moved to eleven. I asked whether the room had also changed. Kim said it had not. We sent a short message to everyone so that nobody would arrive at the wrong time.','Did the meeting room change?','No.'],
+ listening:['Could you tell me where the nearest pharmacy is? The one on King Street is closed, so please try the shop beside the station.','Which pharmacy is closed?','The one on King Street.'],
+ drills:[['She ___ me the news. (said/told)','told','Tell + получатель.'],['Do you know where he ___? (is/is he)','is','Утвердительный порядок внутри косвенного вопроса.'],['You work here, ___ you?','don’t|don\'t','Положительное утверждение → отрицательный tag.']],
+ words:'explain~объяснять~explain a problem; mention~упоминать~mention a change; whether~ли~ask whether; confirm~подтверждать~confirm a time; postpone~переносить~postpone a meeting; clarify~уточнять~clarify a detail',
+ write:'Напиши протокол беседы из 6 пунктов: заявления, просьба, вопрос, решение и следующая задача.',
+ speak:'Партнёр даёт инструкцию с двумя неоднозначностями. Задай вежливые уточнения, затем перескажи договорённость.',
+ sound:'Вежливость зависит не только от could: оставляй время для ответа, избегай резкого падения на каждом слове.'
+},
+{
+ id:'B105', level:'B1', title:'Связный текст, лексика и рабочая переписка', focus:'paragraphs; articles; collocations; word formation; linking',
+ rule:'Абзац держится на одной мысли: тезис → объяснение/пример → следствие. However показывает контраст между утверждениями; because вводит причину. Артикль зависит от контекста: a solution впервые, the solution далее; software в общем значении без артикля. Учись сочетаниям make a decision, do research, take responsibility. Суффикс меняет часть речи: develop → development; reliable → reliability. Проверяй не только форму, но и сочетаемость.',
+ examples:['We need a solution. The solution must be simple. — Нам нужно решение. Оно должно быть простым.','We made a decision after doing some research. — Мы приняли решение после исследования.','Although the first option is cheaper, its maintenance costs may outweigh the initial saving. — Хотя первый вариант дешевле, расходы на поддержку могут превысить начальную экономию.'],
+ reading:['Our club needs a new booking system. The current tool is cheap, but members often lose their confirmations. We tested two alternatives. One was easier to use, while the other offered more features. We recommend the simpler one because volunteers have little time for training.','What is the main reason for the recommendation?','Volunteers have little time for training.'],
+ listening:['Thanks for your message. I can send a draft on Thursday, but the final version will be ready on Monday after the review.','When will the final version be ready?','On Monday.'],
+ drills:[['___ a decision (make/do)','make','Устойчивое сочетание.'],['develop → ___ (существительное)','development','Суффикс -ment.'],['We use ___ software. (a/без артикля)','без артикля','Software неисчисляемо и употреблено в общем смысле.']],
+ words:'draft~черновик~send a draft; feedback~обратная связь~useful feedback; maintenance~сопровождение~maintenance costs; decision~решение~make a decision; reliable~надёжный~a reliable service; however~однако~however, it costs more',
+ write:'Письмо 150 слов: проблема, 2 решения, рекомендация, просьба подтвердить. Проверь тему письма и один тезис на абзац.',
+ speak:'За 2 минуты объясни рекомендацию. Партнёр не согласен с одним доводом; признай разумную часть и ответь.',
+ sound:'Словесное ударение может меняться при словообразовании. Проверяй dictionary audio для develop/development, photograph/photography.'
+},
+{
+ id:'B201', level:'B2', title:'Сложные временные отношения', focus:'past perfect continuous; future continuous; future perfect; future perfect continuous',
+ rule:'Had been doing — длительность до прошлого момента. Will be doing — процесс в момент будущего; will have done — завершение к будущему сроку; will have been doing — длительность к нему. By обозначает «к сроку», until — продолжение «до момента». Эти формы выбирают по смыслу, не ради сложности. By Friday I’ll have finished означает готовый результат; I’ll work until Friday не гарантирует завершение.',
+ examples:['At ten, I will be travelling. — В десять я буду в пути.','By Friday, we will have finished the review. — К пятнице мы закончим проверку.','By next month, I will have been working on the migration for a year, although the final phase will still be in progress. — В следующем месяце исполнится год моей работы над миграцией, хотя заключительный этап ещё будет идти.'],
+ reading:['The archive team had been scanning documents for months when a scanner failed. By that point they had processed half the collection. A replacement arrives tomorrow. Next week they will be training volunteers, and by the end of the month they expect to have recovered the lost time.','Had the team completed the collection before the failure?','No; they had processed half.'],
+ listening:['By six, I will have sent the report. At six thirty, I will be speaking to the client, so please call after seven.','When should the listener call?','After seven.'],
+ drills:[['By tomorrow, I will have ___. (finish)','finished','Future Perfect использует V3.'],['I will be ___ at noon. (work)','working','Future Continuous.'],['We had been ___ for hours. (wait)','waiting','Past Perfect Continuous.']],
+ words:'by then~к тому моменту~completed by then; until~до~work until six; phase~этап~the final phase; recover~восстанавливать~recover lost time; in progress~в процессе~still in progress; estimate~оценивать~estimate the duration',
+ write:'План проекта 180 слов с промежуточными сроками, ожидаемыми результатами и длительностью работы.',
+ speak:'Объясни график по трём временным точкам. Партнёр переносит зависимую задачу; пересмотри прогноз.',
+ sound:'Группируй will have been как служебную цепочку, выделяй длительность и действие. Понятность важнее скорости.'
+},
+{
+ id:'B202', level:'B2', title:'Контрфакты, сожаления и выводы', focus:'third/mixed conditionals; modal perfect; wish past; deduction',
+ rule:'Third conditional: If + had V3, would have V3 — нереализованное прошлое. Mixed: If I had studied medicine, I would be a doctor now — прошлое условие, нынешний результат. Must have V3 — уверенный вывод о прошлом; might have V3 — возможность; can’t have V3 — невозможность по оценке говорящего. Should have V3 — ожидаемое/желательное прошлое действие; often regret. Wish + had V3 — сожаление о прошлом. Вывод остаётся выводом, не наблюдаемым фактом.',
+ examples:['We should have checked the address. — Надо было проверить адрес.','If we had left earlier, we would have caught the train. — Если бы мы вышли раньше, успели бы на поезд.','If the team had documented the decision, we would not be repeating the same debate now. — Если бы команда записала решение, мы бы сейчас не повторяли тот же спор.'],
+ reading:['The package arrived damaged, although the sender had wrapped it carefully. It might have been dropped during transport, but there is no evidence yet. If the courier had taken a photo at collection, the team could compare its condition. They should have requested one in advance.','Is dropping the package a confirmed cause?','No; it is only a possibility.'],
+ listening:['The lights are off and nobody answers. They must have gone home, although they might simply be working in another room.','Does the speaker have direct proof that everyone left?','No.'],
+ drills:[['If I had known, I ___ have helped.','would','Would have + V3.'],['I wish I ___ checked it.','had','Сожаление о прошлом.'],['She must have ___. (leave)','left','После have — V3.']],
+ words:'evidence~свидетельства~available evidence; assumption~предположение~test an assumption; regret~сожаление~express regret; in advance~заранее~ask in advance; prevent~предотвращать~prevent a failure; outcome~исход~a different outcome',
+ write:'Разбор неудачи 180 слов: установленные факты, возможные причины, контрфакт и действие на будущее. Без обвинений.',
+ speak:'С партнёром восстановите события по неполным данным. Разделяйте must have, might have и известные факты.',
+ sound:'Should have в быстрой речи может звучать /ʃʊdəv/; на письме это have, никогда should of.'
+},
+{
+ id:'B203', level:'B2', title:'Точность сложных предложений', focus:'non-defining relatives; participle clauses; determiners; relative prepositions',
+ rule:'Определительное придаточное выбирает объект: engineers who tested it. Неопределительное добавляет информацию: Ana, who tested it, found a bug; отделяется запятыми, не допускает that. Participle clause обычно имеет то же логическое подлежащее, что главное: Having checked the logs, Ana restarted the service. Иначе возникает dangling modifier. Each/every подчёркивают отдельных членов; all — совокупность. Neither of the options — ни один из двух.',
+ examples:['Ana, who joined last year, leads the team. — Анна, которая пришла в прошлом году, руководит командой.','Having read the report, I changed my mind. — Прочитав отчёт, я изменил мнение.','The proposal, some of whose assumptions remain untested, should be reviewed before it is approved. — Предложение, некоторые предпосылки которого ещё не проверены, нужно рассмотреть до утверждения.'],
+ reading:['Two engineers reviewed the design. Jo, who had maintained the older system, questioned the proposed data format. Having compared several examples, the team accepted her concern. Neither of the original options handled missing values consistently, so they developed a third approach.','Why did the team develop a third approach?','Neither original option handled missing values consistently.'],
+ listening:['The applicants who completed the task will be interviewed on Friday. The others will receive feedback by email.','Will every applicant be interviewed?','No; only those who completed the task.'],
+ drills:[['Ana, ___ lives here, can help. (who/that)','who','В non-defining clause нельзя that.'],['___ checked the logs, I restarted it. (Having/Have)','Having','Having + V3 обозначает предшествующее действие.'],['___ of the two options works. (Neither/None)','Neither','Neither — ни один из двух.']],
+ words:'assumption~предпосылка~an untested assumption; consistent~последовательный~consistent behaviour; concern~опасение~raise a concern; approach~подход~a different approach; whereas~тогда как~whereas the other fails; omission~пропуск~a significant omission',
+ write:'Отредактируй описание системы 180 слов: добавь уточнения, убери двусмысленные which/it, проверь подлежащие participle clauses.',
+ speak:'Сравни две группы участников или два компонента. Партнёр должен понять, о всех ли объектах идёт речь.',
+ sound:'Дополнительные придаточные часто выделяются паузами. Покажи разницу между ограничением группы и добавочной информацией.'
+},
+{
+ id:'B204', level:'B2', title:'Регистр, аргументы и точная лексика', focus:'hedging; collocations; phrasal/prepositional verbs; concessive clauses',
+ rule:'Форма зависит от адресата: fix it в рабочем чате, address the issue в формальном отчёте. Более длинное слово не обязательно лучше. Although + предложение; despite/in spite of + существительное/-ing. Hedging ограничивает утверждение: appears to, tends to, in this sample. Фразовые глаголы имеют собственное управление: look into a problem, put up with a delay. Проверяй false friends: actual = фактический, accurate = точный, eventually = в итоге.',
+ examples:['The result appears to support our hypothesis. — Результат, по-видимому, поддерживает гипотезу.','Despite the delay, we met the deadline. — Несмотря на задержку, мы уложились в срок.','While the benchmark suggests an improvement, it does not establish how the system will behave under a sustained load. — Хотя тест указывает на улучшение, он не устанавливает поведение при длительной нагрузке.'],
+ reading:['A review called the new service revolutionary. Its evidence, however, came from a small trial with experienced users. The results suggest that setup may be faster, but they tell us little about accessibility or long-term reliability. A larger and more varied study would support a stronger conclusion.','Why is the review’s conclusion too strong?','It is based on a small, limited trial.'],
+ listening:['The update seems to help on older devices. We have only tested five so far, though, so I would not recommend a full rollout yet.','Does the speaker recommend a full rollout now?','No.'],
+ drills:[['___ the rain, we left. (Despite/Although)','Despite','После despite — существительное.'],['actual означает: актуальный или фактический?','фактический','Актуальный часто current/relevant.'],['look ___ a problem (изучить)','into','Look into — расследовать/изучать.']],
+ words:'accurate~точный~accurate information; actual~фактический~actual results; eventually~в итоге~eventually succeeded; despite~несмотря на~despite the delay; tend to~иметь тенденцию~tend to improve; claim~утверждение~support a claim',
+ write:'Перепиши одно сообщение для коллеги и руководителя. Затем дай аргумент 200 слов с доказательством и ограничением.',
+ speak:'Защити рекомендацию, затем изложи сильнейший довод против неё так, чтобы оппонент согласился с пересказом.',
+ sound:'Используй ударение для степени уверенности: MAY help, not WILL solve. Не делай любую оговорку неразборчивой.'
+},
+{
+ id:'B205', level:'B2', title:'Дискуссия, презентация и связная речь', focus:'discourse markers; ellipsis; substitution; turn taking; emphasis',
+ rule:'Связки должны отражать реальное отношение: moreover — добавление, nevertheless — уступка, therefore — следствие. Substitution избегает повторения: I think so; I hope not; the cheaper one. Ellipsis: I can help if you want me to. Устная речь требует управления очередью: May I add something?; Let me check I understood. Сначала перескажи позицию собеседника, затем возрази. Заполнитель well допустим, но бесконечное actually не делает речь точнее.',
+ examples:['I think so, but I am not certain. — Думаю, да, но не уверен.','May I add one point? — Можно добавить один пункт?','If I understand you correctly, you favour a gradual rollout; my concern is how we would support both versions at once. — Если я правильно понял, ты за постепенный запуск; меня волнует поддержка двух версий одновременно.'],
+ reading:['During a planning meeting, one group favoured an immediate launch, while another wanted a month of testing. The facilitator summarised both positions before inviting questions. The team eventually agreed on a limited release with clear stop conditions. Nobody got everything they wanted, but each concern was addressed.','What helped the team reach agreement?','Summarising both positions and agreeing on a limited release with stop conditions.'],
+ listening:['I agree that speed matters. Nevertheless, skipping the review could create more work later. Could we review only the most critical changes today?','What compromise does the speaker propose?','Review only the most critical changes today.'],
+ drills:[['I think ___ (замени целое утверждение).','so','Think so заменяет повторяемое содержание.'],['I hope ___ (надеюсь, что нет).','not','Hope not — отрицательная замена.'],['It failed; ___, we retried. (therefore/moreover)','therefore','Причина → следствие.']],
+ words:'nevertheless~тем не менее~nevertheless, we tried; therefore~поэтому~therefore we changed it; trade-off~компромисс между свойствами~explain a trade-off; interrupt~перебивать~avoid interrupting; summarise~подводить итог~summarise a position; agreement~согласие~reach agreement',
+ write:'Подготовь план доклада на 3 минуты и итоговое письмо с решением, ответственными и следующими действиями.',
+ speak:'Проведите 5-минутную дискуссию с разными приоритетами. Уточни, возрази, предложи компромисс и проверь согласие.',
+ sound:'Тренируй смысловые группы, контрастное ударение и паузы перед выводом. Запиши два варианта и оцени понятность на слух.'
+}
+];
