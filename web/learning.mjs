@@ -7,7 +7,7 @@ export function createLearningUI({main,esc,heading,getState,save,notify,speak,do
  const bind=(id,event,fn)=>document.getElementById(id)?.addEventListener(event,fn);
  const topic=id=>modules.find(m=>m.id===id);
  const labels={practice:'Практика',reading:'Чтение',listening:'Аудирование',writing:'Письмо',speaking:'Речь',review:'Повторение'};
- const referenceOrder=['alphabet','sounds','numbers-time','nouns-articles','determiners-possession','be-questions','present-simple','present-continuous','quantity','place','past-simple','tenses','irregular'];
+ const referenceOrder=['alphabet','sounds','numbers-time','nouns-articles','determiners-possession','personal-pronouns','be-questions','present-simple','present-continuous','quantity','place','past-simple','future-choices','tenses','irregular'];
  const referenceRank=id=>{const rank=referenceOrder.indexOf(id);return rank<0?referenceOrder.length:rank;};
  const statusLabels={'awaiting-review':'Ожидает проверки открытых ответов','awaiting-delayed-check':'Первичная проверка пройдена · нужен перенос через 7 дней',practicing:'Нужна дополнительная практика',incomplete:'Попытка не завершена'};
  const unitLink=(u,section='explain')=>`#unit/${u.id}/${section}`;
