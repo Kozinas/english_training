@@ -20,7 +20,7 @@
 | A103 | there is/are vs it/they; countable/uncountable meanings; containers and portions; some/any/no and offers; much/many/a lot of; (a) few/(a) little; enough/too much/too many; some of; at/in/on, into/onto, place and movement |
 | A104 | was/were and there was/were; past simple affirmative/negative/questions; regular/irregular verbs; -ed spelling and sounds; did + base; subject/object who; short answers; yesterday/last/ago; past habits and durations |
 | A105 | subject/object pronouns and prepositions; possessive determiners/pronouns; going to; present continuous arrangements and simple timetables; will, offers/promises and short answers; basic when/if clauses; can/could for ability, permission and requests; be able to |
-| A201 | present perfect; for/since; already/yet; present perfect vs past |
+| A201 | have/has + past participle, questions/negatives/short answers; just/already/yet/still; ever/never and experience; been/gone; how long, for/since and continuing states; present perfect vs past simple, unfinished periods and dated details; UK/US preferences |
 | A202 | comparatives/superlatives; too/enough; adjectives/adverbs |
 | A203 | must/have to; should; if/when; future forms |
 | A204–A205 | past continuous; relative clauses; -ing/to; phrasal verbs |
