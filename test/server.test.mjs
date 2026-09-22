@@ -8,7 +8,7 @@ test('local server serves course assets and excludes private/repository paths',a
   const base=`http://127.0.0.1:${server.address().port}`;
   try{
     for(const route of ['/','/styles.css','/app.mjs','/engine.mjs','/learning.mjs','/data/course.mjs','/data/assessment.mjs','/data/p01.mjs','/data/p02.mjs','/data/p02-numbers.mjs','/data/p02-time.mjs','/data/p02-instructions.mjs','/data/p03.mjs','/data/p03-nouns.mjs','/data/p03-articles.mjs','/data/p03-reference.mjs','/data/p03-possession.mjs','/data/nouns.mjs','/data/lexicon-p03.mjs','/data/numbers.mjs','/data/unit-tools.mjs','/data/lexicon.mjs','/data/lexicon-p02.mjs','/data/reference.mjs','/data/irregular.mjs',
-      '/data/p04.mjs','/data/p04-statements.mjs','/data/p04-yesno.mjs','/data/p04-wh.mjs','/data/be-questions.mjs','/data/lexicon-p04.mjs',
+      '/navigation-state.mjs','/data/p04.mjs','/data/p04-statements.mjs','/data/p04-yesno.mjs','/data/p04-wh.mjs','/data/be-questions.mjs','/data/lexicon-p04.mjs',
       '/data/a101.mjs','/data/a101-forms.mjs','/data/a101-negatives.mjs','/data/a101-questions.mjs','/data/a101-frequency.mjs','/data/present-simple.mjs','/data/lexicon-a101.mjs',
       '/data/a102.mjs','/data/a102-building.mjs','/data/a102-contrast.mjs','/data/a102-states.mjs','/data/present-continuous.mjs','/data/lexicon-a102.mjs',
       '/data/a103.mjs','/data/a103-existence.mjs','/data/a103-portions.mjs','/data/a103-quantity.mjs','/data/a103-place.mjs','/data/quantity-place.mjs','/data/lexicon-a103.mjs','/assets/a103-kitchen.svg']){

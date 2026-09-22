@@ -2,12 +2,16 @@ import {createLearningUI} from '/learning.mjs';
 import {modules,levels,vocabulary} from '/data/course.mjs';
 import {questions,passages,productionTasks,assessmentVersion} from '/data/assessment.mjs';
 import {freshState,validateState,scorePlacement,checkAnswer,reviewCard,textSimilarity,unitById} from '/engine.mjs';
+import {canonicalRoute,routeSection,navigationFieldLimit} from '/navigation-state.mjs';
 
 const $=s=>document.querySelector(s), main=$('#main'), key='english-training-v1';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=freshState(), recovery=false, view='home', recognition=null, speaking=false, speechText='', recognitionError=false;
 let cardLevel='Pre-A1', cardQueue=[], cardRevealed=false, cardBatch=10;
-let renderedRoute='', bookmarkTimer;
+let renderedRoute='', bookmarkTimer, restoring=false, renderGeneration=0;
+const sectionLinks=[...document.querySelectorAll('aside nav a')];
+sectionLinks.forEach(a=>{a.dataset.section=a.hash.slice(1);});
+history.scrollRestoration='manual';
 const learning=createLearningUI({main,esc,heading,getState:()=>state,save,notify,speak,download});
 const byId=id=>modules.find(m=>m.id===id);
 function notify(message){$('#status').textContent=message;clearTimeout(notify.timer);notify.timer=setTimeout(()=>$('#status').textContent='',9000);}
@@ -82,12 +86,12 @@ function speech(){
   const supported=!!(window.SpeechRecognition||window.webkitSpeechRecognition);
   main.innerHTML=heading('СЛУШАТЬ · ГОВОРИТЬ · ПОВТОРЯТЬ','Дайте словам голос.','Озвучивание помогает услышать фразу, распознавание — получить текст своей речи.')+
   `<div class="warning">Распознавание требует интернета и поддержки браузера. Аудио может передаваться внешней службе браузера. Не произносите секреты. Совпадение текста не измеряет акцент, фонемы, интонацию или уровень английского.</div>
-  <label for="target">Фраза для практики</label><textarea id="target">We shipped fifteen small fixes on Thursday. The third service still needs a thorough review.</textarea><button id="model-voice">Послушать образец</button>
+  <label for="target">Фраза для практики</label><textarea id="target" maxlength="20000">We shipped fifteen small fixes on Thursday. The third service still needs a thorough review.</textarea><button id="model-voice">Послушать образец</button>
   <label><input id="consent" type="checkbox">Я понимаю, что распознавание может передавать аудио службе браузера, и хочу включить микрофон.</label>
   <div class="actions"><button id="start-recognition" ${supported?'':'disabled'}>Начать распознавание</button><button id="stop-recognition" class="secondary" disabled>Остановить</button></div>
   <p id="speech-status" role="status">${supported?'Микрофон выключен.':'API распознавания не поддерживается. Попробуйте совместимый Chrome; наличие API ещё не гарантирует доступность службы. Можно вставить транскрипт вручную.'}</p>
-  <label for="transcript">Транскрипт (можно исправить ошибки распознавания вручную)</label><textarea id="transcript">${esc(speechText)}</textarea><div class="actions"><button id="compare">Сравнить текст</button><button id="save-transcript" class="secondary">Сохранить как ответ устной части</button></div><p id="similarity" class="feedback"></p>
-  <h2>Как практиковаться</h2><ol><li>Послушайте и отметьте ударные слова.</li><li>Повторите сначала медленно, затем целой смысловой группой.</li><li>Скажите новую фразу с той же конструкцией.</li><li>Для разбора произношения запишите аудио отдельно и дайте его слушателю или агенту, который может его прослушать.</li></ol><p>Приложение не сохраняет аудиозапись. Транскрипт сохраняется только по кнопке; обработку аудио внешней службой определяет браузер.</p>`;
+  <label for="transcript">Транскрипт (можно исправить ошибки распознавания вручную)</label><textarea id="transcript" maxlength="20000">${esc(speechText)}</textarea><div class="actions"><button id="compare">Сравнить текст</button><button id="save-transcript" class="secondary">Сохранить как ответ устной части</button></div><p id="similarity" class="feedback"></p>
+  <h2>Как практиковаться</h2><ol><li>Послушайте и отметьте ударные слова.</li><li>Повторите сначала медленно, затем целой смысловой группой.</li><li>Скажите новую фразу с той же конструкцией.</li><li>Для разбора произношения запишите аудио отдельно и дайте его слушателю или агенту, который может его прослушать.</li></ol><p>Приложение не сохраняет аудиозапись. Фраза и текст транскрипта автоматически сохраняются локально как черновик страницы; кнопка отдельно переносит транскрипт в диагностику. Согласие и включённый микрофон не восстанавливаются. Обработку аудио внешней службой определяет браузер.</p>`;
   bind('model-voice','click',()=>speak($('#target').value));
   bind('start-recognition','click',()=>{
     if(!$('#consent').checked){notify('Перед включением отметьте согласие на обработку речи.');return;}
@@ -100,7 +104,7 @@ function speech(){
     recognition.onstart=()=>{speaking=true;$('#start-recognition').disabled=true;$('#stop-recognition').disabled=false;$('#speech-status').textContent='Слушаю… Нажмите «Остановить», когда закончите.';};
     recognition.onresult=e=>{
       let text='';for(let i=e.resultIndex;i<e.results.length;i++)if(e.results[i].isFinal)text+=e.results[i][0].transcript+' ';
-      speechText=($('#transcript')?.value??speechText)+' '+text.trim();if($('#transcript'))$('#transcript').value=speechText.trim();
+      speechText=(($('#transcript')?.value??speechText)+' '+text.trim()).slice(0,20000);if($('#transcript'))$('#transcript').value=speechText.trim();rememberPosition();
     };
     recognition.onerror=e=>{
       recognitionError=true;
@@ -126,11 +130,12 @@ function cards(){
   bind('card-level','change',e=>{cardLevel=e.target.value;refillCards();showCard();});bind('card-batch','change',e=>{cardBatch=Math.max(1,Math.min(100,Number(e.target.value)||10));refillCards();showCard();});showCard();
 }
 function showCard(){
-  const card=cardQueue[0];if(!card){$('#flashcard').innerHTML='<div class="card"><h2>Этот подход завершён.</h2><p>Можно сделать перерыв или взять следующую порцию. Объём словаря не зависит от размера подхода.</p><button id="more-cards" class="secondary">Ещё один подход</button></div>';bind('more-cards','click',()=>{refillCards();showCard();});return;}
+  const card=cardQueue[0];if(!card){$('#flashcard').innerHTML='<div class="card"><h2>Этот подход завершён.</h2><p>Можно сделать перерыв или взять следующую порцию. Объём словаря не зависит от размера подхода.</p><button id="more-cards" class="secondary">Ещё один подход</button></div>';bind('more-cards','click',()=>{refillCards();showCard();});rememberPosition();return;}
   $('#flashcard').innerHTML=`<p class="muted">В очереди: ${cardQueue.length} · ${card.module} · ${esc(card.kind)}</p><button type="button" id="flip-card" class="flip-card ${cardRevealed?'is-flipped':''}" aria-pressed="${cardRevealed}" aria-label="${cardRevealed?esc(card.word+' — '+card.translation+'; '+card.ipa+' UK; '+card.context+'; '+card.note+'. Нажмите, чтобы показать слово.'):'Перевернуть карточку: '+esc(card.word)}"><span class="flip-inner"><span class="card-face card-front" ${cardRevealed?'aria-hidden="true"':'aria-hidden="false"'}><span class="card-caption">ВСПОМНИТЕ ЗНАЧЕНИЕ И СВОЮ ФРАЗУ</span><span class="word" lang="en">${esc(card.word)}</span><span class="card-hint">Нажмите, чтобы перевернуть ↻</span></span><span class="card-face card-back" ${cardRevealed?'aria-hidden="false"':'aria-hidden="true"'}><span class="card-caption">${esc(card.word)}</span><span class="card-translation">${esc(card.translation)}</span><span class="ipa" lang="en">${esc(card.ipa)} <small>UK</small></span><span lang="en">${esc(card.context)}</span><span class="card-note">${esc(card.note)}</span></span></span></button><div class="actions card-controls"><button id="word-audio" class="secondary">Озвучить слово / выражение</button><button id="context-audio" class="secondary">Озвучить пример</button></div><div class="actions" id="card-ratings">${cardRevealed?'<button data-rating="again" class="secondary">Не вспомнил</button><button data-rating="hard" class="secondary">Трудно</button><button data-rating="good">Вспомнил и составил фразу</button>':'<p class="muted">Оцените вспоминание после переворота. Озвучивание не засчитывает знание.</p>'}</div>`;
   bind('flip-card','click',()=>{cardRevealed=!cardRevealed;showCard();$('#flip-card').focus({preventScroll:true});});
   bind('word-audio','click',()=>speak(card.word));bind('context-audio','click',()=>speak(card.context));
   main.querySelectorAll('[data-rating]').forEach(b=>b.addEventListener('click',()=>{state.cards[card.id]=reviewCard(state.cards[card.id],b.dataset.rating);save();cardQueue.shift();cardRevealed=false;showCard();}));
+  rememberPosition();
 }
 function library(){
   main.innerHTML=heading('ОБЪЯСНЕНИЯ И ПРАКТИКА','Библиотека курса.','Открытые учебники находятся в library/open/. Коммерческие книги добавляются как личные копии в library/private/.')+
@@ -144,45 +149,89 @@ function settings(){
   <h2>Восстановление / сброс</h2><button id="reset" class="danger">Сбросить данные этого приложения</button><p class="muted">Сброс не удаляет файлы на диске. Перед ним сохраните экспорт.</p>`;
   bind('profile','submit',e=>{e.preventDefault();const next=structuredClone(state);next.profile={goal:$('#goal').value,minutes:Number($('#minutes').value),days:Number($('#days').value),accent:$('#accent').value,reviewedSkills:{}};
     for(const s of ['writing','speaking','pronunciation'])if($('#review-'+s).value!=='unknown')next.profile.reviewedSkills[s]={level:$('#review-'+s).value,evidence:$('#evidence-'+s).value};
-    try{state=validateState(next);save();notify('Профиль сохранён; маршрут пересчитан.');}catch(error){notify(error.message);}
+    try{state=validateState(next);if(state.navigation.pages.settings)state.navigation.pages.settings.fields={};save();notify('Профиль сохранён; маршрут пересчитан.');}catch(error){notify(error.message);}
   });
   bind('export','click',()=>download('progress.json',JSON.stringify(state,null,2)));
   bind('raw-export','click',()=>{try{download('progress-raw.json',localStorage.getItem(key)??'null');}catch{notify('Хранилище недоступно. Используйте обычный экспорт состояния в памяти.');}});
-  bind('import','change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>12*1024*1024)throw new Error('Файл больше 12 МБ');const candidate=validateState(JSON.parse(await file.text()));if(!confirm('Заменить текущий прогресс проверенным импортом? Экспортируйте текущий, если хотите сохранить обе версии.'))return;state=candidate;recovery=false;save();settings();notify('Импорт завершён. Результаты пересчитаны из ответов.');}catch(error){notify('Импорт отклонён: '+error.message);}finally{e.target.value='';}});
-  bind('reset','click',()=>{if(confirm('Удалить только прогресс English Training из этого браузера? Сохраните экспорт заранее.')){state=freshState();recovery=false;save();settings();notify('Прогресс приложения сброшен. Файлы на диске не изменены.');}});
+  bind('import','change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>12*1024*1024)throw new Error('Файл больше 12 МБ');const candidate=validateState(JSON.parse(await file.text()));if(!confirm('Заменить текущий прогресс проверенным импортом? Экспортируйте текущий, если хотите сохранить обе версии.'))return;state=candidate;recovery=false;save();render(false);notify('Импорт завершён. Результаты пересчитаны из ответов.');}catch(error){notify('Импорт отклонён: '+error.message);}finally{e.target.value='';}});
+  bind('reset','click',()=>{if(confirm('Удалить только прогресс English Training из этого браузера? Сохраните экспорт заранее.')){state=freshState();recovery=false;speechText='';save();render(false);notify('Прогресс приложения сброшен. Файлы на диске не изменены.');}});
+}
+function fieldKey(input){
+  const form=input.closest('form[data-review]');
+  return form?`review:${form.dataset.attempt}:${form.dataset.review}:${input.name}`:input.id;
+}
+function pageFields(){return [...main.querySelectorAll('input,textarea,select')].filter(input=>navigationFieldLimit(renderedRoute,fieldKey(input),state.learning));}
+function updateSectionLinks(){
+  sectionLinks.forEach(a=>{
+    const section=a.dataset.section,destination=state.navigation.sections[section]??section;
+    a.hash='#'+destination;
+    a.title=destination===section?'Открыть раздел':'Продолжить с последнего экрана раздела';
+    if(section===routeSection(renderedRoute))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+  });
 }
 function rememberPosition(){
-  if(!/^(unit|module)\//.test(renderedRoute))return;
-  const [route,id,section]=renderedRoute.split('/'),unit=unitById(id);
-  if(route==='module'&&!byId(id))return;
-  if(route==='unit'&&(!unit||!['explain','examples','test',...unit.banks.map(b=>b.id)].includes(section)))return;
-  state.bookmark={route:renderedRoute,scroll:window.scrollY,focus:document.activeElement?.id??''};save();
+  if(restoring||!canonicalRoute(renderedRoute))return;
+  const active=document.activeElement;
+  const focus=main.contains(active)?(active.id||fieldKey(active)):'';
+  const page={scroll:window.scrollY,focus:focus??'',fields:{},details:[...main.querySelectorAll('details')].slice(0,2000).map(d=>d.open)};
+  for(const input of pageFields())page.fields[fieldKey(input)]=input.value.slice(0,navigationFieldLimit(renderedRoute,fieldKey(input),state.learning));
+  if(renderedRoute==='cards')page.cards={level:cardLevel,batch:cardBatch,queue:cardQueue.map(c=>c.id),revealed:cardRevealed};
+  state.navigation.pages[renderedRoute]=page;
+  state.navigation.current=renderedRoute;
+  state.navigation.sections[routeSection(renderedRoute)]=renderedRoute;
+  // Keep the lesson-only bookmark for "Continue learning" on the home page.
+  if(/^(unit|module)\//.test(renderedRoute))state.bookmark={route:renderedRoute,scroll:page.scroll,focus:active?.id??''};
+  updateSectionLinks();save();
 }
-function render(){
+function render(capture=true){
+  const generation=++renderGeneration;
   clearTimeout(bookmarkTimer);
+  if(capture)rememberPosition();
+  restoring=true;
   if(recognition){recognition.onstart=null;recognition.onresult=null;recognition.onerror=null;recognition.onend=null;recognition.abort();}
   recognition=null;speaking=false;window.speechSynthesis?.cancel();
-  const route=location.hash.slice(1)||'home';view=route.split('/')[0];
-  const resume=state.bookmark?.route===route?structuredClone(state.bookmark):null;
+  const requested=location.hash.slice(1);
+  const route=canonicalRoute(requested||state.navigation.current)||'home';view=route.split('/')[0];
+  if(requested!==route)history.replaceState(null,'','#'+route);
+  const resume=state.navigation.pages[route]??(state.bookmark?.route===route?state.bookmark:null);
   renderedRoute=route;
-  document.querySelectorAll('aside nav a').forEach(a=>{if(a.hash==='#'+(['module','unit'].includes(view)?'course':view))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  updateSectionLinks();
   if(view==='module'){if(!learning.topic(route.split('/')[1]))lesson(route.split('/')[1]);}
   else if(view==='unit')learning.unit(route.split('/')[1],route.split('/')[2]);
   else if(view==='references')learning.references(route.split('/')[1]);
-  else if(view==='cards'){refillCards();cards();}
+  else if(view==='cards'){
+    const saved=resume?.cards;
+    if(saved){cardLevel=saved.level;cardBatch=saved.batch;cardQueue=saved.queue.map(id=>vocabulary.find(v=>v.id===id));cardRevealed=saved.revealed;}
+    else{cardLevel='Pre-A1';cardBatch=10;refillCards();}
+    cards();
+  }
   else({home:learning.home,course:learning.course,assessment,speech,plan:learning.plan,library,settings}[view]??learning.home)();
   main.dataset.route=route;
+  for(const input of pageFields()){
+    input.maxLength=navigationFieldLimit(route,fieldKey(input),state.learning);
+    if(Object.hasOwn(resume?.fields??{},fieldKey(input)))input.value=resume.fields[fieldKey(input)];
+  }
+  main.querySelectorAll('details').forEach((details,i)=>{if(typeof resume?.details?.[i]==='boolean')details.open=resume.details[i];});
   if(recovery)main.insertAdjacentHTML('afterbegin','<p class="warning">Сохранённые данные не удалось прочитать. Новые изменения пока только в памяти. <a href="#settings">Скачайте исходное хранилище перед восстановлением.</a></p>');
   requestAnimationFrame(()=>{
-    if(renderedRoute!==route)return;
-    if(resume?.focus)document.getElementById(resume.focus)?.focus({preventScroll:true});
+    if(generation!==renderGeneration)return;
+    if(resume?.focus)(document.getElementById(resume.focus)??pageFields().find(input=>fieldKey(input)===resume.focus))?.focus({preventScroll:true});
     window.scrollTo(0,resume?.scroll??0);
-    if(/^(unit|module)\//.test(route)&&(!route.startsWith('unit/')||route.split('/')[2]))rememberPosition();
+    restoring=false;rememberPosition();
   });
 }
-window.addEventListener('hashchange',render);
+window.addEventListener('hashchange',()=>render());
+document.addEventListener('click',e=>{
+  const link=e.target.closest('a');if(!link)return;
+  if(link.classList.contains('skip')){e.preventDefault();main.focus();main.scrollIntoView();return;}
+  if(link.origin===location.origin&&link.pathname===location.pathname&&link.hash)rememberPosition();
+});
 window.addEventListener('scroll',()=>{clearTimeout(bookmarkTimer);bookmarkTimer=setTimeout(rememberPosition,120);},{passive:true});
-main.addEventListener('focusin',()=>{if(/^(unit|module)\//.test(renderedRoute))rememberPosition();});
+main.addEventListener('focusin',rememberPosition);
+main.addEventListener('input',rememberPosition);
+main.addEventListener('change',rememberPosition);
+main.addEventListener('submit',rememberPosition);
+main.addEventListener('toggle',rememberPosition,true);
 window.addEventListener('pagehide',()=>{rememberPosition();recognition?.abort();window.speechSynthesis?.cancel();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){rememberPosition();recognition?.abort();}});
 window.speechSynthesis?.getVoices();

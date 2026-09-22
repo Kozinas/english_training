@@ -6,6 +6,7 @@ import {access,mkdtemp,readFile,mkdir,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {createServer} from './serve.mjs';
+import {checkNavigation} from './navigation-smoke.mjs';
 
 const candidates=[process.env.BROWSER_PATH,'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe','C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe','/usr/bin/google-chrome','/usr/bin/chromium'].filter(Boolean);
 let browserPath;
@@ -420,6 +421,7 @@ try{
   assert(await evaluate('[...document.querySelectorAll(".topic-progress progress")].every(p=>p.value===0)'),'reset clears derived progress');
   await route('settings','#profile');await importSynthetic('window.__progressExport');
   await route('module/P01','.topic-progress');await assertTopicBars();assert.equal(await evaluate('document.querySelector(".progress-percent").textContent'),'100%','UI export/import restores work');
+  await checkNavigation({evaluate,route,command,poll,screenshot,delay,base,importSynthetic});
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');
   console.log('Browser smoke passed: topic progress (all 40, live counters, tests, legacy, 99/100%, export/reset/import), hierarchy, practice, exam draft/resume/history, references, Enter/Space flip cards, separate audio, placement, plan, SRS, mocked speech, manual review, desktop/mobile.');
   console.log('Real microphone, external speech service and audible TTS still require manual verification.');

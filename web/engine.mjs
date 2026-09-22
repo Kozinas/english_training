@@ -1,5 +1,6 @@
 import {modules, subtopics, levels, vocabulary, defaults} from '../data/course.mjs';
 import {questions, assessmentVersion} from '../data/assessment.mjs';
+import {freshNavigation,validateNavigation} from './navigation-state.mjs';
 
 export const schemaVersion = 2;
 export const normalise = value => String(value).normalize('NFKC').toLowerCase().replace(/[‘’]/g,"'")
@@ -91,7 +92,7 @@ export function reviewCard(previous, rating, now=Date.now()) {
   return {step,due:new Date(now+intervals[step]*86400000).toISOString(),reviewedAt:new Date(now).toISOString(),reviews:(previous?.reviews??0)+1};
 }
 export function freshState() {
-  return {schemaVersion,profile:{...defaults,reviewedSkills:{}},placement:null,placementDraft:{},attempts:[],cards:{},moduleProgress:{},drafts:{},production:{writing:'',speaking:'',pronunciation:''},learning:{},bookmark:null};
+  return {schemaVersion,profile:{...defaults,reviewedSkills:{}},placement:null,placementDraft:{},attempts:[],cards:{},moduleProgress:{},drafts:{},production:{writing:'',speaking:'',pronunciation:''},learning:{},bookmark:null,navigation:freshNavigation()};
 }
 
 export const unitById = id=>subtopics.find(u=>u.id===id);
@@ -231,5 +232,6 @@ export function validateState(value) {
     const unit=unitById(id);
     assert((route==='unit'&&unit&&['explain','examples','test',...unit.banks.map(x=>x.id)].includes(section))||(route==='module'&&mids.has(id)),'Неизвестное место продолжения');
   }
+  value.navigation=validateNavigation(value.navigation,value.bookmark,value.learning);
   return structuredClone(value);
 }
