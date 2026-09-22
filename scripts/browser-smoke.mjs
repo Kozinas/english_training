@@ -24,6 +24,24 @@ function command(method,params={}){
 async function evaluate(expression){const result=await command('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.exception?.description??result.exceptionDetails.text);return result.result.value;}
 async function route(hash,selector){await evaluate(`location.hash=${JSON.stringify(hash)}`);await poll(()=>evaluate(`document.querySelector('main').dataset.route===${JSON.stringify(hash)}&&!!document.querySelector(${JSON.stringify(selector)})`),selector);await delay(100);}
 async function screenshot(name){const shot=await command('Page.captureScreenshot',{format:'png'});await writeFile(new URL('../.artifacts/'+name,import.meta.url),Buffer.from(shot.data,'base64'));}
+async function assertTopicBars(){
+ assert(await evaluate(`(async()=>{
+  const {freshState,topicWorkProgress}=await import('/engine.mjs');
+  const state=JSON.parse(localStorage.getItem('english-training-v1'))??freshState();
+  const nodes=[...document.querySelectorAll('[data-topic-progress]')];
+  return nodes.length>0&&nodes.every(node=>{
+   const p=topicWorkProgress(state,node.dataset.topicProgress),bar=node.querySelector('progress');
+   return bar.value===p.completed&&bar.max===p.total&&node.querySelector('.progress-percent').textContent===p.percent+'%'
+    &&!!document.getElementById(bar.getAttribute('aria-labelledby'))
+    &&bar.getAttribute('aria-describedby').split(' ').every(id=>!!document.getElementById(id));
+  })&&new Set([...document.querySelectorAll('[id]')].map(n=>n.id)).size===document.querySelectorAll('[id]').length;
+ })()`),'topic bars match stored work, have accessible labels and unique IDs');
+}
+async function importSynthetic(expression){
+ await evaluate(`{const transfer=new DataTransfer();transfer.items.add(new File([${expression}],'synthetic-progress.json',{type:'application/json'}));window.__originalConfirm=window.confirm;window.confirm=()=>true;const input=document.querySelector('#import');input.files=transfer.files;input.dispatchEvent(new Event('change'));}`);
+ await poll(()=>evaluate('document.querySelector("#status").textContent.startsWith("Импорт завершён")'),'synthetic import');
+ await evaluate('window.confirm=window.__originalConfirm');
+}
 try{
   const port=await poll(async()=>Number((await readFile(path.join(profile,'DevToolsActivePort'),'utf8')).split('\n')[0]),'browser debugging port');
   const tabs=await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
@@ -37,6 +55,16 @@ try{
   assert(await evaluate('document.querySelector("h1").textContent.includes("пониманием")'));
   await mkdir(new URL('../.artifacts/',import.meta.url),{recursive:true});await screenshot('home-desktop.png');
   await route('course','#module-list');assert.equal(await evaluate('document.querySelectorAll(".module-row").length'),40);
+  assert.equal(await evaluate('document.querySelectorAll("[data-topic-progress]").length'),40);await assertTopicBars();
+  await evaluate(`document.querySelector('#search').value='A103';document.querySelector('#search').dispatchEvent(new Event('input'));`);
+  assert.equal(await evaluate('document.querySelectorAll("[data-topic-progress]").length'),1);await assertTopicBars();
+  await evaluate(`document.querySelector('#search').value='';document.querySelector('#search').dispatchEvent(new Event('input'));`);
+  await route('module/A104','#self-check');await assertTopicBars();
+  assert.equal(await evaluate('document.querySelector(".topic-progress").dataset.progressKind'),'legacy');
+  await evaluate('document.querySelector("#self-check").click()');await assertTopicBars();
+  assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),1);
+  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#self-check")?.checked'),'legacy mark persisted');await assertTopicBars();
+  await evaluate('document.querySelector("#self-check").click()');await assertTopicBars();
   await route('module/P01','#draft');
   assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),4);
   await screenshot('topic-desktop.png');
@@ -45,6 +73,11 @@ try{
   await route('unit/P01-be/practice','#check-bank');
   await evaluate(`const input=document.querySelector('[data-task]');input.value='am';input.focus();input.dispatchEvent(new Event('input'));document.querySelector('#check-bank').click();`);
   assert(await evaluate('document.querySelector(".feedback").textContent.startsWith("Верно")'));
+  await assertTopicBars();assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),1,'practice updates topic immediately');
+  await evaluate(`{const input=document.querySelector('[data-task]');input.value='  ';input.dispatchEvent(new Event('input'));}`);
+  assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),0,'clearing a response updates progress');
+  await evaluate(`{const input=document.querySelector('[data-task]');input.value='am';input.dispatchEvent(new Event('input'));}`);
+  assert(await evaluate('document.querySelector("#unit-work-counts").textContent.startsWith("1 из")'));
   await route('unit/P01-be/test','#unit-test');
   assert.equal(await evaluate('document.querySelectorAll("#unit-test details").length'),0,'no test keys before submission');
   await evaluate(`document.querySelector('#unit-test').requestSubmit()`);
@@ -54,9 +87,11 @@ try{
   const savedScroll=await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).bookmark.scroll');
   await command('Page.reload');await poll(()=>evaluate('document.querySelector("#unit-test textarea")?.value.includes("unfinished")'),'exam draft restored');
   await delay(250);assert(Math.abs(await evaluate('window.scrollY')-savedScroll)<5,'restore exact scroll');
+  await assertTopicBars();assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),1,'exam draft has no submission credit');
   await evaluate(`(async()=>{const {unitById}=await import('/engine.mjs');const u=unitById('P01-be');for(const t of u.tests[0].tasks){const input=document.querySelector('#answer-'+t.id);input.value=t.answer.split('|')[0];input.dispatchEvent(new Event('input'));}document.querySelector('#unit-test').requestSubmit();})()`);
   assert(await evaluate('document.querySelector("#test-history").textContent.includes("Ожидает проверки")'));
   assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["P01-be"].attempts.length'),1);
+  await assertTopicBars();assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),2,'submission updates work, not mastery');
   await screenshot('test-review-desktop.png');
   await evaluate(`document.querySelector('#new-unit-test').click()`);
   assert.equal(await evaluate('JSON.parse(localStorage.getItem("english-training-v1")).learning["P01-be"].examDraft.variant'),'b');
@@ -281,6 +316,7 @@ try{
   await evaluate(`(async()=>{const {questions}=await import('/data/assessment.mjs');for(const q of questions.filter(q=>q.skill!=='listening')){document.querySelector('input[name="'+q.id+'"][value="'+q.answer+'"]').click();}document.querySelector('#grade').click();})()`);
   assert(await evaluate('document.querySelector("main").textContent.includes("Не определено — раздел неполный")'));
   await route('plan','#export-plan');assert(await evaluate('document.querySelector("main").textContent.includes("C2")'));
+  await assertTopicBars();
   await route('cards','#card-level');
   assert.equal(await evaluate('document.querySelectorAll("#flip-card button").length'),0,'no nested card buttons');
   assert(await evaluate('!document.querySelector("#flip-card").contains(document.querySelector("#word-audio"))'));
@@ -313,6 +349,9 @@ try{
   await command('Page.reload');await poll(()=>evaluate('!!document.querySelector(".hero")'),'mobile home');
   assert.equal(await evaluate('window.innerWidth'),390,'mobile viewport must not expand to fit content');
   assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'mobile overflow');await screenshot('home-mobile.png');
+  await route('course','#module-list');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'course progress mobile overflow');
+  await evaluate('document.querySelector(".module-row").scrollIntoView({block:"start"})');await screenshot('progress-course-mobile.png');
+  await route('module/A104','#self-check');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'legacy progress mobile overflow');await screenshot('progress-legacy-mobile.png');
   await route('module/P01','.unit-list');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'topic mobile overflow');await screenshot('topic-mobile.png');
   await route('unit/P01-introductions/writing','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'practice mobile overflow');await screenshot('practice-mobile.png');
   await route('cards','#flip-card');await evaluate(`document.querySelector('#flip-card').click()`);assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'card mobile overflow');await screenshot('card-mobile.png');
@@ -350,8 +389,39 @@ try{
   await route('unit/A103-quantity/test','#unit-test');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'A103 fresh test mobile overflow');await screenshot('a103-test-mobile.png');
   await route('settings','#profile');
   assert(await evaluate(`(async()=>{const {validateState}=await import('/engine.mjs');validateState(JSON.parse(localStorage.getItem('english-training-v1')));return true;})()`),'browser-created state must be importable');
+  // Synthetic fixtures in this isolated profile only: test a visibly partial bar,
+  // then 99/100%, a real UI export/reset/import round trip, and pending reviews.
+  await evaluate(`(async()=>{window.__partialProgress=await (async()=>{const {modules}=await import('/data/course.mjs');const {unitState,validateState}=await import('/engine.mjs');const s=JSON.parse(localStorage.getItem('english-training-v1'));for(const u of modules.find(m=>m.id==='P01').subtopics.slice(0,2))for(const b of u.banks)for(const t of b.tasks)unitState(s,u.id).answers[t.id]='Synthetic browser response';return JSON.stringify(validateState(s));})()})()`);
+  await importSynthetic('window.__partialProgress');
+  await evaluate('document.querySelector("#status").textContent=""');
+  await command('Emulation.setDeviceMetricsOverride',{width:1365,height:1000,deviceScaleFactor:1,mobile:false});
+  await route('course','#module-list');await assertTopicBars();await screenshot('progress-course-desktop.png');
+  await route('module/P01','.topic-progress');await assertTopicBars();
+  await evaluate('document.querySelector(".topic-progress summary").focus()');
+  await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});
+  await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  assert(await evaluate('document.querySelector(".topic-progress details").open'),'formula reachable by keyboard');
+  await screenshot('progress-topic-desktop.png');
+  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  await evaluate('window.scrollTo(0,0)');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'expanded formula mobile overflow');await screenshot('progress-topic-mobile.png');
+  await route('settings','#profile');
+  await evaluate(`(async()=>{window.__completeProgress=await (async()=>{const {modules}=await import('/data/course.mjs');const {unitState,startUnitTest,submitUnitTest,validateState}=await import('/engine.mjs');const s=JSON.parse(localStorage.getItem('english-training-v1'));for(const u of modules.find(m=>m.id==='P01').subtopics){const p=unitState(s,u.id);for(const b of u.banks)for(const t of b.tasks)p.answers[t.id]='Synthetic browser response';if(!p.attempts.length){const d=startUnitTest(s,u.id);for(const t of u.tests.find(t=>t.id===d.variant).tasks)d.answers[t.id]='Не знаю';submitUnitTest(s,u.id);}}return JSON.stringify(validateState(s));})()})()`);
+  await importSynthetic('window.__completeProgress');await route('module/P01','.topic-progress');await assertTopicBars();
+  assert.equal(await evaluate('document.querySelector(".progress-percent").textContent'),'100%');
+  assert(await evaluate('document.querySelector(".progress-note").textContent.includes("ещё обязательны")'),'100% is not mastery');
+  await route('unit/P01-be/test','#test-history');assert(await evaluate('document.querySelector("#test-history").textContent.includes("Ожидает проверки")'));
+  await route('unit/P01-be/practice','#check-bank');
+  await evaluate(`{const field=document.querySelector('[data-task]');field.value='';field.dispatchEvent(new Event('input'));}`);
+  assert.equal(await evaluate('document.querySelector(".progress-percent").textContent'),'99%');
+  await evaluate(`{const field=document.querySelector('[data-task]');field.value='Synthetic browser response';field.dispatchEvent(new Event('input'));}`);
+  await route('settings','#profile');
+  await evaluate(`(async()=>{const originalURL=URL.createObjectURL,originalClick=HTMLAnchorElement.prototype.click;try{URL.createObjectURL=blob=>{window.__progressBlob=blob;return originalURL(blob)};HTMLAnchorElement.prototype.click=function(){};document.querySelector('#export').click();}finally{URL.createObjectURL=originalURL;HTMLAnchorElement.prototype.click=originalClick;}window.__progressExport=await window.__progressBlob.text();const originalConfirm=window.confirm;window.confirm=()=>true;try{document.querySelector('#reset').click();}finally{window.confirm=originalConfirm;}})()`);
+  await route('course','#module-list');await assertTopicBars();
+  assert(await evaluate('[...document.querySelectorAll(".topic-progress progress")].every(p=>p.value===0)'),'reset clears derived progress');
+  await route('settings','#profile');await importSynthetic('window.__progressExport');
+  await route('module/P01','.topic-progress');await assertTopicBars();assert.equal(await evaluate('document.querySelector(".progress-percent").textContent'),'100%','UI export/import restores work');
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');
-  console.log('Browser smoke passed: topic hierarchy, practice, exam draft/resume/history, references, Enter/Space flip cards, separate audio, placement, plan, SRS, mocked speech, manual review, desktop/mobile.');
+  console.log('Browser smoke passed: topic progress (all 40, live counters, tests, legacy, 99/100%, export/reset/import), hierarchy, practice, exam draft/resume/history, references, Enter/Space flip cards, separate audio, placement, plan, SRS, mocked speech, manual review, desktop/mobile.');
   console.log('Real microphone, external speech service and audible TTS still require manual verification.');
   console.log('Isolated browser test profile (no learner data): '+profile);
 }finally{

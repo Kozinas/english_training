@@ -35,7 +35,7 @@ function speak(text){
 }
 function lesson(id){
   const m=byId(id);if(!m){main.innerHTML='<h1>Модуль не найден</h1><a href="#course">Вернуться к курсу</a>';return;}
-  main.innerHTML=`<a href="#course">← Полный курс</a>`+heading(`${m.id} · ${m.level}`,m.title)+
+  main.innerHTML=`<a href="#course">← Полный курс</a>`+heading(`${m.id} · ${m.level}`,m.title)+learning.progressHtml(id)+
   `<p class="muted">Предпосылки: ${m.prerequisites.map(p=>`<a href="#module/${p}">${p}</a>`).join(', ')||'нет'}. Это краткий материал первой версии, ещё не расширенный топик. Фиксированного числа занятий нет.</p><div class="card"><h2>Разбираемся</h2><p>${esc(m.rule)}</p></div>
   <h2>Примеры</h2>${m.examples.map((x,i)=>`<div class="example">${i===2?'<span class="pill">Сложнее</span>':''}${esc(x)}</div>`).join('')}
   <h2>Чтение</h2><p class="reading">${esc(m.reading[0])}</p><p>${esc(m.reading[1])}</p><details><summary>Ответ после попытки</summary>${esc(m.reading[2])}</details>
@@ -48,7 +48,7 @@ function lesson(id){
   bind('listen','click',()=>speak(m.listening[0]));
   bind('check','click',()=>m.drills.forEach((d,i)=>{$(`#feedback${i}`).textContent=checkAnswer($(`#drill${i}`).value,d[1])?`Верно. ${d[2]}`:`Ключ: ${d[1].replaceAll('|',' / ')}. ${d[2]} Для открытых формулировок возможны другие верные варианты — обсудите с агентом.`;}));
   bind('draft','input',e=>{state.drafts[id]=e.target.value;save();});
-  bind('self-check','change',e=>{state.moduleProgress[id]={selfChecked:e.target.checked,date:new Date().toISOString()};save();notify('Самопроверка сохранена. Маршрут обновлён.');});
+  bind('self-check','change',e=>{state.moduleProgress[id]={selfChecked:e.target.checked,date:new Date().toISOString()};save();learning.refreshProgress();notify('Самопроверка сохранена. Маршрут обновлён.');});
 }
 function resultsHtml(){
   if(!state.placement)return '';

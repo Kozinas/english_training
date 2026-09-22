@@ -96,6 +96,36 @@ export function freshState() {
 
 export const unitById = id=>subtopics.find(u=>u.id===id);
 export const isOpen = task=>['text','speech'].includes(task.kind);
+// Read-only work counters, not assessment scores. Only current task IDs count.
+export function unitWorkProgress(state,id) {
+  const unit=unitById(id);
+  if(!unit)throw new Error('Неизвестная подтема');
+  const saved=state.learning?.[id], tasks=unit.banks.flatMap(b=>b.tasks);
+  const filled=value=>typeof value==='string'&&value.trim().length>0;
+  const testSubmitted=(saved?.attempts??[]).some(attempt=>{
+    const test=unit.tests.find(t=>t.id===attempt.variant);
+    return !!test&&test.tasks.every(t=>filled(attempt.answers?.[t.id]));
+  });
+  return {practiceAnswered:tasks.filter(t=>filled(saved?.answers?.[t.id])).length,
+    practiceTotal:tasks.length,testSubmitted,attempts:saved?.attempts?.length??0};
+}
+export function topicWorkProgress(state,id) {
+  const topic=modules.find(m=>m.id===id);
+  if(!topic)throw new Error('Неизвестный топик');
+  if(!topic.subtopics.length){
+    const completed=state.moduleProgress?.[id]?.selfChecked===true?1:0;
+    return {kind:'legacy',completed,total:1,percent:completed*100};
+  }
+  const units=topic.subtopics.map(u=>unitWorkProgress(state,u.id));
+  const practiceAnswered=units.reduce((n,u)=>n+u.practiceAnswered,0);
+  const practiceTotal=units.reduce((n,u)=>n+u.practiceTotal,0);
+  const testsSubmitted=units.filter(u=>u.testSubmitted).length, testsTotal=units.length;
+  // Each practice response and each mandatory submitted unit test is one step.
+  // Repeat variants do not inflate the bar; drafts/reviews are tracked separately.
+  const completed=practiceAnswered+testsSubmitted, total=practiceTotal+testsTotal;
+  return {kind:'expanded',practiceAnswered,practiceTotal,testsSubmitted,testsTotal,
+    completed,total,percent:total?Math.floor(100*completed/total):0};
+}
 export function unitState(state,id) {
   if(!unitById(id))throw new Error('Неизвестная подтема');
   return state.learning[id]??(state.learning[id]={answers:{},checks:{},examDraft:{variant:'a',answers:{}},attempts:[]});
