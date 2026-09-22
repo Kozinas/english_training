@@ -35,7 +35,9 @@ export function navigationFieldLimit(route,key,learning={}){
   'evidence-writing':3000,'evidence-speaking':3000,'evidence-pronunciation':3000}[key]??0;
  if(route.startsWith('module/')){
   const m=modules.find(m=>m.id===route.split('/')[1]),match=/^drill(\d+)$/.exec(key);
-  return m&&!m.subtopics.length&&match&&Number(match[1])<m.drills.length?20000:0;
+  // Retain old answers when a previously short topic is expanded. They are an
+  // archive, never answers to new tasks or evidence of mastery.
+  return m&&match&&Number(match[1])<m.drills.length?20000:0;
  }
  const [view,id,section]=route.split('/');
  if(view==='unit'&&section==='test'){

@@ -99,21 +99,22 @@ test('100% requires all practice and one complete submitted test per unit, not r
 });
 
 test('legacy topics have an explicitly separate binary self-check indicator',()=>{
- const state=freshState();state.drafts.A104='A long draft does not prove a check.';
- assert.deepEqual(topicWorkProgress(state,'A104'),{kind:'legacy',completed:0,total:1,percent:0});
- state.moduleProgress.A104={selfChecked:true,date:'2026-09-22'};
- assert.deepEqual(topicWorkProgress(state,'A104'),{kind:'legacy',completed:1,total:1,percent:100});
- state.moduleProgress.A104.selfChecked=false;
- assert.equal(topicWorkProgress(state,'A104').percent,0);
+ const state=freshState();state.drafts.A105='A long draft does not prove a check.';
+ assert.deepEqual(topicWorkProgress(state,'A105'),{kind:'legacy',completed:0,total:1,percent:0});
+ state.moduleProgress.A105={selfChecked:true,date:'2026-09-22'};
+ assert.deepEqual(topicWorkProgress(state,'A105'),{kind:'legacy',completed:1,total:1,percent:100});
+ state.moduleProgress.A105.selfChecked=false;
+ assert.equal(topicWorkProgress(state,'A105').percent,0);
 });
 
 test('v1 migration retains old marks but does not apply them to expanded topics',()=>{
  const old=freshState();old.schemaVersion=1;delete old.learning;delete old.bookmark;
- old.moduleProgress={P01:{selfChecked:true,date:'2026-09-22'},A104:{selfChecked:true,date:'2026-09-22'}};
+ old.moduleProgress={P01:{selfChecked:true,date:'2026-09-22'},A104:{selfChecked:true,date:'2026-09-22'},A105:{selfChecked:true,date:'2026-09-22'}};
  old.drafts.P01='Preserve these synthetic notes.';
  const restored=validateState(old);
  assert.equal(topicWorkProgress(restored,'P01').percent,0);
- assert.equal(topicWorkProgress(restored,'A104').percent,100);
+ assert.equal(topicWorkProgress(restored,'A104').percent,0);
+ assert.equal(topicWorkProgress(restored,'A105').percent,100);
  assert.equal(restored.drafts.P01,old.drafts.P01);
  assert.deepEqual(restored.moduleProgress,old.moduleProgress);
 });

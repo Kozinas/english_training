@@ -7,7 +7,7 @@ export function createLearningUI({main,esc,heading,getState,save,notify,speak,do
  const bind=(id,event,fn)=>document.getElementById(id)?.addEventListener(event,fn);
  const topic=id=>modules.find(m=>m.id===id);
  const labels={practice:'Практика',reading:'Чтение',listening:'Аудирование',writing:'Письмо',speaking:'Речь',review:'Повторение'};
- const referenceOrder=['alphabet','sounds','numbers-time','nouns-articles','determiners-possession','be-questions','present-simple','present-continuous','quantity','place','tenses','irregular'];
+ const referenceOrder=['alphabet','sounds','numbers-time','nouns-articles','determiners-possession','be-questions','present-simple','present-continuous','quantity','place','past-simple','tenses','irregular'];
  const referenceRank=id=>{const rank=referenceOrder.indexOf(id);return rank<0?referenceOrder.length:rank;};
  const statusLabels={'awaiting-review':'Ожидает проверки открытых ответов','awaiting-delayed-check':'Первичная проверка пройдена · нужен перенос через 7 дней',practicing:'Нужна дополнительная практика',incomplete:'Попытка не завершена'};
  const unitLink=(u,section='explain')=>`#unit/${u.id}/${section}`;
@@ -52,6 +52,10 @@ export function createLearningUI({main,esc,heading,getState,save,notify,speak,do
   const m=topic(id);if(!m)return false;if(!m.subtopics.length)return false;
   main.innerHTML=`<div class="breadcrumbs"><a href="#course">Карта курса</a><span>/ ${m.level} / ${m.id}</span></div>`+heading('ТОПИК',m.title,'Подтемы идут по смыслу. Продолжайте столько, сколько нужно для уверенного применения; к любому разделу можно вернуться.')+progressHtml(id)+
    `<p>Предпосылки: ${m.prerequisites.map(p=>`<a href="#module/${p}">${p}</a>`).join(', ')||'начало курса'}. <a href="#references">Все приложения →</a></p>${state().moduleProgress[id]?.selfChecked?'<p class="notice">Сохранена ваша самопроверка прежней краткой версии. Она не засчитывает новые подтемы и тесты.</p>':''}<div class="unit-list">${m.subtopics.map((u,i)=>{const c=counts(u);return `<article class="unit-card"><span class="step-number">${String(i+1).padStart(2,'0')}</span><div><h2><a href="${unitLink(u)}">${esc(u.title)}</a></h2><p>${u.goals.map(g=>esc(g.label)).join(' · ')}</p><div class="unit-meta"><span>${c.answered} / ${c.total} ответов практики</span><span>${u.tests.length} варианта теста</span><span>${c.attempts?'Попыток: '+c.attempts:'Итоговый тест ещё не отправлен'}</span></div><progress max="${c.total}" value="${c.answered}" aria-label="Заполненные ответы практики"></progress><a href="${unitLink(u)}">Открыть подтему →</a></div></article>`;}).join('')}</div><div class="notice">Заполненный ответ, самопроверка и освоение — разные состояния. Открытые задания проверяет агент или преподаватель; после первичной проверки нужен перенос на новый материал через 7 дней.</div><h2>Общий черновик топика</h2><label for="draft">Сохранённые заметки (в том числе из первой версии)</label><textarea id="draft" maxlength="20000">${esc(state().drafts[id]??'')}</textarea>`;
+  // Old drill IDs remain in navigation after a topic gains subtopics. Render
+  // their original prompts and answers so page capture cannot silently drop them.
+  const archived=Object.entries(state().navigation.pages['module/'+id]?.fields??{}).filter(([key])=>/^drill\d+$/.test(key)&&Number(key.slice(5))<m.drills.length);
+  if(archived.length)main.innerHTML+=`<details id="legacy-practice"><summary>Ответы прежней краткой версии</summary><p>Архив сохранён без переноса оценок в новые подтемы. Ответы можно выделить и скопировать; новые задания выполняются отдельно.</p>${archived.map(([key,answer])=>`<label for="${esc(key)}">${esc(m.drills[Number(key.slice(5))][0])}</label><textarea id="${esc(key)}" readonly maxlength="20000">${esc(answer)}</textarea>`).join('')}</details>`;
   bind('draft','input',e=>{state().drafts[id]=e.target.value;save();});return true;
  }
  function taskHtml(task,answer,index,feedback=''){

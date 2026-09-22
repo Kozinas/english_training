@@ -18,7 +18,7 @@
 | A101 | present simple affirmative/negative/questions; do/does; subject questions; word order; always/usually/often/never; how often; every day |
 | A102 | present continuous affirmative/negative/questions; -ing spelling; I am doing vs I do; now and temporary situations; state/action meanings: think, have, see, feel |
 | A103 | there is/are vs it/they; countable/uncountable meanings; containers and portions; some/any/no and offers; much/many/a lot of; (a) few/(a) little; enough/too much/too many; some of; at/in/on, into/onto, place and movement |
-| A104 | was/were; past simple; regular/irregular verbs |
+| A104 | was/were and there was/were; past simple affirmative/negative/questions; regular/irregular verbs; -ed spelling and sounds; did + base; subject/object who; short answers; yesterday/last/ago; past habits and durations |
 | A105 | going to; will; can/could; object pronouns; possessives |
 | A201 | present perfect; for/since; already/yet; present perfect vs past |
 | A202 | comparatives/superlatives; too/enough; adjectives/adverbs |
