@@ -14,6 +14,7 @@ import {checkA202} from './a202-smoke.mjs';
 import {checkA203} from './a203-smoke.mjs';
 import {checkA204} from './a204-smoke.mjs';
 import {checkA205} from './a205-smoke.mjs';
+import {checkB101} from './b101-smoke.mjs';
 
 const candidates=[process.env.BROWSER_PATH,'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe','C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe','/usr/bin/google-chrome','/usr/bin/chromium'].filter(Boolean);
 let browserPath;
@@ -67,7 +68,7 @@ try{
   await evaluate(`document.querySelector('#search').value='A103';document.querySelector('#search').dispatchEvent(new Event('input'));`);
   assert.equal(await evaluate('document.querySelectorAll("[data-topic-progress]").length'),1);await assertTopicBars();
   await evaluate(`document.querySelector('#search').value='';document.querySelector('#search').dispatchEvent(new Event('input'));`);
-  await route('module/B101','#self-check');await assertTopicBars();
+  await route('module/B102','#self-check');await assertTopicBars();
   assert.equal(await evaluate('document.querySelector(".topic-progress").dataset.progressKind'),'legacy');
   await evaluate('document.querySelector("#self-check").click()');await assertTopicBars();
   assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),1);
@@ -359,7 +360,7 @@ try{
   assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'mobile overflow');await screenshot('home-mobile.png');
   await route('course','#module-list');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'course progress mobile overflow');
   await evaluate('document.querySelector(".module-row").scrollIntoView({block:"start"})');await screenshot('progress-course-mobile.png');
-  await route('module/B101','#self-check');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'legacy progress mobile overflow');await screenshot('progress-legacy-mobile.png');
+  await route('module/B102','#self-check');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'legacy progress mobile overflow');await screenshot('progress-legacy-mobile.png');
   await route('module/P01','.unit-list');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'topic mobile overflow');await screenshot('topic-mobile.png');
   await route('unit/P01-introductions/writing','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'practice mobile overflow');await screenshot('practice-mobile.png');
   await route('cards','#flip-card');await evaluate(`document.querySelector('#flip-card').click()`);assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'card mobile overflow');await screenshot('card-mobile.png');
@@ -436,6 +437,7 @@ try{
   await checkA203({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   await checkA204({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   await checkA205({evaluate,route,command,poll,screenshot,delay,importSynthetic});
+  await checkB101({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');
   console.log('Browser smoke passed: topic progress (all 40, live counters, tests, legacy, 99/100%, export/reset/import), hierarchy, practice, exam draft/resume/history, references, Enter/Space flip cards, separate audio, placement, plan, SRS, mocked speech, manual review, desktop/mobile.');
   console.log('Real microphone, external speech service and audible TTS still require manual verification.');
