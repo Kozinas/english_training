@@ -22,7 +22,7 @@
 | A105 | subject/object pronouns and prepositions; possessive determiners/pronouns; going to; present continuous arrangements and simple timetables; will, offers/promises and short answers; basic when/if clauses; can/could for ability, permission and requests; be able to |
 | A201 | have/has + past participle, questions/negatives/short answers; just/already/yet/still; ever/never and experience; been/gone; how long, for/since and continuing states; present perfect vs past simple, unfinished periods and dated details; UK/US preferences |
 | A202 | adjectives/adverbs and linking verbs; good/well, hard/hardly, late/lately; comparative/superlative forms, than, much/a bit, less/fewer, one of; as…as, the same as, similar to; too/enough, too many/much/few/little and purpose with for/to |
-| A203 | must/have to; should; if/when; future forms |
+| A203 | must/have to/need to, mustn’t vs don’t have to, needn’t, had to and will have to; should/ought to/had better, suggestions and advice; zero/first conditional and modal/imperative results; if/when, unless, before/after/as soon as, until vs by; future arrangements/timetables and indirect if = whether |
 | A204–A205 | past continuous; relative clauses; -ing/to; phrasal verbs |
 | B101 | present perfect continuous; past perfect; used to / be used to |
 | B102 | if / wish; would; unless; might |

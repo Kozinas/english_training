@@ -15,6 +15,7 @@ test('local server serves course assets and excludes private/repository paths',a
       '/data/a105.mjs','/data/a105-pronouns.mjs','/data/a105-plans.mjs','/data/a105-will.mjs','/data/a105-can.mjs','/data/future-choices.mjs','/data/lexicon-a105.mjs',
       '/data/a201.mjs','/data/a201-results.mjs','/data/a201-experience.mjs','/data/a201-duration.mjs','/data/a201-contrast.mjs','/data/present-perfect.mjs','/data/lexicon-a201.mjs',
       '/data/a202.mjs','/data/a202-description.mjs','/data/a202-comparison.mjs','/data/a202-degree.mjs','/data/comparison.mjs','/data/lexicon-a202.mjs',
+      '/data/a203.mjs','/data/a203-obligation.mjs','/data/a203-advice.mjs','/data/a203-conditions.mjs','/data/rules-conditions.mjs','/data/lexicon-a203.mjs',
       '/data/a103.mjs','/data/a103-existence.mjs','/data/a103-portions.mjs','/data/a103-quantity.mjs','/data/a103-place.mjs','/data/quantity-place.mjs','/data/lexicon-a103.mjs','/assets/a103-kitchen.svg']){
       const response=await fetch(base+route);assert.equal(response.status,200,route);assert(response.headers.get('content-security-policy'));assert((await response.text()).length>100);
     }

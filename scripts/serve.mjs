@@ -14,6 +14,7 @@ const routes=new Map([
  ...['a105','a105-pronouns','a105-plans','a105-will','a105-can','future-choices','lexicon-a105'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['a201','a201-results','a201-experience','a201-duration','a201-contrast','present-perfect','lexicon-a201'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['a202','a202-description','a202-comparison','a202-degree','comparison','lexicon-a202'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
+ ...['a203','a203-obligation','a203-advice','a203-conditions','rules-conditions','lexicon-a203'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['course','foundation','intermediate','advanced','technical','assessment','reference','irregular','numbers','nouns','be-questions','present-simple','present-continuous','lexicon','lexicon-p02','lexicon-p03','lexicon-p04','lexicon-a101','lexicon-a102','p01','p02','p02-numbers','p02-time','p02-instructions','p03','p03-nouns','p03-articles','p03-reference','p03-possession','p04','p04-statements','p04-yesno','p04-wh','a101','a101-forms','a101-negatives','a101-questions','a101-frequency','a102','a102-building','a102-contrast','a102-states','unit-tools'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs'])
 ]);
 export function createServer() {
