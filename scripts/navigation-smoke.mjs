@@ -48,8 +48,8 @@ export async function checkNavigation({evaluate,route,command,poll,screenshot,de
  assert(await evaluate('document.querySelector(".topic-progress details").open'),'expanded explanation remains open');
  await evaluate('history.forward()');await at('library','h1');await sameScroll(libraryScroll,'browser Forward restores next page');
 
- await route('module/A205','#drill0');await fill('#drill0','A legacy exercise draft.');
- await route('home','.hero');await menu('course','module/A205','#drill0');
+ await route('module/B101','#drill0');await fill('#drill0','A legacy exercise draft.');
+ await route('home','.hero');await menu('course','module/B101','#drill0');
  assert.equal(await evaluate('document.querySelector("#drill0").value'),'A legacy exercise draft.');
 
  await route('assessment','#prod-writing');await fill('#prod-writing','An unfinished diagnostic paragraph.\nContinue later.');

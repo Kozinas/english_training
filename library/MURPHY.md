@@ -24,7 +24,7 @@
 | A202 | adjectives/adverbs and linking verbs; good/well, hard/hardly, late/lately; comparative/superlative forms, than, much/a bit, less/fewer, one of; as…as, the same as, similar to; too/enough, too many/much/few/little and purpose with for/to |
 | A203 | must/have to/need to, mustn’t vs don’t have to, needn’t, had to and will have to; should/ought to/had better, suggestions and advice; zero/first conditional and modal/imperative results; if/when, unless, before/after/as soon as, until vs by; future arrangements/timetables and indirect if = whether |
 | A204 | was/were + -ing, questions/negatives/short answers; past continuous vs past simple, when/while and states; before/after/during; because/because of/so, although/but; defining relative clauses with who/which/that, subject/object omission, whose/where/when, prepositions and a first contrast with non-defining clauses |
-| A205 | -ing/to; phrasal verbs; prepositions of time; offers |
+| A205 | enjoy/avoid/finish/keep/mind + -ing; want/decide/hope/offer/agree + to; like/start alternatives; object + to; preposition + -ing and look forward to; purpose, not to, stop/remember/try; separable and inseparable multi-word verbs and pronoun order; at/on/in/zero for time, in/for/during, by/until, on time/in time; offers, requests, invitations and polite responses |
 | B101 | present perfect continuous; past perfect; used to / be used to |
 | B102 | if / wish; would; unless; might |
 | B103 | passive; have something done |
