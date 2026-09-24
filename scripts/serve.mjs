@@ -21,6 +21,7 @@ const routes=new Map([
  ...['b102','b102-hypotheses','b102-wishes','b102-possibility','hypothesis-reference','lexicon-b102'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b103','b103-focus','b103-processes','b103-services','passive-reference','lexicon-b103'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b104','b104-statements','b104-questions','b104-tags','reporting-reference','lexicon-b104'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
+ ...['b202','b202-alternatives','b202-deduction','b202-regrets','past-alternatives','lexicon-b202'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b201','b201-past','b201-frame','b201-result','time-perspectives','lexicon-b201'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b105','b105-reference','b105-cohesion','b105-lexis','b105-messages','writing-reference','lexicon-b105'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['course','foundation','intermediate','advanced','technical','assessment','reference','irregular','numbers','nouns','be-questions','present-simple','present-continuous','lexicon','lexicon-p02','lexicon-p03','lexicon-p04','lexicon-a101','lexicon-a102','p01','p02','p02-numbers','p02-time','p02-instructions','p03','p03-nouns','p03-articles','p03-reference','p03-possession','p04','p04-statements','p04-yesno','p04-wh','a101','a101-forms','a101-negatives','a101-questions','a101-frequency','a102','a102-building','a102-contrast','a102-states','unit-tools'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs'])
