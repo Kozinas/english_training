@@ -22,6 +22,7 @@ const routes=new Map([
  ...['b103','b103-focus','b103-processes','b103-services','passive-reference','lexicon-b103'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b104','b104-statements','b104-questions','b104-tags','reporting-reference','lexicon-b104'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b203','b203-relative','b203-participles','b203-determiners','clause-precision','lexicon-b203'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
+ ...['b204','b204-register','b204-argument','b204-lexis','argument-reference','lexicon-b204'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b202','b202-alternatives','b202-deduction','b202-regrets','past-alternatives','lexicon-b202'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b201','b201-past','b201-frame','b201-result','time-perspectives','lexicon-b201'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b105','b105-reference','b105-cohesion','b105-lexis','b105-messages','writing-reference','lexicon-b105'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
