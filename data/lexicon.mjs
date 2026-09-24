@@ -20,7 +20,7 @@ export const legacyIPA = {
  B103:'ɪnˈspekt~əˈtætʃ~rɪˈmuːv~rɪˈpeə~ˌriːˈsaɪkəl~ˈprəʊses',
  B104:'ɪkˈspleɪn~ˈmenʃən~ˈweðə~kənˈfɜːm~pəˈspəʊn~ˈklærɪfaɪ',
  B105:'drɑːft~ˈfiːdbæk~ˈmeɪntənəns~dɪˈsɪʒən~rɪˈlaɪəbəl~haʊˈevə',
- B201:'baɪ ðen~ənˈtɪl~feɪz~rɪˈkʌvə~ɪn ˈprəʊɡres~ˈestɪmət',
+ B201:'baɪ ðen~ənˈtɪl~feɪz~rɪˈkʌvə~ɪn ˈprəʊɡres~ˈestɪmeɪt',
  B202:'ˈevɪdəns~əˈsʌmpʃən~rɪˈɡret~ɪn ədˈvɑːns~prɪˈvent~ˈaʊtkʌm',
  B203:'əˈsʌmpʃən~kənˈsɪstənt~kənˈsɜːn~əˈprəʊtʃ~weərˈæz~əˈmɪʃən',
  B204:'ˈækjərət~ˈæktʃuəl~ɪˈventʃuəli~dɪˈspaɪt~tend tuː~kleɪm',
