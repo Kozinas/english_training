@@ -27,7 +27,7 @@
 | A205 | enjoy/avoid/finish/keep/mind + -ing; want/decide/hope/offer/agree + to; like/start alternatives; object + to; preposition + -ing and look forward to; purpose, not to, stop/remember/try; separable and inseparable multi-word verbs and pronoun order; at/on/in/zero for time, in/for/during, by/until, on time/in time; offers, requests, invitations and polite responses |
 | B101 | have/has been + -ing, questions/negatives and short answers; activity vs result/count/state, for/since and closed past; past perfect had + V3, had had/been, ’d, prior events vs sequence/background, before/after and unfinished boundaries; used to / habitual would / past simple, be/get used to + noun/pronoun/-ing, did use to, UK/US got/gotten, ordinary use and passive-purpose contrast |
 | B102 | zero/first/second conditionals; unreal past about present/future, were/was, would/could/might results, questions and negatives; unless, only if, in case, even if, as long as; if = whether and willingness; wish/if only + past/could/would, hope, wish to and wish someone luck; may/might/could possibility, general can, must/can’t deduction vs rules, may not, be likely to, probably/perhaps |
-| B103 | passive; have something done |
+| B103 | be + past participle; present/past simple passive and agreement; questions/negatives and by-agent/with-instrument; two objects and prepositional passives; continuous/perfect/modal passive, been/being, processes and results; have/get something done, do-support, have had, have someone do / get someone to do; own action vs service and adverse experiences |
 | B104 | reported speech; indirect questions; question tags |
 | B105 | articles; countability; conjunctions; word order |
 | B201 | past perfect continuous; future continuous/perfect |

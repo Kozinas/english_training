@@ -99,12 +99,12 @@ test('100% requires all practice and one complete submitted test per unit, not r
 });
 
 test('legacy topics have an explicitly separate binary self-check indicator',()=>{
- const state=freshState();state.drafts.B103='A long draft does not prove a check.';
- assert.deepEqual(topicWorkProgress(state,'B103'),{kind:'legacy',completed:0,total:1,percent:0});
- state.moduleProgress.B103={selfChecked:true,date:'2026-09-22'};
- assert.deepEqual(topicWorkProgress(state,'B103'),{kind:'legacy',completed:1,total:1,percent:100});
- state.moduleProgress.B103.selfChecked=false;
- assert.equal(topicWorkProgress(state,'B103').percent,0);
+ const state=freshState();state.drafts.B104='A long draft does not prove a check.';
+ assert.deepEqual(topicWorkProgress(state,'B104'),{kind:'legacy',completed:0,total:1,percent:0});
+ state.moduleProgress.B104={selfChecked:true,date:'2026-09-22'};
+ assert.deepEqual(topicWorkProgress(state,'B104'),{kind:'legacy',completed:1,total:1,percent:100});
+ state.moduleProgress.B104.selfChecked=false;
+ assert.equal(topicWorkProgress(state,'B104').percent,0);
 });
 
 test('v1 migration retains old marks but does not apply them to expanded topics',()=>{
@@ -113,6 +113,7 @@ test('v1 migration retains old marks but does not apply them to expanded topics'
  old.moduleProgress.B101={selfChecked:true,date:'2026-09-22'};
  old.moduleProgress.B102={selfChecked:true,date:'2026-09-22'};
  old.moduleProgress.B103={selfChecked:true,date:'2026-09-22'};
+ old.moduleProgress.B104={selfChecked:true,date:'2026-09-22'};
  old.drafts.P01='Preserve these synthetic notes.';
  const restored=validateState(old);
  assert.equal(topicWorkProgress(restored,'P01').percent,0);
@@ -125,7 +126,8 @@ test('v1 migration retains old marks but does not apply them to expanded topics'
  assert.equal(topicWorkProgress(restored,'A205').percent,0);
  assert.equal(topicWorkProgress(restored,'B101').percent,0);
  assert.equal(topicWorkProgress(restored,'B102').percent,0);
- assert.equal(topicWorkProgress(restored,'B103').percent,100);
+ assert.equal(topicWorkProgress(restored,'B103').percent,0);
+ assert.equal(topicWorkProgress(restored,'B104').percent,100);
  assert.equal(restored.drafts.P01,old.drafts.P01);
  assert.deepEqual(restored.moduleProgress,old.moduleProgress);
 });
