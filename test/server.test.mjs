@@ -20,6 +20,7 @@ test('local server serves course assets and excludes private/repository paths',a
       '/data/b102.mjs','/data/b102-hypotheses.mjs','/data/b102-wishes.mjs','/data/b102-possibility.mjs','/data/hypothesis-reference.mjs','/data/lexicon-b102.mjs',
       '/data/b103.mjs','/data/b103-focus.mjs','/data/b103-processes.mjs','/data/b103-services.mjs','/data/passive-reference.mjs','/data/lexicon-b103.mjs',
       '/data/b104.mjs','/data/b104-statements.mjs','/data/b104-questions.mjs','/data/b104-tags.mjs','/data/reporting-reference.mjs','/data/lexicon-b104.mjs',
+      '/data/b105.mjs','/data/b105-reference.mjs','/data/b105-cohesion.mjs','/data/b105-lexis.mjs','/data/b105-messages.mjs','/data/writing-reference.mjs','/data/lexicon-b105.mjs',
       '/data/b101.mjs','/data/b101-continuous.mjs','/data/b101-earlier.mjs','/data/b101-habits.mjs','/data/duration-history.mjs','/data/lexicon-b101.mjs',
       '/data/a205.mjs','/data/a205-patterns.mjs','/data/a205-phrasal.mjs','/data/a205-time.mjs','/data/action-reference.mjs','/data/lexicon-a205.mjs',
       '/data/a103.mjs','/data/a103-existence.mjs','/data/a103-portions.mjs','/data/a103-quantity.mjs','/data/a103-place.mjs','/data/quantity-place.mjs','/data/lexicon-a103.mjs','/assets/a103-kitchen.svg']){
