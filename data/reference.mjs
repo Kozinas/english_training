@@ -24,6 +24,7 @@ import {advancedRelativeReference,participleReference,groupDeterminerReference} 
 import {registerReference,argumentReference,lexicalReference} from './argument-reference.mjs';
 import {ellipsisReference,presentationReference,discussionReference} from './discourse-reference.mjs';
 import {inversionReference,cleftReference,frontingReference} from './focus-reference.mjs';
+import {reportingPassiveReference,mandativeReference,modalDistanceReference} from './modal-reference.mjs';
 const rows = text => text.trim().split('\n').map(line => line.split('~'));
 export const alphabet = rows(`A~eɪ~apple /æ/; name /eɪ/
 B~biː~book /b/
@@ -121,7 +122,7 @@ export const referenceSources = [
  ['Cambridge: формы глагола','https://dictionary.cambridge.org/grammar/british-grammar/verb-forms']
 ];
 
-export const referencePages = [irregularPage,numberReference,nounReference,possessionReference,personalReference,beQuestionReference,presentSimpleReference,continuousReference,quantityReference,placeReference,pastSimpleReference,futureReference,perfectReference,comparisonReference,rulesReference,pastNarrativeReference,relativeReference,patternsReference,phrasalReference,timeReference,perfectContinuousReference,pastPerfectReference,habitsReference,conditionalReference,wishPossibilityReference,passiveReference,serviceReference,reportingReference,questionTagReference,cohesionReference,wordBuildingReference,correspondenceReference,pastDurationReference,futureFrameReference,futureResultReference,counterfactualReference,modalPastReference,advancedRelativeReference,participleReference,groupDeterminerReference,registerReference,argumentReference,lexicalReference,ellipsisReference,presentationReference,discussionReference,inversionReference,cleftReference,frontingReference,
+export const referencePages = [irregularPage,numberReference,nounReference,possessionReference,personalReference,beQuestionReference,presentSimpleReference,continuousReference,quantityReference,placeReference,pastSimpleReference,futureReference,perfectReference,comparisonReference,rulesReference,pastNarrativeReference,relativeReference,patternsReference,phrasalReference,timeReference,perfectContinuousReference,pastPerfectReference,habitsReference,conditionalReference,wishPossibilityReference,passiveReference,serviceReference,reportingReference,questionTagReference,cohesionReference,wordBuildingReference,correspondenceReference,pastDurationReference,futureFrameReference,futureResultReference,counterfactualReference,modalPastReference,advancedRelativeReference,participleReference,groupDeterminerReference,registerReference,argumentReference,lexicalReference,ellipsisReference,presentationReference,discussionReference,inversionReference,cleftReference,frontingReference,reportingPassiveReference,mandativeReference,modalDistanceReference,
  {id:'alphabet',title:'Алфавит: все 26 букв',intro:[
   'Имя буквы нужно, чтобы продиктовать написание. Звук нужен, чтобы произнести слово. В слове name буква a передаёт /eɪ/, в cat — /æ/, в about — /ə/. Нельзя читать слово как цепочку имён букв.',
   'В таблице даны названия букв в традиционной UK-нотации. В US название O обычно /oʊ/, R /ɑːr/, Z /ziː/. Zed и zee — нормативные варианты, а не правильный и неправильный ответы. Заглавная I — местоимение «я», строчная l — другая буква.',
