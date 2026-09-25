@@ -50,8 +50,8 @@ test('plans keep selected prerequisites before dependants, across every start',(
   }
 });
 test('self-checked legacy modules leave queue; missing prerequisites are explicit checks',()=>{
-  const state=placed(answers());state.moduleProgress.C202={selfChecked:true,date:new Date().toISOString()};
-  const plan=buildPlan(state);assert(!plan.items.some(m=>m.id==='C202'));assert(plan.items.some(m=>m.checks.length));
+  const state=placed(answers());state.moduleProgress.C203={selfChecked:true,date:new Date().toISOString()};
+  const plan=buildPlan(state);assert(!plan.items.some(m=>m.id==='C203'));assert(plan.items.some(m=>m.checks.length));
 });
 test('personal time changes neither content nor topic queue',()=>{
   const state=placed(answers(q=>(q.answer+1)%4));const a=buildPlan(state);
