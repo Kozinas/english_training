@@ -22,6 +22,7 @@ test('local server serves course assets and excludes private/repository paths',a
       '/data/b104.mjs','/data/b104-statements.mjs','/data/b104-questions.mjs','/data/b104-tags.mjs','/data/reporting-reference.mjs','/data/lexicon-b104.mjs',
       '/data/b204.mjs','/data/b204-register.mjs','/data/b204-argument.mjs','/data/b204-lexis.mjs','/data/argument-reference.mjs','/data/lexicon-b204.mjs',
       '/data/b205.mjs','/data/b205-ellipsis.mjs','/data/b205-presentation.mjs','/data/b205-discussion.mjs','/data/discourse-reference.mjs','/data/lexicon-b205.mjs',
+      '/data/c101.mjs','/data/c101-inversion.mjs','/data/c101-clefts.mjs','/data/c101-fronting.mjs','/data/focus-reference.mjs','/data/lexicon-c101.mjs',
       '/data/b203.mjs','/data/b203-relative.mjs','/data/b203-participles.mjs','/data/b203-determiners.mjs','/data/clause-precision.mjs','/data/lexicon-b203.mjs',
       '/data/b202.mjs','/data/b202-alternatives.mjs','/data/b202-deduction.mjs','/data/b202-regrets.mjs','/data/past-alternatives.mjs','/data/lexicon-b202.mjs',
       '/data/b201.mjs','/data/b201-past.mjs','/data/b201-frame.mjs','/data/b201-result.mjs','/data/time-perspectives.mjs','/data/lexicon-b201.mjs',
