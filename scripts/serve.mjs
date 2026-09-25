@@ -25,6 +25,7 @@ const routes=new Map([
  ...['b204','b204-register','b204-argument','b204-lexis','argument-reference','lexicon-b204'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['b205','b205-ellipsis','b205-presentation','b205-discussion','discourse-reference','lexicon-b205'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c101','c101-inversion','c101-clefts','c101-fronting','focus-reference','lexicon-c101'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
+ ...['c105','c105-sources','c105-synthesis','c105-argument','synthesis-reference','lexicon-c105'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c104','c104-intent','c104-idioms','c104-negotiation','pragmatics-reference','lexicon-c104'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c103','c103-nouns','c103-links','c103-editing','dense-text-reference','lexicon-c103'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c102','c102-reporting','c102-mandative','c102-distance','modal-reference','lexicon-c102'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),

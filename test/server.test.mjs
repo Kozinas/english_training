@@ -23,6 +23,7 @@ test('local server serves course assets and excludes private/repository paths',a
       '/data/b204.mjs','/data/b204-register.mjs','/data/b204-argument.mjs','/data/b204-lexis.mjs','/data/argument-reference.mjs','/data/lexicon-b204.mjs',
       '/data/b205.mjs','/data/b205-ellipsis.mjs','/data/b205-presentation.mjs','/data/b205-discussion.mjs','/data/discourse-reference.mjs','/data/lexicon-b205.mjs',
       '/data/c101.mjs','/data/c101-inversion.mjs','/data/c101-clefts.mjs','/data/c101-fronting.mjs','/data/focus-reference.mjs','/data/lexicon-c101.mjs',
+      '/data/c105.mjs','/data/c105-sources.mjs','/data/c105-synthesis.mjs','/data/c105-argument.mjs','/data/synthesis-reference.mjs','/data/lexicon-c105.mjs',
       '/data/c104.mjs','/data/c104-intent.mjs','/data/c104-idioms.mjs','/data/c104-negotiation.mjs','/data/pragmatics-reference.mjs','/data/lexicon-c104.mjs',
       '/data/c103.mjs','/data/c103-nouns.mjs','/data/c103-links.mjs','/data/c103-editing.mjs','/data/dense-text-reference.mjs','/data/lexicon-c103.mjs',
       '/data/c102.mjs','/data/c102-reporting.mjs','/data/c102-mandative.mjs','/data/c102-distance.mjs','/data/modal-reference.mjs','/data/lexicon-c102.mjs',

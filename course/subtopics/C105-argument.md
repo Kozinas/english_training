@@ -1,0 +1,497 @@
+# C105-argument · Развёрнутый аргумент, контраргумент и медиация смысла
+
+[Топик C105](../modules/C105.md). Сгенерировано из data/*.mjs.
+
+Предпосылки: [C105-synthesis](C105-synthesis.md), [C104-negotiation](C104-negotiation.md), [B205-presentation](B205-presentation.md).
+
+## Цели контроля
+
+- Строить уступку, основание и квалифицированный вывод
+- Связывать тезис, свидетельство и основание перехода
+- Разбирать сильное возражение и пересматривать позицию
+- Сохранять роли, ограничения и статус данных
+- Писать аргумент и адаптировать его к адресату
+- Защищать и уточнять позицию в живом обмене
+
+## Механизм
+
+### Тезис отвечает на вопрос, а не называет тему
+
+This essay is about introductions называет предмет, но ещё не даёт позицию. A limited display with approved introductions is preferable to immediate full publication — оспоримая рекомендация с границами. Сильный тезис не обязан быть категоричным: он может зависеть от проверки авторов или доступности волонтёров. Назови, какое решение обсуждается, для кого и на каких условиях. Не выдавай собственное should за измеренный факт источника. Читатель должен понять, с чем он мог бы разумно не согласиться и какие основания ты обещаешь рассмотреть.
+
+### Claim, evidence и warrant
+
+Claim — что утверждаешь или рекомендуешь. Evidence — какие наблюдения или тексты поддерживают обсуждение. Warrant — почему эти сведения ведут к этому выводу: логический переход и нередко ценностный критерий. Eighteen respondents found the introduction helpful само не доказывает We must publish every summary immediately. Нужно обсудить ясность, сохранение голоса, согласие авторов и ресурсы. Слова therefore и clearly не заменяют этот переход. Если приоритет — не лишать людей доступного способа записи, назови его явно, а не прячь решение под видом единственно возможного вывода чисел.
+
+### Разные типы утверждений
+
+The record contains 48 requests — описание данных. Removing phone access may save time — гипотеза. The club should keep both routes — рекомендация. All visitors understood — широкое эмпирическое утверждение, которому нужны соответствующие свидетельства. Тип claim определяет, что способно его поддержать. Не требуй от личного эстетического предпочтения статистического доказательства, но не подменяй предпочтением измеренный факт о всех посетителях. В одном тексте могут сосуществовать факт, оценка и действие, если их статусы и связь понятны.
+
+### Структура растёт из аргумента
+
+Введение задаёт вопрос и позицию; основной текст раскрывает основания и трудности; заключение подводит итог без скрытого нового исследования. Это не обязательные три или пять абзацев одинаковой длины. Один сложный контраргумент может потребовать больше места, чем очевидный исходный факт. Каждый абзац должен выполнять понятную работу: объяснить показатель, сопоставить варианты, обсудить риск или уточнить условие. Topic sentence помогает читателю, но не должна обещать больше, чем дают следующие предложения. Повтор тезиса громче не заменяет недостающее основание.
+
+### Контраргумент должен быть узнаваем оппоненту
+
+Возражение против summary может касаться утраты тона и неопределённости, а не ненависти к понятному языку. Возражение против двух каналов записи может касаться нагрузки, а не равнодушия к людям. Перескажи сильную версию: A reasonable concern is that maintaining both routes could require more staff time. Спроси, верно ли понял её, если есть партнёр. Не приписывай группе удобное мнение без источника: hypothetical objection помечай как возможное, а реальное цитируй точно. Не обязательно разбирать каждое вообразимое возражение; выбирай существенное для тезиса.
+
+### Уступка, ответ и пересмотр — разные действия
+
+I accept that the workload may increase — concession. A limited review could measure that burden — response, но не доказанная гарантия решения. Если возражение выявляет непоправимый пробел, сузь тезис или измени рекомендацию. That concern leads me to postpone the proposal может быть сильнее неубедительного всё равно я прав. Уступка одной части не требует автоматически отказаться от всех доводов. Conversely, however или nevertheless не делают ответ достаточным без содержания. Покажи, что именно в возражении принято, что оспорено и какая часть вопроса остаётся открытой.
+
+### Уступка в грамматике
+
+Although demand increased, capacity remains uncertain — although + clause, без дублирующего but в той же базовой связи. Despite the increase / despite receiving more requests — despite + noun или -ing. Despite the fact that demand increased допускает полное придаточное через the fact that. However обычно связывает отдельные части как adverb: Demand increased. However, capacity remains uncertain. Не оценивай нужный знак препинания строковым совпадением, когда normalizer его игнорирует. Whereas сопоставляет, because объясняет причину; замена союза меняет логику, не только стиль.
+
+### Оговорки делают тезис точным, не бесконечно слабым
+
+For these respondents, during the trial, provided that permission is confirmed ограничивают область. Not necessarily означает, что вывод не обязателен, а не что он всегда ложен. May, could и appears to не нужны перед каждой очевидной цифрой: The record lists 48 requests можно сообщить прямо с атрибуцией. Нельзя добавлять perhaps и считать любое слишком широкое утверждение исправленным. Проверь группу, outcome, время и условие; затем выбери силу. Вывод должен быть достаточно ясным для действия, но не сильнее основания.
+
+### Медиация — не упрощение истины
+
+Mediation здесь означает помочь другому человеку понять и использовать содержание: объяснить термин, изменить порядок, выбрать нужные детали, связать с его задачей. Для новичка implementation burden можно передать how much work the change creates. При этом нельзя удалить may, unless, only approved или pending, если они меняют решение. Медиация не обязательно перевод между языками и не обязана сохранять каждое слово исходника. Она сохраняет существенный смысл, отличает источник от личного совета и проверяет понимание конкретного адресата.
+
+### Два адресата — одна база фактов
+
+Для committee важно различие options, evidence, workload и next check. Для нового участника важнее, что доступно сейчас, что ещё неизвестно и кого спросить. Не создавай разные факты ради удобного сообщения каждой группе. Технический термин объясни коротким определением, затем используй простое слово; не предполагай незнание по акценту или происхождению. Спроси What is still unclear? или попроси пересказать условие. Если аудитория слышит окончательное решение там, где была только рекомендация, исправь формулировку, а не обвиняй слушателя в невнимательности.
+
+### Устная защита — готовность к новому вопросу
+
+Сначала дай позицию и одно сильное основание, затем существенное ограничение. Партнёр спрашивает, откуда число, кого оно охватывает, почему альтернативный вариант хуже или что изменит твоё мнение. Отвечай на этот вопрос, а не продолжай заученный монолог. I don’t have evidence for that part — допустимый точный ответ, после которого можно предложить проверку. Не обещай чужой труд, согласие или результат ради завершения дискуссии. Произношение и oral fluency оцениваются по записи, точность содержания — также по источникам, не по ASR similarity.
+
+### Редакторский проход и отложенный контроль
+
+Сохрани исходный draft. Проверь отдельно traceability, logic, scope, counterargument, audience и язык. Выбери два-три приоритетных типа правок, составь новую версию и коротко объясни, почему тезис стал уже или яснее. Полный образец показывает один возможный путь; другой вывод допустим, если он обоснован и не искажает данные. Через семь дней нужен новый вопрос и новые материалы, самостоятельный текст и неожиданный устный обмен. Заполненные поля, длина эссе и чтение модели вслух не подтверждают освоение без содержательного разбора.
+
+## Примеры с разбором
+
+- **A limited display is preferable to immediate full publication.** — Ограниченный показ предпочтительнее немедленной полной публикации. Тезис с границей.
+- **The record lists sixteen stories.** — В записи шестнадцать историй. Описание источника.
+- **Ten contributors have approved an introduction.** — Десять авторов одобрили вступление. Не все шестнадцать.
+- **Six replies are still pending.** — Шесть ответов ещё ожидаются. Не шесть отказов.
+- **The feedback is encouraging but limited.** — Отзывы обнадёживают, но ограничены. Оба свойства сохраняются.
+- **The figures alone do not determine the recommendation.** — Одни числа не выбирают рекомендацию. Нужны критерии и переход.
+- **I give priority to preserving the contributor's meaning.** — Я отдаю приоритет сохранению авторского смысла. Явная ценность.
+- **A reasonable concern is the loss of tone.** — Разумное опасение — утрата тона. Сильное возражение, не карикатура.
+- **I accept that this risk remains.** — Признаю, что риск остаётся. Уступка без автоматической капитуляции.
+- **Keeping both versions may reduce that risk.** — Сохранение обеих версий может снизить риск. May не гарантия.
+- **That objection leads me to narrow the proposal.** — Это возражение заставляет сузить предложение. Пересмотр по основанию.
+- **Although feedback was positive, permission is incomplete.** — Хотя отзывы положительные, согласия получены не все. Although + clause.
+- **Despite the positive feedback, permission is incomplete.** — Несмотря на положительные отзывы, согласия неполны. Despite + noun phrase.
+- **Despite receiving support, the plan remains conditional.** — Несмотря на поддержку, план условный. Despite + -ing.
+- **Despite the fact that some authors agreed, others have not replied.** — Хотя некоторые согласились, другие не ответили. Полная that-clause через fact.
+- **The pilot was useful. However, its scope was limited.** — Пилот полезен. Однако его охват ограничен. Связующий adverb и пунктуация.
+- **More requests do not necessarily mean more people.** — Больше запросов не обязательно больше людей. Не утверждение неизменного числа людей.
+- **Both access and workload matter.** — Важны доступ и нагрузка. Два критерия, вес объяснить.
+- **The estimate is not a completed work record.** — Оценка не запись выполненной работы. Статусы различаются.
+- **The proposal remains subject to available support.** — Предложение зависит от доступной помощи. Условие ещё не выполнено автоматически.
+- **For new members, explain what each route allows.** — Новичкам объясните возможности каждого способа. Адресат определяет отбор деталей.
+- **By workload, I mean the work each route creates.** — Под нагрузкой я понимаю работу каждого канала. Определение простыми словами.
+- **What evidence would change your view?** — Какие данные изменили бы вашу позицию? Проверка открытости пересмотру.
+- **I do not have evidence for that claim.** — У меня нет оснований для этого утверждения. Честная граница знания.
+- **The final arrangement has not been decided.** — Итоговая схема ещё не решена. Рекомендация не принятое решение.
+- **Please tell me which condition remains unclear.** — Скажите, какое условие осталось непонятным. Проверка понимания.
+- **Although retaining the original may preserve access to the author's voice, it does not guarantee that every visitor will read it alongside the introduction.** — Сохранение оригинала не гарантирует, что каждый прочтёт его рядом со вступлением. Ответ на возражение не должен обещать слишком много.
+- **The fact that a telephone route was used does not establish why every caller chose it or whether they could have booked online.** — Использование телефона не раскрывает причину каждого и его онлайн-возможности. Outcome и motive разделены.
+- **If sufficient support cannot be confirmed, my recommendation would change from immediate limited display to postponement.** — Без подтверждения помощи рекомендация меняется на перенос. Условие пересмотра явно названо.
+- **Rather than describing the critics as opponents of clarity, the argument should address their concern that a smooth summary may distort the original uncertainty.** — Вместо обвинения критиков нужно ответить на риск искажения неопределённости. Сильный контраргумент и точный смысл.
+
+## Уступка, основание и вывод
+
+1. **Краткий ответ:** ___ feedback was positive, permission remains incomplete. (Although/Despite)
+2. **Краткий ответ:** ___ the positive feedback, permission remains incomplete. (Although/Despite)
+3. **Краткий ответ:** Despite ___ support, the plan is conditional. (receiving/receive)
+4. **Краткий ответ:** Despite the fact ___ some agreed, others did not reply. (that/to)
+5. **Краткий ответ:** Both access ___ workload matter. (and/or)
+6. **Краткий ответ:** The figures do not ___ prove success. (necessarily/necessary)
+7. **Краткий ответ:** The proposal is subject ___ approval. (to/for)
+8. **Краткий ответ:** This concern leads me ___ narrow the claim. (to/for)
+9. **Предложение:** Удали только лишний but: Although the feedback was positive, but the sample was limited.
+10. **Предложение:** Исправь модель despite: Despite the feedback was positive, the sample was limited. Используй the fact that.
+11. **Развёрнутый ответ:** Соедини два самостоятельных предложения через however с нужной пунктуацией: demand rose; capacity uncertain.
+12. **Развёрнутый ответ:** Напиши thesis о limited display, не просто тему exhibition.
+13. **Развёрнутый ответ:** Дай concession и response в двух частях о workload.
+14. **Развёрнутый ответ:** Раздели факт и recommendation о 48 requests.
+15. **Развёрнутый ответ:** Скажи условие пересмотра if support not available.
+16. **Развёрнутый ответ:** Замени implementation burden простым английским.
+17. **Развёрнутый ответ:** Передай not only users but also volunteers в полном предложении.
+18. **Развёрнутый ответ:** Почему therefore сам не является доказательством?
+
+<details><summary>Ключи и критерии после попытки</summary>
+
+1. Ключ: Although. После союза полная clause.
+2. Ключ: Despite. После предлога именная группа.
+3. Ключ: receiving. После предлога despite в этой модели требуется -ing, не bare infinitive.
+4. Ключ: that. Полная that-clause через fact.
+5. Ключ: and. Парная конструкция both…and объединяет оба названных критерия.
+6. Ключ: necessarily. Adverb при prove.
+7. Ключ: to. Subject to задаёт условие.
+8. Ключ: to. Lead someone to + base.
+9. Ключ: Although the feedback was positive, the sample was limited.. Не дублировать базовую связь.
+10. Ключ: Despite the fact that the feedback was positive, the sample was limited.. Сохраняется полная clause через fact.
+11. Возможный образец (не единственный ответ): Demand rose. However, capacity remained uncertain.. Другие нормативные знаки допустимы; ручная проверка пунктуации.
+12. Возможный образец (не единственный ответ): A limited display of approved introductions is preferable to immediate full publication.. Нужна оспоримая позиция и scope.
+13. Возможный образец (не единственный ответ): I accept that workload may rise; a limited review could measure it before expansion.. Ответ не guaranteed solution.
+14. Возможный образец (не единственный ответ): The log records 48 requests. I recommend checking assistance before changing access.. Собственный переход явно назван.
+15. Возможный образец (не единственный ответ): If support is unavailable, I would postpone the display.. Гипотеза и условие, не утверждение реального отказа.
+16. Возможный образец (не единственный ответ): The amount of work needed to make the change.. Термин пояснён без потери смысла.
+17. Возможный образец (не единственный ответ): The change affects not only users but also volunteers.. Параллельные группы, не одинаковые интересы автоматически.
+18. Возможный образец (не единственный ответ): Он маркирует переход, но связь данных с выводом нужно обосновать.. Логика не возникает от связки.
+
+</details>
+
+## Тезис и сильное возражение
+
+1. **Краткий ответ:** We should keep both routes — measurement или recommendation?
+2. **Краткий ответ:** Concession одной трудности обязательно отменяет весь тезис? (yes/no)
+3. **Краткий ответ:** Six did not reply = six refused? (yes/no)
+4. **Краткий ответ:** Estimate three evenings = work already completed? (yes/no)
+5. **Развёрнутый ответ:** Усиль карикатуру Critics hate clarity до серьёзного возражения.
+6. **Развёрнутый ответ:** Назови warrant между сохранением phone route и access.
+7. **Развёрнутый ответ:** На что response retaining original не даёт гарантии?
+8. **Развёрнутый ответ:** Отличи statement of topic и thesis на своём примере.
+9. **Развёрнутый ответ:** Что делать, если возражение нельзя обоснованно снять?
+10. **Развёрнутый ответ:** 18/24 found introduction helpful: доказывает long-term memory?
+11. **Развёрнутый ответ:** Почему mediation не обязательно translation?
+12. **Развёрнутый ответ:** Does not necessarily imply: отрицание самого outcome?
+13. **Развёрнутый ответ:** Hypothetical objection: как не выдумать реального автора?
+14. **Развёрнутый ответ:** Сделай критерий для двух версий разным, а факты одинаковыми.
+15. **Развёрнутый ответ:** Почему 350 слов сами по себе не показывают качественный argument?
+16. **Развёрнутый ответ:** Назови честный вопрос к своей позиции.
+
+<details><summary>Ключи и критерии после попытки</summary>
+
+1. Ключ: recommendation. Это выбор действия, не зарегистрированное число.
+2. Ключ: no. Часть аргумента можно признать и сузить вывод.
+3. Ключ: no. Pending не отказ.
+4. Ключ: no. Плановая оценка не журнал работы.
+5. Возможный образец (не единственный ответ): Critics may worry that a smooth summary removes tone and uncertainty from the original.. Не приписывать нелепую позицию.
+6. Возможный образец (не единственный ответ): If maintaining an available route matters, removing one before independent online access is understood may exclude some users.. Критерий access и условный риск, не доказанный эффект для всех.
+7. Возможный образец (не единственный ответ): Что каждый посетитель прочтёт обе версии или каждый summary точен.. Не чрезмерное обещание.
+8. Возможный образец (не единственный ответ): Topic: online booking. Thesis: both routes should remain during a defined review.. Нужна позиция, не только название.
+9. Возможный образец (не единственный ответ): Сузить, пересмотреть или отложить тезис, указав причину.. Не считать изменение позиции слабостью автоматически.
+10. Возможный образец (не единственный ответ): Нет, память позже не измерялась.. Не смешивать outcome и период.
+11. Возможный образец (не единственный ответ): Можно объяснять сложный текст простым английским для другого адресата.. Существенные условия сохраняются.
+12. Возможный образец (не единственный ответ): Нет, отрицается обязательность вывода, а не любой случай outcome.. Граница импликации.
+13. Возможный образец (не единственный ответ): A possible concern is… вместо приписывания её конкретному человеку без источника.. Статус предположения явный.
+14. Возможный образец (не единственный ответ): For the committee, discuss options and workload; for new members, explain available routes and pending decisions.. Адресат не разрешает менять данные.
+15. Возможный образец (не единственный ответ): Нужны обоснованный переход, точные источники, сильное возражение и связный ответ.. Длина не mastery.
+16. Возможный образец (не единственный ответ): What evidence or practical limit would make me change this recommendation?. Не риторический вопрос с заранее нужным ответом.
+
+</details>
+
+## Позиция и неожиданный вопрос
+
+1. **Устная работа:** Выдели SHOULD как recommendation, не факт log.
+2. **Устная работа:** Проговори concession, затем ограниченный response.
+3. **Устная работа:** Партнёр предлагает сильное возражение. Перескажи его перед ответом.
+4. **Устная работа:** Произнеси approved, NOT unanswered; партнёр выбирает допустимую группу.
+5. **Устная работа:** Ответь на Why not all sixteen? по источнику.
+6. **Устная работа:** Новичок не понимает workload. Объясни и проверь пересказ.
+7. **Устная работа:** Скажи not necessarily без превращения в never.
+8. **Устная работа:** На вопрос о несуществующем числе честно обозначь границу.
+9. **Устная работа:** Партнёр сообщает новое ограничение support. Пересмотри предложение.
+10. **Устная работа:** Дай краткий маршрут аргумента голосом.
+
+<details><summary>Ключи и критерии после попытки</summary>
+
+1. Возможный образец (не единственный ответ): I think we should retain both routes during the review.. Слушатель различает статус.
+2. Возможный образец (не единственный ответ): I accept the workload concern; a smaller review may help us assess it.. May остаётся слышимым.
+3. Возможный образец (не единственный ответ): Your concern is that the summary could remove the original tone. Have I understood you correctly?. Партнёр может исправить пересказ.
+4. Возможный образец (не единственный ответ): The display would include approved introductions, not unanswered requests.. Проверка ограничения по аудио.
+5. Возможный образец (не единственный ответ): Only ten approvals are recorded; six replies are still pending.. Не назвать шесть отказами.
+6. Возможный образец (не единственный ответ): Workload means how much work the arrangement creates. What would we need to measure?. Живой follow-up.
+7. Возможный образец (не единственный ответ): More requests do not necessarily mean more different people.. Слушатель сохраняет смысл.
+8. Возможный образец (не единственный ответ): The supplied materials do not give that figure.. Не придумывать число ради беглости.
+9. Возможный образец (не единственный ответ): If support cannot be confirmed, I would postpone the display.. Реакция на ответ, не заученное yes.
+10. Возможный образец (не единственный ответ): First the evidence, then the concern, and finally my conditional recommendation.. Затем содержательные части, не только signposts.
+
+</details>
+
+## Чтение: ясность и голос автора
+
+This fictional case concerns a neighbourhood exhibition of personal stories. The committee is deciding whether to place a short plain-language introduction beside each original story. The question is not whether original voices or accessible explanations are valuable in isolation. It is how to combine them without misrepresenting the contributors or assuming that every practical concern has already been solved.
+
+The collection contains sixteen stories. Ten contributors have approved an introduction for their own story; six have not replied. The coordinator's record distinguishes approval from silence and does not describe the six unanswered requests as refusals. The proposed display would retain the original text beside the introduction. It would not replace every contributor's wording with a standardised version. This matters because several committee members initially imagined a different proposal in which the originals would disappear.
+
+A visitor feedback sheet contains twenty-four voluntary responses to a sample display. Eighteen respondents said the introduction helped them understand the main point. The sheet does not identify how many visitors were invited to respond, and it does not test what they remembered later. The feedback supports a claim about those respondents' immediate experience, not a general conclusion about all visitors or lasting understanding. The committee can find the result encouraging without treating it as a complete evaluation.
+
+One contributor, Elena, raises a more substantial objection than the suggestion that clear language is simply undesirable. Her story includes hesitation, humour and an unusual expression learned from her grandmother. She worries that a smooth summary could make the account sound more certain and conventional than she intended. Retaining the original beside it may reduce that risk, but it does not guarantee that visitors will read both versions or that every summary will preserve the important qualifications. Her concern challenges the quality of the proposed mediation, not the value of helping visitors understand.
+
+The volunteer editor, Owen, adds a practical concern. He estimates that checking all introductions with contributors would require three evenings of work. That is a planning estimate, not a measured record of completed work. No complete volunteer rota has been agreed. Owen does not argue that the project is impossible; he asks the committee to recognise the effort and avoid promising an immediate full display before the checks and permission are complete.
+
+A weak argument would present supporters as caring about visitors and critics as opposing clarity. It would also turn eighteen favourable responses into proof that the proposal has no disadvantages. A stronger argument can acknowledge the positive feedback, take Elena's concern seriously and distinguish permission already received from permission still pending. It can explain the value judgement behind the recommendation: clearer entry points are desirable, but they should not come at the cost of altering a person's account without approval.
+
+One defensible recommendation is a limited display using only introductions that have been approved, with the original stories retained. The committee could ask contributors to check uncertainty, tone and distinctive wording, then invite visitors to explain what they understood rather than only whether they liked the layout. The recommendation must remain conditional on sufficient volunteer support. It should not treat the ten existing approvals as permission for later changes or as approval from the six silent contributors.
+
+Another reasonable position is to postpone the display until the review process is clearer. The quality of the final argument depends on how it weighs the supplied evidence and concerns, not on choosing the same conclusion as a model answer. A writer should state the recommendation, explain the connection to the sources, address the strongest objection and identify what evidence or practical change would lead to a different decision.
+
+1. **Краткий ответ:** Всего original stories?
+2. **Краткий ответ:** Сколько contributors approved introduction?
+3. **Краткий ответ:** Сколько replies pending?
+4. **Краткий ответ:** Всего voluntary visitor responses?
+5. **Краткий ответ:** Сколько responses helpful?
+6. **Краткий ответ:** Кто поднял voice concern?
+7. **Развёрнутый ответ:** Дай сильную версию Elena objection.
+8. **Развёрнутый ответ:** Каков статус Owen three evenings?
+9. **Развёрнутый ответ:** Какой value judgement стоит за limited display?
+10. **Развёрнутый ответ:** Чего original alongside summary не гарантирует?
+11. **Развёрнутый ответ:** Напиши 100–140 слов рекомендации с сильным возражением и условием поддержки.
+12. **Развёрнутый ответ:** Почему другая рекомендация может получить высокую оценку?
+
+<details><summary>Ключи и критерии после попытки</summary>
+
+1. Ключ: 16 / sixteen. Шестнадцать в collection.
+2. Ключ: 10 / ten. Десять собственных introductions.
+3. Ключ: 6 / six. Не шесть отказов.
+4. Ключ: 24 / twenty-four / twenty four. Не все посетители.
+5. Ключ: 18 / eighteen. Оценка immediate experience.
+6. Ключ: Elena. Elena говорит о собственной истории.
+7. Возможный образец (не единственный ответ): A smooth summary may remove hesitation, humour and distinctive wording, changing the story's meaning.. Не critics hate clarity.
+8. Возможный образец (не единственный ответ): Planning estimate, not completed work or confirmed rota.. Не обещать уже организованный ресурс.
+9. Возможный образец (не единственный ответ): Clarity matters, but it should not distort a contributor's account without approval.. Ценность названа явно.
+10. Возможный образец (не единственный ответ): Что все прочтут обе версии и точность каждого summary.. Частичное снижение риска, не полное устранение.
+11. Возможный образец (не единственный ответ): A limited display of approved introductions is defensible, provided sufficient volunteer support can be confirmed. Ten of sixteen contributors have approved an introduction; six replies remain pending and must not be treated as consent. Eighteen of twenty-four voluntary respondents found the sample introduction helpful, but long-term understanding was not measured. Elena's concern is substantial: a smooth summary could remove tone and uncertainty. Keeping the original beside it may help, but does not guarantee that both versions will be read. Contributors should therefore check meaning and qualifications before display. Owen's three-evening estimate also needs a workable rota. If that support cannot be arranged, postponement would be preferable to promising an unchecked full exhibition.. 100–140 слов; evidence, objection, response и condition, не forced conclusion.
+12. Возможный образец (не единственный ответ): Если сохраняет факты, учитывает сильное возражение и обосновывает иной приоритет или следующий шаг.. Не совпадение с мнением модели.
+
+</details>
+
+## Аудирование: два способа записи
+
+<details><summary>Транскрипт — только после прослушивания и попытки</summary>
+
+This is a fictional briefing for a committee considering an online-only booking route for club rooms. I am Ellis, and I want to distinguish my recommendation from the supplied observations. The trial record contains forty-eight requests: thirty-six online and twelve by telephone. Seven of the online requests involved assistance. These are requests, not necessarily forty-eight different people, and the record does not show that everyone could use the online route independently.
+
+One committee member argues that a single online route would make administration simpler. That is a relevant practical concern. However, the record does not measure the staff time saved by removing telephone bookings, so I cannot present that saving as an observed fact. Another member says that keeping telephone access matters for people who cannot use the form. The twelve telephone requests demonstrate use of that route during the trial, but they do not tell us every caller's reason for choosing it.
+
+My recommendation is to retain both routes temporarily while collecting clearer information about assistance, repeat requests and staff time. I am giving priority to maintaining an available route while the access question remains unresolved. That priority is a judgement which I should explain, not hide behind the phrase the data prove we must do this.
+
+The strongest objection to my recommendation is that maintaining two routes might create additional work. I accept that possibility. My response is to propose a defined review of workload before making the arrangement permanent. If the extra work cannot be supported, the committee may need a different option; I should not promise volunteers who have not agreed to help.
+
+For new members, I would explain the same conclusion without terms such as implementation burden. We want to keep a way to book available while we check how much help people need and how much work each route creates. This simpler explanation must still preserve uncertainty and the fact that the final arrangement has not been decided.
+
+</details>
+
+1. **Краткий ответ:** Кто даёт briefing?
+2. **Краткий ответ:** Всего requests?
+3. **Краткий ответ:** Online requests?
+4. **Краткий ответ:** Telephone requests?
+5. **Краткий ответ:** Online requests with assistance?
+6. **Краткий ответ:** Measured staff-time saving provided? (yes/no)
+7. **Развёрнутый ответ:** Какой приоритет Ellis называет явно?
+8. **Развёрнутый ответ:** Сильнейшее возражение к двум routes?
+9. **Развёрнутый ответ:** Какой response не обещает лишних volunteers?
+10. **Развёрнутый ответ:** 12 phone requests доказывают, что все callers не могут online?
+11. **Развёрнутый ответ:** Поясни implementation burden новичку.
+12. **Устная работа:** Спроси Ellis, что изменило бы recommendation.
+
+<details><summary>Ключи и критерии после попытки</summary>
+
+1. Ключ: Ellis. Говорящий отделяет рекомендацию от данных.
+2. Ключ: 48 / forty-eight / forty eight. Requests не обязательно people.
+3. Ключ: 36 / thirty-six / thirty six. Из общего числа 48.
+4. Ключ: 12 / twelve. Двенадцать запросов по телефону.
+5. Ключ: 7 / seven. Внутри 36 online.
+6. Ключ: no. Экономия предполагается, не измерена в record.
+7. Возможный образец (не единственный ответ): Сохранить доступный способ записи, пока самостоятельный online access не выяснен.. Judgement, не data prove must.
+8. Возможный образец (не единственный ответ): Возможная дополнительная нагрузка.. Не обвинение в равнодушии.
+9. Возможный образец (не единственный ответ): Оценить workload и пересмотреть, если поддержку нельзя обеспечить.. Не назначать отсутствующих.
+10. Возможный образец (не единственный ответ): Нет, причины выбора каждого не установлены.. Usage не motive/ability.
+11. Возможный образец (не единственный ответ): How much work the change creates.. Сохранить вопрос измерения и неопределённость.
+12. Возможный образец (не единственный ответ): What workload evidence or support limit would make you choose a different option?. Получить ответ, не только прочитать вопрос.
+
+</details>
+
+## Эссе, медиация и редакторский журнал
+
+1. **Развёрнутый ответ:** Сформулируй thesis, допускающий postponement если нет support.
+2. **Развёрнутый ответ:** Напиши сильное возражение к своей выбранной позиции, не straw man.
+3. **Развёрнутый ответ:** Дай evidence и warrant отдельно по helpful feedback.
+4. **Развёрнутый ответ:** Напиши 320–380 слов комитету по чтению: тезис, точные источники, сильное возражение, ответ, ресурсы, условие пересмотра. Допустим иной обоснованный вывод.
+5. **Развёрнутый ответ:** Напиши 220–280 слов для новых участников по аудио: два routes пока recommendation, данные, ограничения, простые слова вместо implementation burden.
+6. **Развёрнутый ответ:** На возражение summaries distort ответь частично, без guarantees.
+7. **Развёрнутый ответ:** Отредактируй comma splice содержательно: The sample is small, however the result is promising.
+8. **Развёрнутый ответ:** Один feedback result поддерживает несколько решений. Назови два и критерий выбора.
+9. **Развёрнутый ответ:** Сделай 5–7 предложений для contributor Elena без обещания идеальной сохранности.
+10. **Устная работа:** Защити свой тезис; партнёр выбирает objection о voice или workload без предупреждения.
+11. **Устная работа:** Объясни тот же вывод coordinator и newcomer; попроси каждого пересказать условие.
+12. **Развёрнутый ответ:** Запиши revision log: исходный тезис, новое возражение, узкий тезис, причина.
+13. **Развёрнутый ответ:** Назови данные, которые заставили бы отложить limited display.
+14. **Развёрнутый ответ:** Составь rubric для своего argument в пяти пунктах.
+
+<details><summary>Ключи и критерии после попытки</summary>
+
+1. Возможный образец (не единственный ответ): A limited approved display is preferable only if enough support is available; otherwise it should be postponed.. Условие реально ограничивает рекомендацию.
+2. Возможный образец (не единственный ответ): Even approved summaries may reduce attention to the original voices, so approval alone may not solve the problem.. Существенная трудность, не удобная карикатура.
+3. Возможный образец (не единственный ответ): Evidence: eighteen respondents found it helpful. Warrant: clearer entry points may improve immediate access, which I value, but the sample limits the conclusion.. Оценка и переход названы явно.
+4. Возможный образец (не единственный ответ): The committee should consider a limited display of approved introductions rather than publish all sixteen immediately. The aim should be to make the stories easier to enter without replacing the contributors' voices. That recommendation depends on a careful review process and sufficient volunteer support; it is not a claim that every introduction is already ready for display. A reader should be able to distinguish the contributor's original account from the editor's explanation and understand why both are present. The permission record is the first boundary. Ten contributors have approved an introduction for their own story, while six have not replied. Silence should remain pending, not become consent or refusal. Existing approval also should not be stretched into permission for later changes that the contributor has not seen. Visitor feedback offers a reason to examine the approach further. Eighteen of twenty-four voluntary respondents found the sample introduction helpful. This is encouraging evidence about immediate experience among those respondents, but the number invited is unknown and later understanding was not tested. It cannot establish a benefit for every visitor. Elena raises the strongest objection: a fluent summary could remove hesitation, humour and distinctive wording. This concern is not opposition to clarity. It is a warning that making a text easier can also change its meaning. Retaining the original beside the introduction may reduce the risk, but it cannot guarantee that every visitor reads both. Contributors should therefore check the introduction's tone and uncertainty as well as its factual content. Owen's estimate of three evenings of checking introduces a practical limit. It is not evidence of completed work, and no complete rota has been agreed. Before confirming the display, the committee should identify willing support rather than assume that volunteers will absorb the work. If support and contributor checks can be arranged, a small display could collect feedback about what visitors actually understood. If they cannot, postponement would be the more responsible option. My position gives weight to both access and authorship, and I would revise it if feedback showed persistent distortion or if the workload could not be supported.. 320–380 слов; точный case, честная ценностная связь, counterargument и genuine revision condition.
+5. Возможный образец (не единственный ответ): The committee is considering how people should book club rooms. The current discussion is not a final decision to remove telephone booking. Ellis recommends keeping both the online and telephone routes temporarily while the club checks how they work for people and how much work they create. This temporary recommendation should not be presented as a permanent promise about every future booking. The trial record contains forty-eight requests: thirty-six online and twelve by telephone. Seven of the online requests involved help. These numbers count requests, not necessarily different people. They also do not show that every person could complete an online request alone. The telephone requests show that the route was used, but they do not explain why each caller chose it. One reason for considering a single online route is that it might make administration simpler. However, the supplied record does not measure the time saved by removing telephone requests. Keeping both routes could also create extra work, and that concern should be taken seriously rather than dismissed. Ellis therefore proposes checking assistance, repeat requests and the amount of staff work before choosing a permanent arrangement. If the extra work cannot be supported, another option may be needed. No volunteer should be treated as available without being asked. The main point is to preserve a usable way to book while the unanswered questions are examined. If you are unsure which route is currently available or what help you can request, ask the organiser rather than treating a proposal in this discussion as an announced rule.. 220–280 слов; сохранить unknown, recommendation status и реальный scope чисел.
+6. Возможный образец (не единственный ответ): Contributor review and the original alongside may reduce distortion, but we should still check visitors' understanding.. Response ограничен, не solved forever.
+7. Возможный образец (не единственный ответ): The sample is small; however, the result is promising.. Пунктуация ручная, возможна точка.
+8. Возможный образец (не единственный ответ): A limited display prioritises learning from feedback; postponement prioritises resolving support and permission first.. Оба требуют честного учёта ограничений.
+9. Возможный образец (не единственный ответ): We will keep your original beside any approved introduction. Please check whether the introduction preserves your hesitation and humour. Approval of one version will not be treated as permission for later changes. We cannot guarantee that every visitor will read both texts. We can ask visitors to explain what they understood. If you identify a distortion, the wording should be reviewed before display.. Шесть предложений; реальные границы permission и понимания.
+10. Возможный образец (не единственный ответ): Which part of the proposal does your concern challenge, and what change would address it?. Нужно ответить по существу выбранного возражения.
+11. Возможный образец (не единственный ответ): The recommendation depends on support and approval; the final arrangement is not yet decided.. Два новых пересказа, не одно заученное чтение.
+12. Возможный образец (не единственный ответ): I changed publish all introductions to display approved introductions only because six replies were still pending.. Нужны собственные версии; образец не фиктивная история ученика.
+13. Возможный образец (не единственный ответ): Evidence of persistent distortion or inability to arrange the required review support.. Это критерий пересмотра, не установленный факт.
+14. Возможный образец (не единственный ответ): Source accuracy, explicit reasoning, fair counterargument, audience-appropriate clarity and controlled language.. Речь дополнительно требует реального аудио.
+
+</details>
+
+## Повторение и самостоятельный перенос
+
+1. **Краткий ответ:** Despite ___ concerns, we can discuss a smaller option. (these/these are)
+2. **Краткий ответ:** Although the concern ___ valid, the proposal can be revised. (is/being)
+3. **Развёрнутый ответ:** Новый контекст: живые встречи вместо онлайн. Сформулируй сильное возражение без стереотипа.
+4. **Развёрнутый ответ:** Отдели claim/value/evidence в новом коротком тезисе.
+5. **Развёрнутый ответ:** Через семь дней напиши argument по новым двум материалам. Что сохранить для разбора?
+6. **Развёрнутый ответ:** Нужен ли обязательно победитель разговора?
+7. **Развёрнутый ответ:** Перепиши although clause как despite noun phrase без потери смысла.
+8. **Развёрнутый ответ:** Что нельзя убрать при plain-language mediation?
+9. **Устная работа:** Произнеси позицию, ограничение, revised position после реального вопроса.
+10. **Развёрнутый ответ:** Почему другой вывод не автоматически ошибка?
+
+<details><summary>Ключи и критерии после попытки</summary>
+
+1. Ключ: these. Noun phrase после despite.
+2. Ключ: is. Полная clause после although.
+3. Возможный образец (не единственный ответ): Travel may exclude some participants even when face-to-face discussion has benefits.. Не приписывать лень или незаинтересованность.
+4. Возможный образец (не единственный ответ): I favour a hybrid option because I value access; attendance records would help assess it.. Нужно не выдавать values за measurements.
+5. Возможный образец (не единственный ответ): Исходные материалы, первый draft, revision, основания правок и реальные ответы партнёра.. Не выдумывать проведённое занятие.
+6. Возможный образец (не единственный ответ): Нет, можно уточнить предел, изменить позицию или оставить вопрос открытым.. Оценивать язык и рассуждение, не forced victory.
+7. Возможный образец (не единственный ответ): Although support was limited, the trial continued → Despite limited support, the trial continued.. Обе части события сохраняются.
+8. Возможный образец (не единственный ответ): Существенные условия, отрицание, степень уверенности, источник и статус решения.. Простота не искажение.
+9. Возможный образец (не единственный ответ): I favour a limited display, but without support I would postpone it.. По аудио и реакции на партнёра.
+10. Возможный образец (не единственный ответ): Он может опираться на те же факты с явно объяснёнными критериями и сильным разбором возражения.. Не оправдывает искажение данных.
+
+</details>
+
+## Обязательный итоговый тест
+
+Не подменять тренировочными задачами. Ученик может вводить целые предложения и тексты, сохранять черновик и продолжать позже. Ключи открывать после отправки всей попытки. Открытые задания оцениваются по смыслу и критериям; устные требуют слышимого аудио. Записать исходные ответы и отдельный разбор по целям, назначить практику по пробелам.
+
+### Вариант A
+
+1. **Краткий ответ:** ___ the positive response, review is incomplete. (Despite/Although)
+2. **Краткий ответ:** ___ the response was positive, review is incomplete. (Although/Despite)
+3. **Краткий ответ:** The plan is subject ___ support. (to/with)
+4. **Предложение:** Удали только лишний but: Although demand increased, but capacity stayed limited.
+5. **Краткий ответ:** A trial should continue — finding или recommendation?
+6. **Краткий ответ:** Four approvals pending = four refusals? (yes/no)
+7. **Развёрнутый ответ:** Сильное возражение к plain summaries вместо Critics dislike readers.
+8. **Развёрнутый ответ:** В 12/18 helpful feedback нет автоматического publish all. Какой переход нужен?
+9. **Развёрнутый ответ:** Editor estimates two sessions of work, no rota. Что нельзя объявить?
+10. **Развёрнутый ответ:** Напиши 100–140 слов аргумента: 12 stories, 8 approvals/4 pending, 12 of 18 helpful; concern voice; support unconfirmed. Допустим limited display или postponement.
+11. **Развёрнутый ответ:** Предложи условие, при котором твой тезис изменится.
+12. **Развёрнутый ответ:** Объясни implementation burden новичку и сохрани may.
+13. **Устная работа:** Произнеси approved ONLY, партнёр называет группу.
+14. **Устная работа:** Партнёр утверждает keeping originals solves everything. Ответь и задай follow-up.
+15. **Развёрнутый ответ:** Раздели факт и ценность в I prioritise access because 12 used phone.
+16. **Развёрнутый ответ:** Что делать с убедительным возражением, которое не можешь снять?
+17. **Развёрнутый ответ:** Исправь пунктуацию вручную: Evidence is limited, however the question matters.
+18. **Развёрнутый ответ:** Helpful now доказывает remembered next month?
+19. **Развёрнутый ответ:** Назови элементы revision record.
+20. **Развёрнутый ответ:** Почему different recommendation может быть верной?
+21. **Развёрнутый ответ:** Передай concession через despite + -ing о полученной поддержке.
+22. **Развёрнутый ответ:** Как проверить, понял ли неспециалист condition?
+
+<details><summary>Разбор — только после отправки попытки</summary>
+
+1. Ключ: Despite. Noun phrase после despite.
+2. Ключ: Although. После although здесь полное придаточное с подлежащим и finite verb.
+3. Ключ: to. Условие subject to.
+4. Ключ: Although demand increased, capacity stayed limited.. Не дублировать уступку.
+5. Ключ: recommendation. Нормативный выбор действия.
+6. Ключ: no. Статус неизвестен.
+7. Возможный образец (не единственный ответ): A summary may omit the qualifications that make the original account accurate.. Честный substantial concern.
+8. Возможный образец (не единственный ответ): Обсудить критерии clarity, permission, accuracy и ресурсы, а не выводить should из одной доли.. Нужно объяснить переход от наблюдения к оценке и рекомендации, а не только добавить therefore.
+9. Возможный образец (не единственный ответ): Работу выполненной или поддержку согласованной.. Estimate не completion/commitment.
+10. Возможный образец (не единственный ответ): A limited display could be worthwhile, but only after support and the relevant approvals are confirmed. Eight of twelve contributors have approved an introduction, while four replies remain pending. Those four should not be treated as consent or refusal. Twelve of eighteen respondents found the sample helpful, which supports further examination but not a claim about every visitor. The concern about losing the original voice is serious. Contributor review and keeping the original alongside may reduce that risk without guaranteeing perfect understanding. Because support is unconfirmed, I would not promise an immediate full display. If the checks cannot be arranged, postponement is preferable to publishing material that changes a contributor's meaning.. 100–140 слов; evidence, fair objection, bounded response, condition.
+11. Возможный образец (не единственный ответ): If the review support cannot be secured, I would postpone the display.. Содержательный revision criterion.
+12. Возможный образец (не единственный ответ): The change may create extra work for the team.. Не превратить риск в измеренный факт.
+13. Возможный образец (не единственный ответ): The proposal covers approved introductions only.. Нужно аудио и точный пересказ.
+14. Возможный образец (не единственный ответ): It may help, but not everyone will read both. How could we check understanding?. Реальный обмен с новым ответом.
+15. Возможный образец (не единственный ответ): Twelve phone requests is a recorded fact; prioritising access is the writer's judgement requiring explanation.. Число не единственное возможное решение.
+16. Возможный образец (не единственный ответ): Пересмотреть или сузить тезис и явно назвать основание.. Не замалчивать ради уверенного тона.
+17. Возможный образец (не единственный ответ): Evidence is limited; however, the question matters.. Точка тоже возможна, normalizer не проверяет этот навык.
+18. Возможный образец (не единственный ответ): Нет, отложенная память не измерена.. Разные время и outcome.
+19. Возможный образец (не единственный ответ): Original claim, objection or new evidence, revised claim and reason.. Сохранить обе версии.
+20. Возможный образец (не единственный ответ): Если точны данные, прозрачен критерий, разобрано сильное возражение и вывод соразмерен.. Открытый ответ не совпадение мнения.
+21. Возможный образец (не единственный ответ): Despite receiving support, the proposal still needs review.. Нормативная предлоговая модель.
+22. Возможный образец (не единственный ответ): Попросить пересказать своими словами и исправить реальное расхождение.. Не считать кивок полным пониманием.
+
+</details>
+
+### Вариант B
+
+1. **Краткий ответ:** Despite ___ approval, the plan needs resources. (receiving/receive)
+2. **Краткий ответ:** Despite the fact ___ some agreed, others are undecided. (that/to)
+3. **Краткий ответ:** The concern leads us ___ revise the scope. (to/with)
+4. **Предложение:** Исправь только conjunction: Despite the log is incomplete, the figures are useful. Используй Although.
+5. **Краткий ответ:** The log lists 30 requests — recorded finding или recommendation?
+6. **Краткий ответ:** No staff-time measure = proved zero staff work? (yes/no)
+7. **Развёрнутый ответ:** Сильное возражение к двум routes вместо Critics don't care.
+8. **Развёрнутый ответ:** Почему fewer channels automatically best — недостающий аргумент?
+9. **Развёрнутый ответ:** Phone requests есть, motives unknown. Что о digital inability?
+10. **Развёрнутый ответ:** Напиши 100–140 слов: 30 requests = 20 online incl 4 helped + 10 phone; staff time unknown; recommendation temporary both, counter workload, review condition.
+11. **Развёрнутый ответ:** Сформулируй concession о workload без отказа от всех аргументов.
+12. **Развёрнутый ответ:** Объясни conditional recommendation plain English, сохрани if.
+13. **Устная работа:** Скажи recommendation, not final decision; партнёр пересказывает.
+14. **Устная работа:** Партнёр сообщает no support. Измени позицию, не обещая за отсутствующих.
+15. **Развёрнутый ответ:** Назови разницу evidence и warrant в своём кратком примере.
+16. **Развёрнутый ответ:** Hypothetical critic без реальной цитаты: какая вводная честна?
+17. **Развёрнутый ответ:** Исправь comma splice: The trial ended, however the review is pending.
+18. **Развёрнутый ответ:** Estimate работы гарантирует available volunteers?
+19. **Развёрнутый ответ:** Что сохранить при адаптации specialist memo для новичка?
+20. **Развёрнутый ответ:** Not necessarily X означает definitely not X?
+21. **Развёрнутый ответ:** Соедини два критерия через both…and в предложении.
+22. **Развёрнутый ответ:** Что нужно для отложенного подтверждения навыка?
+
+<details><summary>Разбор — только после отправки попытки</summary>
+
+1. Ключ: receiving. После предлога despite в этой модели требуется -ing, не bare infinitive.
+2. Ключ: that. Полное придаточное через fact.
+3. Ключ: to. Lead to + infinitive действия после объекта.
+4. Ключ: Although the log is incomplete, the figures are useful.. После although здесь полное придаточное с подлежащим и finite verb.
+5. Ключ: recorded finding / finding. Описание данных.
+6. Ключ: no. Отсутствие измерения не ноль.
+7. Возможный образец (не единственный ответ): Maintaining two routes may require more staff time than is available.. Практическая трудность, не личное нападение.
+8. Возможный образец (не единственный ответ): Нужно рассмотреть критерии доступности, нагрузки и фактические данные, не считать простоту единственной ценностью.. Warrant должен быть явным.
+9. Возможный образец (не единственный ответ): Нельзя приписать неспособность пользоваться online каждому caller.. Usage не причина или способность.
+10. Возможный образец (не единственный ответ): I recommend retaining both booking routes temporarily while the club examines access and workload. The record contains thirty requests: twenty online, including four with help, and ten by telephone. These are requests rather than necessarily different people, and the callers' reasons are unknown. The figures do not establish that everyone can use the online route independently. Keeping two routes may create extra work, which is a serious objection rather than a sign that critics disregard access. Staff time has not been measured, so that burden needs checking. If adequate support cannot be arranged, the recommendation should be reconsidered. For now, the proposed review is a next step, not a final decision or a completed evaluation.. 100–140 слов; сохранять supported subset, unknown motives и условный выбор.
+11. Возможный образец (не единственный ответ): I accept that workload may increase, but we should measure it before deciding on a permanent arrangement.. Ответ не guarantee no burden.
+12. Возможный образец (не единственный ответ): We can try this only if enough people agree to support it.. Не сказать support already confirmed.
+13. Возможный образец (не единственный ответ): This is my recommendation, not the committee's final decision.. Статус различим по содержанию и аудио.
+14. Возможный образец (не единственный ответ): Without support, I would postpone this option and discuss an alternative.. Реальный ответ на новую информацию.
+15. Возможный образец (не единственный ответ): Evidence records use; the warrant explains why preserving access matters for my recommendation.. Логический и ценностный переход не цифра.
+16. Возможный образец (не единственный ответ): A possible objection is that…. Не выдумать конкретного автора.
+17. Возможный образец (не единственный ответ): The trial ended. However, the review is pending.. Ручная проверка знаков; semicolon допустим.
+18. Возможный образец (не единственный ответ): Нет, нужна реальная подтверждённая поддержка.. Не назначать отсутствующих.
+19. Возможный образец (не единственный ответ): Существенные факты, источник, условия, отрицание, uncertainty и status решения.. Слова можно упростить, смысл нельзя исказить.
+20. Возможный образец (не единственный ответ): Нет, это отсутствие обязательности вывода.. Не менять степень отрицания.
+21. Возможный образец (не единственный ответ): Both accessibility and workload should inform the decision.. Не утверждать автоматический одинаковый вес.
+22. Возможный образец (не единственный ответ): Новые материалы, самостоятельный аргумент, устный обмен с неожиданным вопросом и содержательная оценка.. Не только заполненные поля и длина.
+
+</details>
+
+## Повторение и ограничения
+
+При пробелах вернитесь к соответствующей практике; затем используйте следующий вариант. Повтор уже знакомого варианта не доказывает перенос. После использования обоих вариантов требуется новый независимый контроль с преподавателем. Через 7 дней — применение в новой ситуации; до него первичная успешная проверка не означает окончательное освоение. [Критерии](../TEACHING.md).
+
+## Приложения
+
+- [Тезис, контраргумент и объяснение другому адресату](../appendices/argument-mediation.md)
+- [Сопоставление источников и границы синтеза](../appendices/source-synthesis.md)
+- [Аргумент, уступка и честный вывод](../appendices/argument-concession.md)
+
+## Источники для сверки
+
+Объяснения и упражнения авторские.
+
+- [Purdue OWL: quotation, paraphrase and summary](https://owl.purdue.edu/owl/research_and_citation/using_research/quoting_paraphrasing_and_summarizing/index.html)
+- [Purdue OWL: evaluating sources](https://owl.purdue.edu/owl/research_and_citation/conducting_research/evaluating_sources_of_information/general_guidelines.html)
+- [Purdue OWL: focused thesis statements](https://owl.purdue.edu/owl/general_writing/academic_writing/establishing_arguments/index.html)
+- [UNC Writing Center: literature reviews](https://writingcenter.unc.edu/tips-and-tools/literature-reviews/)
+- [Harvard Writing Center: counterargument](https://writingcenter.fas.harvard.edu/counterargument)
+- [Cambridge: according to](https://dictionary.cambridge.org/dictionary/english/according-to)
+- [Cambridge: opinion](https://dictionary.cambridge.org/grammar/british-grammar/opinion)
