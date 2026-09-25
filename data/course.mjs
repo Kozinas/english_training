@@ -28,6 +28,7 @@ import b204 from './b204.mjs';
 import b205 from './b205.mjs';
 import c101 from './c101.mjs';
 import c102 from './c102.mjs';
+import c103 from './c103.mjs';
 import {legacyIPA,extraVocabulary} from './lexicon.mjs';
 import {p02Vocabulary} from './lexicon-p02.mjs';
 import {p03Vocabulary} from './lexicon-p03.mjs';
@@ -54,11 +55,12 @@ import {b204Vocabulary} from './lexicon-b204.mjs';
 import {b205Vocabulary} from './lexicon-b205.mjs';
 import {c101Vocabulary} from './lexicon-c101.mjs';
 import {c102Vocabulary} from './lexicon-c102.mjs';
+import {c103Vocabulary} from './lexicon-c103.mjs';
 
 export const levels = ['Pre-A1','A1','A2','B1','B2','C1','C2'];
 const core = [...foundation, ...intermediate, ...advanced];
-const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a105,...a201,...a202,...a203,...a204,...a205,...b101,...b102,...b103,...b104,...b105,...b201,...b202,...b203,...b204,...b205,...c101,...c102];
-const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary];
+const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a105,...a201,...a202,...a203,...a204,...a205,...b101,...b102,...b103,...b104,...b105,...b201,...b202,...b203,...b204,...b205,...c101,...c102,...c103];
+const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary];
 export const modules = [...core, ...technical].map((m, i) => ({
   ...m,
   track: m.id.startsWith('T') ? 'technical' : 'general',
