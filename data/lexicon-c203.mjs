@@ -33,7 +33,39 @@ loaded question~вопрос со спорной предпосылкой~/ˌlə
 read back~повторить для проверки~/riːd bæk/~phrasal~Read back the agreed action and invite corrections.~В этой карточке base form /riːd/, не Past /red/.
 clear up~прояснить, устранить неясность~/klɪər ʌp/~phrasal~We need to clear up the misunderstanding.~Другие значения зависят от объекта; clear it up с местоимением.
 pick up on~заметить, уловить~/pɪk ʌp ɒn/~phrasal~She picked up on the reservation in his reply.~Не обязательно согласиться с замеченным.
-come across as~производить впечатление~/kʌm əˈkrɒs æz/~phrasal~The message came across as dismissive to one reader.~Эффект для читателя не доказанное намерение автора.`;
+come across as~производить впечатление~/kʌm əˈkrɒs æz/~phrasal~The message came across as dismissive to one reader.~Эффект для читателя не доказанное намерение автора.
+gist~общий смысл~/dʒɪst/~word~I understood the gist but missed the condition.~Общий смысл не гарантирует понимание решающей детали.
+caveat~существенная оговорка~/ˈkæviæt/~word~Keep the caveat in the summary.~Не декоративное слово, если оно ограничивает вывод.
+qualification~ограничение, уточнение~/ˌkwɒlɪfɪˈkeɪʃən/~word~The speaker added a qualification to her support.~Здесь не диплом или профессиональный разряд.
+attribution~указание источника или авторства~/ˌætrɪˈbjuːʃən/~word~The attribution was lost in the shorter notes.~Не превращать чужой прогноз в проверенный факт.
+digression~отступление от темы~/daɪˈɡreʃən/~word~After a digression, she returned to the budget.~Побочная мысль не обязательно бесполезна.
+reformulation~переформулирование~/ˌriːfɔːmjuˈleɪʃən/~word~The reformulation made the condition explicit.~Проверять сохранность исходного смысла.
+self-correction~самоисправление~/ˌself kəˈrekʃən/~word~His self-correction changed sixteen to sixty.~Не автоматическое доказательство лжи.
+concession~признание части чужого довода~/kənˈseʃən/~word~The concession did not remove her main objection.~Здесь аргументативная уступка, не обязательно скидка.
+counterexample~контрпример~/ˈkaʊntərɪɡˌzɑːmpəl/~word~One counterexample challenges the claim that every user succeeded.~Не доказывает, что никто не справился.
+denominator~знаменатель~/dɪˈnɒmɪneɪtə/~word~Check the denominator before comparing the percentages.~People и attempts могут требовать разных знаменателей.
+submission~отправка, подача~/səbˈmɪʃən/~word~Submission of a request does not confirm a place.~Здесь стадия процесса, не принятие запроса.
+confirmation~подтверждение~/ˌkɒnfəˈmeɪʃən/~word~We still need confirmation of the booking.~Уточнять, что именно подтверждается.
+provisional~предварительный~/prəˈvɪʒənəl/~word~The estimate remains provisional.~Не синоним заведомо ложного.
+conditional~условный, зависящий от условия~/kənˈdɪʃənəl/~word~Her support is conditional on access remaining available.~Условие нельзя потерять при пересказе.
+unaided~без помощи~/ʌnˈeɪdɪd/~word~The exercise did not measure unaided performance.~Доступность помощи и фактическое её использование различаются.
+turn-taking~чередование реплик~/ˈtɜːn ˌteɪkɪŋ/~word~Turn-taking affects how the discussion develops.~Не просто заранее распределённые монологи.
+signpost~сигнал структуры речи~/ˈsaɪnpəʊst/~word~The phrase acts as a signpost back to the main issue.~Метафорическое значение, не дорожный знак здесь.
+reasoning~ход рассуждения~/ˈriːzənɪŋ/~word~Explain the reasoning, not just the conclusion.~Обычно неисчисляемое в этом значении.
+initially~первоначально~/ɪˈnɪʃəli/~word~She initially favoured a larger trial.~Не автоматически её текущая позиция.
+subsequently~впоследствии~/ˈsʌbsɪkwəntli/~word~He subsequently narrowed his recommendation.~Порядок не доказывает причину изменения.
+nevertheless~тем не менее~/ˌnevəðəˈles/~word~The test helped; nevertheless, questions remain.~Уступка не стирает признанную пользу.
+whereas~тогда как~/weərˈæz/~word~One group worked alone, whereas the other received help.~Противопоставление условий, не временное when.
+provided that~при условии что~/prəˈvaɪdɪd ðæt/~chunk~I support the trial provided that the existing option remains.~Условие поддержки, не подтверждение его выполнения.
+by contrast~в отличие от этого~/baɪ ˈkɒntrɑːst/~chunk~By contrast, the second group had no deadline.~Не by contrary в этой рамке.
+in other words~иными словами~/ɪn ˌʌðə ˈwɜːdz/~chunk~In other words, we have not approved the launch.~Переформулирование нужно сверять с исходником.
+to sum up~подводя итог~/tə sʌm ˈʌp/~chunk~To sum up, the decision remains open.~Метка итога не гарантия его точности.
+for the sake of argument~ради обсуждения предположения~/fə ðə seɪk əv ˈɑːɡjəmənt/~chunk~For the sake of argument, suppose the cost is lower.~Гипотеза не утверждение установленного факта.
+for the time being~пока, на данный момент~/fə ðə taɪm ˈbiːɪŋ/~chunk~Keep both channels for the time being.~Временная рамка не обещает точный срок изменения.
+get back to~вернуться к вопросу~/ɡet ˈbæk tə/~phrasal~Let us get back to the staffing question.~Также бывает связаться позднее; смысл задаёт объект.
+follow up~уточнить позднее, продолжить проверку~/ˌfɒləʊ ˈʌp/~phrasal~We need to follow up the question about access.~Follow up on a question также возможно; не гарантирует решения.
+boil down to~сводиться к~/bɔɪl ˈdaʊn tə/~phrasal~The disagreement boils down to who will check the requests.~Краткое описание сути, а не буквальное кипячение.
+lose track of~потерять нить, перестать следить за~/luːz ˈtræk əv/~chunk~I lost track of whose estimate was being reported.~Назвать конкретную потерянную связь, затем восстановить её.`;
 const kinds={word:'слово',chunk:'сочетание',idiom:'идиома',phrasal:'фразовый глагол'};
 export const c203Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid C203 vocabulary row '+(i+1));

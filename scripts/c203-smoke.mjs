@@ -14,8 +14,8 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
  })()`);
  const original=await evaluate('window.__c203Import');await importSynthetic('window.__c203Import');
  await route('module/C203','#legacy-practice');
- assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),1);
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),97);
+ assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),2);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),204);
  assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),0,'no inherited new progress');
  assert.equal(await evaluate('document.querySelector("#draft").value'),'Synthetic original notes for C203.');
  assert.equal(await evaluate('document.querySelector("#drill1").value'),'отчасти\nOriginal answer');
@@ -36,7 +36,7 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
    assert(await evaluate('new Set([...document.querySelectorAll("[id]")].map(n=>n.id)).size===document.querySelectorAll("[id]").length'));
    if(b.kind==='listening')assert(!(await evaluate('document.querySelector("#unit-content").textContent')).includes(b.passage.slice(0,45)),'new listening text hidden');
    if(b.id==='transfer'){
-    assert.equal(await evaluate('document.querySelector(".bank-resources a").href'),'https://learnenglish.britishcouncil.org/free-resources/listening/c1/challenges-work');
+    assert.equal(await evaluate('document.querySelector(".bank-resources a").href'),b.resources[0][1]);
     assert((await evaluate('document.querySelector("#unit-content .notice").textContent')).includes('не засчитывает аудирование'));
     assert.equal(await evaluate('document.querySelectorAll("#unit-content audio,#unit-content iframe,#listen-bank").length'),0,'no autoplay or synthetic substitution for external audio');
    }
@@ -46,7 +46,7 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
     await fill('#answer-'+t.id,t.answer.split('|')[0]);await evaluate('document.querySelector("#check-bank").click()');
     assert((await evaluate(`document.querySelector('#feedback-${t.id}').textContent`)).startsWith('Верно'));
    }
-   if(b.kind==='listening'&&u.id==='C203-inference'){
+   if(b.kind==='listening'){
     await evaluate(`{const answers=${JSON.stringify(Object.fromEntries(b.tasks.map(t=>[t.id,t.answer.split('|')[0]])))};for(const el of document.querySelectorAll('[data-task]')){el.value=answers[el.dataset.task];el.dispatchEvent(new Event('input',{bubbles:true}));}document.querySelector('#check-bank').click();}`);
     assert((await evaluate('document.querySelector("#bank-transcript").textContent')).includes(b.passage.slice(0,45)),'audio script opens after complete checked practice');
    }
@@ -69,8 +69,8 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
   assert.equal(await evaluate('document.querySelectorAll("[data-review]").length'),u.tests.flatMap(t=>t.tasks).filter(t=>['text','speech'].includes(t.kind)).length,'second variant does not auto-grade open work');
  }
  await route('module/C203','#legacy-practice');
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),14,'13 practice responses + 1 test; repeated variants and old archive add nothing');
- for(const [id,count,query] of [['context-inference',24,'ironic']]){
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),34,'32 practice responses + 2 tests; repeated variants and old archive add nothing');
+ for(const [id,count,query] of [['context-inference',24,'ironic'],['listening-discourse',28,'repair']]){
   await route('references/'+id,'#reference-search');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),count);
   await fill('#reference-search',query);const filtered=await evaluate('document.querySelectorAll("#reference-rows tr").length');assert(filtered>0&&filtered<count);
   await route('home','.hero');await evaluate('document.querySelector("aside a[data-section=references]").click()');
@@ -79,11 +79,11 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
   await fill('#reference-search','');await screenshot('c203-'+id+'-desktop.png');
  }
  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
- for(const [path,selector,name] of [['module/C203','#legacy-practice','topic'],['unit/C203-inference/production','#check-bank','writing'],['unit/C203-inference/reading','#check-bank','reading'],['unit/C203-inference/transfer','#check-bank','external'],['references/context-inference','#reference-search','reference']]){
+ for(const [path,selector,name] of [['module/C203','#legacy-practice','topic'],['unit/C203-inference/production','#check-bank','writing'],['unit/C203-inference/reading','#check-bank','reading'],['unit/C203-inference/transfer','#check-bank','external'],['references/context-inference','#reference-search','reference'],['unit/C203-discourse/listening','#check-bank','long-listening'],['unit/C203-discourse/production','#check-bank','long-writing'],['unit/C203-discourse/transfer','#check-bank','interview'],['references/listening-discourse','#reference-search','discourse-reference']]){
   await route(path,selector);assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'C203 mobile overflow '+path);
-  if(name==='writing')await evaluate('document.querySelector("textarea[data-task]").closest(".task").scrollIntoView({block:"start"})');
+  if(name==='writing'||name==='long-writing')await evaluate('document.querySelector("textarea[data-task]").closest(".task").scrollIntoView({block:"start"})');
   if(name==='reading')await evaluate('document.querySelector(".reading").scrollIntoView({block:"start"})');
-  if(name==='external')await evaluate('document.querySelector("#unit-content .notice").scrollIntoView({block:"start"})');
+  if(name==='external'||name==='interview')await evaluate('document.querySelector("#unit-content .notice").scrollIntoView({block:"start"})');
   if(name.includes('reference'))await evaluate('document.querySelector(".table-wrap").scrollIntoView({block:"start"})');
   await screenshot('c203-'+name+'-mobile.png');
  }
@@ -92,14 +92,13 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
  await evaluate(`(async()=>{
   const s=JSON.parse(localStorage.getItem('english-training-v1'));
   const {subtopics}=await import('/data/course.mjs');const {questions,assessmentVersion}=await import('/data/assessment.mjs');
-  const u=subtopics.find(u=>u.id==='C203-inference');
-  for(const t of u.banks.flatMap(b=>b.tasks))s.learning[u.id].answers[t.id]=t.answer;
+  for(const u of subtopics.filter(u=>u.topic==='C203'))for(const t of u.banks.flatMap(b=>b.tasks))s.learning[u.id].answers[t.id]=t.answer;
   s.placement={assessmentVersion,date:'2026-09-26T12:00:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};
   window.__c203Complete=JSON.stringify(s);
  })()`);
  await importSynthetic('window.__c203Complete');
  await route('module/C203','#topic-development');
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),97);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),204);
  assert((await evaluate('document.querySelector(".progress-note").textContent')).includes('100% не означает завершение всего топика'));
  await route('course','#module-list');
  assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("C203")).textContent')).includes('Частично'));
@@ -107,5 +106,5 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
  assert((await evaluate('document.querySelector("[data-topic-progress=C203]").textContent')).includes('опубликованной части'));
  await route('home','.hero');
  assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
- console.log('C203 smoke passed: one published unit, eight banks, nested navigation, multiline exams, pending reviews, old archive/SRS, partial-scope notices, one reference and mobile layout.');
+ console.log('C203 smoke passed: two published units, sixteen banks, nested navigation, multiline exams, pending reviews, old archive/SRS, partial-scope notices, two references and mobile layout.');
 }
