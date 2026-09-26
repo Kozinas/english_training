@@ -68,18 +68,18 @@ test('C204 reference has bounded scope, models, practice and primary source link
  assert(mediationReference.intro.some(s=>s.includes('не полный каталог')));
  for(const [,url] of mediationSources)assert(['www.coe.int','dictionary.cambridge.org'].includes(new URL(url).hostname));
 });
-test('C204 adds 36 contextual cards without replacing seven old IDs',()=>{
- assert.equal(c204Vocabulary.length,36);const cards=vocabulary.filter(c=>c.module==='C204');assert.equal(cards.length,43);
- assert.equal(new Set(cards.map(c=>c.word)).size,43);for(let i=1;i<=6;i++)assert(cards.some(c=>c.id==='C204-v'+i));
+test('C204 adds 68 contextual cards without replacing seven old IDs',()=>{
+ assert.equal(c204Vocabulary.length,68);const cards=vocabulary.filter(c=>c.module==='C204');assert.equal(cards.length,75);
+ assert.equal(new Set(cards.map(c=>c.word)).size,75);for(let i=1;i<=6;i++)assert(cards.some(c=>c.id==='C204-v'+i));
  assert.equal(cards.filter(c=>!/^C204-x-\d+$/.test(c.id)).length,7);
  for(const c of c204Vocabulary)assert(c.context&&c.note&&/^\/.+\/$/.test(c.ipa)&&c.accent==='UK');
  for(const word of ['at cross purposes',"put words in someone's mouth",'boil down to','criterion','criteria'])assert(cards.some(c=>c.word===word));
 });
 test('C204 is explicitly partial and keeps missing scope separate from published units',()=>{
- assert.equal(module.contentStatus,'partial');assert.equal(module.subtopics.length,1);assert.equal(module.remainingScope.length,2);
+ assert.equal(module.contentStatus,'partial');assert.equal(module.subtopics.length,2);assert.equal(module.remainingScope.length,1);
  assert.deepEqual(module.remainingScope,topicDevelopment.C204.remaining);assert(module.remainingScope.some(s=>s.includes('Спонтанная')));
  assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[32,1,7]);
- assert.equal(courseStats.subtopics,104);assert.equal(courseStats.practice,8891);assert.equal(courseStats.testTasks,4396);
+ assert.equal(courseStats.subtopics,105);assert.equal(courseStats.practice,8995);assert.equal(courseStats.testTasks,4448);
 });
 test('C204 original drill archive, notes, multiline fields and SRS survive without new credit',()=>{
  const s=freshState();s.moduleProgress.C204={selfChecked:true,date:'2026-09-22'};s.drafts.C204='Synthetic old note.';
@@ -88,7 +88,7 @@ test('C204 original drill archive, notes, multiline fields and SRS survive witho
  s.navigation.pages['module/C204']={scroll:410,focus:'drill1',fields:{drill0:'about',drill1:'from\nSynthetic old answer',drill2:'yes'},details:[true]};
  const restored=validateState(JSON.parse(JSON.stringify(s)));assert.deepEqual(restored,s);assert.equal(restored.schemaVersion,2);
  assert.deepEqual(module.drills.map(d=>d[0]),['disagree ___ priorities (about/at)','Separate the principle ___ implementation.','Reversible означает обратимый? (yes/no)']);
- assert.equal(topicWorkProgress(restored,'C204').completed,0);assert.equal(topicWorkProgress(restored,'C204').total,97);
+ assert.equal(topicWorkProgress(restored,'C204').completed,0);assert.equal(topicWorkProgress(restored,'C204').total,202);
  const old=structuredClone(s);delete old.navigation;assert.equal(validateState(old).drafts.C204,s.drafts.C204);
 });
 test('C204 exam drafts and original attempts persist; eight closed answers do not grade sixteen open ones',()=>{
@@ -103,10 +103,10 @@ test('C204 exam drafts and original attempts persist; eight closed answers do no
  }
  assert.deepEqual(validateState(JSON.parse(JSON.stringify(s))),s);
 });
-test('C204 complete published work stays partial, pending review and independent of pace',()=>{
+test('C204 first published unit retains 97 completed steps when content grows, with no inherited mastery',()=>{
  const s=freshState(),p=unitState(s,u.id);for(const t of u.banks.flatMap(b=>b.tasks))p.answers[t.id]=t.answer;
  p.examDraft.answers=Object.fromEntries(u.tests[0].tasks.map(t=>[t.id,t.answer.split('|')[0]]));submitUnitTest(s,u.id,'2026-09-26T12:00:00Z');
- const progress=topicWorkProgress(s,'C204');assert.equal(progress.total,97);assert.equal(progress.completed,97);assert.equal(progress.percent,100);
+ const progress=topicWorkProgress(s,'C204');assert.equal(progress.total,202);assert.equal(progress.completed,97);assert.equal(progress.percent,48);
  assert.equal(module.contentStatus,'partial');assert.equal(scoreUnitTest(u,p.attempts[0]).status,'awaiting-review');
  s.moduleProgress.C204={selfChecked:true,date:'2026-09-26'};s.placement={assessmentVersion,date:'2026-09-26T12:00:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};
  assert(buildPlan(s).items.some(m=>m.id==='C204'&&m.contentStatus==='partial'));

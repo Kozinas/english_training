@@ -74,7 +74,7 @@ const core = [...foundation, ...intermediate, ...advanced];
 const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a105,...a201,...a202,...a203,...a204,...a205,...b101,...b102,...b103,...b104,...b105,...b201,...b202,...b203,...b204,...b205,...c101,...c102,...c103,...c104,...c105,...c201,...c202,...c203,...c204];
 const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary,...c104Vocabulary,...c105Vocabulary,...c201Vocabulary,...c202Vocabulary,...c203Vocabulary,...c204Vocabulary];
 // Content scope is repository metadata, not learner state or a timed schedule.
-export const topicDevelopment={C204:{remaining:['Аргументированное возражение: проверка оснований, уступки и ответ на сильный контраргумент.','Спонтанная многосторонняя дискуссия: очередь, неожиданные повороты, совместное решение и развёрнутый итог.']}};
+export const topicDevelopment={C204:{remaining:['Спонтанная многосторонняя дискуссия: очередь, неожиданные повороты, совместное решение и развёрнутый итог.']}};
 export const modules = [...core, ...technical].map((m, i) => ({
   ...m,
   track: m.id.startsWith('T') ? 'technical' : 'general',
