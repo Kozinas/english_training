@@ -14,8 +14,8 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
  })()`);
  const original=await evaluate('window.__c203Import');await importSynthetic('window.__c203Import');
  await route('module/C203','#legacy-practice');
- assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),2);
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),204);
+ assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),3);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),309);
  assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),0,'no inherited new progress');
  assert.equal(await evaluate('document.querySelector("#draft").value'),'Synthetic original notes for C203.');
  assert.equal(await evaluate('document.querySelector("#drill1").value'),'отчасти\nOriginal answer');
@@ -23,8 +23,8 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
  await evaluate('document.querySelector("#legacy-practice").open=true');
  await route('home','.hero');await route('module/C203','#legacy-practice');
  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#drill2")?.value==="that"'),'C203 archive reload');
- assert((await evaluate('document.querySelector("#topic-development").textContent')).includes('Акценты'));
- assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('опубликованной части'));
+ assert.equal(await evaluate('document.querySelector("#topic-development")'),null);
+ assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Общий прогресс'));
  await screenshot('c203-topic-desktop.png');
  const units=await evaluate(`(async()=>{const {subtopics}=await import('/data/course.mjs');return subtopics.filter(u=>u.topic==='C203')})()`);
  for(const u of units){
@@ -69,8 +69,8 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
   assert.equal(await evaluate('document.querySelectorAll("[data-review]").length'),u.tests.flatMap(t=>t.tasks).filter(t=>['text','speech'].includes(t.kind)).length,'second variant does not auto-grade open work');
  }
  await route('module/C203','#legacy-practice');
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),34,'32 practice responses + 2 tests; repeated variants and old archive add nothing');
- for(const [id,count,query] of [['context-inference',24,'ironic'],['listening-discourse',28,'repair']]){
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),50,'47 practice responses + 3 tests; repeated variants and old archive add nothing');
+ for(const [id,count,query] of [['context-inference',24,'ironic'],['listening-discourse',28,'repair'],['connected-speech',28,'read-back']]){
   await route('references/'+id,'#reference-search');assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),count);
   await fill('#reference-search',query);const filtered=await evaluate('document.querySelectorAll("#reference-rows tr").length');assert(filtered>0&&filtered<count);
   await route('home','.hero');await evaluate('document.querySelector("aside a[data-section=references]").click()');
@@ -79,11 +79,11 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
   await fill('#reference-search','');await screenshot('c203-'+id+'-desktop.png');
  }
  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
- for(const [path,selector,name] of [['module/C203','#legacy-practice','topic'],['unit/C203-inference/production','#check-bank','writing'],['unit/C203-inference/reading','#check-bank','reading'],['unit/C203-inference/transfer','#check-bank','external'],['references/context-inference','#reference-search','reference'],['unit/C203-discourse/listening','#check-bank','long-listening'],['unit/C203-discourse/production','#check-bank','long-writing'],['unit/C203-discourse/transfer','#check-bank','interview'],['references/listening-discourse','#reference-search','discourse-reference']]){
+ for(const [path,selector,name] of [['module/C203','#legacy-practice','topic'],['unit/C203-inference/production','#check-bank','writing'],['unit/C203-inference/reading','#check-bank','reading'],['unit/C203-inference/transfer','#check-bank','external'],['references/context-inference','#reference-search','reference'],['unit/C203-discourse/listening','#check-bank','long-listening'],['unit/C203-discourse/production','#check-bank','long-writing'],['unit/C203-discourse/transfer','#check-bank','interview'],['references/listening-discourse','#reference-search','discourse-reference'],['unit/C203-connected/production','#check-bank','connected-writing'],['unit/C203-connected/listening','#check-bank','connected-listening'],['unit/C203-connected/transfer','#check-bank','accents'],['references/connected-speech','#reference-search','connected-reference']]){
   await route(path,selector);assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'C203 mobile overflow '+path);
-  if(name==='writing'||name==='long-writing')await evaluate('document.querySelector("textarea[data-task]").closest(".task").scrollIntoView({block:"start"})');
+  if(name==='writing'||name==='long-writing'||name==='connected-writing')await evaluate('document.querySelector("textarea[data-task]").closest(".task").scrollIntoView({block:"start"})');
   if(name==='reading')await evaluate('document.querySelector(".reading").scrollIntoView({block:"start"})');
-  if(name==='external'||name==='interview')await evaluate('document.querySelector("#unit-content .notice").scrollIntoView({block:"start"})');
+  if(name==='external'||name==='interview'||name==='accents')await evaluate('document.querySelector("#unit-content .notice").scrollIntoView({block:"start"})');
   if(name.includes('reference'))await evaluate('document.querySelector(".table-wrap").scrollIntoView({block:"start"})');
   await screenshot('c203-'+name+'-mobile.png');
  }
@@ -97,14 +97,24 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
   window.__c203Complete=JSON.stringify(s);
  })()`);
  await importSynthetic('window.__c203Complete');
- await route('module/C203','#topic-development');
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),204);
- assert((await evaluate('document.querySelector(".progress-note").textContent')).includes('100% не означает завершение всего топика'));
+ await route('module/C203','#legacy-practice');
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),309);
+ assert.equal(await evaluate('document.querySelector("#topic-development")'),null);
  await route('course','#module-list');
- assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("C203")).textContent')).includes('Частично'));
+ assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("C203")).textContent')).includes('3 наполненные подтемы'));
  await route('plan','[data-topic-progress="C203"]');
- assert((await evaluate('document.querySelector("[data-topic-progress=C203]").textContent')).includes('опубликованной части'));
+ assert((await evaluate('document.querySelector("[data-topic-progress=C203]").textContent')).includes('Общий прогресс'));
  await route('home','.hero');
- assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
- console.log('C203 smoke passed: two published units, sixteen banks, nested navigation, multiline exams, pending reviews, old archive/SRS, partial-scope notices, two references and mobile layout.');
+ assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 0'));
+ // Import a synthetic export containing only the two previously published units.
+ await route('settings','#profile');
+ await evaluate(`(async()=>{const s=JSON.parse(localStorage.getItem('english-training-v1'));delete s.learning['C203-connected'];for(const route of Object.keys(s.navigation.pages))if(route.startsWith('unit/C203-connected/'))delete s.navigation.pages[route];s.bookmark={route:'unit/C203-discourse/test',scroll:620,focus:''};s.navigation.sections.course='unit/C203-discourse/test';const {validateState}=await import('/engine.mjs');window.__c203PreviousContent=JSON.stringify(validateState(s));})()`);
+ const previousContent=await evaluate('window.__c203PreviousContent');
+ await importSynthetic('window.__c203PreviousContent');await route('module/C203','#legacy-practice');
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),204);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),309);
+ await command('Page.reload');await poll(()=>evaluate('document.querySelector(".topic-progress progress")?.value===204'),'C203 previous content retains progress after reload');
+ await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(previousContent)});if(s.learning['C203-connected'])throw Error('Fabricated new unit');for(const id of ['C203-inference','C203-discourse'])if(JSON.stringify(s.learning[id])!==JSON.stringify(old.learning[id]))throw Error('Changed previous learning');if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed previous SRS');}`);
+ assert.equal(await evaluate('document.querySelector("#drill1").value'),'отчасти\nOriginal answer');
+ console.log('C203 smoke passed: three expanded units, twenty-four banks, nested navigation, multiline exams, pending reviews, old archive/SRS, scope promotion, three references and mobile layout.');
 }

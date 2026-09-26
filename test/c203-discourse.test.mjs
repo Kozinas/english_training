@@ -73,7 +73,7 @@ test('C203 six new writing models meet actual word ranges including a full 320�
 });
 test('C203 discourse reference and new card tail retain their explicit scope and stable IDs',()=>{
  assert.equal(discoursePatterns.length,28);assert(discoursePatterns.every(r=>r.length===4&&r.every(Boolean)));assert.equal(discourseReference.practice.length,16);
- const cards=vocabulary.filter(v=>v.module==='C203'),tail=cards.filter(v=>/^C203-x-\d+$/.test(v.id)&&Number(v.id.split('-').at(-1))>36);
+ const cards=vocabulary.filter(v=>v.module==='C203'),tail=cards.filter(v=>/^C203-x-\d+$/.test(v.id)&&Number(v.id.split('-').at(-1))>36&&Number(v.id.split('-').at(-1))<=68);
  assert.equal(tail.length,32);assert.equal(tail[0].id,'C203-x-37');assert.equal(tail.at(-1).id,'C203-x-68');
  assert.equal(cards.find(c=>c.id==='C203-x-36').word,'come across as');assert.equal(cards.find(c=>c.id==='C203-x-1').word,'implication');
  for(const word of ['gist','caveat','unaided','provided that','lose track of'])assert(tail.some(c=>c.word===word));
@@ -89,7 +89,7 @@ test('C203 first-release learning, reviews, drafts, navigation and SRS survive d
  s.bookmark={route:'unit/C203-inference/test',scroll:650,focus:''};s.navigation.current='unit/C203-inference/test';s.navigation.sections.course=s.navigation.current;s.navigation.pages[s.navigation.current]={scroll:650,focus:'',fields:{},details:[]};
  s.cards['C203-x-36']=reviewCard(null,'good',Date.UTC(2026,8,26));s.drafts.C203='Synthetic old notes.';
  const previous=structuredClone(s),restored=validateState(JSON.parse(JSON.stringify(s)));assert.deepEqual(restored,previous);
- const progress=topicWorkProgress(restored,'C203');assert.equal(progress.completed,97);assert.equal(progress.total,204);assert.equal(progress.percent,47);
+ const progress=topicWorkProgress(restored,'C203');assert.equal(progress.completed,97);assert.equal(progress.total,309);assert.equal(progress.percent,31);
  assert(!restored.learning[u.id],'import must not fabricate new-unit responses');
  unitState(restored,u.id).answers[u.banks[0].tasks[0].id]='Although';assert.equal(topicWorkProgress(restored,'C203').completed,98);
  assert.deepEqual(restored.learning[first.id],previous.learning[first.id]);assert.deepEqual(restored.cards,previous.cards);assert.deepEqual(restored.navigation,previous.navigation);
@@ -104,9 +104,9 @@ test('C203 discourse exam drafts, both original attempts and all open responses 
  }
  assert.deepEqual(validateState(JSON.parse(JSON.stringify(s))),s);
 });
-test('C203 all 204 steps are published work only, never automatic completion of unfinished accent scope',()=>{
+test('C203 first two published units retain 204 steps without completing the new third unit',()=>{
  const s=freshState();for(const unit of [first,u]){const p=unitState(s,unit.id);for(const t of unit.banks.flatMap(b=>b.tasks))p.answers[t.id]=t.answer;p.examDraft.answers=Object.fromEntries(unit.tests[0].tasks.map(t=>[t.id,t.answer.split('|')[0]]));submitUnitTest(s,unit.id,'2026-09-26T13:00:00Z');assert.equal(scoreUnitTest(unit,p.attempts[0]).status,'awaiting-review');}
- const progress=topicWorkProgress(s,'C203');assert.equal(progress.completed,204);assert.equal(progress.total,204);assert.equal(progress.percent,100);
- const topic=modules.find(m=>m.id==='C203');assert.equal(topic.contentStatus,'partial');assert.equal(topic.remainingScope.length,1);assert(topic.remainingScope[0].includes('Акценты'));
+ const progress=topicWorkProgress(s,'C203');assert.equal(progress.completed,204);assert.equal(progress.total,309);assert.equal(progress.percent,66);
+ const topic=modules.find(m=>m.id==='C203');assert.equal(topic.contentStatus,'expanded');assert.deepEqual(topic.remainingScope,[]);
  s.profile.minutes=15;s.profile.days=2;assert.deepEqual(topicWorkProgress(s,'C203'),progress);assert.deepEqual(topicWorkProgress(validateState(JSON.parse(JSON.stringify(s))),'C203'),progress);
 });

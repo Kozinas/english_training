@@ -54,13 +54,12 @@ test('C203 audio evidence is never inferred from ASR and external listening task
  assert(task('transfer-6').explanation.includes('выдуманный таймкод не допустим'));
  assert(task('transfer-11').answer.includes('метка источника остаётся C1'));
 });
-test('C203 published scope is partial, not a fake completed topic or placeholder units',()=>{
- assert.equal(module.contentStatus,'partial');assert.equal(module.subtopics.length,2);
- assert.deepEqual(module.remainingScope,topicDevelopment.C203.remaining);assert.equal(module.remainingScope.length,1);
- assert(module.remainingScope[0].includes('Акценты'));
- assert.equal(courseStats.expanded,31);assert.equal(courseStats.partial,1);assert.equal(courseStats.legacy,8);
+test('C203 now has three populated units and no remaining declared scope',()=>{
+ assert.equal(module.contentStatus,'expanded');assert.equal(module.subtopics.length,3);
+ assert.equal(topicDevelopment.C203,undefined);assert.deepEqual(module.remainingScope,[]);
+ assert.equal(courseStats.expanded,32);assert.equal(courseStats.partial,0);assert.equal(courseStats.legacy,8);
  assert.equal(courseStats.expanded+courseStats.partial+courseStats.legacy,40);
- assert.equal(subtopics.filter(t=>t.topic==='C203').length,2);
+ assert.equal(subtopics.filter(t=>t.topic==='C203').length,3);
 });
 test('C203 first subtopic contains complete substantial banks, separate texts and fresh tests',()=>{
  assert.deepEqual(u.prerequisites,['C202-revision','C104-intent']);assert.equal(u.examples.length,30);
@@ -84,9 +83,9 @@ test('C203 reference has explicit scope, complete rows, practice and attributed 
  assert(inferenceReference.intro.some(s=>s.includes('не превращает её в экзамен C2')));
  for(const [,url] of inferenceSources)assert(/^(dictionary\.cambridge\.org|www\.teachingenglish\.org\.uk|learnenglish\.britishcouncil\.org)$/.test(new URL(url).hostname));
 });
-test('C203 sixty-eight new cards preserve all seven old identities, IPA and distinct roles',()=>{
- assert.equal(c203Vocabulary.length,68);const cards=vocabulary.filter(c=>c.module==='C203');assert.equal(cards.length,75);
- assert.equal(new Set(cards.map(c=>c.word)).size,75);
+test('C203 one hundred new cards preserve all seven old identities, IPA and distinct roles',()=>{
+ assert.equal(c203Vocabulary.length,100);const cards=vocabulary.filter(c=>c.module==='C203');assert.equal(cards.length,107);
+ assert.equal(new Set(cards.map(c=>c.word)).size,107);
  for(let i=1;i<=6;i++)assert(cards.some(c=>c.id==='C203-v'+i));assert(cards.some(c=>c.id==='C203-x-read-between'));
  for(const c of c203Vocabulary)assert(c.context&&c.note&&/^\/.+\/$/.test(c.ipa)&&c.accent==='UK');
  for(const word of ['imply','infer','take at face value','pick up on','give the benefit of the doubt'])assert(cards.some(c=>c.word===word));
@@ -97,7 +96,7 @@ test('C203 archived original questions, multiline answers, notes and SRS survive
  s.navigation.current='module/C203';s.navigation.sections.course='module/C203';
  s.navigation.pages['module/C203']={scroll:420,focus:'drill1',fields:{drill0:'no',drill1:'отчасти\nOriginal answer',drill2:'that'},details:[true]};
  const restored=validateState(JSON.parse(JSON.stringify(s)));assert.deepEqual(restored,s);assert.equal(restored.schemaVersion,2);
- assert.equal(topicWorkProgress(restored,'C203').total,204);assert.equal(topicWorkProgress(restored,'C203').completed,0);
+ assert.equal(topicWorkProgress(restored,'C203').total,309);assert.equal(topicWorkProgress(restored,'C203').completed,0);
  assert.deepEqual(module.drills.map(d=>d[0]),['A contextual inference is always certain? (yes/no)','Up to a point = полностью или отчасти?','Are you suggesting ___ we should wait?']);
  delete s.navigation;assert.equal(validateState(s).drafts.C203,s.drafts.C203);
 });
@@ -112,15 +111,15 @@ test('C203 both exams retain original answers and incomplete multiline drafts wi
  }
  assert.equal(p.attempts.length,2);assert.deepEqual(validateState(JSON.parse(JSON.stringify(s))),s);
 });
-test('C203 first published unit retains 97 completed steps when the topic grows, without completing remaining scope',()=>{
+test('C203 first published unit retains 97 completed steps when the topic grows, without automatically granting mastery',()=>{
  const s=freshState(),p=unitState(s,u.id);
  for(const t of u.banks.flatMap(b=>b.tasks))p.answers[t.id]=t.answer;
  p.examDraft.answers=Object.fromEntries(u.tests[0].tasks.map(t=>[t.id,t.answer.split('|')[0]]));submitUnitTest(s,u.id,'2026-09-26T12:00:00Z');
- const progress=topicWorkProgress(s,'C203');assert.equal(progress.total,204);assert.equal(progress.completed,97);assert.equal(progress.percent,47);
- assert.equal(scoreUnitTest(u,p.attempts[0]).status,'awaiting-review');assert.equal(module.contentStatus,'partial');
+ const progress=topicWorkProgress(s,'C203');assert.equal(progress.total,309);assert.equal(progress.completed,97);assert.equal(progress.percent,31);
+ assert.equal(scoreUnitTest(u,p.attempts[0]).status,'awaiting-review');assert.equal(module.contentStatus,'expanded');
  s.moduleProgress.C203={selfChecked:true,date:'2026-09-26'};
  s.placement={assessmentVersion,date:'2026-09-26T12:00:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};
- assert(buildPlan(s).items.some(m=>m.id==='C203'&&m.contentStatus==='partial'));
+ assert(buildPlan(s).items.some(m=>m.id==='C203'&&m.contentStatus==='expanded'));
  s.profile.minutes=10;s.profile.days=2;assert.deepEqual(topicWorkProgress(s,'C203'),progress);
  assert.deepEqual(topicWorkProgress(validateState(JSON.parse(JSON.stringify(s))),'C203'),progress);
 });

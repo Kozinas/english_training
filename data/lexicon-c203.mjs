@@ -65,7 +65,39 @@ for the time being~пока, на данный момент~/fə ðə taɪm ˈbi
 get back to~вернуться к вопросу~/ɡet ˈbæk tə/~phrasal~Let us get back to the staffing question.~Также бывает связаться позднее; смысл задаёт объект.
 follow up~уточнить позднее, продолжить проверку~/ˌfɒləʊ ˈʌp/~phrasal~We need to follow up the question about access.~Follow up on a question также возможно; не гарантирует решения.
 boil down to~сводиться к~/bɔɪl ˈdaʊn tə/~phrasal~The disagreement boils down to who will check the requests.~Краткое описание сути, а не буквальное кипячение.
-lose track of~потерять нить, перестать следить за~/luːz ˈtræk əv/~chunk~I lost track of whose estimate was being reported.~Назвать конкретную потерянную связь, затем восстановить её.`;
+lose track of~потерять нить, перестать следить за~/luːz ˈtræk əv/~chunk~I lost track of whose estimate was being reported.~Назвать конкретную потерянную связь, затем восстановить её.
+boundary~граница~/ˈbaʊndəri/~word~A word boundary need not contain a pause.~Звуковая граница не всегда совпадает с ожидаемым пробелом.
+reduction~редукция, ослабление~/rɪˈdʌkʃən/~word~Reduction does not remove the grammatical function.~Здесь произношение, не уменьшение количества задач.
+elision~выпадение звука~/ɪˈlɪʒən/~word~Elision is possible in some consonant clusters.~Не обязательна в каждом темпе и акценте.
+assimilation~уподобление звуков~/əˌsɪmɪˈleɪʃən/~word~Assimilation can affect neighbouring sounds.~Не смена написания слова.
+schwa~нейтральный гласный /ə/~/ʃwɑː/~word~The article can contain a schwa.~Не все безударные гласные одинаковы.
+consonant cluster~группа согласных~/ˈkɒnsənənt ˌklʌstə/~chunk~Listen again to the consonant cluster.~Не требовать отдельной паузы после каждого согласного.
+weak form~слабая форма~/ˌwiːk ˈfɔːm/~chunk~Can often has a weak form in this sentence.~Слабая форма сохраняет слово и функцию.
+full form~полная форма~/ˌfʊl ˈfɔːm/~chunk~The final can usually has a full form.~Здесь произношение; также бывает несокращённое написание.
+intelligibility~понятность речи~/ɪnˌtelɪdʒəˈbɪləti/~word~We assessed intelligibility with a real listener.~Не сходство с одним престижным акцентом.
+unfamiliar~незнакомый~/ˌʌnfəˈmɪliə/~word~The pronunciation was unfamiliar to me.~Незнакомый слушателю не означает неправильный.
+audible~слышимый~/ˈɔːdəbəl/~word~There was no clearly audible release.~Отсутствие взрыва не доказывает выпадение согласного.
+inaudible~неслышимый~/ɪnˈɔːdəbəl/~word~Part of the condition was inaudible.~Не восстанавливать важное условие наугад.
+distortion~искажение~/dɪˈstɔːʃən/~word~Distortion made the number hard to identify.~Проблема канала не автоматически языковая ошибка.
+interruption~перебивание, прерывание~/ˌɪntəˈrʌpʃən/~word~An interruption prevented the final check.~Не считать неполный ответ полным подтверждением.
+replay~повторно воспроизвести~/ˌriːˈpleɪ/~word~Replay the phrase with its surrounding context.~Здесь глагол; повтор известного не новый независимый тест.
+segment~отрезок~/ˈseɡmənt/~word~Mark the segment you actually heard.~Здесь существительное, не глагольное ударение.
+transcribe~транскрибировать, записать речь~/trænˈskraɪb/~word~Transcribe only the short phrase you need to examine.~Большой чужой транскрипт не копировать в репозиторий.
+paraphrase~передать другими словами~/ˈpærəfreɪz/~word~Paraphrase the condition and ask for confirmation.~Сохранять условие, не просто менять слова.
+decode~распознать, восстановить форму~/ˌdiːˈkəʊd/~word~I could decode the words but missed their connection.~Распознанные слова ещё не полный смысл.
+mishear~расслышать неверно~/ˌmɪsˈhɪə/~word~I may have misheard the room number.~Past misheard, не misheared.
+misheard~неверно расслышал~/ˌmɪsˈhɜːd/~word~I misheard eighteen as eighty.~V2/V3 от mishear; пример не универсальная слуховая ошибка.
+spell out~продиктовать по буквам; явно объяснить~/spel ˈaʊt/~phrasal~Could you spell out the room reference?~Конкретное значение зависит от объекта и ситуации.
+cut out~прерываться, пропадать~/kʌt ˈaʊt/~phrasal~The sound cut out after unless.~Здесь звук пропал, не вырезание предмета.
+break up~прерываться с помехами~/breɪk ˈʌp/~phrasal~You are breaking up; could you repeat the condition?~Здесь связь, не расставание людей.
+slow down~замедлиться~/sləʊ ˈdaʊn/~phrasal~Could you slow down for the reference number?~Адресная помощь, не требование всегда медленной речи.
+say it again~сказать ещё раз~/seɪ ɪt əˈɡen/~chunk~Could you say the last number again?~Назови нужную часть вместо неопределённого everything.
+as in~как в слове~/æz ɪn/~chunk~F as in fish.~Буквенная опора не полная фонетическая транскрипция.
+just to check~только чтобы уточнить~/dʒʌst tə ˈtʃek/~chunk~Just to check, is that the arrival time?~Не доказательство, что проверка уже успешна.
+if I heard correctly~если я расслышал правильно~/ɪf aɪ hɜːd kəˈrektli/~chunk~If I heard correctly, the room is still unavailable.~Гипотезу нужно дать подтвердить или исправить.
+on second listening~при повторном прослушивании~/ɒn ˌsekənd ˈlɪsənɪŋ/~chunk~On second listening, I noticed the condition.~Источник правки указан; не первый самостоятельный ответ.
+take down~записать со слов~/teɪk ˈdaʊn/~phrasal~Let me take down the corrected reference.~Не обязательно снять предмет; контекст диктовки.
+fill in the gaps~восполнить пробелы~/fɪl ɪn ðə ˈɡæps/~chunk~Ask a question rather than fill in the gaps with guesses.~Здесь образное восполнение неизвестного, не лицензия выдумывать.`;
 const kinds={word:'слово',chunk:'сочетание',idiom:'идиома',phrasal:'фразовый глагол'};
 export const c203Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid C203 vocabulary row '+(i+1));
