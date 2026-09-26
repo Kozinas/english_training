@@ -26,6 +26,7 @@ const routes=new Map([
  ...['b205','b205-ellipsis','b205-presentation','b205-discussion','discourse-reference','lexicon-b205'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c101','c101-inversion','c101-clefts','c101-fronting','focus-reference','lexicon-c101'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c202','c202-idiomatic','c202-concision','c202-revision','style-reference','lexicon-c202'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
+ ...['c203','c203-inference','inference-reference','lexicon-c203'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c201','c201-scope','c201-modality','c201-aspect','precision-reference','lexicon-c201'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c105','c105-sources','c105-synthesis','c105-argument','synthesis-reference','lexicon-c105'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['c104','c104-intent','c104-idioms','c104-negotiation','pragmatics-reference','lexicon-c104'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),

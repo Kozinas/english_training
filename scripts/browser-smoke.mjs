@@ -31,7 +31,11 @@ import {checkC104} from './c104-smoke.mjs';
 import {checkC105} from './c105-smoke.mjs';
 import {checkC201} from './c201-smoke.mjs';
 import {checkC202} from './c202-smoke.mjs';
+import {checkC203} from './c203-smoke.mjs';
 
+const topicChecks={A104:checkA104,A105:checkA105,A201:checkA201,A202:checkA202,A203:checkA203,A204:checkA204,A205:checkA205,B101:checkB101,B102:checkB102,B103:checkB103,B104:checkB104,B105:checkB105,B201:checkB201,B202:checkB202,B203:checkB203,B204:checkB204,B205:checkB205,C101:checkC101,C102:checkC102,C103:checkC103,C104:checkC104,C105:checkC105,C201:checkC201,C202:checkC202,C203:checkC203};
+const requestedTopic=process.argv.find(arg=>arg.startsWith('--topic='))?.slice(8);
+if(requestedTopic&&!topicChecks[requestedTopic])throw new Error('Unknown browser topic check: '+requestedTopic);
 const candidates=[process.env.BROWSER_PATH,'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe','C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe','/usr/bin/google-chrome','/usr/bin/chromium'].filter(Boolean);
 let browserPath;
 for(const item of candidates){try{await access(item);browserPath=item;break;}catch{}}
@@ -77,6 +81,10 @@ try{
   await command('Emulation.setDeviceMetricsOverride',{width:1365,height:1000,deviceScaleFactor:1,mobile:false});
   await command('Page.navigate',{url:base});
   await poll(()=>evaluate('!!document.querySelector(".hero")'),'home');
+  if(requestedTopic){
+    await mkdir(new URL('../.artifacts/',import.meta.url),{recursive:true});
+    await topicChecks[requestedTopic]({evaluate,route,command,poll,screenshot,delay,importSynthetic});
+  }else{
   assert(await evaluate('document.querySelector("h1").textContent.includes("пониманием")'));
   await mkdir(new URL('../.artifacts/',import.meta.url),{recursive:true});await screenshot('home-desktop.png');
   await route('course','#module-list');assert.equal(await evaluate('document.querySelectorAll(".module-row").length'),40);
@@ -84,7 +92,7 @@ try{
   await evaluate(`document.querySelector('#search').value='A103';document.querySelector('#search').dispatchEvent(new Event('input'));`);
   assert.equal(await evaluate('document.querySelectorAll("[data-topic-progress]").length'),1);await assertTopicBars();
   await evaluate(`document.querySelector('#search').value='';document.querySelector('#search').dispatchEvent(new Event('input'));`);
-  await route('module/C203','#self-check');await assertTopicBars();
+  await route('module/C204','#self-check');await assertTopicBars();
   assert.equal(await evaluate('document.querySelector(".topic-progress").dataset.progressKind'),'legacy');
   await evaluate('document.querySelector("#self-check").click()');await assertTopicBars();
   assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),1);
@@ -376,7 +384,7 @@ try{
   assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'mobile overflow');await screenshot('home-mobile.png');
   await route('course','#module-list');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'course progress mobile overflow');
   await evaluate('document.querySelector(".module-row").scrollIntoView({block:"start"})');await screenshot('progress-course-mobile.png');
-  await route('module/C203','#self-check');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'legacy progress mobile overflow');await screenshot('progress-legacy-mobile.png');
+  await route('module/C204','#self-check');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'legacy progress mobile overflow');await screenshot('progress-legacy-mobile.png');
   await route('module/P01','.unit-list');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'topic mobile overflow');await screenshot('topic-mobile.png');
   await route('unit/P01-introductions/writing','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'practice mobile overflow');await screenshot('practice-mobile.png');
   await route('cards','#flip-card');await evaluate(`document.querySelector('#flip-card').click()`);assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'card mobile overflow');await screenshot('card-mobile.png');
@@ -470,8 +478,11 @@ try{
   await checkC105({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   await checkC201({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   await checkC202({evaluate,route,command,poll,screenshot,delay,importSynthetic});
+  await checkC203({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');
   console.log('Browser smoke passed: topic progress (all 40, live counters, tests, legacy, 99/100%, export/reset/import), hierarchy, practice, exam draft/resume/history, references, Enter/Space flip cards, separate audio, placement, plan, SRS, mocked speech, manual review, desktop/mobile.');
+  }
+  assert.deepEqual(errors,[],'Unexpected browser runtime errors');
   console.log('Real microphone, external speech service and audible TTS still require manual verification.');
   console.log('Isolated browser test profile (no learner data): '+profile);
 }finally{

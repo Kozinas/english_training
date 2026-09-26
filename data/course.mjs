@@ -33,6 +33,7 @@ import c104 from './c104.mjs';
 import c105 from './c105.mjs';
 import c201 from './c201.mjs';
 import c202 from './c202.mjs';
+import c203 from './c203.mjs';
 import {legacyIPA,extraVocabulary} from './lexicon.mjs';
 import {p02Vocabulary} from './lexicon-p02.mjs';
 import {p03Vocabulary} from './lexicon-p03.mjs';
@@ -64,25 +65,32 @@ import {c104Vocabulary} from './lexicon-c104.mjs';
 import {c105Vocabulary} from './lexicon-c105.mjs';
 import {c201Vocabulary} from './lexicon-c201.mjs';
 import {c202Vocabulary} from './lexicon-c202.mjs';
+import {c203Vocabulary} from './lexicon-c203.mjs';
 
 export const levels = ['Pre-A1','A1','A2','B1','B2','C1','C2'];
 const core = [...foundation, ...intermediate, ...advanced];
-const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a105,...a201,...a202,...a203,...a204,...a205,...b101,...b102,...b103,...b104,...b105,...b201,...b202,...b203,...b204,...b205,...c101,...c102,...c103,...c104,...c105,...c201,...c202];
-const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary,...c104Vocabulary,...c105Vocabulary,...c201Vocabulary,...c202Vocabulary];
+const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a105,...a201,...a202,...a203,...a204,...a205,...b101,...b102,...b103,...b104,...b105,...b201,...b202,...b203,...b204,...b205,...c101,...c102,...c103,...c104,...c105,...c201,...c202,...c203];
+const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary,...c104Vocabulary,...c105Vocabulary,...c201Vocabulary,...c202Vocabulary,...c203Vocabulary];
+// Content scope is repository metadata, not learner state or a timed schedule.
+export const topicDevelopment={C203:{remaining:[
+ 'Длинное аудирование: развитие позиции, несколько голосов и восстановление аргумента.',
+ 'Акценты и связная речь: адресное уточнение, проверка деталей и перенос на новые реальные записи.'
+]}};
 export const modules = [...core, ...technical].map((m, i) => ({
   ...m,
   track: m.id.startsWith('T') ? 'technical' : 'general',
   prerequisites: m.prerequisites ?? (i > 0 ? [core[i-1].id] : []),
   skills: ['grammar','vocabulary','reading','listening','writing','speaking','pronunciation'],
   subtopics: units.filter(u=>u.topic===m.id),
-  contentStatus: units.some(u=>u.topic===m.id)?'expanded':'legacy',
+  contentStatus: units.some(u=>u.topic===m.id)?(topicDevelopment[m.id]?'partial':'expanded'):'legacy',
+  remainingScope: topicDevelopment[m.id]?.remaining??[],
   vocabulary: [...m.words.split('; ').map((entry, j) => {
     const [word, translation, context] = entry.split('~');
     return {id:`${m.id}-v${j+1}`, word, translation, context, module:m.id,ipa:`/${legacyIPA[m.id].split('~')[j]}/`,accent:'UK',kind:word.includes(' ')?'выражение':'слово',note:'Учебная UK-транскрипция; в связной речи возможны слабые формы. Другие нормативные акценты допустимы.'};
   }), ...addedVocabulary.filter(v=>v.module===m.id)]
 }));
 export const subtopics = modules.flatMap(m=>m.subtopics);
-export const courseStats = {topics:modules.length,expanded:modules.filter(m=>m.contentStatus==='expanded').length,subtopics:subtopics.length,practice:subtopics.reduce((n,u)=>n+u.banks.reduce((a,b)=>a+b.tasks.length,0),0),testTasks:subtopics.reduce((n,u)=>n+u.tests.reduce((a,t)=>a+t.tasks.length,0),0)};
+export const courseStats = {topics:modules.length,expanded:modules.filter(m=>m.contentStatus==='expanded').length,partial:modules.filter(m=>m.contentStatus==='partial').length,legacy:modules.filter(m=>m.contentStatus==='legacy').length,subtopics:subtopics.length,practice:subtopics.reduce((n,u)=>n+u.banks.reduce((a,b)=>a+b.tasks.length,0),0),testTasks:subtopics.reduce((n,u)=>n+u.tests.reduce((a,t)=>a+t.tasks.length,0),0)};
 export const vocabulary = modules.flatMap(m => m.vocabulary);
 export const defaults = {minutes:30, days:5, goal:'Разработка ПО — общий профиль', accent:'en-GB'};
 export const weeklyPattern = [

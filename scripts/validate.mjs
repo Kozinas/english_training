@@ -26,6 +26,7 @@ for(const u of subtopics)for(const b of u.banks)if(b.diagram){
  assert(svg.includes('<svg')&&svg.includes('<title')&&svg.includes('<desc'));
  assert(!/<script|<foreignObject|\bon\w+\s*=|(?:href|src)\s*=/i.test(svg),'Only static self-contained lesson SVGs');
 }
+assert.equal(courseStats.expanded+courseStats.partial+courseStats.legacy,modules.length);
 const ids=new Set(modules.map(m=>m.id));
 assert.equal(ids.size,modules.length,'Duplicate module IDs');
 assert.equal(modules.length,40);
@@ -45,7 +46,8 @@ for(const m of modules){
   for(const tuple of [m.reading,m.listening,...m.drills])assert(tuple.length===3&&tuple.every(x=>typeof x==='string'&&x.trim().length),`${m.id}: incomplete exercise`);
   const markdown=await readFile(path.join(root,'course','modules',m.id+'.md'),'utf8');
   for(const content of m.subtopics.length?[m.title,...m.subtopics.map(u=>u.title)]:[m.title,m.rule,m.write,m.speak])assert(markdown.includes(content),`${m.id}: generated document is stale; run npm run build`);
-  assert.equal(m.contentStatus,m.subtopics.length?'expanded':'legacy');
+  assert.equal(m.contentStatus,m.subtopics.length?(m.remainingScope.length?'partial':'expanded'):'legacy');
+  assert(m.remainingScope.every(s=>typeof s==='string'&&s.length>15));
 }
 assert.equal(new Set(vocabulary.map(v=>v.id)).size,vocabulary.length);
 for(const v of vocabulary)assert(v.word&&v.translation&&v.context&&/^\/.+\/$/u.test(v.ipa)&&v.accent&&v.note,'Incomplete card '+v.id);
@@ -59,6 +61,7 @@ for(const u of subtopics){
   assert(u.references.every(id=>referencePages.some(r=>r.id===id)),'Missing reference');
   assert(u.tests.length>=2,'Need a fresh second test variant');
   assert.equal(new Set(u.banks.map(b=>b.id)).size,u.banks.length,'Duplicate practice section');
+  for(const b of u.banks)if(b.resources){assert(b.instructions?.length>40,'External practice requires access instructions');for(const [title,url] of b.resources){assert(title&&new URL(url).protocol==='https:');assert(u.sources?.some(s=>s[1]===url),'Undocumented external practice source');}}
   for(const b of u.banks)if(b.navLabel!==undefined)assert(typeof b.navLabel==='string'&&b.navLabel.trim().length>0&&b.navLabel.length<=40,'Invalid short navigation label');
   assert.equal(new Set(u.tests.map(t=>t.id)).size,u.tests.length,'Duplicate test variant');
   const goals=new Set(u.goals.map(g=>g.id));assert.equal(goals.size,u.goals.length);
@@ -122,4 +125,4 @@ async function checkLinks(dir){
   }
 }
 await checkLinks(root);
-console.log(`Validated ${modules.length} topics (${courseStats.expanded} expanded), ${subtopics.length} subtopics, ${courseStats.practice} practice tasks, ${courseStats.testTasks} test tasks, ${vocabulary.length} cards, ${questions.length} placement questions, references, 2 PDF checksums and Markdown links.`);
+console.log(`Validated ${modules.length} topics (${courseStats.expanded} expanded, ${courseStats.partial} partial, ${courseStats.legacy} legacy), ${subtopics.length} subtopics, ${courseStats.practice} practice tasks, ${courseStats.testTasks} test tasks, ${vocabulary.length} cards, ${questions.length} placement questions, references, 2 PDF checksums and Markdown links.`);
