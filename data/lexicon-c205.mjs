@@ -33,7 +33,39 @@ set out~изложить~/ˌset ˈaʊt/~phrasal~The proposal sets out the next i
 follow up on~продолжить работу над, уточнить~/ˌfɒləʊ ˈʌp ɒn/~phrasal~We will follow up on the classification question.~Обещание проверки не её выполнение.
 hold up~выдерживать проверку~/ˌhəʊld ˈʌp/~phrasal~Does the argument hold up under scrutiny?~В этом контексте обоснованность; есть другие значения, включая задерживать.
 outside the scope of~вне рамок~/ˌaʊtˈsaɪd ðə ˈskəʊp əv/~chunk~A security audit is outside the scope of this language project.~Чётко назвать границу компетенции и результата.
-not stated~не указано~/ˌnɒt ˈsteɪtɪd/~chunk~The publication date is not stated.~Неизвестность не разрешает придумать дату.`;
+not stated~не указано~/ˌnɒt ˈsteɪtɪd/~chunk~The publication date is not stated.~Неизвестность не разрешает придумать дату.
+draft~черновик~/drɑːft/~word~Keep the original draft before revising it.~Draft здесь текст, не сквозняк; UK гласная отличается от обычной US.
+outline~план, структура~/ˈaʊtlaɪn/~word~The outline should follow the argument.~Не заменяет полный текст проекта.
+throughline~сквозная смысловая линия~/ˈθruːlaɪn/~word~The question gives the paper a clear throughline.~Также through line и through-line; не физическая линия, а связь частей в одно рассуждение.
+synthesis~синтез, связное объединение~/ˈsɪnθəsɪs/~word~The paper needs synthesis rather than three summaries.~Не механическое склеивание чужих абзацев.
+attribution~указание источника или автора~/ˌætrɪˈbjuːʃən/~word~Attribution separates the source's claim from mine.~Не равнозначно независимой проверке истинности.
+paraphrase~передавать другими словами~/ˈpærəfreɪz/~word~Paraphrase the point without changing its scope.~Ссылка на источник идеи остаётся нужна.
+direct quotation~дословная цитата~/dəˌrekt kwəʊˈteɪʃən/~chunk~Mark a direct quotation clearly.~Direct также допускает /daɪˈrekt/; не менять цитату молча.
+bibliography~список использованных источников~/ˌbɪbliˈɒɡrəfi/~word~The bibliography lists the pages actually consulted.~Аккуратный список не доказывает, что источники прочитаны.
+citation~ссылка на источник, цитирование~/saɪˈteɪʃən/~word~Place the citation near the claim it supports.~Не выдумывать дату, автора или DOI.
+cross-reference~перекрёстная ссылка~/ˌkrɒsˈrefərəns/~word~Check each cross-reference after moving a section.~После редакции нумерация может потребовать проверки.
+substantive~содержательный, существенный~/səbˈstæntɪv/~word~This is a substantive change to the conclusion.~Не просто замена длинного слова коротким.
+copy-edit~редактировать язык и оформление~/ˈkɒpiˌedɪt/~word~Copy-edit the text after checking its argument.~Смена модальности или отрицания может изменить само содержание.
+qualified~с оговорками, ограниченный условиями~/ˈkwɒlɪfaɪd/~word~The paper makes a qualified recommendation.~Здесь не квалификация работника.
+coherent~связный, логически согласованный~/kəʊˈhɪərənt/~word~The sections form a coherent argument.~Связность не доказывает истинность всех оснований.
+cohesion~связность языковых элементов~/kəʊˈhiːʒən/~word~Clear references improve cohesion.~Одни связки не создают аргумента.
+concession~уступка в аргументе~/kənˈseʃən/~word~The concession changes part of the proposal.~Не обязательно принятие всей позиции оппонента.
+counterargument~контраргумент~/ˈkaʊntəˌɑːɡjʊmənt/~word~Address a counterargument that a thoughtful reader might raise.~Не карикатура со слабым основанием.
+implication~следствие, возможное последствие~/ˌɪmplɪˈkeɪʃən/~word~Check the implications of the corrected figure.~Следствие нужно обосновать, не только назвать.
+premise~предпосылка~/ˈpremɪs/~word~The premise needs to be stated and examined.~Не путать с plural premises в значении помещения.
+inference~вывод из оснований~/ˈɪnfərəns/~word~This inference goes beyond the source.~Не прямое сообщение источника.
+coverage~охват~/ˈkʌvərɪdʒ/~word~The review's coverage is unclear.~Здесь аспекты проверки, не страховое покрытие.
+scrutiny~тщательная проверка~/ˈskruːtɪni/~word~The inference needs closer scrutiny.~Проверка ещё не её положительный результат.
+abstract~краткое изложение работы~/ˈæbstrækt/~word~Update the abstract after revising the body.~Существительное с ударением на первом слоге; глагол имеет другое ударение.
+revision log~журнал редакторских изменений~/rɪˈvɪʒən lɒɡ/~chunk~The revision log explains why the claim changed.~Не список вымышленных сделанных действий.
+work through~последовательно разобраться~/ˌwɜːk ˈθruː/~phrasal~Work through the objection before answering it.~Не обязательный один сеанс работы.
+flesh out~подробно разработать~/ˌfleʃ ˈaʊt/~phrasal~Flesh out the argument with relevant analysis.~Не заполнять объём повторами ради word count.
+tighten up~сделать точнее и собраннее~/ˌtaɪtən ˈʌp/~phrasal~Tighten up the summary without losing its limits.~Не убрать нужную оговорку ради краткости.
+boil down to~сводиться к~/ˌbɔɪl ˈdaʊn tuː/~phrasal~The dispute does not boil down to a preference for long reviews.~Упрощение не должно менять предмет спора.
+bear on~иметь отношение к~/ˈbeər ɒn/~phrasal~The correction bears on the conclusion.~Linking r в связной UK-модели перед гласной.
+follow from~логически следовать из~/ˈfɒləʊ frəm/~chunk~That conclusion does not follow from the count.~Не движение за кем-либо в этом контексте.
+account for~учитывать; объяснять~/əˈkaʊnt fɔː/~phrasal~The proposal accounts for limited capacity.~Значения различаются по контексту; не означает доказанную единственную причину.
+in its own right~самостоятельно, само по себе~/ɪn ɪts ˌəʊn ˈraɪt/~chunk~The objection matters in its own right.~Не буквальная сторона справа; самостоятельная значимость.`;
 const kinds={word:'слово',chunk:'выражение',phrasal:'фразовый глагол'};
 export const c205Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid C205 vocabulary row '+(i+1));

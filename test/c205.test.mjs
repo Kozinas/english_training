@@ -12,9 +12,9 @@ const task=suffix=>all.find(t=>t.id===u.id+'-'+suffix);
 const roundTrip=s=>validateState(JSON.parse(JSON.stringify(s)));
 
 test('C205 inquiry is a substantial first unit, not a completed capstone',()=>{
- assert.equal(module.contentStatus,'partial');assert.equal(module.subtopics.length,1);assert.equal(module.remainingScope.length,2);
+ assert.equal(module.contentStatus,'partial');assert.equal(module.subtopics.length,2);assert.equal(module.remainingScope.length,1);
  assert.deepEqual(module.remainingScope,topicDevelopment.C205.remaining);
- assert(module.remainingScope[0].includes('1000–1500'));assert(module.remainingScope[1].includes('отложенное'));
+ assert(module.remainingScope[0].includes('устная защита'));assert(module.remainingScope[0].includes('отложенное'));
  assert.equal(u.explanation.length,13);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>7500);assert.equal(u.examples.length,32);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,14,14,16,14,12,12,12]);assert.equal(practice.length,108);
  assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[33,1,6]);
@@ -95,10 +95,10 @@ test('C205 reference is bounded and its 28 models and 16 tasks have checked sour
  for(const [,url] of inquirySources)assert(['writingcenter.fas.harvard.edu','owl.purdue.edu','dictionary.cambridge.org','www.merriam-webster.com'].includes(new URL(url).hostname));
 });
 
-test('C205 adds 36 contextual words and chunks while retaining seven published cards',()=>{
+test('C205 retains the first 36 new contextual cards while adding the writing vocabulary',()=>{
  assert.equal(c205Vocabulary.find(c=>c.word==='subject to revision').ipa,'/ˈsʌbdʒekt tə rɪˈvɪʒən/');
- assert.equal(c205Vocabulary.length,36);const cards=vocabulary.filter(c=>c.module==='C205');assert.equal(cards.length,43);
- assert.equal(new Set(cards.map(c=>c.word)).size,43);
+ assert.equal(c205Vocabulary.length,68);const cards=vocabulary.filter(c=>c.module==='C205');assert.equal(cards.length,75);
+ assert.equal(new Set(cards.map(c=>c.word)).size,75);
  assert.deepEqual(cards.filter(c=>!/^C205-x-\d+$/.test(c.id)).map(c=>[c.id,c.word]),[
  ['C205-v1','warrant'],['C205-v2','viable'],['C205-v3','limitation'],['C205-v4','defence'],['C205-v5','revise'],['C205-v6','transfer'],['C205-x-stand-up-to','stand up to scrutiny']]);
  for(const c of c205Vocabulary)assert(c.context&&c.note&&/^\/.+\/$/.test(c.ipa)&&c.accent==='UK');
@@ -112,7 +112,7 @@ test('C205 old drill questions, multiline answers, notes, navigation and SRS sur
  s.navigation.pages['module/C205']={scroll:390,focus:'drill1',fields:{drill0:'on',drill1:'обосновывать\nSynthetic original answer',drill2:'to'},details:[true]};
  assert.deepEqual(roundTrip(s),s);assert.equal(s.schemaVersion,2);
  assert.deepEqual(module.drills.map(d=>d[0]),['conditional ___ the assumptions','warrant = обосновывать или гарантировать всегда?','extend a conclusion ___ another setting']);
- assert.equal(topicWorkProgress(s,'C205').completed,0);assert.equal(topicWorkProgress(s,'C205').total,109);
+ assert.equal(topicWorkProgress(s,'C205').completed,0);assert.equal(topicWorkProgress(s,'C205').total,226);
 });
 
 test('C205 v1 migration retains old self-check, cards and drafts but creates no new answers',()=>{
@@ -139,7 +139,7 @@ test('C205 complete variants preserve history and leave all open responses await
 test('C205 109 filled steps are only the published part, unaffected by session length or old checkbox',()=>{
  const s=freshState(),p=unitState(s,u.id);for(const t of practice)p.answers[t.id]=t.answer;
  p.examDraft.answers=Object.fromEntries(u.tests[0].tasks.map(t=>[t.id,t.answer]));submitUnitTest(s,u.id,'2026-09-28T12:00:00Z');
- const progress=topicWorkProgress(s,'C205');assert.equal(progress.completed,109);assert.equal(progress.total,109);assert.equal(progress.percent,100);
+ const progress=topicWorkProgress(s,'C205');assert.equal(progress.completed,109);assert.equal(progress.total,226);assert.equal(progress.percent,48);
  assert.equal(module.contentStatus,'partial');assert.equal(scoreUnitTest(u,p.attempts[0]).status,'awaiting-review');
  s.moduleProgress.C205={selfChecked:true,date:'2026-09-28'};s.placement={assessmentVersion,date:'2026-09-28T12:00:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};
  assert(buildPlan(s).items.some(m=>m.id==='C205'&&m.contentStatus==='partial'));
