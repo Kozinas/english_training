@@ -110,5 +110,5 @@ test('C204 multiline drafts and immutable A/B keep eighteen answers pending; ful
  s.placement={assessmentVersion,date:'2026-09-28T12:00:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};
  assert(buildPlan(s).items.some(m=>m.id==='C204'));for(const unit of topic.subtopics)assert.equal(scoreUnitTest(unit,s.learning[unit.id].attempts[0]).status,'awaiting-review');
  s.profile.minutes=10;s.profile.days=2;assert.deepEqual(topicWorkProgress(s,'C204'),work);assert.deepEqual(validateState(JSON.parse(JSON.stringify(s))),s);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[33,0,7]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[33,1,6]);
 });
