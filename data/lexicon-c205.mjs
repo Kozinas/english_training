@@ -65,7 +65,39 @@ boil down to~сводиться к~/ˌbɔɪl ˈdaʊn tuː/~phrasal~The dispute d
 bear on~иметь отношение к~/ˈbeər ɒn/~phrasal~The correction bears on the conclusion.~Linking r в связной UK-модели перед гласной.
 follow from~логически следовать из~/ˈfɒləʊ frəm/~chunk~That conclusion does not follow from the count.~Не движение за кем-либо в этом контексте.
 account for~учитывать; объяснять~/əˈkaʊnt fɔː/~phrasal~The proposal accounts for limited capacity.~Значения различаются по контексту; не означает доказанную единственную причину.
-in its own right~самостоятельно, само по себе~/ɪn ɪts ˌəʊn ˈraɪt/~chunk~The objection matters in its own right.~Не буквальная сторона справа; самостоятельная значимость.`;
+in its own right~самостоятельно, само по себе~/ɪn ɪts ˌəʊn ˈraɪt/~chunk~The objection matters in its own right.~Не буквальная сторона справа; самостоятельная значимость.
+audience~аудитория, слушатели~/ˈɔːdiəns/~word~The audience needs a clear account of the proposal.~Не только spectators на представлении; роль адресата.
+briefing~краткое информационное выступление~/ˈbriːfɪŋ/~word~The briefing explains what has changed.~Краткость продукта не ограничивает объём обучения.
+clarification~уточнение~/ˌklærɪfɪˈkeɪʃən/~word~Her question asks for clarification of the condition.~Не автоматически возражение.
+objection~возражение~/əbˈdʒekʃən/~word~The workload objection affects the recommendation.~Не обязательно неприязнь к говорящему.
+qualification~оговорка, ограничение утверждения~/ˌkwɒlɪfɪˈkeɪʃən/~word~Keep the qualification in the simpler explanation.~Здесь не диплом и не профессиональная квалификация.
+rationale~обоснование, логика выбора~/ˌræʃəˈnɑːl/~word~Explain the rationale for keeping the overview.~Не просто объявленный результат.
+contingency~возможное обстоятельство~/kənˈtɪndʒənsi/~word~Prepare for the contingency of an unavailable slide.~Не утверждение, что событие обязательно случится.
+feasibility~осуществимость~/ˌfiːzəˈbɪləti/~word~The objection concerns the feasibility of maintaining two versions.~Возможность выполнения, не доказанная эффективность.
+trade-off~компромисс между преимуществами и потерями~/ˈtreɪdɒf/~word~There is a trade-off between detail and ease of use.~Не обязательная коммерческая сделка; конкретные стороны назвать.
+rehearsal~репетиция~/rɪˈhɜːsəl/~word~The rehearsal exposed an unclear condition.~Не автоматически независимый контроль.
+cue~опорный сигнал, подсказка~/kjuː/~word~A cue card keeps the central claim visible.~Не полный сценарий каждого ответа.
+signpost~смысловой указатель~/ˈsaɪnpəʊst/~word~The transition acts as a signpost for the listener.~В выступлении не дорожный знак, а ориентир структуры.
+takeaway~главная мысль для слушателя~/ˈteɪkəweɪ/~word~The main takeaway is a conditional recommendation.~Здесь не еда навынос; смысл зависит от контекста.
+pace~темп~/peɪs/~word~Adjust the pace when correcting a number.~Скорость не единственный критерий беглости.
+emphasis~смысловое выделение~/ˈemfəsɪs/~word~Use emphasis to distinguish questions from people.~Не подтверждается одними заглавными буквами.
+hesitation~пауза колебания, заминка~/ˌhezɪˈteɪʃən/~word~A brief hesitation can precede a careful answer.~Не каждая пауза ошибка или потеря знания.
+interruption~прерывание~/ˌɪntəˈrʌpʃən/~word~The interruption introduced a relevant question.~Не обязательно грубость; зависит от контекста.
+follow-up~последующее уточнение~/ˈfɒləʊʌp/~word~The follow-up challenges the proposed comparison.~Существительное/определение с дефисом; глагол follow up пишется раздельно.
+misconception~ошибочное представление~/ˌmɪskənˈsepʃən/~word~Correct the misconception without blaming the listener.~Не любое несогласие является ошибочным пониманием.
+analogy~аналогия~/əˈnælədʒi/~word~The analogy explains the relationship but has limits.~Не эмпирическое доказательство сходного результата.
+proportionate~соразмерный~/prəˈpɔːʃənət/~word~Keep the explanation proportionate to the question.~О соразмерности, не обязательно о математической пропорции.
+tentative~предварительный, осторожный~/ˈtentətɪv/~word~The conclusion remains tentative.~Не означает заведомо ложный.
+defensible~обоснованно защищаемый~/dɪˈfensəbəl/~word~A defensible position can include uncertainty.~Не гарантированно истинный и не обязанный победить в споре.
+responsive~реагирующий на запрос~/rɪˈspɒnsɪv/~word~A responsive answer addresses the actual question.~Здесь не термин адаптивного веб-дизайна.
+field a question~принять вопрос и ответить на него~/ˌfiːld ə ˈkwestʃən/~chunk~She can field a question about the evidence.~Field не поле в этом выражении.
+get at~иметь в виду, пытаться выяснить~/ɡet ˈæt/~phrasal~What are you getting at with that comparison?~Может звучать резко; для нейтрального уточнения перефразируй в What aspect do you mean?
+put it another way~сказать иначе~/ˌpʊt ɪt əˌnʌðə ˈweɪ/~chunk~Let me put it another way without changing the condition.~Переформулировать, не изменить факт.
+come back to~вернуться к обсуждению~/kʌm ˈbæk tə/~phrasal~I will come back to your second question now.~Не обязательно физически вернуться в место.
+take stock~подвести промежуточный итог~/teɪk ˈstɒk/~chunk~Let us take stock of what remains unresolved.~Не буквальное действие с товарным запасом в этом контексте.
+spell out~подробно и явно объяснить~/spel ˈaʊt/~phrasal~Please spell out the condition for revising the proposal.~Здесь не продиктовать по буквам, а раскрыть смысл.
+on balance~с учётом всех доводов~/ɒn ˈbæləns/~chunk~On balance, I favour testing the simpler procedure.~Не физическое равновесие; взвешенный вывод, не доказанная объективность.
+for the sake of argument~ради рассуждения, допустим для обсуждения~/fə ðə ˌseɪk əv ˈɑːɡjəmənt/~chunk~For the sake of argument, suppose the audience has not seen the email.~Допущение, не новый установленный факт.`;
 const kinds={word:'слово',chunk:'выражение',phrasal:'фразовый глагол'};
 export const c205Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid C205 vocabulary row '+(i+1));

@@ -14,8 +14,8 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
  })()`);
  const original=await evaluate('window.__c205Import');await importSynthetic('window.__c205Import');
  await route('module/C205','#legacy-practice');
- assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),2);
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),226);
+ assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),3);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),355);
  assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),0,'no inherited new progress');
  assert.equal(await evaluate('document.querySelector("#draft").value'),'Synthetic original notes for C205.');
  assert.equal(await evaluate('document.querySelector("#drill1").value'),'обосновывать\nOriginal answer');
@@ -59,6 +59,14 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
    await route('home','.hero');await evaluate('document.querySelector("aside a[data-section=course]").click()');
    await poll(()=>evaluate(`document.querySelector('#answer-C205-writing-production-1')?.value===${JSON.stringify(full)}`),'C205 full project survives section return');
   }
+  if(u.id==='C205-defence'){
+   await route(`unit/${u.id}/production`,'#check-bank');
+   const full='Synthetic preparation fixture, not learner audio.\n'+(await evaluate(`(async()=>{const {defenceModels}=await import('/data/c205-defence-texts.mjs');return defenceModels.talk})()`));
+   await fill('#answer-C205-defence-production-1',full);await command('Page.reload');
+   await poll(()=>evaluate(`document.querySelector('#answer-C205-defence-production-1')?.value===${JSON.stringify(full)}`),'C205 full defence preparation survives reload');
+   await route('home','.hero');await evaluate('document.querySelector("aside a[data-section=course]").click()');
+   await poll(()=>evaluate(`document.querySelector('#answer-C205-defence-production-1')?.value===${JSON.stringify(full)}`),'C205 full defence preparation survives section return');
+  }
   await route(`unit/${u.id}/test`,'#unit-test');
   assert.equal(await evaluate('document.querySelectorAll("[data-task]").length'),u.tests[0].tasks.length);
   assert.equal(await evaluate('document.querySelectorAll(".answer-review").length'),0,'keys hidden until full submission');
@@ -78,8 +86,8 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
   assert.equal(await evaluate('document.querySelectorAll("[data-review]").length'),u.tests.flatMap(t=>t.tasks).filter(t=>['text','speech'].includes(t.kind)).length,'second variant does not auto-grade open work');
  }
  await route('module/C205','#legacy-practice');
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),31,'29 practice responses + 2 tests; repeated variants and old archive add nothing');
- for(const [ref,count] of [['project-inquiry',28],['project-writing',30]]){
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),48,'45 practice responses + 3 tests; repeated variants and old archive add nothing');
+ for(const [ref,count] of [['project-inquiry',28],['project-writing',30],['project-defence',30]]){
  await route('references/'+ref,'#reference-search');
  assert.equal(await evaluate('document.querySelectorAll("#reference-rows tr").length'),count);
  await fill('#reference-search','claim');
@@ -90,7 +98,7 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
  await fill('#reference-search','');
  }
  await command('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
- for(const [path,selector,name] of [['module/C205','#legacy-practice','topic'],['unit/C205-inquiry/production','#check-bank','writing'],['unit/C205-inquiry/reading','#check-bank','reading'],['unit/C205-inquiry/interaction','#check-bank','interaction'],['unit/C205-inquiry/sources','#check-bank','sources'],['references/project-inquiry','#reference-search','reference'],['unit/C205-writing/production','#check-bank','project-writing'],['unit/C205-writing/reading','#check-bank','project-reading'],['unit/C205-writing/revision','#check-bank','revision'],['unit/C205-writing/interaction','#check-bank','project-interaction'],['references/project-writing','#reference-search','project-reference']]){
+ for(const [path,selector,name] of [['module/C205','#legacy-practice','topic'],['unit/C205-inquiry/production','#check-bank','writing'],['unit/C205-inquiry/reading','#check-bank','reading'],['unit/C205-inquiry/interaction','#check-bank','interaction'],['unit/C205-inquiry/sources','#check-bank','sources'],['references/project-inquiry','#reference-search','reference'],['unit/C205-writing/production','#check-bank','project-writing'],['unit/C205-writing/reading','#check-bank','project-reading'],['unit/C205-writing/revision','#check-bank','revision'],['unit/C205-writing/interaction','#check-bank','project-interaction'],['references/project-writing','#reference-search','project-reference'],['unit/C205-defence/production','#check-bank','defence-writing'],['unit/C205-defence/reading','#check-bank','defence-reading'],['unit/C205-defence/questions','#check-bank','defence-questions'],['unit/C205-defence/delivery','#check-bank','defence-delivery'],['unit/C205-defence/defence','#check-bank','defence-full'],['references/project-defence','#reference-search','defence-reference']]){
   await route(path,selector);assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'C205 mobile overflow '+path);
   if(name.endsWith('writing'))await evaluate('document.querySelector("textarea[data-task]").closest(".task").scrollIntoView({block:"start"})');
   if(name.endsWith('reading'))await evaluate('document.querySelector(".reading").scrollIntoView({block:"start"})');
@@ -108,11 +116,11 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
  })()`);
  await importSynthetic('window.__c205Complete');
  await route('module/C205','#legacy-practice');
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),226);
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),226);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),355);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),355);
  assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Прогресс опубликованной части'));
  assert(await evaluate('!!document.querySelector("#topic-development")'));
- await command('Page.reload');await poll(()=>evaluate('document.querySelector(".topic-progress progress")?.value===226'),'C205 complete published work persists');
+ await command('Page.reload');await poll(()=>evaluate('document.querySelector(".topic-progress progress")?.value===355'),'C205 complete published work persists');
  assert(await evaluate('!!document.querySelector("#topic-development")'),'100 percent still means only published work, not full topic or mastery');
  await route('course','#module-list');
  assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("C205")).textContent')).includes('Прогресс опубликованной части'));
@@ -120,7 +128,30 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
  assert((await evaluate('document.querySelector("[data-topic-progress=C205]").textContent')).includes('Прогресс опубликованной части'));
  await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('C205 changed SRS');if(s.navigation.pages['module/C205'].fields.drill1!==old.navigation.pages['module/C205'].fields.drill1)throw Error('Lost C205 old answer');if(s.learning['C205-inquiry'].attempts.length!==2)throw Error('Lost exam history');}`);
- // A previous-content export must retain the whole first unit and never invent writing work.
+ // Both previously published units, including full writing, must survive expansion unchanged.
+ await route('settings','#profile');
+ await evaluate(`(async()=>{
+  const {validateState,startUnitTest,reviewCard}=await import('/engine.mjs');const {subtopics}=await import('/data/course.mjs');const {projectModel}=await import('/data/c205-writing-texts.mjs');
+  const s=JSON.parse(localStorage.getItem('english-training-v1'));delete s.learning['C205-defence'];
+  for(const path of Object.keys(s.navigation.pages))if(path.startsWith('unit/C205-defence/'))delete s.navigation.pages[path];
+  for(const id of ['C205-inquiry','C205-writing']){
+   const u=subtopics.find(u=>u.id===id),p=s.learning[id],t=u.tests[0].tasks.find(t=>t.kind==='text');
+   p.attempts[0].reviews[t.id]={score:3,reviewer:'Synthetic teacher',date:'2026-09-28T16:10:00Z',evidence:'Synthetic previous-content import, not learner feedback.',heardAudio:false};
+   const draft=startUnitTest(s,id),variant=u.tests.find(e=>e.id===draft.variant);draft.answers[variant.tasks.find(t=>t.kind==='text').id]='Synthetic next attempt\\nContinue later.';
+  }
+  s.learning['C205-writing'].answers['C205-writing-production-2']='Synthetic full original\\n'+projectModel;
+  s.learning['C205-writing'].answers['C205-writing-production-8']='Synthetic full revision\\n'+projectModel;
+  s.cards['C205-x-68']=reviewCard(null,'good',Date.UTC(2026,8,28));s.bookmark={route:'unit/C205-writing/test',scroll:630,focus:''};s.navigation.sections.course=s.bookmark.route;
+  window.__c205PreviousBoth=JSON.stringify(validateState(s));
+ })()`);
+ const previousBoth=await evaluate('window.__c205PreviousBoth');await importSynthetic('window.__c205PreviousBoth');
+ await route('module/C205','#legacy-practice');
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),226);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),355);
+ assert((await evaluate('document.querySelector(".progress-percent").textContent')).includes('63%'));
+ await command('Page.reload');await poll(()=>evaluate('document.querySelector(".topic-progress progress")?.value===226'),'C205 previous 226 steps persist');
+ await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(previousBoth)});if(s.learning['C205-defence'])throw Error('Fabricated defence answers');for(const id of ['C205-inquiry','C205-writing'])if(JSON.stringify(s.learning[id])!==JSON.stringify(old.learning[id]))throw Error('Changed previous '+id);if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed previous SRS');if(s.navigation.pages['module/C205'].fields.drill1!==old.navigation.pages['module/C205'].fields.drill1)throw Error('Lost original archive');}`);
+ // An even older first-unit-only export must not acquire later answers either.
  await route('settings','#profile');
  await evaluate(`(async()=>{
   const {validateState,startUnitTest,reviewCard}=await import('/engine.mjs');const {subtopics}=await import('/data/course.mjs');
@@ -136,9 +167,9 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
  const previous=await evaluate('window.__c205Previous');await importSynthetic('window.__c205Previous');
  await route('module/C205','#legacy-practice');
  assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),109);
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),226);
- assert((await evaluate('document.querySelector(".progress-percent").textContent')).includes('48%'));
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),355);
+ assert((await evaluate('document.querySelector(".progress-percent").textContent')).includes('30%'));
  await command('Page.reload');await poll(()=>evaluate('document.querySelector(".topic-progress progress")?.value===109'),'C205 previous 109 steps persist');
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(previous)});if(s.learning['C205-writing'])throw Error('Fabricated writing answers');if(JSON.stringify(s.learning['C205-inquiry'])!==JSON.stringify(old.learning['C205-inquiry']))throw Error('Changed previous answers/reviews/draft');if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed SRS');if(s.navigation.pages['module/C205'].fields.drill1!==old.navigation.pages['module/C205'].fields.drill1)throw Error('Lost original archive');}`);
- console.log('C205 smoke passed: two partial units, seventeen banks, four exams, full-length drafts, 226/226 still partial, previous-unit import 109/226 with reviews/SRS, references and mobile.');
+ console.log('C205 smoke passed: three partial units, twenty-seven banks, six exams, full-length writing/defence drafts, 355/355 still partial, previous imports 226/355 and 109/355 with reviews/SRS, three references and mobile.');
 }
