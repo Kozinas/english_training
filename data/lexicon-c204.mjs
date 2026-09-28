@@ -65,7 +65,39 @@ that said~при этом, тем не менее~/ðæt ˈsed/~chunk~That said,
 on those grounds~на этих основаниях~/ɒn ðəʊz ˈɡraʊndz/~chunk~I cannot recommend a universal change on those grounds.~Нужна ясная ссылка на основания.
 not necessarily~не обязательно~/nɒt ˌnesəˈserəli/~chunk~A lower fee does not necessarily mean a lower total cost.~Не означает обязательно наоборот.
 reserve judgement~воздержаться от окончательного суждения~/rɪˌzɜːv ˈdʒʌdʒmənt/~chunk~I will reserve judgement until the conditions are clear.~US также judgment; отсутствие выбора не согласие со всеми версиями.
-revise a claim~пересмотреть утверждение~/rɪˌvaɪz ə ˈkleɪm/~chunk~I need to revise my claim about every visitor.~Сохранить историю исходного и нового тезиса.`;
+revise a claim~пересмотреть утверждение~/rɪˌvaɪz ə ˈkleɪm/~chunk~I need to revise my claim about every visitor.~Сохранить историю исходного и нового тезиса.
+chair~вести обсуждение; председатель~/tʃeə/~word~Elin will chair the discussion.~Здесь роль, не предмет мебели; роль не даёт неограниченных полномочий.
+facilitator~ведущий, помогающий взаимодействию~/fəˈsɪlɪteɪtə/~word~The facilitator returned to the unanswered question.~Не обязательно человек, который принимает решение.
+floor~право говорить в обсуждении~/flɔː/~word~Val has the floor now.~Здесь не пол помещения.
+turn-taking~чередование реплик~/ˈtɜːn ˌteɪkɪŋ/~word~Turn-taking requires attention to other speakers.~Не равное число секунд каждому.
+overlap~одновременное звучание реплик~/ˈəʊvəlæp/~word~The brief overlap was followed by a pause.~Здесь существительное; у глагола ударение обычно на последнем слоге.
+interruption~прерывание реплики~/ˌɪntəˈrʌpʃən/~word~The interruption corrected a mistaken attribution.~Прерывание не всегда грубость.
+handover~передача слова или ответственности~/ˈhændəʊvə/~word~The handover to the next speaker was clear.~Существительное отличается от hand over.
+agenda~повестка обсуждения~/əˈdʒendə/~word~The notice remains on the agenda.~Отложенный вопрос не исчезает автоматически.
+remit~предел порученных полномочий~/ˈriːmɪt/~word~The programme choice is within our remit.~Выбрана UK-транскрипция существительного, не глагола remit money.
+authority~полномочие~/ɔːˈθɒrəti/~word~We lack authority to approve extra spending.~Согласие присутствующих не создаёт недостающего права.
+unanimous~единогласный~/juːˈnænɪməs/~word~The decision was not unanimous.~Три против одного — большинство, не единогласие.
+majority~большинство~/məˈdʒɒrəti/~word~A majority supported the revised allocation.~Порог принятия зависит от согласованной процедуры.
+dissent~несогласие~/dɪˈsent/~word~Her dissent remains in the record.~Не отсутствие сотрудничества по определению.
+abstain~воздержаться при голосовании~/əbˈsteɪn/~word~Lee chose to abstain from the vote.~Abstain from; не равнозначно голосу против.
+endorse~поддержать, одобрить~/ɪnˈdɔːs/~word~Reviewing the draft does not endorse the whole plan.~Уточнять объект поддержки.
+allocate~распределять~/ˈæləkeɪt/~word~Allocate six tables to open play.~Allocate something to an activity.
+allocation~распределение~/ˌæləˈkeɪʃən/~word~The allocation changed after the correction.~Не обязательно изменение всей брони.
+rota~график распределения дежурств или задач~/ˈrəʊtə/~word~Omar will bring a draft rota.~Преимущественно UK; в US часто roster или schedule по контексту.
+minutes~протокол встречи~/ˈmɪnɪts/~word~The minutes preserve the dissenting vote.~Здесь не единицы времени; не все реплики дословно.
+proceedings~ход заседания~/prəˈsiːdɪŋz/~word~The record describes the proceedings without inventing motives.~Здесь ход встречи, не юридическая консультация.
+clarify~уточнять~/ˈklærɪfaɪ/~word~Could you clarify which draft you mean?~Уточнение должно отвечать реальному пробелу.
+recap~кратко повторить основные пункты~/ˈriːkæp/~word~Let me recap what changed.~Не удалять существенные условия при сокращении.
+revisit~вернуться к рассмотрению~/ˌriːˈvɪzɪt/~word~We need to revisit the allocation.~Не автоматически отменить результат.
+bring in~вовлечь в обсуждение~/ˌbrɪŋ ˈɪn/~phrasal~Could we bring Val in on this point?~Здесь не физически принести человека.
+hand over~передать слово или ведение~/ˌhænd ˈəʊvə/~phrasal~I will hand over to Nia now.~Hand over to somebody; не выдать передачу за уже случившийся ответ.
+cut in~вступить, прервав реплику~/ˌkʌt ˈɪn/~phrasal~May I cut in to correct the number?~Может быть уместным ремонтом; контекст важен.
+get back to~вернуться к вопросу или человеку~/ɡet ˈbæk tə/~phrasal~Let us get back to the unfinished question.~В другой ситуации может значить ответить позже.
+set aside~временно отложить~/ˌset əˈsaɪd/~phrasal~We set aside the notice until the format was agreed.~В данном контексте не отвергнуть окончательно.
+move on~перейти дальше~/ˌmuːv ˈɒn/~phrasal~Before we move on, can we confirm the owner?~Переход не доказывает завершение предыдущего пункта.
+sum up~подвести итог~/ˌsʌm ˈʌp/~phrasal~Could you sum up the agreed actions?~Не арифметическая сумма в этом контексте.
+in light of~с учётом~/ɪn ˈlaɪt əv/~chunk~Revisit the plan in light of the correction.~Небуквальная связь основания с пересмотром.
+running order~порядок выступлений или частей программы~/ˈrʌnɪŋ ˌɔːdə/~chunk~Mara will send the running order.~Не приказ бежать; порядок программы, не подтверждение её проведения.`;
 const kinds={word:'слово',chunk:'выражение',phrasal:'фразовый глагол'};
 export const c204Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid C204 vocabulary row '+(i+1));

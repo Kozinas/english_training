@@ -74,17 +74,17 @@ test('C204 rebuttal reference has scoped models, practice and primary attributio
  for(const [,url] of rebuttalSources)assert(['writingcenter.fas.harvard.edu','owl.purdue.edu','dictionary.cambridge.org','www.oxfordlearnersdictionaries.com'].includes(new URL(url).hostname));
 });
 test('C204 appended lexical cards keep the published first 36 byte-equivalent as data',()=>{
- assert.equal(c204Vocabulary.length,68);
+ assert.equal(c204Vocabulary.length,100);
  assert.equal(createHash('sha256').update(JSON.stringify(c204Vocabulary.slice(0,36))).digest('hex'),'f0d847f889493d725d7b55c854baa1359b90df3f946ca6125c0f7e2f28fefdec');
- const added=c204Vocabulary.slice(36);assert.equal(added.length,32);assert.equal(added[0].id,'C204-x-37');assert.equal(added.at(-1).id,'C204-x-68');
+ const added=c204Vocabulary.slice(36,68);assert.equal(added.length,32);assert.equal(added[0].id,'C204-x-37');assert.equal(added.at(-1).id,'C204-x-68');
  for(const c of added)assert(c.context&&c.note&&/^\/.+\/$/.test(c.ipa)&&c.accent==='UK');
- assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,75);
+ assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,107);
  assert.equal(added.find(c=>c.word==='counterargument').ipa,'/ˈkaʊntərɑːɡjəmənt/');
  assert.equal(added.find(c=>c.word==='counterexample').ipa,'/ˈkaʊntərɪɡzɑːmpl/');
  assert.equal(added.find(c=>c.word==='for the sake of argument').ipa,'/fə ðə ˌseɪk əv ˈɑːɡjəmənt/');
  for(const word of ['counterargument','warrant','beg the question','hold up','for the sake of argument','not necessarily'])assert(added.some(c=>c.word===word));
 });
-test('C204 imports the previous published unit including review, draft, navigation and SRS with 97/202 work',()=>{
+test('C204 imports the previous published unit including review, draft, navigation and SRS with 97/321 work',()=>{
  const s=freshState(),old=topic.subtopics[0],p=complete(s,old),t=old.tests[0].tasks.find(t=>t.kind==='text');
  p.attempts[0].reviews[t.id]={score:3,reviewer:'Synthetic teacher',date:'2026-09-26T12:10:00Z',evidence:'Synthetic evidence for migration only.',heardAudio:false};
  startUnitTest(s,old.id);p.examDraft.answers[old.tests[1].tasks.find(t=>t.kind==='text').id]='Synthetic unfinished draft\nDo not replace this text.';
@@ -95,7 +95,7 @@ test('C204 imports the previous published unit including review, draft, navigati
  s.navigation.pages['module/C204']={scroll:430,focus:'drill1',fields:{drill0:'about',drill1:'from\nOriginal answer',drill2:'yes'},details:[true]};
  s.moduleProgress.C204={selfChecked:true,date:'2026-09-22'};const before=structuredClone(s),restored=validateState(JSON.parse(JSON.stringify(s)));
  assert.deepEqual(restored,before);assert(!restored.learning[u.id]);assert.equal(restored.schemaVersion,2);
- const work=topicWorkProgress(restored,'C204');assert.equal(work.completed,97);assert.equal(work.total,202);assert.equal(work.percent,48);
+ const work=topicWorkProgress(restored,'C204');assert.equal(work.completed,97);assert.equal(work.total,321);assert.equal(work.percent,30);
  unitState(restored,u.id).answers[task('forms-1').id]='Although';assert.equal(topicWorkProgress(restored,'C204').completed,98);
  assert.deepEqual(restored.learning[old.id],before.learning[old.id]);assert.deepEqual(restored.cards,before.cards);assert.deepEqual(restored.navigation,before.navigation);
 });
@@ -105,9 +105,9 @@ test('C204 rebuttal multiline draft and both attempts survive with ten closed an
  for(const e of u.tests){p.examDraft.answers=Object.fromEntries(e.tasks.map(t=>[t.id,t.answer.split('|')[0]]));submitUnitTest(s,u.id,'2026-09-26T13:00:00Z');const result=scoreUnitTest(u,p.attempts.at(-1));assert.equal(result.correct,10);assert.equal(result.total,10);assert.equal(result.pending,16);assert.equal(result.status,'awaiting-review');assert.equal(topicWorkProgress(s,'C204').completed,1);if(e.id==='a'){first=structuredClone(p.attempts[0]);startUnitTest(s,u.id);}else assert.deepEqual(p.attempts[0],first);}
  assert.deepEqual(validateState(JSON.parse(JSON.stringify(s))),s);
 });
-test('C204 all 202 steps fill only the published part and do not establish mastery or remove missing discussion',()=>{
- const s=freshState();for(const unit of topic.subtopics)complete(s,unit);const p=topicWorkProgress(s,'C204');assert.equal(p.total,202);assert.equal(p.completed,202);assert.equal(p.percent,100);
- assert.equal(topic.contentStatus,'partial');assert.equal(topic.remainingScope.length,1);assert(topic.remainingScope[0].includes('Спонтанная'));
+test('C204 all 321 steps fill the expanded scope without establishing mastery',()=>{
+ const s=freshState();for(const unit of topic.subtopics)complete(s,unit);const p=topicWorkProgress(s,'C204');assert.equal(p.total,321);assert.equal(p.completed,321);assert.equal(p.percent,100);
+ assert.equal(topic.contentStatus,'expanded');assert.equal(topic.remainingScope.length,0);
  for(const unit of topic.subtopics)assert.equal(scoreUnitTest(unit,s.learning[unit.id].attempts[0]).status,'awaiting-review');
  s.profile.minutes=15;s.profile.days=3;assert.deepEqual(topicWorkProgress(s,'C204'),p);assert.deepEqual(topicWorkProgress(validateState(JSON.parse(JSON.stringify(s))),'C204'),p);
 });
