@@ -134,7 +134,7 @@ export async function checkC205({evaluate,route,command,poll,screenshot,delay,im
  assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("C205")).textContent')).includes('Общий прогресс работы'));
  await route('plan','[data-topic-progress="C205"]');
  assert((await evaluate('document.querySelector("[data-topic-progress=C205]").textContent')).includes('Общий прогресс работы'));
- await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Расширенных топиков: 34'));
+ await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Расширенных топиков: 35'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('C205 changed SRS');if(s.navigation.pages['module/C205'].fields.drill1!==old.navigation.pages['module/C205'].fields.drill1)throw Error('Lost C205 old answer');if(s.learning['C205-inquiry'].attempts.length!==2)throw Error('Lost exam history');}`);
  // Generic partial-publication UI remains covered even with no current partial topic.
  // Change in-memory course metadata only in this isolated synthetic browser; reload restores it.

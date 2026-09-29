@@ -74,7 +74,43 @@ overwrite~перезаписать~/ˌəʊvəˈraɪt/~word~This fictional versio
 refer to~обратиться к; сослаться на~/rɪˈfɜː tuː/~chunk~Refer to the matching manual.~Предлог to, не универсальное of.
 depend on~зависеть от~/dɪˈpend ɒn/~chunk~The path depends on the working directory.~Управление on, не выбирается переводом русского предлога.
 read back~повторить вслух для проверки~/ˌriːd ˈbæk/~phrasal~Could you read the path back to me?~Глагол настоящего времени /riːd/, не прошедшее /red/.
-by default~по умолчанию~/baɪ dɪˈfɔːlt/~chunk~The preview shows ten records by default.~Условие при отсутствии другого выбора по правилам инструмента.`;
+by default~по умолчанию~/baɪ dɪˈfɔːlt/~chunk~The preview shows ten records by default.~Условие при отсутствии другого выбора по правилам инструмента.
+procedure~процедура, порядок действий~/prəˈsiːdʒə/~word~Read the complete procedure before confirming.~Нужны условия/проверки, не только список кнопок.
+step~шаг, действие~/step/~word~Which step is still unfinished?~Не фиксированная длительность занятия.
+sequence~последовательность~/ˈsiːkwəns/~word~The sequence puts the warning before the action.~Порядок отражает зависимость.
+precondition~предварительное условие~/ˌpriːkənˈdɪʃən/~word~An empty destination is a precondition in this case.~Условие не подтверждение, что оно выполнено.
+starting point~исходная точка~/ˈstɑːtɪŋ pɔɪnt/~chunk~Check the starting point before giving instructions.~Здесь состояние/этап, не только место.
+expected~ожидаемый~/ɪkˈspektɪd/~word~The expected result contains three titles.~Не observed result.
+observed~наблюдаемый, замеченный~/əbˈzɜːvd/~word~Record the observed result exactly.~Не заменять ожиданием из образца.
+mismatch~несоответствие~/ˈmɪsmætʃ/~word~There is a mismatch between the names.~Существительное; само не объясняет причину.
+consequence~последствие~/ˈkɒnsɪkwəns/~word~Explain the consequence before confirmation.~Не обязательно уже наступившее событие.
+warning~предупреждение~/ˈwɔːnɪŋ/~word~Read the warning before importing.~Условие и последствие важнее цвета блока.
+preview~предварительный просмотр~/ˈpriːvjuː/~word~The preview shows only one title.~В этих кейсах просмотр не отправляет данные.
+confirm~подтвердить~/kənˈfɜːm/~word~Do not confirm until the checks pass.~Команда confirm и подтверждённый результат различаются.
+verify~проверить, подтвердить проверкой~/ˈverɪfaɪ/~word~Verify the recipient and the selected titles.~Называть конкретную область проверки.
+inspect~осмотреть, проверить~/ɪnˈspekt/~word~Inspect the list without changing it.~Не обязательно исправить найденную проблему.
+cancel~отменить, прервать~/ˈkænsəl/~word~Cancel closes an unsent preview here.~Эффект зависит от приложения и этапа.
+undo~отменить выполненное действие~/ʌnˈduː/~word~The guide does not describe an Undo action after sending.~Не обещать функцию без документации.
+retry~повторить попытку~/ˌriːˈtraɪ/~word~Do not retry while the outcome is unknown.~Повтор не проверка результата.
+restore~восстановить~/rɪˈstɔː/~word~Check the documented options before trying to restore data.~Не гарантия доступной резервной копии.
+resume~продолжить после перерыва~/rɪˈzjuːm/~word~Resume from the last confirmed state.~Глагол resume, не существительное résumé.
+replace~заменить~/rɪˈpleɪs/~word~This import replaces the current notes.~Не то же, что merge.
+merge~объединить~/mɜːdʒ/~word~Do not assume that importing will merge the notes.~Конкретное правило нужно проверить.
+duplicate~дубликат~/ˈdjuːplɪkət/~word~Avoid creating a duplicate.~Здесь существительное с /ət/; глагол duplicate заканчивается /eɪt/.
+attachment~вложение~/əˈtætʃmənt/~word~The package does not include audio attachments.~Проверенные titles не проверенные вложения.
+outcome~исход, результат~/ˈaʊtkʌm/~word~The outcome is still unknown.~Unknown не definitely failed.
+checkpoint~контрольная точка~/ˈtʃekpɔɪnt/~word~The preview is a checkpoint before confirmation.~Не отметка освоения навыка сама по себе.
+handoff~передача работы или сведений~/ˈhændɒf/~word~Write a handoff with the remaining checks.~Handover также употребляется, особенно в UK; не единственно допустимое слово.
+pause~пауза; приостановить~/pɔːz/~word~Pause and record the current state.~Перерыв не завершает тему автоматически.
+discard~отбросить, не сохранять~/dɪˈskɑːd/~word~Read what Cancel will discard in this case.~Не предполагать удаление всех старых данных.
+withdraw~отозвать~/wɪðˈdrɔː/~word~Can this request be withdrawn after receipt?~Вопрос о возможности, не обещание отмены.
+carry out~выполнить, провести~/ˌkæri ˈaʊt/~phrasal~Carry out the checks in the training simulation.~Не буквальное вынести предмет наружу в этом контексте.
+go ahead~продолжить, приступить~/ˌɡəʊ əˈhed/~phrasal~Do not go ahead until the names match.~Нужно понятное действие и условие.
+hold on~подожди~/ˌhəʊld ˈɒn/~phrasal~Hold on; which collection is open?~Разговорная остановка для уточнения, не буквальное держаться.
+start over~начать заново~/ˌstɑːt ˈəʊvə/~phrasal~Do not start over blindly after a pause.~Start again также нормативно; перерыв не требует повторной отправки.
+pick up where you left off~продолжить с места остановки~/ˌpɪk ʌp weə juː left ˈɒf/~chunk~Check the current state, then pick up where you left off.~Цельная разговорная формула, не буквальное поднять объект.
+in progress~в процессе выполнения~/ɪn ˈprəʊɡres/~chunk~The operation is still in progress.~Не completed, срок окончания не задан.
+as expected~как ожидалось~/əz ɪkˈspektɪd/~chunk~The visible titles match as expected.~Уточнять, что именно проверено; не автоматически всё содержимое.`;
 const kinds={word:'слово',chunk:'выражение',phrasal:'фразовый глагол'};
 export const t01Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid T01 vocabulary row '+(i+1));

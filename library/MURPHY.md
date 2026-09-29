@@ -12,6 +12,7 @@
 
 | Модули | Ищите в оглавлении |
 |---|---|
+| T01-procedures (третья наполненная подтема) | imperative / do not + base; to-infinitive for purpose; by / avoid / before / after + -ing; before/after/until/if clauses; ordinary word order after check that/whether and could you tell me. Полнота инструкции, исходные условия, expected/observed, предупреждения, handoff и границы cancel/undo/restore/retry отрабатываются в авторских кейсах и первичных руководствах по стилю. Это не обещание специальных units Murphy или универсальных функций продукта. |
 | T01-documentation (вторая наполненная подтема) | present simple agreement/questions; be + required versus requires; allow + object + to / let + object + base; without + -ing; refer to / depend on; if/unless/only if; indirect questions. Нотация CLI, пути и схемы версий объясняются в авторской технической практике, а не приписываются Murphy. |
 | T01-interface (первая наполненная подтема) | imperatives and don't + base; requests with could + base; be/do questions and indirect questions; before + -ing; separable phrasal verbs with pronouns (turn it on/off). Названия элементов и правила конкретного интерфейса изучаются в авторском материале курса, не приписываются учебнику. |
 | P01–P02 | am/is/are; pronouns; imperatives; classroom language |

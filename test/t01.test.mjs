@@ -14,13 +14,13 @@ const task=s=>all.find(t=>t.id===u.id+'-'+s),words=s=>s.trim().split(/\s+/).leng
 const roundTrip=s=>validateState(JSON.parse(JSON.stringify(s)));
 function complete(s){const p=unitState(s,u.id);for(const t of practice)p.answers[t.id]=t.answer;p.examDraft.answers=Object.fromEntries(u.tests[0].tasks.map(t=>[t.id,t.answer]));submitUnitTest(s,u.id,'2026-09-29T15:00:00Z');return p;}
 
-test('T01 retains the substantial interface unit alongside documentation with procedures still remaining',()=>{
+test('T01 retains the substantial interface unit alongside documentation and the published full-procedure scope',()=>{
  assert.equal(u.explanation.length,13);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>8000);assert.equal(u.examples.length,34);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,14,12,12,12,12,12,12]);assert.equal(practice.length,100);assert.equal(u.goals.length,6);
- assert.equal(topic.subtopics.length,2);assert.equal(topic.contentStatus,'partial');assert.deepEqual(topic.remainingScope,topicDevelopment.T01.remaining);assert.equal(topic.remainingScope.length,1);
- assert(topic.remainingScope[0].includes('Полные пошаговые'));
+ assert.equal(topic.subtopics.length,3);assert.equal(topic.contentStatus,'expanded');assert.equal(topicDevelopment.T01,undefined);assert.deepEqual(topic.remainingScope,[]);
+ assert.equal(topic.subtopics[2].id,'T01-procedures');
  assert.deepEqual(u.prerequisites,['A203-obligation','A205-patterns']);assert.equal(topic.track,'technical');
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[34,1,5,112,9797,4816]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[35,0,5,113,9915,4868]);
 });
 test('T01 imperatives, requests, agreement, before and particle position have independent keys',()=>{
  const cases=[['forms-1','Open','Opens'],['forms-2','close','closes'],['forms-3','select','selected'],['forms-4','are','is'],['forms-5','Is','Does'],['forms-6','Do','Are'],['forms-7','leaving','leave'],['forms-8','Turn it off','Turn off it'],['review-1','delete','deletes'],['test-a-1','close','closes'],['test-a-2','copy','copied'],['test-a-3','are','is'],['test-a-4','opening','open'],['test-b-1','Open','Opens'],['test-b-2','describe','described'],['test-b-3','Is','Does'],['test-b-4','continuing','continue']];
@@ -72,7 +72,7 @@ test('T01 reference is an authored bounded language guide, not product documenta
 });
 test('T01 preserves all seven published cards and retains the first 40 cards alongside the appended documentation vocabulary',()=>{
  const old=topic.vocabulary.filter(c=>!/^T01-x-\d+$/.test(c.id));assert.equal(old.length,7);assert.equal(createHash('sha256').update(JSON.stringify(old)).digest('hex'),'e3b9a2aac64a1a2ac39b1df33b9901c253b96a03d309b7652ba48f8013ba2731');
- assert.equal(t01Vocabulary.length,76);assert.equal(topic.vocabulary.length,83);assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,83);
+ assert.equal(t01Vocabulary.length,112);assert.equal(topic.vocabulary.length,119);assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,119);
  assert.equal(t01Vocabulary[0].id,'T01-x-1');assert.equal(t01Vocabulary[39].id,'T01-x-40');
  for(const c of t01Vocabulary)assert(c.context&&c.note&&/^\/.+\/$/.test(c.ipa)&&c.accent==='UK');assert(t01Vocabulary.some(c=>c.kind==='фразовый глагол'));assert(t01Vocabulary.some(c=>c.kind==='выражение'));
  assert.equal(t01Vocabulary.find(c=>c.word==='receipt').ipa,'/rɪˈsiːt/');assert(t01Vocabulary.find(c=>c.word==='backup').note.includes('back up'));
@@ -93,7 +93,7 @@ test('T01 old short-topic archive imports read-only source answers without award
  const s=freshState();s.moduleProgress.T01={selfChecked:true,date:'2026-09-22'};s.drafts.T01='Synthetic original notes';s.cards['T01-v1']=reviewCard(null,'good',Date.UTC(2026,8,22));s.cards['T01-x-set-up']=reviewCard(null,'hard',Date.UTC(2026,8,23));
  const route='module/T01';s.navigation.current=route;s.navigation.sections.course=route;s.navigation.pages[route]={scroll:540,focus:'drill1',fields:{drill0:'upload',drill1:'is\nSynthetic original',drill2:'exiting'},details:[true]};s.bookmark={route,scroll:540,focus:'drill1'};
  const original=structuredClone(s),restored=roundTrip(s);assert.deepEqual(restored,original);assert(!restored.learning[u.id]);assert.equal(restored.schemaVersion,2);
- assert.deepEqual(topic.drills.map(d=>d[1]),['upload','is','exiting']);assert.deepEqual(topicWorkProgress(restored,'T01'),{kind:'expanded',completed:0,total:218,percent:0,practiceAnswered:0,practiceTotal:216,testsSubmitted:0,testsTotal:2});
+ assert.deepEqual(topic.drills.map(d=>d[1]),['upload','is','exiting']);assert.deepEqual(topicWorkProgress(restored,'T01'),{kind:'expanded',completed:0,total:337,percent:0,practiceAnswered:0,practiceTotal:334,testsSubmitted:0,testsTotal:3});
  unitState(restored,u.id).answers[task('forms-1').id]='Open';assert.equal(topicWorkProgress(restored,'T01').completed,1);assert.deepEqual(restored.cards,original.cards);assert.deepEqual(restored.navigation,original.navigation);
 });
 test('T01 v1 import preserves the old self-check without inventing expanded learning',()=>{
@@ -109,8 +109,8 @@ test('T01 multiline original/revision and exam drafts persist; A/B history leave
 test('T01 speech review requires heardAudio and a text review does not remove other pending work',()=>{
  const s=freshState(),p=complete(s),t=u.tests[0].tasks.find(t=>t.kind==='speech');p.attempts[0].reviews[t.id]={score:3,reviewer:'Synthetic teacher',date:'2026-09-29T15:20:00Z',evidence:'Synthetic acknowledgement fixture, not an actual learner review.',heardAudio:false};assert.throws(()=>roundTrip(s),/прослушанное аудио/);p.attempts[0].reviews[t.id].heardAudio=true;assert.deepEqual(roundTrip(s),s);assert.equal(scoreUnitTest(u,p.attempts[0]).pending,15);
 });
-test('T01 101 filled steps remain partial, pending quality checks and unaffected by study time',()=>{
- const s=freshState(),p=complete(s),work=topicWorkProgress(s,'T01');assert.equal(work.completed,101);assert.equal(work.total,218);assert.equal(work.percent,46);assert.equal(topic.contentStatus,'partial');assert.equal(scoreUnitTest(u,p.attempts[0]).status,'awaiting-review');
- s.moduleProgress.T01={selfChecked:true,date:'2026-09-22'};s.placement={assessmentVersion,date:'2026-09-29T15:30:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.options.length]))};assert(buildPlan(s).items.some(m=>m.id==='T01'&&m.contentStatus==='partial'));
+test('T01 101 filled steps cover only the first unit, pending quality checks and unaffected by study time',()=>{
+ const s=freshState(),p=complete(s),work=topicWorkProgress(s,'T01');assert.equal(work.completed,101);assert.equal(work.total,337);assert.equal(work.percent,29);assert.equal(topic.contentStatus,'expanded');assert.equal(scoreUnitTest(u,p.attempts[0]).status,'awaiting-review');
+ s.moduleProgress.T01={selfChecked:true,date:'2026-09-22'};s.placement={assessmentVersion,date:'2026-09-29T15:30:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.options.length]))};assert(buildPlan(s).items.some(m=>m.id==='T01'&&m.contentStatus==='expanded'));
  s.profile.minutes=10;s.profile.days=2;assert.deepEqual(topicWorkProgress(s,'T01'),work);assert.deepEqual(roundTrip(s),s);
 });
