@@ -110,7 +110,7 @@ export async function checkC204({evaluate,route,command,poll,screenshot,delay,im
  assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("C204")).textContent')).includes('Общий прогресс работы'));
  await route('plan','[data-topic-progress="C204"]');
  assert((await evaluate('document.querySelector("[data-topic-progress=C204]").textContent')).includes('Общий прогресс работы'));
- await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 0'));
+ await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('C204 changed SRS');if(s.navigation.pages['module/C204'].fields.drill1!==old.navigation.pages['module/C204'].fields.drill1)throw Error('Lost C204 old answer');if(s.learning['C204-mediation'].attempts.length!==2)throw Error('Lost exam history');}`);
  // Previous-content export: remove only the newly published unit, including its page drafts.
  await route('settings','#profile');

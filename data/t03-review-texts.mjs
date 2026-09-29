@@ -1,0 +1,79 @@
+// Original fictional dossiers and complete models; no real pull requests or learner records.
+export const reviewReading=`Aster Notes: a review is a conversation about a change
+
+The Aster Notes team is reviewing a small preview function in a fictional pull request, PR 17. The current revision is aster-r4. The function receives a string and produces a preview message. The agreed requirement says that an empty string or a string containing only spaces should produce No text. Other strings should produce Ready followed by their text with spaces removed from the outside. Spaces inside a meaningful message must be preserved. These rules describe this exercise, not every text-processing application.
+
+In r4, the function checks the original string length before removing outside spaces. If the original length is zero, it returns No text. Otherwise, it removes the outside spaces and returns the Ready message. A reader can trace a likely problem: a string of three spaces has a non-zero original length, but becomes empty after trimming. It reaches the second return rather than the empty-message branch. Reading this logic is useful evidence, but it is not the same activity as running the application.
+
+The author, Evan, provides a log of six checks against r4. The empty string produced No text. Two ordinary messages produced their expected previews. A message with spaces at its outside edges was trimmed as required. A message with two internal spaces kept those spaces. The remaining check used three spaces with no letters. It produced Ready with no message text, rather than No text. Thus five of the six logged checks met their expected results. The log does not establish how other characters, very long messages or other environments behave.
+
+Mira leaves four comments. C1 identifies the order of the guard and trim operations, links it to the failed spaces-only check and requests a change before approval. She asks Evan to check the trimmed text before deciding which message to return. She does not write that Evan is careless. The subject of her criticism is the current behaviour and its conflict with the agreed requirement. A firm request can still be courteous when its reason and scope are clear.
+
+C2 is a question about internal spaces. Mira asks whether the team intentionally preserves two spaces between words. Evan points to the requirement and confirms that it does. He offers to add that explanation to the function documentation. His explanation answers the question; his offer does not prove that the documentation has already been changed. C3 suggests renaming the local variable shown to previewText. Mira marks this suggestion optional. No team naming rule has been cited. C4 praises the early return for the genuinely empty string because it makes the normal path easier to follow. That praise does not cancel C1.
+
+Evan first replies Done under C1, then clarifies his meaning. He has drafted a possible change locally, but has not yet shared a new revision. He marked the conversation resolved because he believed his response was sufficient. Mira explains that closing a discussion is not evidence that the changed code exists or meets the requirement. Evan agrees to leave C1 open while he shares the revision and checks the behaviour. They record this as a proposed next step, not as a successful test result.
+
+Later, Evan shares aster-r5. In this revision, trimming comes before the empty-message guard. Mira can trace how the spaces-only example would reach No text. However, the only attached execution log still belongs to r4. She asks for checks against the new revision, including the internal-spaces case that must remain unchanged. No new execution results are available in this dossier. It would be inaccurate to report six passing checks for r5 by combining a new diff with an old log.
+
+Mira submits a Comment review, not an Approve decision. Her final note recognises the clearer order of operations, explains what still needs verification and distinguishes the optional name change from the required behaviour. Whether the repository would technically permit merging is not specified. There is no evidence that PR 17 has been merged or released. The participants have improved their shared understanding, but a good explanation, a resolved thread and a submitted review are different events from a verified change. A useful review summary preserves those distinctions so that the next reader knows what to do.`;
+
+export const reviewListening=`Birch Export: hearing a correction during a review
+
+This fictional conversation concerns Birch Export pull request 26. The current shared revision is birch-b2. The team has agreed that a preview should return labels in alphabetical order without changing the order of the caller's original list. Duplicate-label behaviour has not yet been agreed. Inez is the author, Leon is the reviewer, and Sam is listening to the discussion. This is an original script read by one narrator, not a recording of three independent speakers.
+
+Inez begins: I ran four checks and they all passed. Sorry, that is not accurate. Three passed and one failed. The output-order check passed, as did the empty-list and single-label checks. The check that the original list stayed unchanged failed. All four results are from b2. I have not run the proposed replacement yet. Leon repeats the corrected information to make sure that he has understood. He does not count the first statement and its correction as two separate groups of checks.
+
+Leon says that the unchanged-input requirement makes this a required correction, not a naming preference. The preview can look right while the caller's data has changed. He asks whether Inez could make a copy before sorting, or propose another approach that preserves the original list. The suggestion of a copy is one possible implementation, not a rule that every sorting function must use that exact design. Their requirement concerns the observable result and the unchanged input.
+
+Inez replies: I have fixed it by copying the list. Let me correct that as well. I have drafted a patch on my machine, but I have not shared it or checked it. I should have said that I plan to use a copy. The shared revision is still b2. Leon thanks her for clarifying the stage. He asks her to share the next revision and attach results for both the output order and the original list. A planned check is not an execution result, and a local proposal is not an updated shared revision.
+
+Sam asks about renaming the variable items. Leon explains that his naming comment was optional. A clearer name might help, but it is not the reason he is withholding approval. He then asks a separate question: should repeated labels appear once or more than once in the preview? Nobody in the conversation knows the agreed answer. They do not turn that uncertainty into a confirmed duplicate-handling defect. Inez says she will ask who can clarify the requirement. No person has yet accepted responsibility for deciding it.
+
+Inez asks an unexpected follow-up: if the output-order check passed, why is the review still blocked? Leon answers that the agreed behaviour has two parts. Correct output order does not establish that the input was preserved. He invites Inez to restate what evidence is missing. She says that the next revision needs its own results, including an unchanged-input check. Leon confirms that this captures his concern. This exchange checks understanding more effectively than a polite yes alone.
+
+At the end, Inez agrees to share a revised patch and request another review after checking it. Leon offers to look at the next revision but gives no completion time and does not approve b2. The naming suggestion remains optional, and the duplicate-label question remains open. The participants have agreed a next action, not a merge or release. A later written summary should keep the two spoken corrections, the revision labels, the limited test evidence and the unresolved question. It should not silently change all passed into a fact about a version nobody has tested.`;
+
+export const reviewModels={
+ review:`Review of Aster Notes PR 17, revision aster-r4
+
+The early return for an empty string makes that branch easy to identify. I also appreciate the check showing that two internal spaces are preserved: it connects the implementation to a requirement that a future reader could otherwise overlook. These are specific strengths, but they do not establish that every required input is handled correctly.
+
+Required before approval: the current guard checks the original string before trimming it. With a spaces-only input, the original length is not zero, so the function continues to the Ready return. The attached r4 log shows that the three-space case produces Ready without message text, although the requirement calls for No text. Could you check the trimmed value before selecting the return message? Please retain the internal-spaces behaviour while making this change.
+
+Question: could you confirm that preserving repeated internal spaces is intentional? The written requirement appears to say so. If that reading is correct, a short explanation in the function documentation would help future maintainers. I am asking for confirmation of the intended behaviour, not asserting that preserving those spaces is a defect.
+
+Optional: consider changing the local name shown to previewText. That might make its role clearer to readers who encounter the variable without the surrounding discussion. I have not identified a team rule requiring this name, so this suggestion should not be treated as a second approval blocker.
+
+The six logged checks belong to r4: five met their expected results and the spaces-only check did not. I have not seen results for a revised implementation. After sharing a new revision, please attach checks for empty, spaces-only, ordinary and internal-spaces inputs, clearly identifying the version used. This request does not claim that those checks alone prove correctness for every possible input.
+
+My review decision is Comment. I have not approved the change, and I cannot confirm whether it has been merged. Please reply with what has changed, what remains unverified and any requirement you need clarified. A response of Done alone would not tell me which revision or checks to review next.`,
+ reply:`Thanks for separating the required behaviour from the optional naming suggestion. I agree that r4 handles the spaces-only case incorrectly. The guard examines the original string, so three spaces reach the Ready return after trimming. That conflicts with the requirement for No text.
+
+My earlier reply of Done was imprecise. At that point I had only drafted a local change. I had not shared a revised version or run new checks, so I should not have implied that the issue was verified. I will keep the required discussion open while the evidence is incomplete.
+
+I have now shared r5, which trims before checking for empty text. The execution log still describes r4, not r5. I need to check the new revision, including the internal-spaces case, before reporting its results. The requirement does intentionally preserve internal spaces; changing the guard should not change that behaviour.
+
+I have not taken up the optional variable-name suggestion yet. Could you confirm whether there is any specific ambiguity in the current name beyond the preference you described? I am open to improving it, but I do not want to confuse that discussion with the required correction. I will request another review when the new results are available.`,
+ request:`Could you clarify whether C2 asks for a behaviour change or for clearer documentation? My reading of the current requirement is that repeated internal spaces must remain unchanged. If that is correct, I can explain the reason in the function documentation without collapsing those spaces in the preview.
+
+I understand that the spaces-only input in C1 is different: it has no meaningful message and should produce No text. I am not treating your question about internal spaces as another confirmed defect. Please let me know if you are referring to a different case. I have not changed that behaviour or claimed a passing result while waiting for clarification.`,
+ disagreement:`I agree that a shorter preview can be easier to read, but I do not think collapsing all internal spaces belongs in this change under the current requirement. The team explicitly asked us to preserve them. A display preference would therefore change the agreed behaviour, rather than simply make the implementation clearer.
+
+Could we keep the required spaces-only correction separate from that proposal? If the team wants different formatting, we can discuss a revised requirement and examples in a follow-up task. I am not rejecting the idea as useless; I am distinguishing an optional improvement from the scope already agreed for this review.
+
+What specific reading problem would collapsing the spaces solve? An example would help us compare the benefit with the change in behaviour before deciding. No new formatting requirement has been accepted yet.`,
+ summary:`In the Birch discussion, Inez corrected all four checks passed to three passed and one failed. The failed b2 check concerned preservation of the caller's original list. She also corrected I have fixed it: the replacement is only a local draft, not a shared or tested revision.
+
+Inez agreed to share a revised patch, check both the output and unchanged input, and request another review. Leon offered to review the next revision without agreeing a completion time. His naming suggestion is optional. The duplicate-label requirement remains unresolved, and no decision owner has accepted it. This summary records proposed and accepted next actions, not completed verification, approval or release.`,
+ revision:`Follow-up review of Aster Notes PR 17, revision aster-r5
+
+The revised order is clearer: trimming now happens before the empty-message guard. Reading the new diff, I can trace how the spaces-only example would reach No text. That addresses the specific control-flow concern I raised about r4. Thank you for identifying the new revision and for correcting the earlier use of Done instead of leaving readers to infer which work had actually happened.
+
+Verification is still outstanding. The attached log covers six checks on r4, not r5. Five r4 checks met their expectations, while the spaces-only check did not. Those results cannot be relabelled as evidence that r5 passes. Please run the relevant checks against the shared revision and include the observed results. In particular, the internal-spaces case needs to retain its agreed behaviour after the guard is moved.
+
+The answer to my internal-spaces question is now clear: the existing requirement intentionally preserves those spaces. That answer resolves my uncertainty about intent. It does not by itself show that the promised documentation change has been made. If you add the explanation, please identify where a future reader can find it outside this review thread.
+
+The suggestion to rename shown remains optional. I have not supplied a naming rule that would make previewText mandatory, and I do not want that preference to be mistaken for the outstanding verification request. We can discuss it separately if the current name causes a concrete misunderstanding.
+
+My decision remains Comment, not Approve. This note recognises the changed logic while preserving the limit of the evidence available to me. Once the new results are attached, I can review them and state whether the required concern is addressed. I am not promising approval in advance, assigning an unagreed deadline or reporting a merge. Please reply with the version, the new observations and any remaining uncertainty so that another reviewer can continue from the same facts.`
+};

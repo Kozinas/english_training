@@ -105,7 +105,7 @@ export async function checkC203({evaluate,route,command,poll,screenshot,delay,im
  await route('plan','[data-topic-progress="C203"]');
  assert((await evaluate('document.querySelector("[data-topic-progress=C203]").textContent')).includes('Общий прогресс'));
  await route('home','.hero');
- assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 0'));
+ assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
  // Import a synthetic export containing only the two previously published units.
  await route('settings','#profile');
  await evaluate(`(async()=>{const s=JSON.parse(localStorage.getItem('english-training-v1'));delete s.learning['C203-connected'];for(const route of Object.keys(s.navigation.pages))if(route.startsWith('unit/C203-connected/'))delete s.navigation.pages[route];s.bookmark={route:'unit/C203-discourse/test',scroll:620,focus:''};s.navigation.sections.course='unit/C203-discourse/test';const {validateState}=await import('/engine.mjs');window.__c203PreviousContent=JSON.stringify(validateState(s));})()`);

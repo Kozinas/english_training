@@ -24,7 +24,7 @@ export default [
  sound:'Практикуй ударения deVELopment, enVIronment, reGRESSion. Уточняй версии по цифрам, если ASR их искажает.'
 },
 {
- id:'T03', level:'B2', title:'Код-ревью, API и тестирование', prerequisites:['B203','B204'], focus:'code review; API contracts; edge cases; constructive feedback',
+ id:'T03', level:'B2', title:'Код-ревью, API и тестирование', prerequisites:['B203','B204','T02'], focus:'code review; API contracts; edge cases; constructive feedback',
  rule:'Комментарий ревью: наблюдение → риск → предложение/вопрос. Различай обязательное исправление и предпочтение. Endpoint — точка API, payload — данные сообщения, response — ответ, assertion — проверяемое утверждение в тесте. Объясняй контракт через вход, выход, ошибки и побочные эффекты. Не утверждай безопасность или корректность только по прохождению теста: тест покрывает выбранные случаи.',
  examples:['Could we handle the empty input explicitly? — Можем явно обработать пустой ввод?','This test covers the success path only. — Тест покрывает только успешный сценарий.','If the operation is retried after a timeout, can the same request create a second record, or is it idempotent? — Может ли повтор запроса после тайм-аута создать вторую запись, или операция идемпотентна?'],
  reading:['A reviewer noticed that the handler returned success before the write completed. The author explained that this reduced response time. They agreed that the API contract required confirmed persistence, so the response would wait for the write. A separate test would cover a storage failure, rather than only the successful request.','Why was the response behaviour changed?','The contract required confirmed persistence before success.'],

@@ -36,8 +36,9 @@ import {checkC204} from './c204-smoke.mjs';
 import {checkC205} from './c205-smoke.mjs';
 import {checkT01} from './t01-smoke.mjs';
 import {checkT02} from './t02-smoke.mjs';
+import {checkT03} from './t03-smoke.mjs';
 
-const topicChecks={A104:checkA104,A105:checkA105,A201:checkA201,A202:checkA202,A203:checkA203,A204:checkA204,A205:checkA205,B101:checkB101,B102:checkB102,B103:checkB103,B104:checkB104,B105:checkB105,B201:checkB201,B202:checkB202,B203:checkB203,B204:checkB204,B205:checkB205,C101:checkC101,C102:checkC102,C103:checkC103,C104:checkC104,C105:checkC105,C201:checkC201,C202:checkC202,C203:checkC203,C204:checkC204,C205:checkC205,T01:checkT01,T02:checkT02};
+const topicChecks={A104:checkA104,A105:checkA105,A201:checkA201,A202:checkA202,A203:checkA203,A204:checkA204,A205:checkA205,B101:checkB101,B102:checkB102,B103:checkB103,B104:checkB104,B105:checkB105,B201:checkB201,B202:checkB202,B203:checkB203,B204:checkB204,B205:checkB205,C101:checkC101,C102:checkC102,C103:checkC103,C104:checkC104,C105:checkC105,C201:checkC201,C202:checkC202,C203:checkC203,C204:checkC204,C205:checkC205,T01:checkT01,T02:checkT02,T03:checkT03};
 const requestedTopic=process.argv.find(arg=>arg.startsWith('--topic='))?.slice(8);
 if(requestedTopic&&!topicChecks[requestedTopic])throw new Error('Unknown browser topic check: '+requestedTopic);
 const candidates=[process.env.BROWSER_PATH,'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe','C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe','/usr/bin/google-chrome','/usr/bin/chromium'].filter(Boolean);
@@ -96,7 +97,7 @@ try{
   await evaluate(`document.querySelector('#search').value='A103';document.querySelector('#search').dispatchEvent(new Event('input'));`);
   assert.equal(await evaluate('document.querySelectorAll("[data-topic-progress]").length'),1);await assertTopicBars();
   await evaluate(`document.querySelector('#search').value='';document.querySelector('#search').dispatchEvent(new Event('input'));`);
-  await route('module/T03','#self-check');await assertTopicBars();
+  await route('module/T04','#self-check');await assertTopicBars();
   assert.equal(await evaluate('document.querySelector(".topic-progress").dataset.progressKind'),'legacy');
   await evaluate('document.querySelector("#self-check").click()');await assertTopicBars();
   assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),1);
@@ -388,7 +389,7 @@ try{
   assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'mobile overflow');await screenshot('home-mobile.png');
   await route('course','#module-list');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'course progress mobile overflow');
   await evaluate('document.querySelector(".module-row").scrollIntoView({block:"start"})');await screenshot('progress-course-mobile.png');
-  await route('module/T03','#self-check');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'legacy progress mobile overflow');await screenshot('progress-legacy-mobile.png');
+  await route('module/T04','#self-check');await assertTopicBars();assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'legacy progress mobile overflow');await screenshot('progress-legacy-mobile.png');
   await route('module/P01','.unit-list');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'topic mobile overflow');await screenshot('topic-mobile.png');
   await route('unit/P01-introductions/writing','#check-bank');assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'practice mobile overflow');await screenshot('practice-mobile.png');
   await route('cards','#flip-card');await evaluate(`document.querySelector('#flip-card').click()`);assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'card mobile overflow');await screenshot('card-mobile.png');
@@ -487,6 +488,7 @@ try{
   await checkC205({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   await checkT01({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   await checkT02({evaluate,route,command,poll,screenshot,delay,importSynthetic});
+  await checkT03({evaluate,route,command,poll,screenshot,delay,importSynthetic});
   assert.deepEqual(errors,[],'Unexpected browser runtime errors');
   console.log('Browser smoke passed: topic progress (all 40, live counters, tests, legacy, 99/100%, export/reset/import), hierarchy, practice, exam draft/resume/history, references, Enter/Space flip cards, separate audio, placement, plan, SRS, mocked speech, manual review, desktop/mobile.');
   }

@@ -78,8 +78,8 @@ test('C204 adds 100 contextual cards without replacing seven old IDs',()=>{
 test('C204 covers its declared scope without creating learner mastery',()=>{
  assert.equal(module.contentStatus,'expanded');assert.equal(module.subtopics.length,3);assert.equal(module.remainingScope.length,0);
  assert.equal(topicDevelopment.C204,undefined);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[36,0,4]);
- assert.equal(courseStats.subtopics,116);assert.equal(courseStats.practice,10263);assert.equal(courseStats.testTasks,5028);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[36,1,3]);
+ assert.equal(courseStats.subtopics,117);assert.equal(courseStats.practice,10383);assert.equal(courseStats.testTasks,5084);
 });
 test('C204 original drill archive, notes, multiline fields and SRS survive without new credit',()=>{
  const s=freshState();s.moduleProgress.C204={selfChecked:true,date:'2026-09-22'};s.drafts.C204='Synthetic old note.';
