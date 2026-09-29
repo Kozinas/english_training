@@ -1,5 +1,23 @@
 # Проверка проекта
 
+## T03: API-контракты — 2026-09-29
+
+Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и **776 Node-тестов** прошли. `npm run build` по-прежнему завершается с MODULE_NOT_FOUND для npm-prefix.js в локальном Volta; установку и глобальные настройки не меняли, использовали эквивалентные команды Node. Текущий охват: 36 expanded / 1 partial / 3 legacy; 118 подтем, 10503 практические и 5140 контрольных задач. Записи ниже исторические.
+
+Добавлены 14 проверок в test/t03-api.test.mjs:
+
+- Independent positive/negative keys: Present Simple, does not, modal passive, respond to / consist of, embedded order и whether to. Пунктуация и свободная редактура требуют ручного разбора.
+- Различаются optional/nullable/omitted/empty, boolean/string, validation/permission, request/response/resource. 202 не готовый файл, 200 lookup может сообщать failed job, 204 без тела. Queued не delivered, key retention не task retention.
+- Cedar: чтение 740 слов, шесть попыток / три 201 / две установленные creation / один replay / два rejection / unknown timeout. Account/method/path/key/body/24h заданы явно; нет выдуманной гарантии для concurrent in-flight. Proposals не deployment, известный strict client учитывается при оценке optional addition.
+- Moss: отдельное аудио 625 слов, four accepted не four ready; два succeeded / один failed / один running, fifth timeout отдельно. Ben исправляет предположение Mina, Mina исправляет своё сообщение о migration. Twelve-hour workspace rule не заменяется Cedar rule; review note не migration ownership.
+- Шесть полных моделей 326/178/102/106/107/322 слов доступны в passage письма до ввода ответа. Rowan original/revision 320–420 слов хранятся раздельно. Alder и Brook — новые контрольные досье, с другими сроком и nullability/default. В каждом тесте 28 задач, 8 закрытых / 20 manual, пять speech, все восемь целей.
+- Хеши прежних T03-review banks/tests и первых 40 карточек совпадают с опубликованными. Семь legacy ID также защищены прежним тестом. Новые T03-x-41…72 имеют контекст, IPA и пояснения; приложение содержит 32 модели / 16 заданий. Первичные ориентиры: [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html), [Google AIP-180](https://google.aip.dev/180), проверены 2026-09-29; вымышленные контракты не приписаны этим документам.
+- Импорт первой подтемы сохраняет 121/242 шага (50%), исходные длинные ответы, reviews, следующий examDraft, navigation/bookmark, архив returns/writing/edge, notes и SRS. Новые поля не заполняются из старой галочки. Две отправки A/B добавляют один шаг теста, 20 открытых ответов остаются pending; даже 242/242 — partial. Ручная оценка не придумывает delayed mastery, speech review требует подтверждения реального аудио.
+
+`node scripts/browser-smoke.mjs --topic=T03` прошёл для обеих подтем: все банки, wrong/right feedback, скрытый до попытки аудиотекст, доступные до ответа полные модели, многострочные original/revision/examDraft, меню/возврат/перезагрузка, обе истории A/B, поиск приложения, импорт/экспорт и мобильный вид 390px. Новая серия проверяет 121→137→242 шага, одинаковую шкалу в карте/топике/плане, partial при 100%, сохранность первой learning-записи целиком вместе с отзывом и очередным черновиком, архива и SRS. Снимки письма и приложения просмотрены: страница не расширяется горизонтально, широкая таблица прокручивается внутри контейнера.
+
+Полный `node scripts/browser-smoke.mjs` также завершился с exit 0: общая шкала всех 40 топиков, навигация, черновики, импорт/экспорт, карточки с Enter/Space и отдельной озвучкой, диагностика, маршрут, SRS, ручной разбор, все расширенные подтемы и обе опубликованные подтемы T03. Все проверки используют изолированные синтетические данные, не ответы ученика. Реальный микрофон, внешняя ASR-служба и слышимое качество TTS не проверялись; автоматические проверки не доказывают педагогическую полноту всего курса.
+
 ## T03: код-ревью и ответ автора — 2026-09-29
 
 Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и все **762 Node-теста** прошли. Обёртка npm локально завершается с MODULE_NOT_FOUND для npm-prefix.js в Volta; глобальные настройки/установка не менялись. Текущий охват: 36 expanded, 1 partial, 3 legacy; 117 подтем / 10383 практические / 5084 тестовые задачи. T03-review: 15 механизмов, 36 примеров, 120 задач в девяти банках, два варианта по 28 задач (8 закрытых, 20 ручных, пять speech), восемь целей. Записи ниже исторические.
