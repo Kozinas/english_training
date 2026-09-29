@@ -17,7 +17,7 @@ test('C205 inquiry is a substantial first unit, not a completed capstone',()=>{
  assert.deepEqual(module.remainingScope,[]);
  assert.equal(u.explanation.length,13);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>7500);assert.equal(u.examples.length,32);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,14,14,16,14,12,12,12]);assert.equal(practice.length,108);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[34,0,6]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[34,1,5]);
 });
 
 test('C205 constrained grammar keys accept the intended form and reject its distractor',()=>{

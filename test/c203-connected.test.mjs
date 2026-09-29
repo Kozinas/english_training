@@ -79,7 +79,7 @@ test('C203 connected reference and appended vocabulary preserve scope and all pr
 });
 test('C203 completion of declared content is metadata, never a learner mastery flag',()=>{
  assert.equal(topic.contentStatus,'expanded');assert.equal(topicDevelopment.C203,undefined);assert.deepEqual(topic.remainingScope,[]);assert.equal(topic.subtopics.length,3);
- assert.equal(courseStats.expanded,34);assert.equal(courseStats.partial,0);assert.equal(courseStats.legacy,6);
+ assert.equal(courseStats.expanded,34);assert.equal(courseStats.partial,1);assert.equal(courseStats.legacy,5);
  const s=freshState();s.moduleProgress.C203={selfChecked:true,date:'2026-09-26'};assert.equal(topicWorkProgress(s,'C203').completed,0);assert.equal(topicWorkProgress(s,'C203').total,309);
 });
 test('C203 previous two units retain all learning, reviews, draft, navigation and SRS after promotion',()=>{

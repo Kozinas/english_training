@@ -12,6 +12,7 @@
 
 | Модули | Ищите в оглавлении |
 |---|---|
+| T01-interface (первая наполненная подтема) | imperatives and don't + base; requests with could + base; be/do questions and indirect questions; before + -ing; separable phrasal verbs with pronouns (turn it on/off). Названия элементов и правила конкретного интерфейса изучаются в авторском материале курса, не приписываются учебнику. |
 | P01–P02 | am/is/are; pronouns; imperatives; classroom language |
 | P03 | a/an; the; singular/plural; countable/uncountable; this/that/these/those; my/mine/your/yours; possessive ’s |
 | P04 | am/is/are negatives and contractions; questions; short answers; word order; who/what/where/when/why/how; what/which/whose; how old/how long/how much/how many |

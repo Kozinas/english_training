@@ -57,7 +57,7 @@ test('C203 audio evidence is never inferred from ASR and external listening task
 test('C203 now has three populated units and no remaining declared scope',()=>{
  assert.equal(module.contentStatus,'expanded');assert.equal(module.subtopics.length,3);
  assert.equal(topicDevelopment.C203,undefined);assert.deepEqual(module.remainingScope,[]);
- assert.equal(courseStats.expanded,34);assert.equal(courseStats.partial,0);assert.equal(courseStats.legacy,6);
+ assert.equal(courseStats.expanded,34);assert.equal(courseStats.partial,1);assert.equal(courseStats.legacy,5);
  assert.equal(courseStats.expanded+courseStats.partial+courseStats.legacy,40);
  assert.equal(subtopics.filter(t=>t.topic==='C203').length,3);
 });

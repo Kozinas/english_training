@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="650" viewBox="0 0 760 650" role="img" aria-labelledby="title desc">
+  <title id="title">Pebble Notes — fictional New note screen</title>
+  <desc id="desc">Static teaching picture. Workspace Training. Title empty and required. Comment Practice only and optional. Share with team unchecked. Save draft available; Submit disabled. Status Unsaved changes. Cancel closes the editor and discards changes since the last save in this fictional app.</desc>
+  <rect width="760" height="650" rx="20" fill="#f3f6f2"/>
+  <rect x="24" y="24" width="712" height="602" rx="16" fill="#fff" stroke="#c4d4ce"/>
+  <g font-family="Arial, sans-serif" fill="#173d40">
+    <text x="52" y="64" font-size="15" letter-spacing="2">PEBBLE NOTES · FICTIONAL PRACTICE SCREEN</text>
+    <text x="52" y="107" font-size="30" font-weight="bold">New note</text>
+    <text x="52" y="153" font-size="18">Workspace</text>
+    <rect x="52" y="165" width="656" height="48" rx="7" fill="#f8faf8" stroke="#6d8f86"/>
+    <text x="68" y="196" font-size="20">Training</text>
+    <path d="M675 183 L684 193 L693 183" fill="none" stroke="#173d40" stroke-width="2"/>
+    <text x="52" y="253" font-size="18">Title</text>
+    <text x="590" y="253" font-size="16" fill="#873a2f">Required</text>
+    <rect x="52" y="266" width="656" height="48" rx="7" fill="#fff" stroke="#6d8f86"/>
+    <text x="52" y="352" font-size="18">Comment</text>
+    <text x="595" y="352" font-size="16" fill="#435c56">Optional</text>
+    <rect x="52" y="365" width="656" height="68" rx="7" fill="#fff" stroke="#6d8f86"/>
+    <text x="68" y="398" font-size="20">Practice only</text>
+    <rect x="52" y="458" width="23" height="23" rx="3" fill="#fff" stroke="#435c56" stroke-width="2"/>
+    <text x="88" y="477" font-size="19">Share with team</text>
+    <rect x="52" y="505" width="170" height="47" rx="7" fill="#1d5c7a"/>
+    <text x="77" y="535" font-size="19" fill="#fff">Save draft</text>
+    <rect x="242" y="505" width="164" height="47" rx="7" fill="#d6e4eb" stroke="#7596a5"/>
+    <text x="257" y="535" font-size="17">Submit (disabled)</text>
+    <rect x="426" y="505" width="118" height="47" rx="7" fill="#fff" stroke="#435c56"/>
+    <text x="453" y="535" font-size="19">Cancel</text>
+    <text x="52" y="584" font-size="18" fill="#873a2f">Status: Unsaved changes</text>
+    <text x="52" y="610" font-size="14" fill="#435c56">Title is required for Submit. Save draft does not submit the note.</text>
+  </g>
+</svg>

@@ -2,6 +2,8 @@ import foundation from './foundation.mjs';
 import intermediate from './intermediate.mjs';
 import advanced from './advanced.mjs';
 import technical from './technical.mjs';
+import t01 from './t01.mjs';
+import {t01Vocabulary} from './lexicon-t01.mjs';
 import p01 from './p01.mjs';
 import p02 from './p02.mjs';
 import p03 from './p03.mjs';
@@ -73,10 +75,13 @@ import {c205Vocabulary} from './lexicon-c205.mjs';
 
 export const levels = ['Pre-A1','A1','A2','B1','B2','C1','C2'];
 const core = [...foundation, ...intermediate, ...advanced];
-const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a105,...a201,...a202,...a203,...a204,...a205,...b101,...b102,...b103,...b104,...b105,...b201,...b202,...b203,...b204,...b205,...c101,...c102,...c103,...c104,...c105,...c201,...c202,...c203,...c204,...c205];
-const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary,...c104Vocabulary,...c105Vocabulary,...c201Vocabulary,...c202Vocabulary,...c203Vocabulary,...c204Vocabulary,...c205Vocabulary];
+const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a105,...a201,...a202,...a203,...a204,...a205,...b101,...b102,...b103,...b104,...b105,...b201,...b202,...b203,...b204,...b205,...c101,...c102,...c103,...c104,...c105,...c201,...c202,...c203,...c204,...c205,...t01];
+const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary,...c104Vocabulary,...c105Vocabulary,...c201Vocabulary,...c202Vocabulary,...c203Vocabulary,...c204Vocabulary,...c205Vocabulary,...t01Vocabulary];
 // Content scope is repository metadata, not learner state or a timed schedule.
-export const topicDevelopment={};
+export const topicDevelopment={T01:{remaining:[
+ 'Чтение документации: назначение разделов, prerequisites, версии, параметры, пути и символы, поиск нужного условия и проверяемый пересказ.',
+ 'Полные пошаговые инструкции: исходные условия, действия, ожидаемые результаты, предупреждения, проверка выполнения и восстановление после затруднения в диалоге.'
+]}};
 export const modules = [...core, ...technical].map((m, i) => ({
   ...m,
   track: m.id.startsWith('T') ? 'technical' : 'general',
