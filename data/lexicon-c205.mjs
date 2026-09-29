@@ -97,7 +97,39 @@ come back to~вернуться к обсуждению~/kʌm ˈbæk tə/~phrasa
 take stock~подвести промежуточный итог~/teɪk ˈstɒk/~chunk~Let us take stock of what remains unresolved.~Не буквальное действие с товарным запасом в этом контексте.
 spell out~подробно и явно объяснить~/spel ˈaʊt/~phrasal~Please spell out the condition for revising the proposal.~Здесь не продиктовать по буквам, а раскрыть смысл.
 on balance~с учётом всех доводов~/ɒn ˈbæləns/~chunk~On balance, I favour testing the simpler procedure.~Не физическое равновесие; взвешенный вывод, не доказанная объективность.
-for the sake of argument~ради рассуждения, допустим для обсуждения~/fə ðə ˌseɪk əv ˈɑːɡjəmənt/~chunk~For the sake of argument, suppose the audience has not seen the email.~Допущение, не новый установленный факт.`;
+for the sake of argument~ради рассуждения, допустим для обсуждения~/fə ðə ˌseɪk əv ˈɑːɡjəmənt/~chunk~For the sake of argument, suppose the audience has not seen the email.~Допущение, не новый установленный факт.
+audit~аудит, систематический обзор~/ˈɔːdɪt/~word~The audit separates independent work from supported revision.~Здесь обзор свидетельств, не обязательно финансовая проверка.
+portfolio~портфолио работ~/pɔːtˈfəʊliəʊ/~word~My portfolio retains original and revised texts.~Коллекция работ сама не сертификат.
+baseline~исходная точка сравнения~/ˈbeɪslaɪn/~word~The first unaided attempt provides a limited baseline.~Условия исходной попытки нужно сохранить.
+benchmark~ориентир для сравнения~/ˈbentʃmɑːk/~word~A benchmark is useful only if the comparison is appropriate.~Не любая цифра является валидным стандартом.
+retention~сохранение в памяти~/rɪˈtenʃən/~word~A later task can provide evidence about retention.~Не гарантия от одного повтора.
+retrieval~извлечение из памяти~/rɪˈtriːvəl/~word~Retrieval in a new sentence differs from recognising a card.~В другом контексте также получение данных.
+autonomy~самостоятельность~/ɔːˈtɒnəmi/~word~Learner autonomy includes knowing when to request help.~Не запрет сотрудничества.
+self-assessment~самооценка~/ˌself əˈsesmənt/~word~My self-assessment needs examples from actual work.~Не независимая сертификация.
+feedback~обратная связь~/ˈfiːdbæk/~word~I need feedback on the scope of my claim.~Обычно неисчисляемое; feedback on.
+assistance~помощь~/əˈsɪstəns/~word~The record identifies the assistance I received.~Помощь меняет условия, не обесценивает работу.
+unassessed~не оценённый~/ˌʌnəˈsest/~word~My oral fluency remains unassessed without audio.~Не то же самое, что неуспешный.
+independently~самостоятельно~/ˌɪndɪˈpendəntli/~word~I completed the new brief independently.~Следует уточнить допустимые опоры.
+productive~продуктивный, связанный с созданием речи~/prəˈdʌktɪv/~word~Productive use requires my own message.~Здесь не количество занятых часов.
+receptive~рецептивный, связанный с пониманием~/rɪˈseptɪv/~word~Receptive vocabulary can exceed the words I use spontaneously.~В другом значении receptive to — восприимчивый к.
+diagnostic~диагностический~/ˌdaɪəɡˈnɒstɪk/~word~A diagnostic task helps locate a specific gap.~Учебная диагностика не клинический диагноз.
+priority~приоритет~/praɪˈɒrəti/~word~My priority is preserving conditions in explanations.~Приоритет не отменяет остальные навыки.
+prerequisite~предпосылка, необходимое предварительное условие~/ˌpriːˈrekwɪzɪt/~word~Understanding the brief is a prerequisite for this task.~Не гарантия успешного выполнения.
+checkpoint~контрольная точка~/ˈtʃekpɔɪnt/~word~At the checkpoint, we review actual new work.~Не автоматическое закрытие темы.
+milestone~значимый этап~/ˈmaɪlstəʊn/~word~Completing a full revision is a milestone, not the end of learning.~Не обязательно календарный срок.
+setback~затруднение, временная неудача~/ˈsetbæk/~word~A setback does not erase the work already completed.~Не общий вывод о способности.
+readiness~готовность~/ˈredinəs/~word~Readiness for the exchange needs relevant evidence.~Не устанавливается одним чувством уверенности.
+pending~ожидающий выполнения или решения~/ˈpendɪŋ/~word~The interaction check is still pending.~Не completed и не failed.
+resume~возобновить~/rɪˈzjuːm/~word~I will resume the draft where I stopped.~Глагол, не существительное résumé.
+reassess~оценить заново~/ˌriːəˈses/~word~We will reassess the priority after a new task.~Не стирать исходную оценку.
+retain support~сохранить поддержку~/rɪˌteɪn səˈpɔːt/~chunk~I will retain support until new evidence justifies reducing it.~Поддержка может быть адресной, не весь курс с нуля.
+build on~опираться на и развивать~/ˈbɪld ɒn/~phrasal~The next task builds on the distinction I practised.~Не обязательно физически строить сверху.
+brush up on~освежить знания~/ˌbrʌʃ ˈʌp ɒn/~phrasal~I need to brush up on conditional clauses.~Не обещание выучить весь язык быстро.
+fall behind~отстать от намеченного~/ˌfɔːl bɪˈhaɪnd/~phrasal~I fell behind my provisional schedule, not back to zero.~Отставание от плана не обнуление навыка.
+keep track of~отслеживать, вести учёт~/ˌkiːp ˈtræk əv/~chunk~I keep track of assistance as well as scores.~Целостное сочетание, не буквальный след.
+work towards~работать над достижением~/ˌwɜːk təˈwɔːdz/~chunk~I am working towards explaining exceptions clearly.~Направление усилия, не достигнутая цель.
+at one's own pace~в собственном темпе~/ət wʌnz ˌəʊn ˈpeɪs/~chunk~You can study at your own pace without removing required work.~Темп не сокращает полноту курса.
+not yet~пока ещё не~/nɒt ˈjet/~chunk~I have not yet demonstrated transfer to a new task.~Не равнозначно never.`;
 const kinds={word:'слово',chunk:'выражение',phrasal:'фразовый глагол'};
 export const c205Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid C205 vocabulary row '+(i+1));

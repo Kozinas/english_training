@@ -16,8 +16,8 @@ function complete(s,unit){const p=unitState(s,unit.id);for(const t of unit.banks
 test('C205 writing has a full natural-sized scope while independent development remains unpublished',()=>{
  assert.equal(u.explanation.length,14);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>8500);assert.equal(u.examples.length,32);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,14,14,14,12,12,12,12,12]);assert.equal(practice.length,116);
- assert(u.prerequisites.includes('C205-inquiry'));assert.equal(topic.contentStatus,'partial');assert.equal(topic.remainingScope.length,1);assert(topic.remainingScope[0].includes('Самостоятельное'));
- assert.equal(topic.subtopics.length,3);assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[33,1,6]);
+ assert(u.prerequisites.includes('C205-inquiry'));assert.equal(topic.contentStatus,'expanded');assert.equal(topic.remainingScope.length,0);assert.deepEqual(topic.remainingScope,[]);
+ assert.equal(topic.subtopics.length,4);assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[34,0,6]);
 });
 
 test('C205 writing independent keys distinguish clauses, noun phrases, mandatives and agreement',()=>{
@@ -99,14 +99,14 @@ test('C205 editorial interaction requires an actual partner and is not the compl
 test('C205 reference has bounded scope and 32 new cards preserve all published 36 exactly',()=>{
  assert.equal(writingPatterns.length,30);assert(writingPatterns.every(r=>r.length===4&&r.every(Boolean)));assert.equal(projectWritingReference.practice.length,16);
  assert(projectWritingReference.intro.some(s=>s.includes('не универсальный стандарт')));
- assert.equal(c205Vocabulary.length,100);assert.equal(topic.vocabulary.length,107);assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,107);
+ assert.equal(c205Vocabulary.length,132);assert.equal(topic.vocabulary.length,139);assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,139);
  assert.equal(createHash('sha256').update(JSON.stringify(c205Vocabulary.slice(0,36))).digest('hex'),'086bbba3d81203eb4ab4949ee85f2ea701a6b26d2f920897db044933098c11f6');
  const added=c205Vocabulary.slice(36,68);assert.equal(added[0].id,'C205-x-37');assert.equal(added.at(-1).id,'C205-x-68');
  for(const c of added)assert(c.context&&c.note&&/^\/.+\/$/.test(c.ipa)&&c.accent==='UK');
  assert.equal(added.find(c=>c.word==='abstract').ipa,'/ˈæbstrækt/');assert.equal(added.find(c=>c.word==='substantive').ipa,'/səbˈstæntɪv/');
 });
 
-test('C205 existing inquiry learning, reviews, drafts, navigation and SRS remain at 109/355',()=>{
+test('C205 existing inquiry learning, reviews, drafts, navigation and SRS remain at 109/472',()=>{
  const s=freshState(),old=topic.subtopics[0],p=complete(s,old),t=old.tests[0].tasks.find(t=>t.kind==='text');
  p.attempts[0].reviews[t.id]={score:3,reviewer:'Synthetic teacher',date:'2026-09-28T12:10:00Z',evidence:'Synthetic regression evidence only.',heardAudio:false};
  startUnitTest(s,old.id);p.examDraft.answers[old.tests[1].tasks.find(t=>t.kind==='text').id]='Synthetic unfinished answer\nContinue later.';
@@ -116,7 +116,7 @@ test('C205 existing inquiry learning, reviews, drafts, navigation and SRS remain
  s.bookmark={route,scroll:610,focus:''};s.navigation.current=route;s.navigation.sections.course=route;
  s.navigation.pages['module/C205']={scroll:390,focus:'drill1',fields:{drill0:'on',drill1:'обосновывать\nOriginal synthetic answer',drill2:'to'},details:[true]};
  const before=structuredClone(s),restored=roundTrip(s);assert.deepEqual(restored,before);assert.equal(restored.schemaVersion,2);assert(!restored.learning[u.id]);
- const work=topicWorkProgress(restored,'C205');assert.equal(work.completed,109);assert.equal(work.total,355);assert.equal(work.percent,30);
+ const work=topicWorkProgress(restored,'C205');assert.equal(work.completed,109);assert.equal(work.total,472);assert.equal(work.percent,23);
  unitState(restored,u.id).answers[task('forms-1').id]='Although';assert.equal(topicWorkProgress(restored,'C205').completed,110);
  assert.deepEqual(restored.learning[old.id],before.learning[old.id]);assert.deepEqual(restored.cards,before.cards);assert.deepEqual(restored.navigation,before.navigation);
 });
@@ -134,11 +134,11 @@ test('C205 full-length multiline writing and exam drafts round-trip without trun
  assert.deepEqual(roundTrip(s),s);assert.equal(p.attempts[0].answers[task('test-a-18').id],full);
 });
 
-test('C205 full published work is 355 steps, still partial and not mastery or a timed shortcut',()=>{
+test('C205 full published work is 472 steps, expanded but not mastery or a timed shortcut',()=>{
  const s=freshState();for(const unit of topic.subtopics)complete(s,unit);const work=topicWorkProgress(s,'C205');
- assert.equal(work.completed,355);assert.equal(work.total,355);assert.equal(work.percent,100);assert.equal(topic.contentStatus,'partial');
+ assert.equal(work.completed,472);assert.equal(work.total,472);assert.equal(work.percent,100);assert.equal(topic.contentStatus,'expanded');
  for(const unit of topic.subtopics)assert.equal(scoreUnitTest(unit,s.learning[unit.id].attempts[0]).status,'awaiting-review');
  s.placement={assessmentVersion,date:'2026-09-28T12:00:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};
- assert(buildPlan(s).items.some(m=>m.id==='C205'&&m.contentStatus==='partial'));
+ assert(buildPlan(s).items.some(m=>m.id==='C205'&&m.contentStatus==='expanded'));
  s.profile.minutes=10;s.profile.days=2;assert.deepEqual(topicWorkProgress(s,'C205'),work);assert.deepEqual(roundTrip(s),s);
 });

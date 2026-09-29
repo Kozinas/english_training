@@ -17,9 +17,9 @@ function complete(s,unit){const p=unitState(s,unit.id);for(const t of unit.banks
 test('C205 defence has substantial connected scope but does not publish an empty independent route',()=>{
  assert.equal(u.explanation.length,16);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>9500);assert.equal(u.examples.length,36);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,12,14,14,14,12,12,12,12,12]);assert.equal(practice.length,128);assert.equal(u.goals.length,7);
- assert.equal(topic.subtopics.length,3);assert.equal(topic.contentStatus,'partial');assert.equal(topic.remainingScope.length,1);assert(topic.remainingScope[0].includes('Самостоятельное развитие'));
+ assert.equal(topic.subtopics.length,4);assert.equal(topic.contentStatus,'expanded');assert.equal(topic.remainingScope.length,0);assert.deepEqual(topic.remainingScope,[]);
  assert.deepEqual(u.prerequisites,['C205-writing','C204-discussion','C203-connected']);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[33,1,6,109,9465,4664]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[34,0,6,110,9581,4720]);
 });
 
 test('C205 defence constrained grammar keys independently reject wrong inversion, forms and prepositions',()=>{
@@ -76,9 +76,9 @@ test('C205 defence reference scope is bounded and source links are real methodol
 });
 
 test('C205 defence adds 32 contextual cards without mutating any of the published 68',()=>{
- assert.equal(c205Vocabulary.length,100);assert.equal(topic.vocabulary.length,107);assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,107);
+ assert.equal(c205Vocabulary.length,132);assert.equal(topic.vocabulary.length,139);assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,139);
  assert.equal(createHash('sha256').update(JSON.stringify(c205Vocabulary.slice(0,68))).digest('hex'),'3afba7ba0539f75a126587d4ef8bdc57017e907f9a064e11f51010288410ff49');
- const added=c205Vocabulary.slice(68);assert.equal(added[0].id,'C205-x-69');assert.equal(added.at(-1).id,'C205-x-100');
+ const added=c205Vocabulary.slice(68,100);assert.equal(added[0].id,'C205-x-69');assert.equal(added.at(-1).id,'C205-x-100');
  for(const c of added)assert(c.context&&c.note&&/^\/.+\/$/.test(c.ipa)&&c.accent==='UK');
  assert.equal(added.find(c=>c.word==='defensible').ipa,'/dɪˈfensəbəl/');assert(added.find(c=>c.word==='get at').note.includes('резко'));assert(added.find(c=>c.word==='qualification').note.includes('не диплом'));
 });
@@ -99,7 +99,7 @@ test('C205 unknown audio and delayed new performance remain explicit, not fabric
  assert(task('test-b-24').explanation.includes('Unknown не ноль'));
 });
 
-test('C205 both existing units import at 226/355 with full writing, reviews, drafts, navigation and SRS intact',()=>{
+test('C205 both existing units import at 226/472 with full writing, reviews, drafts, navigation and SRS intact',()=>{
  const s=freshState();for(const old of topic.subtopics.slice(0,2)){
   const p=complete(s,old),t=old.tests[0].tasks.find(t=>t.kind==='text');p.attempts[0].reviews[t.id]={score:3,reviewer:'Synthetic teacher',date:'2026-09-28T16:05:00Z',evidence:'Synthetic import regression only, not a learner result.',heardAudio:false};
   startUnitTest(s,old.id);p.examDraft.answers[old.tests[1].tasks.find(t=>t.kind==='text').id]='Synthetic unfinished draft\nContinue later.';
@@ -111,14 +111,14 @@ test('C205 both existing units import at 226/355 with full writing, reviews, dra
  s.navigation.pages['module/C205']={scroll:320,focus:'drill1',fields:{drill0:'on',drill1:'обосновывать\nSynthetic original answer',drill2:'to'},details:[true]};s.drafts.C205='Synthetic notes';
  s.cards['C205-x-68']=reviewCard(null,'good',Date.UTC(2026,8,28));s.cards['C205-v1']=reviewCard(null,'good',Date.UTC(2026,8,22));
  const original=structuredClone(s),restored=roundTrip(s);assert.deepEqual(restored,original);assert(!restored.learning[u.id]);assert.equal(restored.schemaVersion,2);
- const p=topicWorkProgress(restored,'C205');assert.equal(p.completed,226);assert.equal(p.total,355);assert.equal(p.percent,63);
+ const p=topicWorkProgress(restored,'C205');assert.equal(p.completed,226);assert.equal(p.total,472);assert.equal(p.percent,47);
  unitState(restored,u.id).answers[task('forms-1').id]='replaces';assert.equal(topicWorkProgress(restored,'C205').completed,227);
  for(const old of topic.subtopics.slice(0,2))assert.deepEqual(restored.learning[old.id],original.learning[old.id]);assert.deepEqual(restored.cards,original.cards);assert.deepEqual(restored.navigation,original.navigation);
 });
 
 test('C205 first-unit-only exports still retain 109 steps without inventing either later unit',()=>{
  const s=freshState();complete(s,topic.subtopics[0]);const restored=roundTrip(s),p=topicWorkProgress(restored,'C205');
- assert.equal(p.completed,109);assert.equal(p.total,355);assert.equal(p.percent,30);assert(!restored.learning['C205-writing']);assert(!restored.learning[u.id]);
+ assert.equal(p.completed,109);assert.equal(p.total,472);assert.equal(p.percent,23);assert(!restored.learning['C205-writing']);assert(!restored.learning[u.id]);
 });
 
 test('C205 long defence drafts persist and both exam attempts retain twenty pending answers',()=>{
@@ -139,9 +139,9 @@ test('C205 speech reviews require actual heard-audio acknowledgement and never a
  assert.equal(scoreUnitTest(u,p.attempts[0]).pending,19);assert.equal(scoreUnitTest(u,p.attempts[0]).status,'awaiting-review');
 });
 
-test('C205 355 filled steps remain partial and awaiting review regardless of session duration',()=>{
- const s=freshState();for(const unit of topic.subtopics)complete(s,unit);const p=topicWorkProgress(s,'C205');assert.equal(p.completed,355);assert.equal(p.total,355);assert.equal(p.percent,100);
- assert.equal(topic.contentStatus,'partial');for(const unit of topic.subtopics)assert.equal(scoreUnitTest(unit,s.learning[unit.id].attempts[0]).status,'awaiting-review');
- s.placement={assessmentVersion,date:'2026-09-28T16:30:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};assert(buildPlan(s).items.some(m=>m.id==='C205'&&m.contentStatus==='partial'));
+test('C205 472 filled steps remain awaiting review regardless of session duration',()=>{
+ const s=freshState();for(const unit of topic.subtopics)complete(s,unit);const p=topicWorkProgress(s,'C205');assert.equal(p.completed,472);assert.equal(p.total,472);assert.equal(p.percent,100);
+ assert.equal(topic.contentStatus,'expanded');for(const unit of topic.subtopics)assert.equal(scoreUnitTest(unit,s.learning[unit.id].attempts[0]).status,'awaiting-review');
+ s.placement={assessmentVersion,date:'2026-09-28T16:30:00Z',answers:Object.fromEntries(questions.map(q=>[q.id,q.answer]))};assert(buildPlan(s).items.some(m=>m.id==='C205'&&m.contentStatus==='expanded'));
  s.profile.minutes=10;s.profile.days=2;assert.deepEqual(topicWorkProgress(s,'C205'),p);assert.deepEqual(roundTrip(s),s);
 });
