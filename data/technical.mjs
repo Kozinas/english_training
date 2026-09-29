@@ -12,7 +12,7 @@ export default [
  sound:'Проговаривай пути и символы: slash, backslash, dot, underscore, hyphen. Не сообщай реальные секреты.'
 },
 {
- id:'T02', level:'B1', title:'Ошибки, задачи и отчёты о работе', prerequisites:['B101','B104'], focus:'bug reports; stand-up; reproduction; expected/actual',
+ id:'T02', level:'B1', title:'Ошибки, задачи и отчёты о работе', prerequisites:['T01','B101','B104'], focus:'bug reports; stand-up; reproduction; expected/actual',
  rule:'Bug report должен позволять воспроизвести проблему: context/environment → steps → expected → actual → impact. Expected не означает желаемую новую функцию. Reproduce — воспроизвести, resolve — устранить, workaround — временный обход. В stand-up разделяй завершённое, текущее, планы и blockers. Назови нужную помощь конкретно: Could someone confirm the expected behaviour?',
  examples:['The app crashes when I open the settings. — Приложение падает при открытии настроек.','I have reproduced the issue on two devices. — Я воспроизвёл проблему на двух устройствах.','Although the request succeeds, the interface still displays an error until the page is refreshed. — Хотя запрос успешен, интерфейс показывает ошибку до обновления страницы.'],
  reading:['On version 2.4, saving an empty draft shows a success message, but the draft is missing after reload. The issue occurs in a new account with default settings. Adding a title before saving avoids the problem. No existing drafts appear to be affected. The report includes steps and a sample without personal data.','What is the workaround?','Add a title before saving.'],
