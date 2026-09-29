@@ -80,7 +80,7 @@ export async function checkT01({evaluate,route,command,poll,screenshot,delay,imp
  assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Общий прогресс работы'));
  await route('course','#module-list');assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("T01")).textContent')).includes('Общий прогресс работы'));
  await route('plan','[data-topic-progress="T01"]');assert((await evaluate('document.querySelector("[data-topic-progress=T01]").textContent')).includes('Общий прогресс работы'));
- await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
+ await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 0'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed legacy T01 SRS');if(JSON.stringify(s.navigation.pages['module/T01'].fields)!==JSON.stringify(old.navigation.pages['module/T01'].fields))throw Error('Lost T01 archive');if(s.learning['T01-interface'].attempts.length!==2)throw Error('Lost T01 test history');}`);
  console.log('T01 first-unit smoke passed: eight banks, two exams, diagram/text equivalence, original/revised drafts, 101/337 first-unit work only, legacy archive/SRS, reference and mobile.');
  await checkT01Documentation({evaluate,route,command,poll,screenshot,delay,importSynthetic});

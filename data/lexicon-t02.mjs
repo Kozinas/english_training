@@ -74,6 +74,42 @@ meet the condition~соответствовать условию~/ˌmiːt ðə k
 not yet verified~пока не проверено и не подтверждено~/ˌnɒt jet ˈverɪfaɪd/~chunk~The release is not yet verified.~Не равно verified as broken.
 no longer~больше не~/ˌnəʊ ˈlɒŋɡə/~chunk~The indicator is no longer active.~Не добавляй ещё not к отрицательному no longer.
 my understanding is that~я понимаю это так, что~/maɪ ˌʌndəˈstændɪŋ ɪz ðət/~chunk~My understanding is that Reset clears both states.~Явная интерпретация; попроси подтвердить.
-subject to confirmation~при условии подтверждения~/ˌsʌbdʒekt tə ˌkɒnfəˈmeɪʃən/~chunk~The proposed date is subject to confirmation.~Дата ещё не окончательно согласована; не скрывай условность.`;
+subject to confirmation~при условии подтверждения~/ˌsʌbdʒekt tə ˌkɒnfəˈmeɪʃən/~chunk~The proposed date is subject to confirmation.~Дата ещё не окончательно согласована; не скрывай условность.
+progress~продвижение в работе~/ˈprəʊɡres/~word~We have made some progress on the task.~Существительное обычно U; не a progress.
+update~сообщение об изменениях, обновление статуса~/ˈʌpdeɪt/~word~I will send an update at 13:00 UTC.~Существительное с первым ударением; глагол update обычно /ʌpˈdeɪt/.
+achievement~достигнутый результат~/əˈtʃiːvmənt/~word~Drafting the examples is an achievement, but review remains.~Назови достигнутое, не весь task автоматически.
+outcome~результат, исход~/ˈaʊtkʌm/~word~The outcome of the check is still unknown.~Проведение действия не гарантирует успешный исход.
+outstanding~остающийся невыполненным~/aʊtˈstændɪŋ/~word~There is outstanding review work.~Здесь remaining; в другом контексте может быть выдающийся.
+remaining~оставшийся~/rɪˈmeɪnɪŋ/~word~Two remaining examples have not been drafted.~Остаток нужно связать с конкретной стадией.
+ongoing~продолжающийся~/ˈɒnɡəʊɪŋ/~word~The investigation is ongoing.~Не значит причина найдена или work непрерывен.
+dependency~зависимость, необходимое условие~/dɪˈpendənsi/~word~The sample is a dependency for the comparison.~Назови затронутый шаг, не всё work.
+access~доступ~/ˈækses/~word~I need access to the training account.~Обычно U; access to, не пароль в публичном handover.
+permission~разрешение~/pəˈmɪʃən/~word~We have not received permission to use that environment.~Request sent не permission granted.
+request~запрос, просьба~/rɪˈkwest/~word~The access request has been sent.~Существительное здесь; отправка не исполнение.
+deadline~крайний срок~/ˈdedlaɪn/~word~No deadline for the full task has been agreed.~Не приравнивай tentative estimate к принятому deadline.
+target~целевой ориентир~/ˈtɑːɡɪt/~word~16:00 is a possible target for the two drafts.~Scope и условия важнее одной цифры.
+estimate~оценка, приблизительный расчёт~/ˈestɪmət/~word~The estimate depends on clarification.~Существительное /-mət/; глагол estimate обычно /-meɪt/.
+tentative~предварительный, неокончательный~/ˈtentətɪv/~word~The completion estimate is tentative.~Пометь условия, не скрытое обещание.
+commitment~принятое обязательство~/kəˈmɪtmənt/~word~My commitment is to post another update.~Не автоматически finish всей задачи.
+availability~доступность~/əˌveɪləˈbɪləti/~word~Account availability is unconfirmed.~Не доказывает, что доступ никогда не появится.
+handover~передача работы~/ˈhændəʊvə/~word~The handover names the accepted scope.~Обычно UK, handoff также употребляется; отправить note не передать все обязанности.
+handoff~передача работы~/ˈhændɒf/~word~The handoff includes open questions.~Часто US; здесь UK-транскрипция слова, не имитация US-акцента.
+recipient~получатель~/rɪˈsɪpiənt/~word~The recipient has read the note.~Прочтение не принятие всей работы.
+acknowledge~подтвердить получение или признать~/əkˈnɒlɪdʒ/~word~She acknowledged the message but did not accept the task.~Контекст определяет смысл; acknowledgement не обязательство выполнить.
+accept~принять, согласиться взять~/əkˈsept/~word~Nina accepted the task of proofreading four drafts.~Принятый scope ограничен действием.
+resume~возобновить~/rɪˈzjuːm/~word~We can resume the check when access is available.~Глагол, не существительное résumé.
+postpone~отложить~/pəʊstˈpəʊn/~word~We may need to postpone that check.~Возможность не принятое решение и не выполненный check.
+escalate~передать вопрос на другой уровень решения~/ˈeskəleɪt/~word~Should we escalate the unresolved access request?~Не обязательно обвинить человека; реальный workflow надо согласовать.
+take over~принять на себя работу или ответственность~/ˌteɪk ˈəʊvə/~phrasal~Nina has not taken over the whole task.~Целостный смысл не буквально взять над; scope обязателен.
+hand over~передать работу или ответственность~/ˌhænd ˈəʊvə/~phrasal~Please clarify which part you want to hand over.~Hand over глагол, handover существительное; получатель должен принять scope.
+get back to~связаться снова, вернуться с ответом~/ˌɡet ˈbæk tə/~phrasal~I will get back to you with an update.~Не обязательно физически вернуться к человеку.
+catch up on~ознакомиться с пропущенным, наверстать~/ˌkætʃ ˈʌp ɒn/~phrasal~I need to catch up on the review notes.~Не буквальная ловля вверх; чтение не approval.
+work on~работать над~/ˈwɜːk ɒn/~chunk~I am working on the revised wording.~Work on a task; текущая работа не завершение.
+wait for~ждать~/ˈweɪt fə/~chunk~We are waiting for the agreed sample.~Wait for something; точное нужное условие.
+in progress~в процессе выполнения~/ɪn ˈprəʊɡres/~chunk~The task is still in progress.~Не fully reviewed или released.
+on hold~приостановлено~/ɒn ˈhəʊld/~chunk~That comparison is on hold pending the sample.~Назови конкретную часть, не всю работу без оснований.
+so far~к настоящему моменту~/səʊ ˈfɑː/~chunk~So far, four examples have been drafted.~Граница знания/результата сейчас, не окончательный total.
+by then~к тому моменту~/baɪ ˈðen/~chunk~I may have an answer by then, but it is not confirmed.~Then требует ясной временной опоры.
+take on~взять на себя задачу~/ˌteɪk ˈɒn/~phrasal~I can take on proofreading, but not the application check.~Готовность и окончательное принятие уточняются в контексте.`;
 const kinds={word:'слово',phrasal:'фразовый глагол',chunk:'выражение'};
 export const t02Vocabulary=source.split('\n').map((line,i)=>{const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid T02 vocabulary row '+(i+1));const [word,translation,ipa,kind,context,note]=fields;if(!kinds[kind])throw Error('Invalid T02 vocabulary kind');return {id:`T02-x-${i+1}`,module:'T02',word,translation,ipa,accent:'UK',kind:kinds[kind],context,note};});

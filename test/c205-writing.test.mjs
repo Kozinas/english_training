@@ -17,7 +17,7 @@ test('C205 writing retains its full natural-sized scope within the expanded caps
  assert.equal(u.explanation.length,14);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>8500);assert.equal(u.examples.length,32);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,14,14,14,12,12,12,12,12]);assert.equal(practice.length,116);
  assert(u.prerequisites.includes('C205-inquiry'));assert.equal(topic.contentStatus,'expanded');assert.equal(topic.remainingScope.length,0);assert.deepEqual(topic.remainingScope,[]);
- assert.equal(topic.subtopics.length,4);assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[35,1,4]);
+ assert.equal(topic.subtopics.length,4);assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy],[36,0,4]);
 });
 
 test('C205 writing independent keys distinguish clauses, noun phrases, mandatives and agreement',()=>{

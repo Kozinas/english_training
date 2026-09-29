@@ -20,7 +20,7 @@ test('T01 retains the substantial interface unit alongside documentation and the
  assert.equal(topic.subtopics.length,3);assert.equal(topic.contentStatus,'expanded');assert.equal(topicDevelopment.T01,undefined);assert.deepEqual(topic.remainingScope,[]);
  assert.equal(topic.subtopics[2].id,'T01-procedures');
  assert.deepEqual(u.prerequisites,['A203-obligation','A205-patterns']);assert.equal(topic.track,'technical');
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[35,1,4,115,10145,4972]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[36,0,4,116,10263,5028]);
 });
 test('T01 imperatives, requests, agreement, before and particle position have independent keys',()=>{
  const cases=[['forms-1','Open','Opens'],['forms-2','close','closes'],['forms-3','select','selected'],['forms-4','are','is'],['forms-5','Is','Does'],['forms-6','Do','Are'],['forms-7','leaving','leave'],['forms-8','Turn it off','Turn off it'],['review-1','delete','deletes'],['test-a-1','close','closes'],['test-a-2','copy','copied'],['test-a-3','are','is'],['test-a-4','opening','open'],['test-b-1','Open','Opens'],['test-b-2','describe','described'],['test-b-3','Is','Does'],['test-b-4','continuing','continue']];
