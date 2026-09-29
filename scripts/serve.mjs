@@ -10,6 +10,7 @@ const routes=new Map([
  ['/navigation-state.mjs','web/navigation-state.mjs'],
  ['/assets/a103-kitchen.svg','web/assets/a103-kitchen.svg'],
  ['/assets/t01-interface.svg','web/assets/t01-interface.svg'],
+ ...['t01-documentation','t01-documentation-texts','t01-documentation-tests','documentation-language'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['t01','t01-interface','t01-interface-texts','t01-interface-tests','interface-language','lexicon-t01'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['a103','a103-existence','a103-portions','a103-quantity','a103-place','quantity-place','lexicon-a103'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['a104','a104-be','a104-actions','a104-did','past-simple','lexicon-a104'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),

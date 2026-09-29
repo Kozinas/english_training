@@ -38,7 +38,43 @@ turn off~выключить~/ˌtɜːn ˈɒf/~phrasal~Turn it off before continui
 fill in~заполнить~/ˌfɪl ˈɪn/~phrasal~Fill in the required fields.~Fill out a form также нормативно; не переводить буквально.
 leave blank~оставить пустым~/ˌliːv ˈblæŋk/~chunk~You can leave the optional field blank.~Разрешение по условию, не универсальный запрет ввода.
 go back~вернуться назад~/ˌɡəʊ ˈbæk/~phrasal~Go back to the previous page.~Не гарантирует отмену уже выполненного действия.
-make sure~убедиться, проверить~/ˌmeɪk ˈʃɔː/~chunk~Make sure the workspace is Training.~Make sure that также возможно; проверка не догадка.`;
+make sure~убедиться, проверить~/ˌmeɪk ˈʃɔː/~chunk~Make sure the workspace is Training.~Make sure that также возможно; проверка не догадка.
+documentation~документация~/ˌdɒkjʊmenˈteɪʃən/~word~Read the documentation for your version.~Обычно неисчисляемое: the documentation, не a documentation.
+manual~руководство~/ˈmænjuəl/~word~The manual describes the available options.~Исчисляемое a manual; не любое описание полно.
+overview~обзор~/ˈəʊvəvjuː/~word~Start with the overview to understand the purpose.~Не точная спецификация всех параметров.
+reference~справочник; ссылка~/ˈrefərəns/~word~Check the reference for the default value.~Здесь справочник, не рекомендательное письмо.
+requirement~требование~/rɪˈkwaɪəmənt/~word~Write access is a requirement for export.~Требование не уже выполненное условие.
+permission~разрешение~/pəˈmɪʃən/~word~We need permission to write to this directory.~Permissions во множественном может обозначать отдельные права доступа.
+destination~место назначения~/ˌdestɪˈneɪʃən/~word~The destination directory must already exist.~Не путать с source.
+source~источник; исходный файл~/sɔːs/~word~The viewer does not change the source file.~Source также источник информации, контекст важен.
+input~ввод; входные данные~/ˈɪnpʊt/~word~The input must be readable JSON.~Здесь входные данные инструмента.
+output~вывод; выходные данные~/ˈaʊtpʊt/~word~The example output is not our actual result.~Пример результата не свидетельство запуска.
+argument~аргумент команды~/ˈɑːɡjʊmənt/~word~This option needs a path argument.~Здесь переданное значение, не спор между людьми.
+parameter~параметр~/pəˈræmɪtə/~word~What does this parameter control?~Употребление parameter/argument уточняется по документу.
+placeholder~условное обозначение заменяемого значения~/ˈpleɪshəʊldə/~word~Replace the placeholder with a sample path.~Не буквальное имя существующего файла.
+literal~буквальный, точный~/ˈlɪtərəl/~word~Keep the literal option name unchanged.~Literal token не переводится как обычная инструкция.
+default~значение по умолчанию~/dɪˈfɔːlt/~word~The default is ten records.~Не любое значение из примера.
+version~версия~/ˈvɜːʃən/~word~Which version is installed?~Версия страницы и программы могут различаться.
+release~выпуск, релиз~/rɪˈliːs/~word~Read the notes for this release.~Новый release не автоматически установленное обновление.
+compatible~совместимый~/kəmˈpætəbəl/~word~Is this format compatible with our version?~Compatible with; нужна проверка конкретной совместимости.
+readable~доступный для чтения; разборчивый~/ˈriːdəbəl/~word~A readable input file is required.~В техническом условии доступ к чтению, не оценка стиля текста.
+writable~доступный для записи~/ˈraɪtəbəl/~word~The destination must be writable.~Также writeable; это свойство не подтверждает выполненную запись.
+working directory~текущая рабочая папка~/ˌwɜːkɪŋ dəˈrektəri/~chunk~The relative path starts from the working directory.~Это база в указанном учебном инструменте.
+relative path~относительный путь~/ˌrelətɪv ˈpɑːθ/~chunk~This relative path needs a known base.~Без базы абсолютное место неизвестно.
+absolute path~абсолютный путь~/ˌæbsəluːt ˈpɑːθ/~chunk~The guide does not give an absolute path.~Не придумывать диск или имя пользователя.
+slash~косая черта~/slæʃ/~word~Say slash between the directory and filename.~Символ /, также forward slash.
+backslash~обратная косая черта~/ˈbækslæʃ/~word~Did you say slash or backslash?~Другой символ, не автоматическая замена в любом пути.
+underscore~нижнее подчёркивание~/ˈʌndəskɔː/~word~The filename contains an underscore.~Здесь существительное, не глагол подчёркивать мысль.
+hyphen~дефис~/ˈhaɪfən/~word~Use a hyphen, not an underscore.~При устной передаче dash может потребовать уточнения.
+dot~точка~/dɒt/~word~Read the filename as sample dot txt.~Название символа в имени файла; не числовая единица.
+colon~двоеточие~/ˈkəʊlən/~word~The drive letter is followed by a colon.~Не путать с semicolon.
+bracket~скобка~/ˈbrækɪt/~word~Square brackets mark optional groups here.~Смысл скобок задаётся конкретной легендой.
+omit~пропустить, не указывать~/əʊˈmɪt/~word~If you omit the option, no report is written.~Omit не delete уже существующего файла.
+overwrite~перезаписать~/ˌəʊvəˈraɪt/~word~This fictional version refuses to overwrite a destination.~Не выполнять реальные перезаписи ради языка.
+refer to~обратиться к; сослаться на~/rɪˈfɜː tuː/~chunk~Refer to the matching manual.~Предлог to, не универсальное of.
+depend on~зависеть от~/dɪˈpend ɒn/~chunk~The path depends on the working directory.~Управление on, не выбирается переводом русского предлога.
+read back~повторить вслух для проверки~/ˌriːd ˈbæk/~phrasal~Could you read the path back to me?~Глагол настоящего времени /riːd/, не прошедшее /red/.
+by default~по умолчанию~/baɪ dɪˈfɔːlt/~chunk~The preview shows ten records by default.~Условие при отсутствии другого выбора по правилам инструмента.`;
 const kinds={word:'слово',chunk:'выражение',phrasal:'фразовый глагол'};
 export const t01Vocabulary=source.split('\n').map((line,i)=>{
  const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid T01 vocabulary row '+(i+1));

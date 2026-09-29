@@ -79,7 +79,6 @@ const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a1
 const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary,...c104Vocabulary,...c105Vocabulary,...c201Vocabulary,...c202Vocabulary,...c203Vocabulary,...c204Vocabulary,...c205Vocabulary,...t01Vocabulary];
 // Content scope is repository metadata, not learner state or a timed schedule.
 export const topicDevelopment={T01:{remaining:[
- 'Чтение документации: назначение разделов, prerequisites, версии, параметры, пути и символы, поиск нужного условия и проверяемый пересказ.',
  'Полные пошаговые инструкции: исходные условия, действия, ожидаемые результаты, предупреждения, проверка выполнения и восстановление после затруднения в диалоге.'
 ]}};
 export const modules = [...core, ...technical].map((m, i) => ({

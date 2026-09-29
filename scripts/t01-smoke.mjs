@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {checkT01Documentation} from './t01-documentation-smoke.mjs';
 
 // Isolated synthetic browser profile only. No real learner answers or real speech services.
 export async function checkT01({evaluate,route,command,poll,screenshot,delay,importSynthetic}){
@@ -15,14 +16,14 @@ export async function checkT01({evaluate,route,command,poll,screenshot,delay,imp
  })()`);
  const original=await evaluate('window.__t01Original');await importSynthetic('window.__t01Original');
  await route('module/T01','#legacy-practice');
- assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),1);
- assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),101);
+ assert.equal(await evaluate('document.querySelectorAll(".unit-card").length'),2);
+ assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),218);
  assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),0);
  assert.equal(await evaluate('document.querySelector("#drill1").value'),'is\nSynthetic original answer');
  assert(await evaluate('document.querySelector("#drill1").readOnly'));assert.equal(await evaluate('document.querySelector("#draft").value'),'Synthetic original T01 notes.');
  await evaluate('document.querySelector("#legacy-practice").open=true');await route('home','.hero');await route('module/T01','#legacy-practice');
  await command('Page.reload');await poll(()=>evaluate('document.querySelector("#drill2")?.value==="exiting"'),'T01 legacy archive reload');
- assert((await evaluate('document.querySelector("#topic-development").textContent')).includes('Чтение документации'));
+ assert((await evaluate('document.querySelector("#topic-development").textContent')).includes('Полные пошаговые'));
  assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Прогресс опубликованной части'));
  await screenshot('t01-topic-desktop.png');
  const u=await evaluate(`(async()=>{const {subtopics}=await import('/data/course.mjs');return subtopics.find(u=>u.id==='T01-interface')})()`);
@@ -74,12 +75,13 @@ export async function checkT01({evaluate,route,command,poll,screenshot,delay,imp
   if(name==='reference')await evaluate('document.querySelector(".table-wrap").scrollIntoView({block:"start"})');await screenshot('t01-'+name+'-mobile.png');
  }
  await route('settings','#profile');await evaluate(`(async()=>{const s=JSON.parse(localStorage.getItem('english-training-v1'));const {subtopics}=await import('/data/course.mjs');const {validateState}=await import('/engine.mjs');for(const t of subtopics.find(u=>u.id==='T01-interface').banks.flatMap(b=>b.tasks))s.learning['T01-interface'].answers[t.id]=t.answer;window.__t01Complete=JSON.stringify(validateState(s));})()`);
- await importSynthetic('window.__t01Complete');await route('module/T01','#legacy-practice');assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),101);assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),101);
- assert(await evaluate('!!document.querySelector("#topic-development")'));await command('Page.reload');await poll(()=>evaluate('document.querySelector(".topic-progress progress")?.value===101'),'T01 101/101 persists');
+ await importSynthetic('window.__t01Complete');await route('module/T01','#legacy-practice');assert.equal(await evaluate('document.querySelector(".topic-progress progress").value'),101);assert.equal(await evaluate('document.querySelector(".topic-progress progress").max'),218);
+ assert(await evaluate('!!document.querySelector("#topic-development")'));await command('Page.reload');await poll(()=>evaluate('document.querySelector(".topic-progress progress")?.value===101'),'T01 first unit 101/218 persists');
  assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Прогресс опубликованной части'));
  await route('course','#module-list');assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("T01")).textContent')).includes('Прогресс опубликованной части'));
  await route('plan','[data-topic-progress="T01"]');assert((await evaluate('document.querySelector("[data-topic-progress=T01]").textContent')).includes('Прогресс опубликованной части'));
  await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed legacy T01 SRS');if(JSON.stringify(s.navigation.pages['module/T01'].fields)!==JSON.stringify(old.navigation.pages['module/T01'].fields))throw Error('Lost T01 archive');if(s.learning['T01-interface'].attempts.length!==2)throw Error('Lost T01 test history');}`);
- console.log('T01 smoke passed: one partial unit, eight banks, two exams, diagram/text equivalence, original/revised drafts, 101/101 still partial, legacy archive/SRS, reference and mobile.');
+ console.log('T01 first-unit smoke passed: eight banks, two exams, diagram/text equivalence, original/revised drafts, 101/218 still partial, legacy archive/SRS, reference and mobile.');
+ await checkT01Documentation({evaluate,route,command,poll,screenshot,delay,importSynthetic});
 }
