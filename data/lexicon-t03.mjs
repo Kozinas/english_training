@@ -69,6 +69,42 @@ side effect~побочный эффект~/ˈsaɪd ɪˌfekt/~chunk~Logging may b
 rule out~исключить возможность~/ˌruːl ˈaʊt/~phrasal~We cannot rule out a completed operation.~Не буквальное правило снаружи.
 fall back on~прибегнуть к запасному варианту~/ˌfɔːl ˈbæk ɒn/~phrasal~Do not fall back on a new key without checking the contract.~Запасной вариант не автоматически допустим.
 by default~по умолчанию~/baɪ dɪˈfɔːlt/~chunk~Notifications are disabled by default.~При отсутствии переопределения, не навсегда.
-on receipt~при получении~/ɒn rɪˈsiːt/~chunk~Acceptance is reported on receipt of a valid submission.~Receipt не всегда кассовый чек; не completion.`;
+on receipt~при получении~/ɒn rɪˈsiːt/~chunk~Acceptance is reported on receipt of a valid submission.~Receipt не всегда кассовый чек; не completion.
+predicate~условие, возвращающее true или false~/ˈpredɪkət/~word~The predicate checks whether the item is complete.~В программировании условие; в грамматике слово также означает сказуемое.
+fixture~тестовые данные и исходная настройка~/ˈfɪkstʃə/~word~Start with a fresh fixture.~Не обязательно отдельный файл.
+precondition~предусловие~/ˌpriːkənˈdɪʃən/~word~The precondition specifies the starting state.~Не результат после действия.
+boundary~граница~/ˈbaʊndəri/~word~Twenty is the upper accepted boundary.~Граница может быть допустимым значением.
+inclusive~включительно~/ɪnˈkluːsɪv/~word~The range is one to twenty, inclusive.~Включены обе границы.
+threshold~порог~/ˈθreʃhəʊld/~word~No performance threshold was agreed.~Не придумывать допустимое время.
+coverage~покрытие~/ˈkʌvərɪdʒ/~word~State the metric and scope of coverage.~Не процент правильности требований.
+statement~оператор, инструкция; утверждение~/ˈsteɪtmənt/~word~Eighteen instrumented statements were executed.~Единица code coverage, не обязательно строка.
+branch~ветвь выполнения~/brɑːntʃ/~word~Branch coverage uses a different denominator.~Также ветка Git; контекст важен.
+denominator~знаменатель~/dɪˈnɒmɪneɪtə/~word~Name the denominator in the report.~Executed и planned дают разные доли.
+execution~выполнение, запуск~/ˌeksɪˈkjuːʃən/~word~Keep every execution in the history.~Не каждый запуск является новым test case.
+intermittent~проявляющийся непостоянно~/ˌɪntəˈmɪtənt/~word~The intermittent outcome needs investigation.~Описание повторяемости, не диагноза причины.
+flaky~нестабильный, дающий непостоянный результат~/ˈfleɪki/~word~A flaky test is not automatically harmless.~В testing не буквальные хлопья.
+rerun~выполнить повторно~/ˌriːˈrʌn/~word~Rerun the case with a fresh fixture.~Глагол rerun–reran–rerun; существительное имеет другое ударение.
+isolation~изоляция, независимость~/ˌaɪsəˈleɪʃən/~word~Isolation reduces dependence on earlier cases.~Не утверждение, что все скрытые переменные известны.
+readiness~готовность~/ˈredinəs/~word~Agree the readiness condition before waiting for it.~Название свойства не задаёт само условие.
+at most~не более~/ət ˈməʊst/~chunk~Return at most twenty items.~Не exactly twenty при любом входе.
+at least~не менее~/ət ˈliːst/~chunk~The fixture needs at least twenty completed items.~Не at last — наконец.
+test double~заменитель зависимости для теста~/ˈtest ˌdʌbəl/~chunk~The response comes from a test double.~Не второй такой же тест.
+happy path~обычный успешный сценарий~/ˌhæpi ˈpɑːθ/~chunk~The happy path does not cover every boundary.~Не буквальная счастливая тропа.
+boundary value~граничное значение~/ˈbaʊndəri ˌvæljuː/~chunk~Twenty is an accepted boundary value.~Граничное значение не обязательно ошибочный input.
+expected output~ожидаемый результат~/ɪkˌspektɪd ˈaʊtpʊt/~chunk~Derive the expected output from the contract.~Независимо от actual.
+actual output~фактический результат~/ˌæktʃuəl ˈaʊtpʊt/~chunk~The actual output contained nineteen items.~Actual не актуальный в русском смысле.
+source unchanged~исходные данные не изменены~/ˌsɔːs ʌnˈtʃeɪndʒd/~chunk~The contract requires the source to remain unchanged.~Требование ещё не результат проверки.
+not run~не выполнено~/nɒt ˈrʌn/~chunk~The keyboard case was not run.~Не failed продукт.
+fresh copy~новая независимая копия~/ˌfreʃ ˈkɒpi/~chunk~Use a fresh copy before each case.~Не ссылка на уже изменённые данные.
+under test~являющийся объектом проверки~/ˌʌndə ˈtest/~chunk~Identify the function under test.~Не физически под тестом.
+pass condition~условие успешной проверки~/ˈpɑːs kənˌdɪʃən/~chunk~We need an agreed pass condition.~Не выдумывать его по фактическому результату.
+line up with~согласовываться с, соответствовать~/ˌlaɪn ˈʌp wɪð/~phrasal~The expected output must line up with the requirement.~Здесь соответствие, не выстраивание людей в очередь.
+carry over~перенести, сохранить из предыдущего~/ˌkæri ˈəʊvə/~phrasal~Do not carry over modified data into the next case.~Перенос состояния может сделать cases зависимыми.
+pin down~точно установить~/ˌpɪn ˈdaʊn/~phrasal~We have not pinned down the cause.~Не буквальное прикалывание булавкой.
+crop up~неожиданно возникнуть~/ˌkrɒp ˈʌp/~phrasal~The same mismatch may crop up again.~May не утверждает установленную частоту.
+in isolation~изолированно~/ɪn ˌaɪsəˈleɪʃən/~chunk~The function was checked in isolation.~Ограничивает охват зависимостей.
+on each run~при каждом запуске~/ɒn ˌiːtʃ ˈrʌn/~chunk~Reset the fixture on each run.~Не только перед первой попыткой.
+remain unverified~оставаться непроверенным~/rɪˌmeɪn ʌnˈverɪfaɪd/~chunk~Source preservation remains unverified.~Не положительное свидетельство ошибки.
+in the first batch~в первой группе запусков~/ɪn ðə ˌfɜːst ˈbætʃ/~chunk~Five cases passed in the first batch.~Поздние повторы учитывать отдельно.`;
 const kinds={word:'слово',phrasal:'фразовый глагол',chunk:'выражение'};
 export const t03Vocabulary=source.split('\n').map((line,i)=>{const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid T03 vocabulary row '+(i+1));const [word,translation,ipa,kind,context,note]=fields;if(!kinds[kind])throw Error('Invalid T03 vocabulary kind');return {id:`T03-x-${i+1}`,module:'T03',word,translation,ipa,accent:'UK',kind:kinds[kind],context,note};});

@@ -19,7 +19,7 @@ test('C205 development completes publication scope with substantial connected co
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,14,12,14,14,12,12,12,12]);assert.equal(practice.length,116);assert.equal(u.goals.length,7);
  assert.equal(topic.subtopics.length,4);assert.equal(topic.contentStatus,'expanded');assert.deepEqual(topic.remainingScope,[]);assert.equal(topicDevelopment.C205,undefined);
  assert.deepEqual(u.prerequisites,['C205-defence','C205-writing']);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[36,1,3,118,10503,5140]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[37,0,3,119,10625,5196]);
 });
 test('C205 development constrained keys independently reject incorrect management and inversion',()=>{
  const cases=[['forms-1','in','to'],['forms-2','to','in'],['forms-3','practising','practise'],['forms-4','on','of'],['forms-5','to','for'],['forms-6','from','to'],['forms-7','on','of'],['forms-8','this matters','does this matter'],['review-1','discussing','discuss'],['test-a-1','in','to'],['test-a-2','to','for'],['test-a-3','retaining','retain'],['test-a-4','the evidence is limited','is the evidence limited'],['test-b-1','from','to'],['test-b-2','to','in'],['test-b-3','on','of'],['test-b-4','the reviewer checked','did the reviewer check']];
