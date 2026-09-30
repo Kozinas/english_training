@@ -19,7 +19,7 @@ test('C205 defence has substantial connected scope but does not publish an empty
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,12,14,14,14,12,12,12,12,12]);assert.equal(practice.length,128);assert.equal(u.goals.length,7);
  assert.equal(topic.subtopics.length,4);assert.equal(topic.contentStatus,'expanded');assert.equal(topic.remainingScope.length,0);assert.deepEqual(topic.remainingScope,[]);
  assert.deepEqual(u.prerequisites,['C205-writing','C204-discussion','C203-connected']);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[37,0,3,119,10625,5196]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[37,1,2,120,10751,5252]);
 });
 
 test('C205 defence constrained grammar keys independently reject wrong inversion, forms and prepositions',()=>{

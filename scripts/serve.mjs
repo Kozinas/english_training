@@ -6,6 +6,7 @@ import path from 'node:path';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml'};
 const routes=new Map([
+ ...['t04','t04-decisions','t04-decisions-texts','t04-decisions-tests','architecture-decisions','lexicon-t04'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['t03','t03-review','t03-review-texts','t03-review-tests','t03-api','t03-api-texts','t03-api-tests','t03-testing','t03-testing-texts','t03-testing-tests','testing-language','api-contract-language','review-language','lexicon-t03'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['t02','t02-report','t02-report-texts','t02-report-tests','bug-report-language','t02-verification','t02-verification-texts','t02-verification-tests','verification-language','t02-updates','t02-updates-texts','t02-updates-tests','work-update-language','lexicon-t02'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ['/','web/index.html'],['/styles.css','web/styles.css'],['/app.mjs','web/app.mjs'],['/engine.mjs','web/engine.mjs'],['/learning.mjs','web/learning.mjs'],

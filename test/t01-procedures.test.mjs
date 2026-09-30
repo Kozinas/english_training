@@ -20,7 +20,7 @@ function oldState(){
 test('T01 procedures completes the declared three-unit publication scope, not learner mastery',()=>{
  assert.equal(u.explanation.length,15);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>9400);assert.equal(u.examples.length,38);assert.deepEqual(u.prerequisites,['T01-documentation']);assert.equal(u.goals.length,7);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,12,14,14,14,12,14,12,12]);assert.equal(practice.length,118);assert.equal(topic.subtopics.length,3);assert.equal(topic.contentStatus,'expanded');assert.deepEqual(topic.remainingScope,[]);assert.equal(topicDevelopment.T01,undefined);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[37,0,3,119,10625,5196]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[37,1,2,120,10751,5252]);
 });
 test('T01 procedures grammar keys independently distinguish base forms, -ing and sequence words',()=>{
  for(const [s,right,wrong]of [['forms-1','Open','Opens'],['forms-2','replace','replaces'],['forms-3','check','checking'],['forms-4','creating','to create'],['forms-5','leaving','leave'],['forms-6','confirm','confirms'],['forms-7','then','than'],['forms-8','until','than'],['review-1','sending','to send'],['test-a-1','start','starts'],['test-a-2','inspect','inspecting'],['test-a-3','sending','send'],['test-a-4','then','than'],['test-b-1','Check','Checks'],['test-b-2','create','creates'],['test-b-3','recording','record'],['test-b-4','until','than']]){assert(!isOpen(task(s)));assert(checkAnswer(right,task(s).answer),s);assert(!checkAnswer(wrong,task(s).answer),s);}

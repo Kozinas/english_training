@@ -50,7 +50,7 @@ export async function checkT02({evaluate,route,command,poll,screenshot,delay,imp
  assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Заполнение и отправка, не оценка знаний. Качество — в разборе тестов.'));
  await route('course','#module-list');assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("T02")).textContent')).includes('Общий прогресс работы'));
  await route('plan','[data-topic-progress="T02"]');assert((await evaluate('document.querySelector("[data-topic-progress=T02]").textContent')).includes('Общий прогресс работы'));
- await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 0'));
+ await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed legacy T02 SRS');if(JSON.stringify(s.navigation.pages['module/T02'].fields)!==JSON.stringify(old.navigation.pages['module/T02'].fields))throw Error('Lost T02 archive');if(s.learning['T02-report'].attempts.length!==2)throw Error('Lost T02 history');if(s.drafts.T02!==old.drafts.T02)throw Error('Lost old T02 notes');}`);
  console.log('T02 smoke passed: nine banks, two exams, original/revised reports, long drafts, 117/351 first-unit progress preserved, legacy archive/SRS, reference and mobile.');
  await checkT02Verification({evaluate,route,command,poll,screenshot,delay,importSynthetic});
