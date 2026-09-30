@@ -1,0 +1,62 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {modules,courseStats} from '../data/course.mjs';
+import {performanceReading as reading,performanceListening as listening,performanceBrief as brief,performanceModels as models} from '../data/t04-performance-texts.mjs';
+import {performanceReference as reference} from '../data/performance-language.mjs';
+import {freshState,unitState,validateState,checkAnswer,isOpen,submitUnitTest,startUnitTest,scoreUnitTest,topicWorkProgress,reviewCard} from '../web/engine.mjs';
+const topic=modules.find(m=>m.id==='T04'),[old,u]=topic.subtopics;
+const tasks=[...u.banks.flatMap(b=>b.tasks),...u.tests.flatMap(e=>e.tasks)],get=s=>tasks.find(t=>t.id===u.id+'-'+s);
+const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex'),words=s=>s.trim().split(/\s+/).length,round=s=>validateState(JSON.parse(JSON.stringify(s)));
+function fill(s,unit){const p=unitState(s,unit.id);for(const t of unit.banks.flatMap(b=>b.tasks))p.answers[t.id]=t.answer;p.examDraft.answers=Object.fromEntries(unit.tests[0].tasks.map(t=>[t.id,t.answer]));submitUnitTest(s,unit.id,'2026-09-30T14:00:00Z');return p;}
+function earlier(){const s=freshState(),p=fill(s,old);p.answers['T04-decisions-writing-2']='Synthetic original\nLong text remains separate';p.answers['T04-decisions-writing-9']='Synthetic revision\nNo learner data';p.attempts[0].reviews['T04-decisions-test-a-12']={score:3,reviewer:'Synthetic teacher',date:'2026-09-30T14:10:00Z',evidence:'Fixture only'};startUnitTest(s,old.id);p.examDraft.answers['T04-decisions-test-b-12']='Synthetic next draft\nUnfinished';s.moduleProgress.T04={selfChecked:true,date:'2026-09-22'};s.drafts.T04='Synthetic legacy note\nUnchanged';s.cards['T04-v2']=reviewCard(null,'good',Date.UTC(2026,8,29));s.cards['T04-x-40']=reviewCard(null,'hard',Date.UTC(2026,8,29));s.navigation={current:'unit/T04-decisions/writing',sections:{course:'unit/T04-decisions/writing'},pages:{'module/T04':{scroll:500,focus:'drill1',fields:{drill0:'throughput',drill1:'compatibility\nSynthetic archive',drill2:'would'},details:[true]}}};s.bookmark={route:'unit/T04-decisions/writing',scroll:900,focus:'answer-T04-decisions-writing-9'};return s;}
+
+test('T04 performance is a substantial second unit with migrations explicitly unfilled',()=>{
+ assert.equal(u.id,'T04-performance');assert.deepEqual(u.prerequisites,['T04-decisions']);assert.equal(u.explanation.length,17);assert.equal(u.explanation.reduce((n,e)=>n+e.text.length,0),11696);assert.equal(u.examples.length,42);assert.deepEqual(u.banks.map(b=>b.tasks.length),[16,18,18,16,16,14,16,16,14]);assert.equal(u.goals.length,8);assert.equal(topic.contentStatus,'partial');assert.equal(topic.remainingScope.length,1);assert(topic.remainingScope[0].includes('миграция'));assert.deepEqual(courseStats,{topics:40,expanded:37,partial:1,legacy:2,subtopics:121,practice:10895,testTasks:5312});
+});
+test('All published decision tasks, first forty cards and seven legacy cards are byte-stable',()=>{
+ assert.equal(hash(old.banks),'25e9b488e48f74b06e0eebc2b3ef9be7cc2fffe3fd19b2b8b3b13a50334c0a55');assert.equal(hash(old.tests),'0dd722a1fcd05da7b0f25fef50277a501bde5d5414594332795f050c076d9983');assert.equal(hash(topic.vocabulary.filter(c=>/^T04-x-\d+$/.test(c.id)).slice(0,40)),'1bc0568f7a763268eadc028da3b28876343023739d288e5dd9435e7b5c5952fc');assert.equal(hash(topic.vocabulary.filter(c=>!/^T04-x-\d+$/.test(c.id))),'6bfa4fbb9466dc1e40fd21e74db3c069ca83d2829860ebc76743e0d2dfccda59');
+});
+test('Thirty-six appended cards retain IPA, context and nonliteral expressions',()=>{
+ const cards=topic.vocabulary.filter(c=>/^T04-x-\d+$/.test(c.id)).slice(40);assert.equal(cards.length,36);assert.equal(cards[0].id,'T04-x-41');assert.equal(cards.at(-1).id,'T04-x-76');assert.equal(new Set(topic.vocabulary.map(c=>c.word)).size,83);for(const c of cards)assert(c.accent==='UK'&&c.ipa.startsWith('/')&&c.context&&c.note);for(const word of ['read back','account for','level off'])assert(cards.some(c=>c.word===word&&c.kind==='фразовый глагол'));
+});
+test('Independent right and wrong keys cover quantitative grammar and conversions',()=>{
+ for(const [s,right,wrong]of [['forms-1','has','have'],['forms-2','from','by'],['forms-3','by','to'],['forms-6','includes','does include'],['forms-7','measuring','to measure'],['metrics-1','10','600'],['metrics-2','80','80000'],['metrics-3','1','50'],['metrics-4','50','1'],['metrics-5','20','40'],['metrics-6','no','yes'],['test-a-5','20','50'],['test-a-6','1','25'],['test-a-7','20','900'],['test-a-8','yes','no'],['test-b-5','20','2'],['test-b-6','750','75'],['test-b-7','5','300']]){assert(!isOpen(get(s)));assert(checkAnswer(right,get(s).answer),s);assert(!checkAnswer(wrong,get(s).answer),s);}
+ assert(get('forms-6').prompt.includes('без усиления'));assert(isOpen(get('forms-9')));
+});
+test('Elm arithmetic retains separate attempts, success, errors, lookups and visibility samples',()=>{
+ assert.equal(5880/60,98);assert.equal(5940/60,99);assert.equal(120/6000*100,2);assert.equal(60/6000*100,1);assert.equal((200-160)/200*100,20);assert.equal((450-300)/300*100,50);assert.equal((90-80)/80*100,12.5);assert.equal(words(reading),640);for(const phrase of ['5,880 successful responses and 120 errors','5,940 successful responses and 60 errors','five thousand cache lookups','six separate update probes','fifty-five seconds'])assert(reading.includes(phrase),phrase);
+});
+test('Elm reported p95 misses while mean improves and absent measurements remain unknown',()=>{
+ for(const phrase of ['successful responses only','no greater than 600 milliseconds','CPU use and network delay were not measured','has not implemented or tested','no completion date is agreed'])assert(reading.includes(phrase),phrase);assert(get('reading-9').answer.includes('candidate fails'));assert(get('evidence-7').answer.includes('Ни то ни другое'));assert(get('metrics-11').explanation.includes('не универсальная'));
+});
+test('Cache hit, lifetime, event delivery and application consistency are not equated',()=>{
+ assert(checkAnswer('300',get('data-1').answer));assert(checkAnswer('30',get('data-2').answer));assert(checkAnswer('55',get('data-3').answer));assert(checkAnswer('no',get('data-4').answer));assert(get('data-7').answer.includes('не обработку всеми'));assert(get('data-10').answer.includes('committed')||get('data-10').answer.includes('Committed'));assert(get('data-11').answer.includes('same session'));assert(get('data-14').explanation.includes('application caches'));assert(get('data-17').answer.includes('unknown'));
+});
+test('Meadow listening preserves count, unit and proposal corrections with limited commitments',()=>{
+ assert.equal(words(listening),567);for(const phrase of ['Four of the five','eighty milliseconds, not eighty seconds','forty successful read responses','estimation method','We still have two workers','has not been implemented or tested','cannot own the implementation','access is ready'])assert(listening.includes(phrase),phrase);assert(get('listening-4').answer.includes('1000-fold'));assert(get('listening-7').answer.includes('three-worker trial proposed'));assert(get('listening-14').kind==='speech');
+});
+test('Six complete models are available before Willow original and separate full revision',()=>{
+ assert.deepEqual(Object.values(models).map(words),[363,184,103,108,100,354]);const b=u.banks.find(b=>b.id==='writing');assert(b.passage.startsWith(brief));for(const m of Object.values(models))assert(b.passage.includes(m));for(const n of [2,9])assert(get('writing-'+n).prompt.includes('350–450'));assert(brief.includes('2352 success / 48 errors'));assert(brief.includes('остановленного сбора данных'));assert(get('writing-12').answer.includes('one unobserved'));assert(get('writing-13').answer.includes('baseline hit figure missing'));
+});
+test('Thirty-task A/B controls cover all goals with ten closed, twenty manual and five speech',()=>{
+ const seen=new Set(u.banks.flatMap(b=>b.tasks.map(t=>t.prompt)));for(const e of u.tests){assert.equal(e.tasks.length,30);assert.equal(e.tasks.filter(isOpen).length,20);assert.equal(e.tasks.filter(t=>t.kind==='speech').length,5);for(const g of u.goals)assert(e.tasks.some(t=>t.goal===g.id));for(const t of e.tasks){assert(!seen.has(t.prompt),t.id);seen.add(t.prompt);}for(const n of [14,24])assert(e.tasks[n-1].prompt.includes('350–450'));assert(e.tasks[16].explanation.toLowerCase().includes('text-supported'));assert(e.tasks[27].prompt.includes('Через семь дней'));assert(e.tasks[27].explanation.includes('pending'));}
+});
+test('New controls do not inherit Elm failure, denominator or freshness rules',()=>{
+ assert(get('test-a-11').answer.includes('Both p95 meet'));assert(get('test-a-11').answer.includes('one visibility miss'));assert(get('test-a-19').answer.includes('нужны raw times'));assert(get('test-b-11').answer.includes('running not failed'));assert(get('test-b-15').answer.includes('load/mix differ'));assert(get('test-b-21').answer.includes('unknown'));assert(get('test-b-26').answer.includes('ties possible'));
+});
+test('Reference contains original patterns and tasks with primary-source scope limits',()=>{
+ assert.equal(reference.rows.length,32);assert.equal(reference.practice.length,16);assert(reference.rows.every(r=>r.length===4&&r.every(Boolean)));assert.deepEqual(reference.sources.map(s=>new URL(s[1]).hostname),['sre.google','www.rfc-editor.org']);assert(reference.intro[1].includes('не являются универсальным'));assert(u.references.includes(reference.id));
+});
+test('Earlier export keeps 127 of 272 steps, originals, reviews, next draft, bookmark, archive and SRS',()=>{
+ const s=earlier(),r=round(s);assert.deepEqual(r,s);assert.deepEqual(topicWorkProgress(r,'T04'),{kind:'expanded',completed:127,total:272,percent:46,practiceAnswered:126,practiceTotal:270,testsSubmitted:1,testsTotal:2});assert(!r.learning[u.id]);unitState(r,u.id).answers[get('forms-1').id]='has';assert.equal(topicWorkProgress(r,'T04').completed,128);for(const key of ['cards','drafts','navigation','bookmark','moduleProgress'])assert.deepEqual(r[key],s[key]);assert.deepEqual(r.learning[old.id],s.learning[old.id]);
+});
+test('Long new originals and interrupted exam drafts survive independently',()=>{
+ const s=earlier(),p=unitState(s,u.id);p.answers[get('writing-2').id]='Synthetic original\n'+models.report;p.answers[get('writing-9').id]='Synthetic revision\n'+models.revision;p.examDraft.answers[get('test-a-14').id]='Synthetic exam draft\n'+models.report;assert.deepEqual(round(s),s);assert.equal(topicWorkProgress(s,'T04').completed,129);assert.equal(topicWorkProgress(s,'T04').testsSubmitted,1);
+});
+test('A/B keep twenty manual reviews pending and add one step, not two',()=>{
+ const s=earlier(),p=unitState(s,u.id);let first;for(const [i,e]of u.tests.entries()){p.examDraft.answers=Object.fromEntries(e.tasks.map(t=>[t.id,t.answer]));submitUnitTest(s,u.id,'2026-09-30T14:20:00Z');const sc=scoreUnitTest(u,p.attempts.at(-1));assert.deepEqual([sc.correct,sc.total,sc.pending,sc.status],[10,10,20,'awaiting-review']);assert.equal(topicWorkProgress(s,'T04').completed,128);if(!i){first=structuredClone(p.attempts[0]);startUnitTest(s,u.id);}else assert.deepEqual(p.attempts[0],first);}assert.deepEqual(round(s),s);
+});
+test('Full 272 steps remain partial, speech requires audio and primary scores await delayed transfer',()=>{
+ const s=earlier(),before=structuredClone(s),p=fill(s,u),a=p.attempts[0];assert.equal(topicWorkProgress(s,'T04').percent,100);assert.equal(topic.contentStatus,'partial');const speech=u.tests[0].tasks.find(t=>t.kind==='speech');a.reviews[speech.id]={score:3,reviewer:'Synthetic teacher',date:'2026-09-30T14:30:00Z',evidence:'Synthetic fixture only',heardAudio:false};assert.throws(()=>round(s),/прослушанное аудио/);for(const t of u.tests[0].tasks.filter(isOpen))a.reviews[t.id]={score:3,reviewer:'Synthetic teacher',date:'2026-09-30T14:30:00Z',evidence:'Fixture only',...(t.kind==='speech'?{heardAudio:true}:{})};assert.equal(scoreUnitTest(u,a).status,'awaiting-delayed-check');startUnitTest(s,u.id);p.examDraft.answers[get('test-b-14').id]='Synthetic next draft\nUnfinished';assert.deepEqual(round(s),s);assert.deepEqual(s.learning[old.id],before.learning[old.id]);for(const k of ['cards','drafts','navigation','bookmark'])assert.deepEqual(s[k],before[k]);const progress=topicWorkProgress(s,'T04');s.profile.minutes=10;s.profile.days=2;assert.deepEqual(topicWorkProgress(s,'T04'),progress);
+});

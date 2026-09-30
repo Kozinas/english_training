@@ -1,5 +1,23 @@
 # Проверка проекта
 
+## T04: данные и производительность — 2026-09-30
+
+Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и **825 Node-тестов** прошли. `npm run build` по-прежнему не запускается из-за MODULE_NOT_FOUND для npm-prefix.js в локальной Volta; глобальные настройки не менялись, выполнены эквивалентные Node-команды. Текущий охват: 37 expanded / 1 partial / 2 legacy, 121 подтема, 10895 практических / 5312 контрольных задач, 3591 карточка, 91 приложение. Записи ниже исторические.
+
+Добавлены 16 проверок T04-performance:
+
+- Независимые правильные/неправильные ключи для number/has, from/to/by, embedded order, -ing, единиц, rates, процентов и включающей границы. При первичной валидации дополнены слишком короткие пояснения и заменён совпавший с практикой контрольный prompt; финальные варианты не копируют тренировочные вопросы.
+- Elm: счётчики attempted/success/error, отдельные lookups/update probes, независимый пересчёт rates/relative changes/points, mean/p95 с разными направлениями, known visibility miss и missing CPU/network/error latency. Cache hit/lifetime/event log не доказывают актуальность или причину.
+- Meadow: отдельный same-session contract, поправки counts/units/status, 40 timing responses отдельно от пяти checks, неизвестный p99 method, actual workers 2 против proposed 3, ограниченные review/access commitments.
+- Шесть полных моделей 363/184/103/108/100/354 слова доступны до ввода. Willow original/revision 350–450 слов отдельны; known late и stopped-observation unknown не смешиваются, baseline hit proportion не выдумывается.
+- Два новых теста по 30 задач: 10 закрытых / 20 manual / пять speech, все восемь целей, новые Rowan/Birch и Ash/Clover условия. Положительный речевой review требует heardAudio; после первичных оценок остаётся awaiting-delayed-check, а не mastery.
+- SHA-256 первых 40 новых и семи legacy cards, прежних practice/test массивов T04-decisions неизменен. Добавлены 36 последовательных ID с IPA/контекстом и небуквальными выражениями; приложение содержит 32 модели / 16 задач и ограничения первичных источников.
+- Синтетический импорт сохраняет первую подтему как 127/272 (46%), original/revision, reviews, следующий длинный draft, navigation/bookmark, notes, архив throughput/compatibility/would и SRS. Два варианта добавляют один test step; 272/272 остаётся partial. Изменение минут не уменьшает объём. Старые v1/v2 проверки первой подтемы также проходят.
+
+`node scripts/browser-smoke.mjs --topic=T04` прошёл для обеих подтем. Новый сценарий проверяет девять банков, неверный/верный ответ, скрытый транскрипт, модели до ввода, длинные original/revision/exam draft после menu/reload, оба варианта и 20 pending reviews, полный перенос первой подтемы с отзывами/новым черновиком, шкалу 127→145→272, общий course/plan и partial при 100%, поиск приложения и мобильную ширину 390 px. Письмо просмотрено визуально. Скриншоты `.artifacts/t04-performance-*.png` локальны и игнорируются Git.
+
+Полный `node scripts/browser-smoke.mjs` прошёл: все 40 шкал, навигация/черновики, export/reset/import, карточки с отдельной озвучкой, диагностика/план/SRS, ручные отзывы и desktop/mobile, включая обе подтемы T04. Неожиданных runtime errors нет. Реальный микрофон, внешний ASR и слышимое качество TTS не проверены: автоматический профиль использует синтетические данные. Личные ответы и private books не читались и не публиковались. SchemaVersion 2 и production-логика хранения/оценивания не менялись; численные проверки не доказывают педагогическую полноту всего курса.
+
 ## T04: требования, варианты и архитектурное решение — 2026-09-30
 
 Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и **809 Node-тестов** прошли. Локальный `npm run build` всё ещё завершается с MODULE_NOT_FOUND для npm-prefix.js в Volta; глобальная установка не менялась, выполнены эквивалентные команды Node. Текущий охват: 37 expanded / 1 partial / 2 legacy; 120 подтем, 10751 практическое и 5252 контрольных задания, 3555 карточек и 90 приложений. Записи ниже исторические.

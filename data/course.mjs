@@ -85,7 +85,6 @@ const units = [...p01,...p02,...p03,...p04,...a101,...a102,...a103,...a104,...a1
 const addedVocabulary = [...extraVocabulary,...p02Vocabulary,...p03Vocabulary,...p04Vocabulary,...a101Vocabulary,...a102Vocabulary,...a103Vocabulary,...a104Vocabulary,...a105Vocabulary,...a201Vocabulary,...a202Vocabulary,...a203Vocabulary,...a204Vocabulary,...a205Vocabulary,...b101Vocabulary,...b102Vocabulary,...b103Vocabulary,...b104Vocabulary,...b105Vocabulary,...b201Vocabulary,...b202Vocabulary,...b203Vocabulary,...b204Vocabulary,...b205Vocabulary,...c101Vocabulary,...c102Vocabulary,...c103Vocabulary,...c104Vocabulary,...c105Vocabulary,...c201Vocabulary,...c202Vocabulary,...c203Vocabulary,...c204Vocabulary,...c205Vocabulary,...t01Vocabulary,...t02Vocabulary,...t03Vocabulary,...t04Vocabulary];
 // Content scope is repository metadata, not learner state or a timed schedule.
 export const topicDevelopment={T04:{remaining:[
- 'Данные и производительность: latency/throughput, свежесть и согласованность, кэширование, измерения и границы сравнения.',
  'Изменения схемы и оценки: миграция, совместимость, откат, зависимости, неопределённые сроки и условия пересмотра.'
 ]}};
 export const modules = [...core, ...technical].map((m, i) => ({
