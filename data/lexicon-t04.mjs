@@ -75,5 +75,41 @@ speed up~ускориться, ускорить~/ˌspiːd ˈʌp/~phrasal~Some re
 slow down~замедлиться, замедлить~/ˌsləʊ ˈdaʊn/~phrasal~The slowest responses may slow down further.~Нужна область наблюдения.
 rule out~исключить возможность~/ˌruːl ˈaʊt/~phrasal~The current evidence does not rule out a collection problem.~Не заявлять исключение без проверки.
 account for~объяснять, учитывать по контексту~/əˈkaʊnt fə/~phrasal~The difference in workload may account for part of the change.~Предположение, не подтверждённая причина.`;
+const migrationSource=`migration~переход, перенос между состояниями системы~/maɪˈɡreɪʃən/~word~The migration is not complete just because a column exists.~Не обязательно одна команда.
+backfill~заполнение нового представления для существующих данных~/ˈbækfɪl/~word~The backfill left two hundred new values null.~Не само по себе повреждение исходных записей.
+transition~переходный процесс~/trænˈzɪʃən/~word~Both versions may operate during the transition.~Нужно назвать поддерживаемые сочетания.
+coexistence~одновременное существование~/ˌkəʊɪɡˈzɪstəns/~word~Coexistence of old and new writers needs explicit rules.~Не гарантия согласованности.
+nullable~допускающий null~/ˈnʌləbəl/~word~The new column is nullable.~Null не обязательно пустая строка.
+default~значение или поведение по умолчанию~/dɪˈfɔːlt/~word~Changing a default can change client-visible behaviour.~Не всегда безобидная техническая настройка.
+deprecated~объявленный устаревшим~/ˈdeprəkeɪtɪd/~word~The field is deprecated but still present.~Не равно removed.
+removal~удаление~/rɪˈmuːvəl/~word~Removal of the field remains a proposal.~Намерение не выполненная операция.
+mapping~соответствие значений или полей~/ˈmæpɪŋ/~word~The mapping for two values is unresolved.~Не обязательно географическая карта.
+conversion~преобразование~/kənˈvɜːʃən/~word~The conversion may discard information.~Нужно проверить обратимость по конкретным правилам.
+representation~представление данных~/ˌreprɪzenˈteɪʃən/~word~The reader accepts the old representation.~Не обязательно физическое место хранения.
+compatibility~совместимость~/kəmˌpætəˈbɪləti/~word~Compatibility has a direction and a scope.~Не симметричное свойство любых версий.
+consumer~потребитель данных или интерфейса~/kənˈsjuːmə/~word~Identify consumers that still require the field.~Не только покупатель в магазине.
+producer~источник, создающий данные~/prəˈdjuːsə/~word~A new producer may write a format the old reader rejects.~Нужны версии и конкретное поведение.
+rehearsal~пробное выполнение, репетиция~/rɪˈhɜːsəl/~word~The rehearsal used synthetic records.~Не production deployment.
+snapshot~снимок состояния~/ˈsnæpʃɒt/~word~The snapshot predates the later writes.~Не непрерывная история изменений.
+backup~резервная копия~/ˈbækʌp/~word~A backup exists, but restoration has not been tested.~Существительное, отдельно back up — глагол.
+restore~восстановить из сохранённого состояния~/rɪˈstɔː/~word~Restore the test snapshot only in the described rehearsal.~Не команда работать с реальной базой.
+replay~воспроизвести последовательность изменений~/ˌriːˈpleɪ/~word~We have not agreed how to replay later writes.~Здесь техническое воспроизведение, не просто перечитать.
+recovery~восстановление работоспособности или данных~/rɪˈkʌvəri/~word~The recovery boundary must include the required writes.~Уточни объект и требования.
+retention~сохранение, удержание~/rɪˈtenʃən/~word~Original-file retention is a stated requirement.~Срок и правила не угадывать.
+reversible~обратимый~/rɪˈvɜːsəbəl/~word~The conversion is reversible only under the stated conditions.~Не обещание полного rollback системы.
+irreversible~необратимый~/ˌɪrɪˈvɜːsəbəl/~word~Discarding information can make a transformation irreversible.~Не всякое изменение схемы таково.
+lossless~без потери информации~/ˈlɒsləs/~word~The lossless conversion preserved the compared inputs.~Уточнить evidence и область проверки.
+lossy~с потерей информации~/ˈlɒsi/~word~A lossy derivative does not guarantee the exact original.~Не просто меньший размер без смысловых последствий.
+cutover~переключение на новую систему или путь~/ˈkʌtəʊvə/~word~The cutover is proposed after agreed checks.~Не весь длительный migration process.
+effort~трудозатраты, усилие~/ˈefət/~word~The estimate describes implementation effort.~Не elapsed time автоматически.
+person-day~человеко-день~/ˈpɜːsən deɪ/~word~Three person-days do not specify a release date.~Единица труда, не обещание трёх календарных дней.
+elapsed time~прошедшее время~/ɪˌlæpst ˈtaɪm/~chunk~Elapsed time includes waiting between activities.~Не сумма только активного труда.
+tentative~предварительный, подлежащий уточнению~/ˈtentətɪv/~word~Wednesday is a tentative target.~Не agreed commitment.
+roll out~внедрять, развёртывать~/ˌrəʊl ˈaʊt/~phrasal~We have not agreed to roll out the new writer.~Не буквальное раскатывание.
+phase out~постепенно выводить из использования~/ˌfeɪz ˈaʊt/~phrasal~We propose phasing out the old reader.~Не мгновенное подтверждённое удаление.
+put off~отложить~/ˌpʊt ˈɒf/~phrasal~We put off the next phase pending clarification.~Здесь отсрочка, не другой смысл «оттолкнуть».
+fall back on~прибегнуть к запасному варианту~/ˌfɔːl ˈbæk ɒn/~phrasal~The reader falls back on the old field only when the new one is null.~Условие fallback существенно.
+carry over~перенести, сохранить при переходе~/ˌkæri ˈəʊvə/~phrasal~We need evidence that the settings carry over to the new version.~Не просто физически перенести через препятствие.
+hold off~повременить~/ˌhəʊld ˈɒf/~phrasal~Hold off on the next phase until the mismatch is understood.~Не отменить проект навсегда.`;
 const kinds={word:'слово',phrasal:'фразовый глагол',chunk:'выражение'};
-export const t04Vocabulary=(source+'\n'+performanceSource).split('\n').map((line,i)=>{const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid T04 vocabulary row '+(i+1));const [word,translation,ipa,kind,context,note]=fields;if(!kinds[kind])throw Error('Invalid T04 vocabulary kind');return {id:`T04-x-${i+1}`,module:'T04',word,translation,ipa,accent:'UK',kind:kinds[kind],context,note};});
+export const t04Vocabulary=(source+'\n'+performanceSource+'\n'+migrationSource).split('\n').map((line,i)=>{const fields=line.split('~');if(fields.length!==6||fields.some(v=>!v))throw Error('Invalid T04 vocabulary row '+(i+1));const [word,translation,ipa,kind,context,note]=fields;if(!kinds[kind])throw Error('Invalid T04 vocabulary kind');return {id:`T04-x-${i+1}`,module:'T04',word,translation,ipa,accent:'UK',kind:kinds[kind],context,note};});

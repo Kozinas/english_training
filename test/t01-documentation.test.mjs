@@ -21,7 +21,7 @@ function oldState(){
 test('T01 documentation adds a natural reading scope alongside the published procedures unit',()=>{
  assert.equal(u.explanation.length,14);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>9000);assert.equal(u.examples.length,36);assert.deepEqual(u.prerequisites,[first.id]);assert.equal(u.goals.length,7);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,12,14,14,14,12,12,12,12]);assert.equal(practice.length,116);assert.equal(topic.subtopics.length,3);assert.deepEqual(topic.remainingScope,[]);assert.equal(topic.contentStatus,'expanded');
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[37,1,2,121,10895,5312]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[38,0,2,122,11031,5372]);
 });
 test('T01 documentation keys independently enforce agreement, verb patterns and prepositions',()=>{
  for(const [s,right,wrong]of [['forms-1','supports','support'],['forms-2','to choose','choose'],['forms-3','read','to read'],['forms-4','requires','require'],['forms-5','is','does'],['forms-6','Does','Is'],['forms-7','editing','edit'],['forms-8','to','of'],['forms-9','on','of'],['review-1','allows','lets'],['review-2','creating','create'],['test-a-1','is','does'],['test-a-2','inspect','to inspect'],['test-a-3','changing','change'],['test-a-4','on','of'],['test-b-1','describes','describe'],['test-b-2','to choose','choose'],['test-b-3','to','of'],['test-b-4','creating','create']]){assert(!isOpen(task(s)));assert(checkAnswer(right,task(s).answer),s);assert(!checkAnswer(wrong,task(s).answer),s);}

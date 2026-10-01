@@ -1,5 +1,20 @@
 # Проверка проекта
 
+## T04: миграции, совместимость, откат и оценки — 2026-10-01
+
+Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и **843 Node-теста** прошли. `npm run build` не запускается: MODULE_NOT_FOUND для npm-prefix.js в локальной Volta; выполнены прямые эквиваленты, глобальные настройки не менялись. Текущий охват: 38 expanded/0 partial/2 legacy, 122 подтемы, 11031 практическое/5372 контрольных задания, 3627 карточек, 92 приложения. Ниже — исторические записи.
+
+Добавлены 18 проверок T04-migrations:
+
+- Независимые right/wrong keys для passive agreement, depend on, replace with, time clauses, embedded questions, -ing, deprecated и доли 60/80. Открытые преобразования, отчёты и диалоги остаются ручными.
+- Alder: состояния приложения/схемы, read priority, область atomic dual writes, 1000/1200 backfill без live writes, 4/5 mixed outcomes с сохранённой новой display_name; S3 лишь proposal. App switch не schema downgrade; restore 09:00 не replay 14 later writes. Условные оценки и ограниченные commitments.
+- Cedar: 8/10 recognised не delivery, unresolved 2 не sent, 90→9 seconds, numeric-only rehearsal, phase-two not run, limited role/read-back. Maple: 480/600 mapping и отдельные 6 new creates, не универсальное разбиение имён.
+- Шесть полных моделей, original/revision 350–450 слов, настоящий feedback; два новых варианта по 30 задач с 10 closed/20 manual/5 speech, охват всех целей и delayed application. Проверены новые Willow/Hazel/Larch/Pine условия, не унаследованные исходы старых кейсов.
+- SHA-256 обоих прежних practice/test массивов и всех 83 старых карточек; 36 новых ID с IPA/контекстом. Приложение 32/16 и первичные источники с ограничениями.
+- Импорт двух прежних подтем сохраняет 272/409 (66%), одной 127/409 (31%), полные тексты, отзывы, следующий draft, историю, navigation/bookmark, старый архив и SRS. Новые original/revision/examDraft проходят round-trip отдельно. Два варианта дают один шаг; 409/409 не mastery. Положительная оценка речи без heardAudio отвергается; первичный успех остаётся awaiting-delayed-check. Минуты не уменьшают объём.
+
+Прошли `node scripts/browser-smoke.mjs --topic=T04` и полный `node scripts/browser-smoke.mjs`: все 40 шкал прогресса, навигация/прокрутка/черновики, Back/Forward, reload, экспорт/reset/import, карточки Enter/Space с отдельной озвучкой, диагностика, план, SRS, mocked speech, ручные отзывы и desktop/mobile. Новый smoke проверяет 272→288→409 шагов, девять банков, скрытый Cedar transcript, полные original/revision/examDraft, обе истории A/B с 20 pending ответами, сохранность двух прежних подтем/архива/SRS, поиск приложения и отсутствие горизонтального переполнения на 390px. Мобильные снимки темы и письма просмотрены визуально. Устаревшие проверки общих счётчиков обновлены после перехода T04 в expanded; проверки сохранности не ослаблены. Все данные проверок синтетические. Реальный микрофон, внешний ASR и слышимая TTS в этом прогоне не проверяются; автоматизация не подтверждает фонетическое качество или педагогическую полноту.
+
 ## T04: данные и производительность — 2026-09-30
 
 Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и **825 Node-тестов** прошли. `npm run build` по-прежнему не запускается из-за MODULE_NOT_FOUND для npm-prefix.js в локальной Volta; глобальные настройки не менялись, выполнены эквивалентные Node-команды. Текущий охват: 37 expanded / 1 partial / 2 legacy, 121 подтема, 10895 практических / 5312 контрольных задач, 3591 карточка, 91 приложение. Записи ниже исторические.

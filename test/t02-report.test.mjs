@@ -16,7 +16,7 @@ function oldState(){const s=freshState();s.moduleProgress.T02={selfChecked:true,
 test('T02 reports is a substantial first unit, with all three T02 strands now published',()=>{
  assert.equal(u.explanation.length,15);assert(u.explanation.reduce((n,e)=>n+e.text.length,0)>9800);assert.equal(u.examples.length,36);assert.equal(u.goals.length,8);assert.deepEqual(u.prerequisites,['T01-procedures','B101-continuous','B104-questions']);
  assert.deepEqual(u.banks.map(b=>b.tasks.length),[14,12,14,14,14,12,12,12,12]);assert.equal(practice.length,116);assert.equal(topic.subtopics.length,3);assert.equal(topic.contentStatus,'expanded');assert.deepEqual(topic.remainingScope,[]);assert.equal(topicDevelopment.T02,undefined);
- assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[37,1,2,121,10895,5312]);
+ assert.deepEqual([courseStats.expanded,courseStats.partial,courseStats.legacy,courseStats.subtopics,courseStats.practice,courseStats.testTasks],[38,0,2,122,11031,5372]);
  assert.deepEqual(topic.prerequisites,['T01','B101','B104']);
 });
 test('T02 independent grammar keys distinguish agreement, time, -ing, V3 and uncountable evidence',()=>{

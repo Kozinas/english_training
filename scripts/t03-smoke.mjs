@@ -51,7 +51,7 @@ export async function checkT03({evaluate,route,command,poll,screenshot,delay,imp
  assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Заполнение и отправка, не оценка знаний'));assert.equal(await evaluate('document.querySelector("#topic-development")'),null);
  await route('course','#module-list');assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("T03")).textContent')).includes('Общий прогресс работы'));
  await route('plan','[data-topic-progress="T03"]');assert((await evaluate('document.querySelector("[data-topic-progress=T03]").textContent')).includes('Общий прогресс работы'));
- await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
+ await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 0'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed old T03 SRS');if(JSON.stringify(s.navigation.pages['module/T03'].fields)!==JSON.stringify(old.navigation.pages['module/T03'].fields))throw Error('Lost T03 archive');if(s.learning['T03-review'].attempts.length!==2)throw Error('Lost T03 history');if(s.drafts.T03!==old.drafts.T03)throw Error('Lost T03 old notes');}`);
  await checkT03Api({evaluate,route,command,poll,screenshot,delay,importSynthetic});
  await checkT03Testing({evaluate,route,command,poll,screenshot,delay,importSynthetic});
