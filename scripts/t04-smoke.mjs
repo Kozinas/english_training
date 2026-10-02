@@ -51,7 +51,7 @@ export async function checkT04({evaluate,route,command,poll,screenshot,delay,imp
  assert((await evaluate('document.querySelector(".topic-progress").textContent')).includes('Заполнение и отправка'));assert(!(await evaluate('document.querySelector("#topic-development")')));
  await route('course','#module-list');assert((await evaluate('[...document.querySelectorAll(".module-row")].find(n=>n.textContent.includes("T04")).textContent')).includes('Общий прогресс работы'));
  await route('plan','[data-topic-progress="T04"]');assert((await evaluate('document.querySelector("[data-topic-progress=T04]").textContent')).includes('Общий прогресс работы'));
- await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 0'));
+ await route('home','.hero');assert((await evaluate('document.querySelector("main").textContent')).includes('Частично опубликовано: 1'));
  await evaluate(`{const s=JSON.parse(localStorage.getItem('english-training-v1')),old=JSON.parse(${JSON.stringify(original)});if(JSON.stringify(s.cards)!==JSON.stringify(old.cards))throw Error('Changed old T04 SRS');if(JSON.stringify(s.navigation.pages['module/T04'].fields)!==JSON.stringify(old.navigation.pages['module/T04'].fields))throw Error('Lost T04 archive');if(s.learning['T04-decisions'].attempts.length!==2)throw Error('Lost T04 history');if(s.drafts.T04!==old.drafts.T04)throw Error('Lost T04 old notes');}`);
  console.log('T04 smoke passed: nine banks, A/B exams, full original/revised ADRs, 0→16→127 decision steps preserved within 409, old archive/SRS, nested drafts, reference and mobile.');
  await checkT04Performance({evaluate,route,command,poll,screenshot,delay,importSynthetic});

@@ -6,6 +6,7 @@ import path from 'node:path';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml'};
 const routes=new Map([
+ ...['t05','t05-incidents','t05-incidents-texts','t05-incidents-tests','incident-language','lexicon-t05'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['t04-migrations','t04-migrations-texts','t04-migrations-tests','migration-language'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['t04-performance','t04-performance-texts','t04-performance-tests','performance-language'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),
  ...['t04','t04-decisions','t04-decisions-texts','t04-decisions-tests','architecture-decisions','lexicon-t04'].map(n=>['/data/'+n+'.mjs','data/'+n+'.mjs']),

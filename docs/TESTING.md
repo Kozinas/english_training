@@ -1,5 +1,23 @@
 # Проверка проекта
 
+## T05: коммуникация во время инцидента — 2026-10-02
+
+Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и **862 Node-теста** прошли. `npm run build` снова не запускается из-за MODULE_NOT_FOUND для npm-prefix.js локальной Volta; выполнены прямые эквиваленты, глобальная установка не менялась. Текущий охват: 38 expanded / 1 partial / 1 legacy, 123 подтемы, 11157 практических / 5432 контрольных задания, 3663 карточки, 93 приложения. Дальше идут исторические протоколы.
+
+Добавлены 19 проверок T05-incidents:
+
+- Независимые right/wrong keys для времён, passive, since/for, coincide with, agree to, even if, may have, долей и единиц. Открытые переформулировки, письмо и речь остаются ручными.
+- Orchard: observed onset/alert/declaration раздельны; 40/200 → 2/200 не unique users и не data loss; 19 percentage points / 95% relative reduction, 12 selected downloads отдельно от всей функции; 14/18 complete плюс 3 pending и 1 unobserved. Performed routing, cause unknown, явная передача и limited commitments.
+- Seabrook: 15:40 исправлено на 15:04, 13/16 delivered не 16/16 из-за шести новых probes; retry proposed/not run и duplicate outcome unknown; Ari отказывается, Kim остаётся; 15:30 — update, не recovery.
+- Hawthorn: acknowledgement не visibility, 9 timely / 2 late / 1 unobserved, отдельные existing/new checks, pause не revert, unanswered request не ownership. Шесть полных моделей, public абзацы 80–120 слов, original/revision 350–450 отдельно, реальный feedback.
+- Новые Wren/Juniper тесты по 30 задач, 10 closed / 20 manual / 5 speech. Проверяются в том числе подтверждённый узкий механизм Wren и доказанный content mismatch Juniper, а не привычка отвечать unknown на любой вопрос. Все цели, скрытый источник, неожиданные вопросы, полная редакция и отсроченный перенос присутствуют.
+- SHA-256 семи старых карточек и drills; 36 новых стабильных ID, IPA и фразы. Приложение 32/16 с первичными ориентирами и явными границами.
+- Импорт v1/v2 сохраняет многострочный архив authorization/confirmed/with, notes, navigation/bookmark и SRS. Раздельные original/revision/examDraft/reviews/history/next draft проходят round-trip. Старая selfChecked не добавляет ответов; два варианта дают один шаг. 127/127 — только опубликованная часть, не весь T05 и не mastery; положительный speech review требует heardAudio, первичный успех ждёт delayed application. Минуты не уменьшают материал. Общая legacy-фикстура переведена в T06.
+
+Прошёл `node scripts/browser-smoke.mjs --topic=T05`: девять банков, ошибочный/верный короткий ответ, скрытый Seabrook transcript, полные original/revision/examDraft после reload и возврата через меню, две истории A/B с 20 pending, 0→16→127 шагов без лишнего зачёта, partial notice на карте/топике/плане, импорт с review/next draft/архивом/SRS, поиск приложения и mobile 390px. Снимки письма и топика просмотрены: горизонтального переполнения нет, ограничение опубликованной части видно. Также прошёл общий браузерный набор Pre-A1–C2 и T01–T04 с новыми метаданными T05: все 40 шкал, маршруты/прокрутка, Back/Forward, reload, экспорт/reset/import, карточки Enter/Space с отдельной озвучкой, диагностика, план, SRS, mocked speech, reviews и desktop/mobile. T05 проверен отдельным запуском и включён в последовательность общего runner; после добавления этого вызова его отдельный сценарий повторно прошёл, общий длинный набор повторно не запускался.
+
+Все данные проверок синтетические. Реальный микрофон, внешний ASR и слышимая TTS не проверялись. Автоматизация не подтверждает произношение ученика или педагогическую полноту курса.
+
 ## T04: миграции, совместимость, откат и оценки — 2026-10-01
 
 Прямые `node scripts/build-content.mjs`, `node scripts/validate.mjs` и **843 Node-теста** прошли. `npm run build` не запускается: MODULE_NOT_FOUND для npm-prefix.js в локальной Volta; выполнены прямые эквиваленты, глобальные настройки не менялись. Текущий охват: 38 expanded/0 partial/2 legacy, 122 подтемы, 11031 практическое/5372 контрольных задания, 3627 карточек, 92 приложения. Ниже — исторические записи.
